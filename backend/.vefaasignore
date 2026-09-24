@@ -1,0 +1,12 @@
+# veFaaS 打包排除：密钥、虚拟环境、运行数据、缓存不进代码包
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.runtime/
+data/
+logs/
+.vefaas/
+node_modules/

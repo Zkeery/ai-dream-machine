@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI造梦机 · 验收界面</title>
+  <style>
+    :root { --bg:#0f1117; --card:#1a1e2a; --line:#2a3040; --text:#e8eaf0; --muted:#8b93a7; --accent:#4f8cff; --ok:#3ecf8e; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); }
+    header { padding:16px 24px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:12px; }
+    header h1 { font-size:18px; margin:0; }
+    header .spacer { flex:1; }
+    .wrap { display:grid; grid-template-columns:320px 1fr; gap:16px; padding:16px 24px; min-height:calc(100vh - 60px); }
+    .panel { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+    label { display:block; font-size:13px; color:var(--muted); margin:12px 0 4px; }
+    input,select,textarea { width:100%; padding:8px 10px; border-radius:6px; border:1px solid var(--line); background:#12151f; color:var(--text); font-size:14px; }
+    textarea { min-height:88px; resize:vertical; }
+    button { cursor:pointer; border:none; border-radius:6px; padding:10px 14px; font-size:14px; background:var(--accent); color:#fff; }
+    button:disabled { background:#3a4157; color:#8b93a7; cursor:not-allowed; }
+    button.secondary { background:#2a3040; }
+    .row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .stages { display:flex; gap:6px; margin:14px 0; flex-wrap:wrap; }
+    .stage { padding:6px 10px; border-radius:20px; font-size:12px; background:#12151f; border:1px solid var(--line); color:var(--muted); }
+    .stage.done { background:#123526; border-color:var(--ok); color:var(--ok); }
+    .stage.cur { background:#16305a; border-color:var(--accent); color:#cfe0ff; }
+    .log { font-size:13px; color:var(--muted); min-height:20px; margin:8px 0; }
+    .artifact { margin-top:12px; white-space:pre-wrap; font-size:14px; line-height:1.7; }
+    .artifact img { max-width:100%; border-radius:8px; margin:6px; }
+    .artifact video { max-width:100%; border-radius:8px; margin:6px; }
+    .hidden { display:none; }
+    a.dl { color:var(--accent); }
+    .sessions { margin-top:16px; border-top:1px solid var(--line); padding-top:12px; }
+    .sessions .item { padding:8px; border-radius:6px; cursor:pointer; font-size:13px; color:var(--muted); border:1px solid transparent; }
+    .sessions .item:hover { background:#12151f; color:var(--text); }
+    .sessions .item.cur { border-color:var(--accent); color:var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬 AI造梦机</h1>
+    <span style="color:var(--muted);font-size:13px">后端 MVP 验收界面（临时）</span>
+    <span class="spacer"></span>
+    <span id="userinfo" style="color:var(--muted);font-size:13px"></span>
+    <button id="logout" class="secondary hidden">退出</button>
+  </header>
+
+  <!-- 登录 -->
+  <div id="login" class="panel" style="max-width:420px;margin:48px auto;">
+    <label>邀请码</label>
+    <input id="invite" placeholder="输入 8 位邀请码">
+    <div class="row"><button id="loginbtn">登录</button></div>
+    <div class="log" id="loginmsg"></div>
+  </div>
+
+  <!-- 主界面 -->
+  <div class="wrap hidden" id="main">
+    <div class="panel">
+      <label>创作创意</label>
+      <textarea id="idea" placeholder="例：一只流浪猫在雨夜被好心人收留，从此改变了两人的命运"></textarea>
+      <label>视觉风格</label>
+      <input id="style" value="realistic" placeholder="realistic / anime / ...">
+      <label>剧集数</label>
+      <input id="episodes" type="number" value="4" min="1" max="20">
+      <label>视频比例</label>
+      <select id="ratio"><option>16:9</option><option>9:16</option><option>1:1</option></select>
+      <div class="row"><button id="start">开始创作</button></div>
+      <div class="stages" id="stages"></div>
+      <div class="row">
+        <button id="run" class="secondary" disabled>生成当前阶段</button>
+        <button id="next" class="secondary" disabled>确认进入下一阶段</button>
+        <button id="dl" class="secondary" disabled>下载成片</button>
+      </div>
+      <div class="sessions">
+        <label style="margin-top:0">我的会话</label>
+        <div id="sessions"></div>
+      </div>
+      <div class="sessions">
+        <label style="margin-top:0">短管线（一次性出片）</label>
+        <div class="row" style="margin-top:4px">
+          <button id="tab_lit" class="secondary">文艺短视频</button>
+          <button id="tab_motion" class="secondary">动作迁移</button>
+          <button id="tab_talk" class="secondary">数字人口播</button>
+        </div>
+        <div id="form_lit">
+          <label>文案 / 灵感</label>
+          <textarea id="lit_text" placeholder="灵感或完整文案"></textarea>
+          <label>风格</label>
+          <input id="lit_style" value="realistic">
+          <div class="row"><button id="lit_go">生成</button></div>
+        </div>
+        <div id="form_motion" class="hidden">
+          <label>角色图</label><input type="file" id="motion_char" accept="image/*">
+          <label>动作视频</label><input type="file" id="motion_vid" accept="video/*">
+          <label>提示词</label><input id="motion_prompt" placeholder="描述角色要做的动作">
+          <div class="row"><button id="motion_go">生成</button></div>
+        </div>
+        <div id="form_talk" class="hidden">
+          <label>人物图</label><input type="file" id="talk_person" accept="image/*">
+          <label>口播文案</label><textarea id="talk_script"></textarea>
+          <div class="row"><button id="talk_go">生成</button></div>
+        </div>
+        <label>任务</label>
+        <div id="tasks"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="log" id="log">输入创意后点「开始创作」。</div>
+      <div class="artifact" id="artifact"></div>
+    </div>
+  </div>
+
+<script>
+const STAGES = ["script_generation","character_design","storyboard","reference_generation","video_generation","post_production"];
+const STAGE_CN = {script_generation:"剧本",character_design:"角色场景",storyboard:"分镜",reference_generation:"参考图",video_generation:"视频",post_production:"成片"};
+let sessionId = null, currentStage = null, token = localStorage.getItem("zmj_token") || "";
+
+const $ = id => document.getElementById(id);
+const log = m => $("log").textContent = m;
+const authHeaders = () => token ? {"Authorization":"Bearer "+token} : {};
+
+function renderStages(){
+  const done = new Set((window.__done||[]));
+  $("stages").innerHTML = STAGES.map(s=>{
+    let cls = "stage";
+    if (s === currentStage) cls += " cur";
+    else if (done.has(s)) cls += " done";
+    return `<span class="stage ${cls}">${STAGE_CN[s]}</span>`;
+  }).join("");
+}
+
+async function ssePost(url, body){
+  const resp = await fetch(url, {method:"POST", headers:Object.assign({"Content-Type":"application/json"}, authHeaders()), body: body?JSON.stringify(body):undefined});
+  if(resp.status === 401){ logout(); throw new Error("未登录"); }
+  if (!resp.ok || !resp.headers.get("content-type")?.includes("text/event-stream")){
+    const err = await resp.json().catch(()=>({error:{message:"请求失败"}}));
+    throw new Error(err.error?.message || "请求失败");
+  }
+  const reader = resp.body.getReader();
+  const dec = new TextDecoder(); let buf = "";
+  while(true){
+    const {done, value} = await reader.read();
+    if(done) break;
+    buf += dec.decode(value, {stream:true});
+    let idx;
+    while((idx = buf.indexOf("\n\n")) >= 0){
+      const chunk = buf.slice(0, idx); buf = buf.slice(idx+2);
+      const line = chunk.split("\n").find(l=>l.startsWith("data: "));
+      if(!line) continue;
+      const ev = JSON.parse(line.slice(6));
+      if(ev.type === "progress") log(`${STAGE_CN[ev.stage]||ev.stage}：${ev.message}（${ev.percent}%）`);
+      else if(ev.type === "done"){ window.__meta = ev.session; window.__done = ev.session.stages_completed||[]; currentStage = ev.session.current_stage; }
+      else if(ev.type === "error"){ throw new Error(ev.error?.message || "阶段失败"); }
+    }
+  }
+}
+
+async function refresh(){
+  if(!sessionId) return;
+  const r = await fetch(`/api/sessions/${sessionId}`, {headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const m = await r.json();
+  window.__done = m.stages_completed||[]; currentStage = m.current_stage; window.__meta = m;
+  renderStages();
+  if(m.status === "session_completed"){ $("next").disabled = true; $("run").disabled = true; $("dl").disabled = false; }
+  else { $("next").disabled = m.status !== "stage_completed"; $("run").disabled = !["idle","failed","stage_completed"].includes(m.status); $("dl").disabled = false; }
+  showArtifact(m.current_stage);
+}
+
+async function showArtifact(stage){
+  if(!stage) return;
+  try{
+    const r = await fetch(`/api/sessions/${sessionId}/artifact/${stage}`, {headers:authHeaders()});
+    if(!r.ok){ $("artifact").innerHTML = ""; return; }
+    const art = await r.json();
+    renderArtifact(stage, art);
+  }catch(e){ $("artifact").innerHTML = ""; }
+}
+
+function renderArtifact(stage, art){
+  const el = $("artifact"); el.innerHTML = "";
+  if(stage === "script_generation"){
+    const eps = (art.episodes||[]).map(e=>`第${e.episode_number}集 ${e.act_title}\n${e.content}`).join("\n\n");
+    const chars = (art.characters||[]).map(c=>`${c.name}（${c.role}）：${c.description}`).join("\n");
+    el.textContent = `片名：${art.title}\n梗概：${art.logline}\n类型：${(art.genre||[]).join("/")}\n情绪：${art.mood}\n\n角色：\n${chars}\n\n${eps}`;
+  } else if(stage === "character_design"){
+    for(const c of [...(art.characters||[]), ...(art.settings||[])]){
+      const d = document.createElement("div"); d.innerHTML = `<p>${c.name}${c.description?`：${c.description}`:""}</p>`;
+      (c.versions||[]).filter(v=>v).forEach(v=>{ const im=document.createElement("img"); im.src="/static/"+v.split("/").slice(-2).join("/"); d.appendChild(im); });
+      el.appendChild(d);
+    }
+  } else if(stage === "reference_generation"){
+    for(const s of art.shots||[]){ const im=document.createElement("img"); im.src="/static/"+s.path.split("/").slice(-2).join("/"); el.appendChild(im); }
+  } else if(stage === "post_production"){
+    const v=document.createElement("video"); v.controls=true; v.src="/static/"+art.final_video.split("/").slice(-2).join("/"); el.appendChild(v);
+  } else {
+    el.textContent = JSON.stringify(art, null, 2);
+  }
+}
+
+async function loadSessions(){
+  const r = await fetch("/api/sessions", {headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const list = await r.json();
+  $("sessions").innerHTML = list.map(s=>{
+    const title = (s.artifacts?.script_generation?.title) || s.idea.slice(0,20);
+    return `<div class="item ${s.session_id===sessionId?"cur":""}" data-id="${s.session_id}">${title}</div>`;
+  }).join("") || "<div style='color:var(--muted);font-size:12px'>暂无会话</div>";
+  document.querySelectorAll("#sessions .item").forEach(el=>{
+    el.onclick = async ()=>{ sessionId = el.dataset.id; await refresh(); loadSessions(); };
+  });
+}
+
+function showMain(show){
+  $("login").classList.toggle("hidden", show);
+  $("main").classList.toggle("hidden", !show);
+  $("logout").classList.toggle("hidden", !show);
+}
+
+function resetWorkspace(){
+  sessionId = null; currentStage = null;
+  window.__done = []; window.__meta = null;
+  $("idea").value = ""; $("style").value = "realistic"; $("episodes").value = "4"; $("ratio").value = "16:9";
+  $("lit_text").value = ""; $("lit_style").value = "realistic";
+  $("motion_prompt").value = ""; $("talk_script").value = "";
+  $("motion_char").value = ""; $("motion_vid").value = ""; $("talk_person").value = "";
+  $("stages").innerHTML = ""; $("sessions").innerHTML = ""; $("tasks").innerHTML = "";
+  $("log").textContent = "输入创意后点「开始创作」。"; $("artifact").innerHTML = "";
+  $("run").disabled = true; $("next").disabled = true; $("dl").disabled = true;
+}
+
+function logout(){
+  token = ""; localStorage.removeItem("zmj_token");
+  $("userinfo").textContent = ""; $("invite").value = "";
+  resetWorkspace();
+  showMain(false);
+}
+
+async function login(){
+  const code = $("invite").value.trim();
+  if(!code){ $("loginmsg").textContent = "请输入邀请码"; return; }
+  const r = await fetch("/api/auth/login", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({invite_code:code})});
+  const m = await r.json();
+  if(!r.ok){ $("loginmsg").textContent = m.error?.message || "登录失败"; return; }
+  token = m.token; localStorage.setItem("zmj_token", token);
+  $("loginmsg").textContent = ""; $("userinfo").textContent = "用户 "+m.user_id.slice(0,8)+"…";
+  resetWorkspace();
+  showMain(true); await loadSessions(); await loadTasks();
+}
+
+$("loginbtn").onclick = login;
+$("invite").addEventListener("keydown", e=>{ if(e.key==="Enter") login(); });
+$("logout").onclick = logout;
+
+$("start").onclick = async () => {
+  const idea = $("idea").value.trim(); if(!idea){ alert("请先输入创意"); return; }
+  log("正在创建会话…");
+  const r = await fetch("/api/sessions", {method:"POST", headers:Object.assign({"Content-Type":"application/json"}, authHeaders()),
+    body:JSON.stringify({idea, style:$("style").value, episodes:+$("episodes").value, video_ratio:$("ratio").value})});
+  if(r.status === 401){ logout(); return; }
+  const m = await r.json();
+  if(r.ok){ sessionId = m.session_id; currentStage = m.current_stage; window.__done=[]; renderStages(); log("会话已创建，点「生成当前阶段」开始生成剧本。"); $("run").disabled=false; await loadSessions(); }
+  else { alert(m.error?.message||"创建失败"); }
+};
+
+$("run").onclick = async () => {
+  if(!sessionId || !currentStage){ alert("请先生成或确认当前阶段"); return; }
+  log("执行中…"); $("run").disabled = true;
+  try{
+    await ssePost(`/api/sessions/${sessionId}/execute/${currentStage}`);
+    await refresh(); log("阶段完成，可查看产物，点「确认进入下一阶段」继续。");
+  }catch(e){ log("失败："+e.message); $("run").disabled = false; }
+};
+
+$("next").onclick = async () => {
+  if(!sessionId) return;
+  const r = await fetch(`/api/sessions/${sessionId}/continue`, {method:"POST", headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const m = await r.json();
+  if(r.ok){ currentStage = m.current_stage; await refresh(); log(m.status==="session_completed"?"全部完成！可下载成片。":"进入下一阶段，点「生成当前阶段」。"); }
+  else alert(m.error?.message||"操作失败");
+};
+
+$("dl").onclick = async () => {
+  if(!sessionId) return;
+  const r = await fetch(`/api/sessions/${sessionId}/export`, {headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const blob = await r.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "成片.mp4";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+};
+
+// ---- 短管线 ----
+function switchTab(which){
+  $("form_lit").classList.toggle("hidden", which!=="lit");
+  $("form_motion").classList.toggle("hidden", which!=="motion");
+  $("form_talk").classList.toggle("hidden", which!=="talk");
+}
+$("tab_lit").onclick = ()=>switchTab("lit");
+$("tab_motion").onclick = ()=>switchTab("motion");
+$("tab_talk").onclick = ()=>switchTab("talk");
+
+async function uploadFile(file){
+  const fd = new FormData(); fd.append("file", file);
+  const r = await fetch("/api/upload", {method:"POST", headers:authHeaders(), body:fd});
+  if(r.status === 401){ logout(); throw new Error("未登录"); }
+  const m = await r.json();
+  if(!r.ok) throw new Error(m.error?.message || "上传失败");
+  return m.file_path.split("/").pop();
+}
+
+async function createTask(type, input){
+  const r = await fetch("/api/tasks", {method:"POST", headers:Object.assign({"Content-Type":"application/json"}, authHeaders()), body:JSON.stringify({type, input})});
+  if(r.status === 401){ logout(); throw new Error("未登录"); }
+  const m = await r.json();
+  if(!r.ok) throw new Error(m.error?.message || "创建失败");
+  return m.task_id;
+}
+
+async function subscribeTask(taskId){
+  const resp = await fetch(`/api/tasks/${taskId}/stream`, {headers:authHeaders()});
+  if(resp.status === 401){ logout(); return; }
+  const reader = resp.body.getReader();
+  const dec = new TextDecoder(); let buf = "";
+  while(true){
+    const {done, value} = await reader.read();
+    if(done) break;
+    buf += dec.decode(value, {stream:true});
+    let idx;
+    while((idx = buf.indexOf("\n\n")) >= 0){
+      const chunk = buf.slice(0, idx); buf = buf.slice(idx+2);
+      const line = chunk.split("\n").find(l=>l.startsWith("data: "));
+      if(!line) continue;
+      try{ JSON.parse(line.slice(6)); await loadTasks(); }catch(_e){}
+    }
+  }
+}
+
+async function loadTasks(){
+  const r = await fetch("/api/tasks", {headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const list = await r.json();
+  const cn = {pending:"排队中", running:"生成中", completed:"完成", failed:"失败"};
+  $("tasks").innerHTML = list.map(t=>{
+    const down = t.status==="completed" ? `<a href="#" data-id="${t.task_id}" class="dl">下载</a>` : "";
+    return `<div class="item">${t.type} · ${cn[t.status]||t.status} ${down}</div>`;
+  }).join("") || "<div style='color:var(--muted);font-size:12px'>暂无任务</div>";
+  document.querySelectorAll("#tasks a.dl").forEach(a=>{
+    a.onclick = async (e)=>{ e.preventDefault(); await downloadTask(a.dataset.id); };
+  });
+}
+
+async function downloadTask(taskId){
+  const r = await fetch(`/api/tasks/${taskId}/export`, {headers:authHeaders()});
+  if(r.status === 401){ logout(); return; }
+  const blob = await r.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href=url; a.download="成片.mp4";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+$("lit_go").onclick = async ()=>{
+  try{
+    const text = $("lit_text").value.trim(); if(!text){ alert("请输入文案或灵感"); return; }
+    const tid = await createTask("literary_video", {text, style:$("lit_style").value});
+    $("lit_text").value = ""; await loadTasks(); subscribeTask(tid);
+  }catch(e){ alert(e.message); }
+};
+
+$("motion_go").onclick = async ()=>{
+  try{
+    const cf = $("motion_char").files[0], vf = $("motion_vid").files[0];
+    const prompt = $("motion_prompt").value.trim();
+    if(!cf || !vf || !prompt){ alert("请选择角色图、动作视频并填写提示词"); return; }
+    const character_image = await uploadFile(cf);
+    const motion_video = await uploadFile(vf);
+    const tid = await createTask("motion_transfer", {character_image, motion_video, prompt});
+    await loadTasks(); subscribeTask(tid);
+  }catch(e){ alert(e.message); }
+};
+
+$("talk_go").onclick = async ()=>{
+  try{
+    const pf = $("talk_person").files[0], script = $("talk_script").value.trim();
+    if(!pf || !script){ alert("请选择人物图并填写口播文案"); return; }
+    const person_image = await uploadFile(pf);
+    const tid = await createTask("talking_head", {person_image, script});
+    $("talk_script").value = ""; await loadTasks(); subscribeTask(tid);
+  }catch(e){ alert(e.message); }
+};
+
+// 启动：已有 token 则尝试恢复登录态
+(async function init(){
+  if(token){
+    const r = await fetch("/api/auth/me", {headers:authHeaders()});
+    if(r.ok){
+      const m = await r.json();
+      $("userinfo").textContent = "用户 "+m.user_id.slice(0,8)+"…";
+      showMain(true); await loadSessions(); await loadTasks();
+    } else { logout(); }
+  }
+})();
+</script>
+</body>
+</html>

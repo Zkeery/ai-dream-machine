@@ -1,0 +1,46 @@
+[
+  {
+    "name": "literary",
+    "type": "literary_video",
+    "ok": true,
+    "elapsed_s": 76.5,
+    "result": {
+      "final_video": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/video/smoke-literary/final.mp4",
+      "text": "雨滴顺着斑驳的屋檐滑落，把青石板洗成了旧时光的颜色。\n昏黄灯光拉扯着孤影，伞下的人走得很慢，生怕惊扰了这场寂静的梦。\n原来最长的路不是老街，而是一个人走完这场雨的距离。",
+      "sentences": [
+        "雨滴顺着斑驳的屋檐滑落，把青石板洗成了旧时光的颜色",
+        "昏黄灯光拉扯着孤影，伞下的人走得很慢，生怕惊扰了这场寂静的梦",
+        "原来最长的路不是老街，而是一个人走完这场雨的距离"
+      ],
+      "images": [
+        "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/image/smoke-literary/1.png",
+        "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/image/smoke-literary/2.png",
+        "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/image/smoke-literary/3.png"
+      ],
+      "evidence_video": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/阶段2/短管线冒烟/literary-final.mp4"
+    }
+  },
+  {
+    "name": "motion",
+    "type": "motion_transfer",
+    "ok": true,
+    "elapsed_s": 119.6,
+    "result": {
+      "final_video": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/video/smoke-motion-retry2/final.mp4",
+      "motion_frame": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/image/smoke-motion-retry2/motion_frame.jpg",
+      "evidence_video": "../docs/evidence/阶段2/短管线冒烟/motion-final.mp4"
+    }
+  },
+  {
+    "name": "talking",
+    "type": "talking_head",
+    "ok": true,
+    "elapsed_s": 3.1,
+    "result": {
+      "final_video": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/video/smoke-talking/final.mp4",
+      "audio": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/result/video/smoke-talking/voice.mp3",
+      "script": "欢迎来到AI造梦机。输入一句创意，就能生成属于你的短片。",
+      "evidence_video": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/阶段2/短管线冒烟/talking-final.mp4"
+    }
+  }
+]

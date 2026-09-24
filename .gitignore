@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+!.env.blueprint.example
+.venv/
+.blueprint-venv/
+node_modules/
+__pycache__/
+.pytest_cache/
+.runtime/
+data/
+logs/
+.next/
+dist/
+.DS_Store
