@@ -1,6 +1,6 @@
 # AI造梦机 · 项目规则
 
-分别检查共享入口：若 `../../AGENTS.md` 存在，读取该原始 canonical 规则，否则读取本仓库 `.project-support/AGENTS.md`；若 `../../docs/多项目开发指南.md` 存在，读取原指南，否则读取 `.project-support/docs/多项目开发指南.md`。支持目录保存原文快照，不替代原多项目工作区的 canonical 文件。
+分别检查共享入口：若 `../../AGENTS.md` 存在，读取该原始 canonical 规则，否则读取本仓库 `docs/development/shared/AGENTS.md`；若 `../../docs/多项目开发指南.md` 存在，读取原指南，否则读取 `docs/development/shared/docs/多项目开发指南.md`。支持目录保存原文快照，不替代原多项目工作区的 canonical 文件。
 
 独立仓库开发以本项目规则、项目事实及支持快照中的适用条款为准；快照内的多项目目录和共享工具路径只说明原工作区布局，不要求独立仓库存在其他项目或共享工具链。
 

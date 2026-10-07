@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" role="img" aria-label="AI造梦机：从一个灵感，走到一部短片。">
+<defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#6756a6" opacity=".09"/></pattern></defs>
+<rect width="1440" height="560" rx="22" fill="#faf9f6"/>
+<rect x="806" y="36" width="586" height="452" rx="22" fill="#eeebf7"/>
+<rect x="806" y="36" width="586" height="452" rx="22" fill="url(#grid)"/>
+<g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+<rect x="52" y="55" width="7" height="23" rx="3" fill="#6756a6"/>
+<text x="74" y="73" font-size="18" font-weight="700" letter-spacing="2.3" fill="#6756a6">AI DREAM MACHINE</text>
+<text x="56" y="143" font-size="26" font-weight="600" fill="#3c454a">AI造梦机</text>
+<text x="52" y="231" font-size="56" font-weight="750" letter-spacing="-1.5" fill="#233139">从一个灵感，</text>
+<text x="52" y="305" font-size="56" font-weight="750" letter-spacing="-1.5" fill="#6756a6">走到一部短片。</text>
+<text x="56" y="362" font-size="21" fill="#68767c">故事短视频 · 漫剧创作 · 可编辑的制作流程</text>
+<path d="M 867 270 H 1330" fill="none" stroke="#6756a6" stroke-width="2" opacity=".35"/>
+<path d="M 903 219 V 270" fill="none" stroke="#6756a6" stroke-width="2" opacity=".32"/>
+<rect x="850" y="155" width="106" height="110" rx="16" fill="#fff" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="870" y="186" font-size="13" font-weight="650" letter-spacing="2" fill="#6756a6">01</text>
+<path d="M 870 200 H 935" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="870" y="235" font-size="24" font-weight="650" fill="#293b42">创意</text>
+<path d="M 1033 308 V 270" fill="none" stroke="#6756a6" stroke-width="2" opacity=".32"/>
+<rect x="980" y="244" width="106" height="110" rx="16" fill="#fff" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1000" y="275" font-size="13" font-weight="650" letter-spacing="2" fill="#6756a6">02</text>
+<path d="M 1000 289 H 1065" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1000" y="324" font-size="24" font-weight="650" fill="#293b42">剧本</text>
+<path d="M 1163 219 V 270" fill="none" stroke="#6756a6" stroke-width="2" opacity=".32"/>
+<rect x="1110" y="155" width="106" height="110" rx="16" fill="#fff" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1130" y="186" font-size="13" font-weight="650" letter-spacing="2" fill="#6756a6">03</text>
+<path d="M 1130 200 H 1195" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1130" y="235" font-size="24" font-weight="650" fill="#293b42">分镜</text>
+<path d="M 1293 308 V 270" fill="none" stroke="#6756a6" stroke-width="2" opacity=".32"/>
+<rect x="1240" y="244" width="106" height="110" rx="16" fill="#fff" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1260" y="275" font-size="13" font-weight="650" letter-spacing="2" fill="#6756a6">04</text>
+<path d="M 1260 289 H 1325" stroke="#6756a6" stroke-opacity=".18"/>
+<text x="1260" y="324" font-size="24" font-weight="650" fill="#293b42">成片</text>
+<circle cx="1320" cy="103" r="20" fill="none" stroke="#6756a6" stroke-opacity=".3"/>
+<path d="M 1320 88 V 118 M 1305 103 H 1335" stroke="#6756a6" stroke-width="1.5" opacity=".65"/>
+<text x="846" y="435" font-size="13" font-weight="600" letter-spacing="2.5" fill="#6756a6">AN IDEA. A PROCESS. A RESULT.</text>
+<path d="M 54 487 H 1386" stroke="#e2e4df"/>
+<text x="56" y="526" font-size="14" letter-spacing="1" fill="#738188">项目介绍  /  功能概览  /  本地运行</text>
+<text x="1385" y="526" text-anchor="end" font-size="13" letter-spacing="2" fill="#738188">ZKEERY · PROJECTS</text>
+</g></svg>
