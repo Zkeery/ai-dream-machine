@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from fastapi import Header
+from fastapi import Depends, Header
 
 from app.core.errors import AppError
 from app.services import auth
@@ -22,3 +22,9 @@ def get_current_user(authorization: str = Header(default="")) -> str:
         raise AppError("AUTH_REQUIRED", "未登录", 401)
     token = authorization[len("Bearer "):].strip()
     return auth.validate_token(token)
+
+
+def get_admin_user(user_id: str = Depends(get_current_user)) -> str:
+    if not auth.is_admin(user_id):
+        raise AppError("ADMIN_REQUIRED", "仅管理员可访问此功能", 403)
+    return user_id

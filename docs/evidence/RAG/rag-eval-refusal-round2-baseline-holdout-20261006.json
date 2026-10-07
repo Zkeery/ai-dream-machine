@@ -1,0 +1,492 @@
+{
+  "run_id": "0396b559-26b7-4468-8fa9-6492a03153ed",
+  "suite": "holdout-round2",
+  "started_at_utc": "2026-10-06T05:53:22.075576+00:00",
+  "hybrid_enabled": false,
+  "adequacy_enabled": true,
+  "fixture_eval_version": "rag-creation-zh-holdout-v1",
+  "round": "round2",
+  "cases": [
+    {
+      "case_id": "H01",
+      "query": "男主为什么会主动避开忽然很响的地方？",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": 0.0,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "recall=0.0 labels=[]"
+        },
+        {
+          "rule": "REF_SKIP",
+          "passed": true,
+          "detail": "no ordinary hits; adequacy false-refusal N/A"
+        }
+      ],
+      "passed": false,
+      "latency_ms": null,
+      "wall_latency_ms": 4.709209002612624
+    },
+    {
+      "case_id": "H02",
+      "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？",
+      "status": "matched",
+      "hit_labels": [
+        "redmoon"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "Sources 中明确记载了镇民在红月（特殊月色）出现时留在室内的原因是担心海面投出的让人迷失方向的光影。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 5321.292500004347,
+        "model": "qwen3.5-plus",
+        "question_kind": "fact",
+        "skipped_llm": false
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['redmoon']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=Sources 中明确记载了镇民在红月（特殊月色）出现时留在室内的原因是担心海面投出的让人迷失方向的光影。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 5321.292500004347,
+      "wall_latency_ms": 5326.478415998281
+    },
+    {
+      "case_id": "H03",
+      "query": "想让画面像手工印出来的，有刻痕、两层油墨稍微对不齐，应采用什么方法？",
+      "status": "matched",
+      "hit_labels": [
+        "woodcut"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造",
+        "unsupported_facts": [],
+        "degraded": false,
+        "skipped_llm": true,
+        "question_kind": "creative",
+        "latency_ms": 0.0,
+        "model": null
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['woodcut']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 0.0,
+      "wall_latency_ms": 28.547915993840434
+    },
+    {
+      "case_id": "H04",
+      "query": "介绍这款茶杯时，能写哪些有依据的材质和搭配部件？",
+      "status": "matched",
+      "hit_labels": [
+        "qinghe"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造",
+        "unsupported_facts": [],
+        "degraded": false,
+        "skipped_llm": true,
+        "question_kind": "creative",
+        "latency_ms": 0.0,
+        "model": null
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['qinghe']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 0.0,
+      "wall_latency_ms": 5.793541997263674
+    },
+    {
+      "case_id": "H05",
+      "query": "照相馆的陆遥遇到红月时，拍摄安排需要考虑哪些人物弱点和小镇规则？",
+      "status": "matched",
+      "hit_labels": [
+        "luyao",
+        "redmoon"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造",
+        "unsupported_facts": [],
+        "degraded": false,
+        "skipped_llm": true,
+        "question_kind": "creative",
+        "latency_ms": 0.0,
+        "model": null
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['luyao', 'redmoon']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 0.0,
+      "wall_latency_ms": 6.068709000828676
+    },
+    {
+      "case_id": "H06",
+      "query": "写一场红月夜大家在街上热闹游玩的场景",
+      "status": "matched",
+      "hit_labels": [
+        "redmoon"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "创作类问题：已命中相关设定资料，可作为创作依据；资料未写明的具体事实仍不得编造",
+        "unsupported_facts": [],
+        "degraded": false,
+        "skipped_llm": true,
+        "question_kind": "creative",
+        "latency_ms": 0.0,
+        "model": null
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "non-scored structural case"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 0.0,
+      "wall_latency_ms": 7.34175000252435
+    },
+    {
+      "case_id": "H07",
+      "query": "照相馆的陆遥，他母亲的姓名是什么？",
+      "status": "insufficient",
+      "hit_labels": [],
+      "rejected_labels": [
+        "luyao"
+      ],
+      "recall_at_5": null,
+      "adequacy": {
+        "sufficient": false,
+        "reason": "Sources 中记载了陆遥的年龄、职业、身体特征及性格习惯，但未提及任何关于其母亲的信息，无法回答其母亲的姓名。",
+        "unsupported_facts": [
+          "陆遥母亲的姓名"
+        ],
+        "degraded": false,
+        "latency_ms": 6344.77416700247,
+        "model": "qwen3.5-plus",
+        "question_kind": "fact",
+        "skipped_llm": false
+      },
+      "warnings": [
+        "资料未覆盖：陆遥母亲的姓名。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": true,
+          "detail": "status=insufficient"
+        },
+        {
+          "rule": "REF03",
+          "passed": true,
+          "detail": "adequacy=False degraded=False"
+        },
+        {
+          "rule": "REF04",
+          "passed": true,
+          "detail": "no-answer must not inject ordinary sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 6344.77416700247,
+      "wall_latency_ms": 6349.807624996174
+    },
+    {
+      "case_id": "H08",
+      "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+      "status": "insufficient",
+      "hit_labels": [],
+      "rejected_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": null,
+      "adequacy": {
+        "sufficient": false,
+        "reason": "提供的资料（K2）仅描述了青禾杯的材质、容量、配件及清洗建议，未包含任何关于销售价格的具体数值或货币单位。",
+        "unsupported_facts": [
+          "青禾杯玻璃茶杯的销售价格"
+        ],
+        "degraded": false,
+        "latency_ms": 9698.971917001472,
+        "model": "qwen3.5-plus",
+        "question_kind": "fact",
+        "skipped_llm": false
+      },
+      "warnings": [
+        "资料未覆盖：青禾杯玻璃茶杯的销售价格。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": true,
+          "detail": "status=insufficient"
+        },
+        {
+          "rule": "REF03",
+          "passed": true,
+          "detail": "adequacy=False degraded=False"
+        },
+        {
+          "rule": "REF04",
+          "passed": true,
+          "detail": "no-answer must not inject ordinary sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 9698.971917001472,
+      "wall_latency_ms": 9712.389290994906
+    }
+  ],
+  "paid_llm_calls": 3,
+  "summary": {
+    "case_count": 8,
+    "passed_count": 7,
+    "failed_case_ids": [
+      "H01"
+    ],
+    "answerable_count": 5,
+    "adequacy_answerable_count": 4,
+    "retrieval_miss_answerable_ids": [
+      "H01"
+    ],
+    "false_refusal_count": 0,
+    "false_refusal_rate": 0.0,
+    "false_refusal_ids": [],
+    "noanswer_count": 2,
+    "correct_refusal_count": 2,
+    "correct_refusal_rate": 1.0,
+    "flag_H07": {
+      "case_id": "H07",
+      "query": "照相馆的陆遥，他母亲的姓名是什么？",
+      "status": "insufficient",
+      "hit_labels": [],
+      "rejected_labels": [
+        "luyao"
+      ],
+      "recall_at_5": null,
+      "adequacy": {
+        "sufficient": false,
+        "reason": "Sources 中记载了陆遥的年龄、职业、身体特征及性格习惯，但未提及任何关于其母亲的信息，无法回答其母亲的姓名。",
+        "unsupported_facts": [
+          "陆遥母亲的姓名"
+        ],
+        "degraded": false,
+        "latency_ms": 6344.77416700247,
+        "model": "qwen3.5-plus",
+        "question_kind": "fact",
+        "skipped_llm": false
+      },
+      "warnings": [
+        "资料未覆盖：陆遥母亲的姓名。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": true,
+          "detail": "status=insufficient"
+        },
+        {
+          "rule": "REF03",
+          "passed": true,
+          "detail": "adequacy=False degraded=False"
+        },
+        {
+          "rule": "REF04",
+          "passed": true,
+          "detail": "no-answer must not inject ordinary sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 6344.77416700247,
+      "wall_latency_ms": 6349.807624996174
+    },
+    "flag_H08": {
+      "case_id": "H08",
+      "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+      "status": "insufficient",
+      "hit_labels": [],
+      "rejected_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": null,
+      "adequacy": {
+        "sufficient": false,
+        "reason": "提供的资料（K2）仅描述了青禾杯的材质、容量、配件及清洗建议，未包含任何关于销售价格的具体数值或货币单位。",
+        "unsupported_facts": [
+          "青禾杯玻璃茶杯的销售价格"
+        ],
+        "degraded": false,
+        "latency_ms": 9698.971917001472,
+        "model": "qwen3.5-plus",
+        "question_kind": "fact",
+        "skipped_llm": false
+      },
+      "warnings": [
+        "资料未覆盖：青禾杯玻璃茶杯的销售价格。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": true,
+          "detail": "status=insufficient"
+        },
+        {
+          "rule": "REF03",
+          "passed": true,
+          "detail": "adequacy=False degraded=False"
+        },
+        {
+          "rule": "REF04",
+          "passed": true,
+          "detail": "no-answer must not inject ordinary sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 9698.971917001472,
+      "wall_latency_ms": 9712.389290994906
+    },
+    "flag_R12": null,
+    "adequacy_latency_ms": {
+      "p50": 6344.77416700247,
+      "p95": 9698.971917001472,
+      "mean": 7121.679528002763,
+      "count": 3
+    },
+    "paid_llm_calls": 3
+  },
+  "finished_at_utc": "2026-10-06T05:53:43.593443+00:00"
+}

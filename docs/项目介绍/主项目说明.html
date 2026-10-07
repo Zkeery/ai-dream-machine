@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI造梦机项目说明：用户问题、个人职责、双链路架构、AIGC质量与可核实的项目成果。">
+  <meta name="color-scheme" content="light">
+  <title>AI造梦机 · 项目说明与项目经历</title>
+  <style>
+    :root{--ink:#14222f;--muted:#596875;--line:#dce3e8;--subtle:#f5f8fa;--navy:#163c56;--teal:#087d84;--teal-wash:#edf7f6;--amber:#86591d;--amber-wash:#fff9ee;--paper:#fff;--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:var(--navy);text-underline-offset:4px;text-decoration-thickness:1px}a:hover{color:var(--teal)}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--teal);outline-offset:5px;border-radius:3px}[hidden]{display:none!important}h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{font-weight:650}p+p{margin-top:12px}ul,ol{margin:0;padding-left:1.3em}li+li{margin-top:6px}small{font-size:12px}strong{font-weight:650}code{font-size:.9em;background:#edf1f4;padding:1px 5px;border-radius:3px}.wrap{width:min(var(--max),calc(100% - 64px));margin-inline:auto}.skip{position:absolute;left:20px;top:-80px;z-index:20;background:var(--navy);color:#fff;padding:8px 16px}.skip:focus{top:10px}.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}.bar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:700}.brand-mark{width:30px;height:30px;display:grid;place-items:center;background:var(--navy);color:#fff;border-radius:6px;font-size:16px}.brand small{font-weight:500;color:var(--muted);margin-left:4px;letter-spacing:.08em}.actions{display:flex;align-items:center;gap:20px}.tabs{display:flex;padding:4px;background:var(--subtle);border:1px solid var(--line);border-radius:7px;gap:3px}.tab{border:0;background:transparent;color:var(--muted);padding:6px 15px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:600}.tab[aria-selected="true"]{background:var(--navy);color:#fff}.print-button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:12px}.print-button:hover{color:var(--navy)}.hero{padding:76px 0 42px;border-bottom:1px solid var(--line)}.eyebrow{font-size:11px;font-weight:650;letter-spacing:.18em;color:var(--teal);text-transform:uppercase}.hero h1{font-size:clamp(36px,4.4vw,58px);line-height:1.2;letter-spacing:-.045em;margin:17px 0 20px}.hero h1 span{display:block;color:var(--navy);font-weight:500}.hero-intro{font-size:18px;line-height:1.85;color:#435663;max-width:900px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:25px;font-size:12px;color:var(--muted)}.hero-meta strong{color:var(--ink);margin-right:7px}.nav-links{display:flex;flex-wrap:wrap;gap:10px 28px;padding:20px 0;border-bottom:1px solid var(--line);font-size:13px}.nav-links a{text-decoration:none;color:var(--muted)}.nav-links a:hover{color:var(--teal)}.nav-links span{font-size:10px;color:var(--teal);margin-right:7px}.section{padding:62px 0;border-bottom:1px solid var(--line)}.section-heading{display:grid;grid-template-columns:170px 1fr;gap:32px;margin-bottom:30px}.section-num{color:var(--teal);font-size:12px;font-weight:600;letter-spacing:.08em;padding-top:7px}.section h2{font-size:29px;line-height:1.4;letter-spacing:-.035em}.section-heading p{max-width:800px;color:var(--muted);margin-top:11px}.body-indent{margin-left:202px}.lead{font-size:17px;line-height:1.9}.mini-heading{font-size:18px;margin:32px 0 16px}.scenario-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px;margin-top:24px}.scenario{border-top:1px solid var(--line);padding:20px 0}.scenario h3{font-size:15px;margin-bottom:7px}.scenario p{font-size:13px;color:var(--muted);line-height:1.8}.scenario .result{color:var(--teal);margin-top:9px;font-size:12px}.note{border-left:3px solid var(--teal);background:var(--teal-wash);padding:15px 19px;font-size:13px;color:#33565c;margin-top:23px}.subtle-note{font-size:12px;color:var(--muted);margin-top:14px}.architecture{border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-top:30px}.diagram-heading{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fbfcfd}.diagram-heading h3{font-size:15px}.diagram-heading span{font-size:11px;color:var(--muted)}.shared-start{display:flex;align-items:center;justify-content:center;padding:24px 18px 17px;gap:18px}.flow-step{padding:9px 18px;border:1px solid #c8d5df;border-radius:5px;background:#fff;font-size:12px;text-align:center}.flow-arrow{color:#8295a3;font-size:17px;flex:none}.fork-caption{text-align:center;font-size:11px;color:var(--muted);padding:0 18px 18px}.lanes{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 22px 22px}.lane{background:var(--subtle);border-top:3px solid var(--navy);padding:19px 20px;border-radius:2px 2px 6px 6px}.lane.comic{border-color:var(--teal);background:#f1f8f7}.lane h4{font-size:16px;color:var(--navy);margin-bottom:13px}.lane.comic h4{color:var(--teal)}.lane ol{list-style:none;padding:0;display:grid;gap:7px}.lane li{display:flex;gap:10px;align-items:baseline;margin:0;font-size:13px}.lane li::before{content:counter(list-item,decimal-leading-zero);font-size:10px;font-weight:600;color:#7b909f}.lane p{font-size:11px;color:var(--muted);border-top:1px solid #d7e3e7;margin-top:14px;padding-top:11px}.shared-base{background:#eef3f6;padding:15px 22px;font-size:12px;display:flex;flex-wrap:wrap;gap:8px 18px}.shared-base strong{color:var(--navy)}.shared-base span+span::before{content:"·";margin-right:18px;color:#9badba}.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:7px;overflow:hidden}.stack-item{background:#fff;padding:20px}.stack-item h4{font-size:11px;color:var(--teal);letter-spacing:.03em;margin-bottom:9px}.stack-item p{font-size:13px;color:var(--ink)}.stack-item small{display:block;color:var(--muted);line-height:1.65;margin-top:5px}.boundary-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.boundary-card{padding:25px;border:1px solid var(--line);border-radius:7px}.boundary-card.primary{border-top:3px solid var(--navy)}.boundary-card.secondary{border-top:3px solid var(--teal)}.boundary-card h3{font-size:19px;margin-bottom:14px}.boundary-card li{font-size:13px;color:var(--muted)}.boundary-card strong{color:var(--ink)}.human-loop{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:center;margin-top:24px;padding:21px;background:var(--subtle);border-radius:7px}.human-loop div{text-align:center}.human-loop strong{display:block;font-size:13px;color:var(--navy)}.human-loop small{display:block;margin-top:5px;color:var(--muted);font-size:11px}.duties{display:grid;grid-template-columns:1fr 1fr;gap:26px}.duty{border-top:2px solid var(--navy);padding:21px 0 5px}.duty-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}.duty-head span{font-size:11px;color:var(--teal);letter-spacing:.1em}.duty h3{font-size:18px;line-height:1.5;letter-spacing:-.02em}.duty dl{margin:0;display:grid;grid-template-columns:34px 1fr;gap:12px 13px;font-size:13px;line-height:1.85}.duty dt{color:var(--teal);font-size:11px;font-weight:650;padding-top:2px}.duty dd{margin:0;color:var(--muted)}.duty dd strong{color:var(--ink);font-weight:600}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:23px}.stat{border:1px solid var(--line);border-radius:7px;padding:23px}.stat-value{font-size:35px;font-weight:650;color:var(--navy);letter-spacing:-.045em;line-height:1.25}.stat-value span{font-size:16px;font-weight:450;color:#758490;margin-left:4px}.stat h3{font-size:13px;margin-top:9px}.stat p{font-size:11px;color:var(--muted);margin-top:5px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:7px}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.8;text-align:left}th{background:var(--subtle);font-weight:600;color:var(--navy)}th,td{padding:15px 18px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr:last-child td{border-bottom:0}td:first-child{font-weight:600;min-width:95px}td{color:var(--muted)}td strong{color:var(--ink)}.change-table th:nth-child(1){width:15%}.change-table th:nth-child(2){width:28%}.change-table th:nth-child(3){width:36%}.change-table th:nth-child(4){width:21%}.status-block{margin:28px 0 0;padding:23px 26px;border:1px solid #e7d5b5;border-left:4px solid #b58031;border-radius:5px;background:var(--amber-wash)}.status-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-bottom:10px}.status-head h3{font-size:18px;color:#62461f}.status-label{font-size:10px;color:var(--amber);border:1px solid #d8bf93;padding:1px 8px;border-radius:3px;white-space:nowrap}.status-block p{font-size:13px;color:#6e5c3f}.status-block small{display:block;margin-top:11px;color:#8a7757;line-height:1.8}.quality-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:28px}.quality-card{border-top:1px solid var(--line);padding-top:19px}.quality-card h3{font-size:16px;margin-bottom:10px}.quality-card p{font-size:13px;color:var(--muted)}.quality-tag{display:inline-block;margin-top:12px;font-size:11px;color:var(--teal);font-weight:600}.quality-tag.pending{color:var(--amber)}.badcase-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px;font-size:12px;color:var(--navy)}.badcase-flow span{padding:5px 10px;background:var(--subtle);border:1px solid var(--line);border-radius:4px}.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:20px}.cost-card{padding:21px;border:1px solid var(--line);border-radius:7px}.cost-card h3{font-size:16px;margin-bottom:9px}.cost-card p{font-size:13px;color:var(--muted)}.cost-numbers{font-size:23px;color:var(--navy);letter-spacing:-.025em;margin-bottom:9px;font-weight:600}.cost-numbers small{font-weight:400;font-size:11px;letter-spacing:0;color:var(--muted);margin-left:5px}.details-box{margin-top:25px;border:1px solid var(--line);border-radius:7px;overflow:hidden}.details-box summary{padding:16px 20px;font-size:13px;font-weight:600;cursor:pointer;background:var(--subtle);color:var(--navy)}.details-box .details-content{padding:19px 20px}.details-content>p{font-size:12px;color:var(--muted);margin-bottom:16px}.metrics-table{font-size:12px}.metrics-table td,.metrics-table th{padding:12px 14px}.metrics-table td:first-child{min-width:120px}.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.evidence-card{padding:20px;border:1px solid var(--line);border-radius:6px}.evidence-card h3{font-size:14px;margin-bottom:9px}.evidence-card p{font-size:12px;color:var(--muted);margin-bottom:11px}.evidence-card a{display:block;font-size:12px;margin-top:4px}.current-boundaries{background:var(--subtle);padding:25px;margin-top:27px;border-radius:7px}.current-boundaries h3{font-size:16px;margin-bottom:14px}.current-boundaries ul{display:grid;grid-template-columns:1fr 1fr;gap:9px 31px;font-size:13px;color:var(--muted)}.current-boundaries li{margin:0}.footer{padding:29px 0 45px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:20px}.footer a{font-size:11px}.resume{max-width:900px;margin-inline:auto;padding:63px 0 75px}.resume h1{font-size:40px;letter-spacing:-.04em;line-height:1.3;margin:13px 0 12px}.resume-subtitle{font-size:14px;color:var(--muted)}.resume-lead{font-size:16px;line-height:2;margin-top:28px}.resume-section{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}.resume-section h2{font-size:19px;margin-bottom:15px}.resume-section li{font-size:14px;line-height:1.95;margin-bottom:13px;color:#435562}.resume-section li strong{color:var(--ink)}.resume-facts{display:grid;grid-template-columns:1fr 1fr;gap:15px 28px;font-size:13px}.resume-facts dt{color:var(--muted);font-size:11px}.resume-facts dd{margin:4px 0 0;color:var(--ink)}
+    @media(max-width:1000px){.section-heading{grid-template-columns:130px 1fr;gap:24px}.body-indent{margin-left:154px}.stack{grid-template-columns:repeat(2,1fr)}.evidence-grid{grid-template-columns:repeat(2,1fr)}.brand small{display:none}.duties{gap:22px}.section h2{font-size:26px}}
+    @media(max-width:740px){html{scroll-padding-top:130px}.wrap{width:calc(100% - 36px)}.bar-inner{min-height:78px;gap:12px}.brand{font-size:14px;gap:8px}.brand-mark{width:25px;height:25px;font-size:13px}.actions{gap:8px}.print-button{display:none}.tab{padding:6px 10px;font-size:11px}.hero{padding:42px 0 30px}.hero-intro{font-size:15px}.hero-meta{gap:5px 17px;font-size:11px}.nav-links{gap:9px 20px;font-size:12px}.section{padding:38px 0}.section-heading{display:block;margin-bottom:23px}.section-num{padding:0;margin-bottom:9px}.section h2{font-size:24px}.section-heading p{font-size:13px}.body-indent{margin-left:0}.lead{font-size:15px}.scenario-grid{gap:0 20px}.scenario h3{font-size:14px}.diagram-heading{padding:13px 15px;display:block}.diagram-heading span{display:block;margin-top:4px}.shared-start{gap:10px;padding-inline:10px}.flow-step{padding:8px 10px;font-size:11px}.lanes{grid-template-columns:1fr;padding:0 14px 14px;gap:12px}.lane{padding:16px}.lane ol{grid-template-columns:1fr 1fr;gap:8px 15px}.shared-base{gap:6px 12px;padding:12px 16px;font-size:11px}.shared-base span+span::before{margin-right:12px}.stack-item{padding:16px}.boundary-grid,.duties,.cost-grid{grid-template-columns:1fr;gap:20px}.boundary-card{padding:20px}.human-loop{gap:7px;padding:17px 10px}.human-loop strong{font-size:11px}.human-loop small{font-size:10px}.human-loop .flow-arrow{font-size:14px}.stats{gap:9px}.stat{padding:17px 12px}.stat-value{font-size:29px}.stat-value span{font-size:12px}.stat h3{font-size:11px}.stat p{font-size:10px}.quality-grid{grid-template-columns:1fr;gap:20px}.quality-card{padding-top:15px}.quality-card p{font-size:13px}.status-block{padding:18px}.status-head h3{font-size:16px}.change-table{min-width:700px}.evidence-grid{grid-template-columns:1fr 1fr;gap:11px}.evidence-card{padding:15px}.current-boundaries{padding:20px}.current-boundaries ul{grid-template-columns:1fr}.footer{display:block}.footer p+p{margin-top:8px}.resume{padding-top:38px}.resume h1{font-size:32px}.resume-lead{font-size:14px}.resume-facts{gap:13px 20px}}
+    @media(max-width:400px){.brand-mark{display:none}.scenario-grid{grid-template-columns:1fr}.evidence-grid{grid-template-columns:1fr}.stat-value{font-size:25px}.tabs{padding:3px}.tab{padding:5px 8px}.stats{gap:6px}.stat{padding:14px 9px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+    @media print{@page{size:A4;margin:16mm 14mm}body{font-size:10pt;line-height:1.65}.wrap{width:100%;max-width:none}.topbar,.nav-links,.skip,.footer .source-nav{display:none}.hero{padding:0 0 20px}.hero h1{font-size:31pt}.hero-intro{font-size:12pt}.section{padding:25px 0}.section-heading{grid-template-columns:90px 1fr;gap:18px}.section h2{font-size:20pt}.body-indent{margin-left:0}.section-num{font-size:9pt}.duties{gap:18px}.duty,.boundary-card,.stat,.evidence-card,.cost-card,.status-block,.architecture{break-inside:avoid}.duty h3{font-size:13pt}.duty dl{font-size:9pt}.table-wrap{overflow:visible}.change-table{min-width:0}th,td{padding:8px;font-size:9pt}.stats{gap:13px}.stat-value{font-size:24pt}.evidence-grid{grid-template-columns:repeat(3,1fr)}.current-boundaries ul{grid-template-columns:1fr 1fr}.resume{padding:0;max-width:none}.resume h1{font-size:28pt}.resume-section{margin-top:25px}.resume-section li{font-size:10pt}.resume-lead{font-size:11pt}.footer{padding-top:20px}.details-box:not([open]){display:none}a{text-decoration:none}a[href]::after{content:none}}
+    .resume-dimensions{font-size:13px;color:var(--muted);margin-top:16px}.resume-section>p{font-size:14px;color:#435562;line-height:1.95}.resume-section ol{padding-left:1.5em}
+    .resume .resume-header{display:flex;align-items:baseline;justify-content:space-between;gap:18px}.resume .resume-header h1{font-size:30px;margin:0}.resume .resume-role{font-size:14px}.resume .resume-role span{font-size:11px;color:var(--muted);margin-left:10px}.resume .resume-subtitle{margin-top:10px}.resume .resume-section{margin-top:24px;padding-top:18px}.resume .responsibilities p{font-size:14px;line-height:1.85;color:#435562}.resume .responsibilities p+p{margin-top:10px}.resume .resume-remit{margin-bottom:10px}@media(max-width:740px){.resume .resume-header{display:block}.resume .resume-role{margin-top:7px}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main-content">跳到正文</a>
+  <header class="topbar">
+    <div class="wrap bar-inner">
+      <a class="brand" href="#main-content" aria-label="AI造梦机项目说明"><span class="brand-mark" aria-hidden="true">造</span>AI造梦机 <small>PROJECT CASE</small></a>
+      <div class="actions">
+        <div class="tabs" role="tablist" aria-label="阅读版本">
+          <button class="tab" id="tab-project" role="tab" type="button" aria-selected="true" aria-controls="project-panel" tabindex="0">项目说明</button>
+          <button class="tab" id="tab-resume" role="tab" type="button" aria-selected="false" aria-controls="resume-panel" tabindex="-1">项目经历</button>
+        </div>
+        <button class="print-button" id="print-button" type="button">打印 / 保存 PDF</button>
+      </div>
+    </div>
+  </header>
+  <main id="main-content" class="wrap">
+    <div id="project-panel" role="tabpanel" aria-labelledby="tab-project" tabindex="0">
+      <header class="hero">
+        <div class="eyebrow">AI VIDEO CREATION · PRODUCT &amp; DELIVERY</div>
+        <h1>把创意，变成作品。<span>也让每一步创作可检查、可修改。</span></h1>
+        <p class="hero-intro">AI造梦机是一款面向个人创作者和小型内容团队的 AI 视频创作平台。通过可编辑、可确认的制作流程，把创意或故事转化为<strong>故事短视频</strong>或<strong>漫剧视频</strong>。</p>
+        <div class="hero-meta"><span><strong>产品方向</strong>AI 视频创作与项目资产管理</span><span><strong>个人角色</strong>产品主导 · AI 协作开发</span><span><strong>验证范围</strong>本地工程闭环与真实样片；内容质量持续迭代</span><span><strong>更新</strong>2026.10.04</span><a href="../evidence/真实样片验收/样片预览.html">查看本轮真实双样片 →</a></div>
+      </header>
+      <nav class="nav-links" aria-label="项目章节">
+        <a href="#background"><span>01</span>背景与架构</a><a href="#responsibility"><span>02</span>职责边界</a><a href="#core-duties"><span>03</span>核心职责</a><a href="#results"><span>04</span>成果与评价</a><a href="#evidence">证据与边界 ↗</a>
+      </nav>
+
+      <section class="section" id="background" aria-labelledby="background-title">
+        <div class="section-heading"><div class="section-num">01 / BACKGROUND</div><div><h2 id="background-title">为什么做这个产品</h2><p>有生成能力之后，用户仍需要组织故事、画面、声音和修改过程。项目首先解决从想法到成片的操作与衔接问题。</p></div></div>
+        <div class="body-indent">
+          <p class="lead">个人创作者常从一句创意开始，却要自行拆剧本、准备角色、生成镜头，再把图像、视频、配音和字幕串起来。一旦其中一处需要修改，很难判断应重做什么、哪些素材可以保留。</p>
+          <p style="color:var(--muted);font-size:14px;margin-top:14px">AI造梦机把过程拆成有明确产物和人工确认点的阶段。用户先判断内容是否符合意图，再进入下一步；遇到不满意的镜头或失败任务，能够定位问题、局部修改和继续创作。</p>
+          <div class="scenario-grid">
+            <article class="scenario"><h3>把一个故事想法做出来</h3><p>起点是一句创意或短篇故事。用户需要知道怎样拆成剧本、角色和可制作镜头，而不是只拿到一个难以修改的结果。</p><div class="result">产物：默认一集的故事短视频与阶段素材</div></article>
+            <article class="scenario"><h3>制作对白驱动的漫剧</h3><p>有情节、人物关系和对白，还需要衔接漫画镜头、说话人、配音、字幕与时长。</p><div class="result">产物：基础运镜、角色配音和中文字幕组成的 MP4</div></article>
+            <article class="scenario"><h3>只修改不满意的部分</h3><p>已有大部分可用内容，只想改一句对白或一个镜头。用户需要保留成功结果，并知道哪些下游产物受影响。</p><div class="result">能力：局部重生成、历史选版与下游失效提示</div></article>
+            <article class="scenario"><h3>让设定与资料持续可用</h3><p>复用人物设定、世界观和创作材料时，减少反复输入，并能核对本次生成用了哪版资料。</p><div class="result">能力：项目知识库、来源记录与本人素材复用</div></article>
+          </div>
+          <div class="note">目标用户与上述场景是当前的产品定位。制作时间、单片成本、真实用户留存等业务结果，仍需按相同任务与验收标准采集，尚未形成可对外宣称的提升比例。</div>
+        </div>
+
+        <figure class="architecture" aria-labelledby="architecture-title" aria-describedby="architecture-caption">
+          <div class="diagram-heading"><h3 id="architecture-title">两条主链路，共用基础能力</h3><span>分开定义阶段与产物 · 共用账号、资料与作品管理</span></div>
+          <div class="shared-start"><div class="flow-step">创意 / 故事</div><span class="flow-arrow" aria-hidden="true">→</span><div class="flow-step">剧本</div><span class="flow-arrow" aria-hidden="true">→</span><div class="flow-step">角色 / 场景</div></div>
+          <div class="fork-caption">共用创作方法与服务；项目类型决定后续流程，各自保存阶段、版本和成片规则。</div>
+          <div class="lanes">
+            <div class="lane"><h4>故事短视频</h4><ol><li>分镜设计</li><li>镜头参考图</li><li>镜头视频</li><li>拼接成片</li></ol><p>默认一集。当前故事后期以视频拼接为主，完整配音与配乐不列为已交付。</p></div>
+            <div class="lane comic"><h4>漫剧视频</h4><ol><li>镜头与对白</li><li>漫画镜头</li><li>角色配音</li><li>基础运镜 · 字幕 · 成片</li></ol><p>当前为单集漫剧 MP4。人工检查对白、声音、字幕与画面，不承诺口型同步。</p></div>
+          </div>
+          <figcaption class="shared-base" id="architecture-caption"><strong>共用层</strong><span>账号隔离</span><span>知识库与素材</span><span>模型选择</span><span>历史版本</span><span>任务恢复与额度</span><span>作品预览 / 下载 / 归档</span></figcaption>
+        </figure>
+        <p class="subtle-note">快捷工具独立提供文艺短视频、角色动作短片、图片配音口播，服务于一次性短视频需求，不混入漫剧阶段。</p>
+        <h3 class="mini-heading">技术栈与架构职责</h3>
+        <div class="stack">
+          <div class="stack-item"><h4>创作前端</h4><p>Next.js · React · TypeScript</p><small>创作入口、阶段编辑、人工确认、版本选择及媒体预览</small></div>
+          <div class="stack-item"><h4>API 与流程编排</h4><p>FastAPI · SSE</p><small>账号归属、阶段执行、状态持久化与实时进度</small></div>
+          <div class="stack-item"><h4>模型与能力适配</h4><p>文本 / 图片 / 视频模型接口</p><small>公开模型目录、兼容校验、上游输入与真实模型来源</small></div>
+          <div class="stack-item"><h4>创作资料检索</h4><p>FastEmbed · 本地 Qdrant</p><small>语义检索、固定约束、资料版本与引用来源</small></div>
+          <div class="stack-item"><h4>状态与媒体存储</h4><p>SQLite · 本地文件</p><small>项目、版本、供应商任务、费用账本及生成产物</small></div>
+          <div class="stack-item"><h4>配音与合成</h4><p>Edge TTS · FFmpeg · Pillow</p><small>在线配音、本地运镜、字幕烧录、视频合成和格式检查</small></div>
+        </div>
+        <p class="subtle-note">当前架构为单后端 worker、本地数据库与本地检索索引。它是带人工确认点的创作工作流；多机调度、对象存储迁移和生产容量仍需独立建设与验收。</p>
+      </section>
+
+      <section class="section" id="responsibility" aria-labelledby="responsibility-title">
+        <div class="section-heading"><div class="section-num">02 / OWNERSHIP</div><div><h2 id="responsibility-title">个人主导，AI 协作落地</h2><p>产品方向、范围和验收判断由本人负责，AI 辅助方案拆解、开发和重复性验证。职责描述对应实际工作方式。</p></div></div>
+        <div class="boundary-grid">
+          <article class="boundary-card primary"><h3>本人主导的工作</h3><ul><li><strong>定位与需求：</strong>确定目标用户、创作场景和双主链路，明确本期产物与优先级。</li><li><strong>交互与视觉：</strong>选择页面方向，走查导航、创作路径与作品管理，提出具体修改。</li><li><strong>产品规则：</strong>确认默认一集、公开模型选择、管理员权限和阶段确认方式。</li><li><strong>阶段验收：</strong>判断内容是否符合创作意图、视觉是否可用，决定继续、返修或保留待验。</li></ul></article>
+          <article class="boundary-card secondary"><h3>AI 与工程系统协作</h3><ul><li><strong>方案分析：</strong>整理用户问题，核对需求、接口和现有代码之间的关系。</li><li><strong>实现与集成：</strong>辅助编写前后端代码、提示词、模型适配和技术文档。</li><li><strong>工程检查：</strong>验证状态、权限、请求合同、媒体格式和已知失败场景。</li><li><strong>过程记录：</strong>保存输入、模型来源、历史版本、依赖失效与测试证据。</li></ul></article>
+        </div>
+        <div class="human-loop" aria-label="人机协作循环"><div><strong>AI 生成候选</strong><small>按确认输入生产内容与媒体</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>人检查与选择</strong><small>剧本、分镜、素材和最终成片</small></div><span class="flow-arrow" aria-hidden="true">→</span><div><strong>系统保存与衔接</strong><small>记录选版，标记受影响下游</small></div></div>
+        <p class="subtle-note">项目经历以个人主导与 AI 协作为边界，不将协作生成代码表述为全部手写，也不虚构外部研发团队、商业客户交付或大规模用户访谈。</p>
+      </section>
+
+      <section class="section" id="core-duties" aria-labelledby="duties-title">
+        <div class="section-heading"><div class="section-num">03 / CORE WORK</div><div><h2 id="duties-title">六项核心职责</h2><p>把每项能力放回具体问题，说明采取了什么动作，以及目前可以核实的结果。</p></div></div>
+        <div class="duties">
+          <article class="duty"><div class="duty-head"><span>01</span><h3>用户问题定义与需求范围</h3></div><dl><dt>问题</dt><dd>功能逐步增加，入口、主流程和辅助工具的关系容易混乱。</dd><dt>动作</dt><dd>按用户、场景、问题和产物重写需求；确定故事与漫剧双主链，明确默认一集、共用知识库、快捷工具用途及权限。</dd><dt>结果</dt><dd><strong>形成可检查的阶段输入、产物、确认点和验收条件。</strong>漫剧使用独立阶段与视频交付规则；产品市场匹配仍待真实用户验证。</dd></dl></article>
+          <article class="duty"><div class="duty-head"><span>02</span><h3>流程设计与可控人机协作</h3></div><dl><dt>问题</dt><dd>直接生成最终结果难定位错误；局部修改后，下游可能继续使用过期素材。</dd><dt>动作</dt><dd>定义分阶段检查、编辑、选版和重生成规则；协作接入版本、引用依赖与失效提示，允许按角色、场景或镜头定向更新。</dd><dt>结果</dt><dd><strong>两条链路具备确认、选版、下游失效和成片归档的工程闭环。</strong>作品支持继续与逻辑删除；实际节省的操作数与时间尚未测量。</dd></dl></article>
+          <article class="duty"><div class="duty-head"><span>03</span><h3>生成能力、提示词与模型选择</h3></div><dl><dt>问题</dt><dd>各阶段的文字、画面、视频需求不同；隐藏默认模型使用户缺少选择，也难追溯来源。</dd><dt>动作</dt><dd>拆分生成职责，以已确认上游内容、参考图和知识资料组织输入；开放兼容模型目录，保留管理员配置权限和实际调用记录。</dd><dt>结果</dt><dd><strong>用户选择能持久化并进入实际请求，历史产物可查模型来源。</strong>不兼容或失效选项不静默回退；模型画质和性价比仍需专门对比评测。</dd></dl></article>
+          <article class="duty"><div class="duty-head"><span>04</span><h3>资料复用与生成一致性</h3></div><dl><dt>问题</dt><dd>人物设定、世界观和参考图容易在多阶段流转中丢失，资料版本也难核对。</dd><dt>动作</dt><dd>按项目显式绑定知识库；接入上传、版本化、检索、固定约束与来源展示；将选定角色和场景图引用到后续视觉生成。</dd><dt>结果</dt><dd><strong>知识来源、使用版本和素材引用形成可追溯记录。</strong>真实两镜头成片已完成，但尺度、人物合成感和信封颜色仍有偏差；RAG 独立集未达标，资料采用另验。</dd></dl></article>
+          <article class="duty"><div class="duty-head"><span>05</span><h3>AIGC 质量评价与 bad case 闭环</h3></div><dl><dt>问题</dt><dd>接口成功、MP4 能播放与内容合格是不同结果，单看工程测试会遗漏跑题、角色变化和声音问题。</dd><dt>动作</dt><dd>分开工程检查、D7 人工评价、故事一致性 AC07、漫剧 COMIC07 和 RAG08 采用评价；冻结检索集，保留开发集与独立集失败记录。</dd><dt>结果</dt><dd><strong>修正场景误用人物提示词与声线 ID 臆造，保留原错误和复测记录。</strong>样片工程闭环通过，内容质量需迭代；语音自然度未听审。独立检索 0.80 与 H01/H07/H08 失败仍保留。</dd></dl></article>
+          <article class="duty"><div class="duty-head"><span>06</span><h3>执行可靠性与成本控制</h3></div><dl><dt>问题</dt><dd>中断、响应丢失和失败重试可能导致重复生成、任务无法继续和额外费用。</dd><dt>动作</dt><dd>区分继续未完成任务与重新生成；冻结原输入，已知任务查询下载，未知提交不盲重提；明确未受理的步骤可人工新 attempt，正常预算。</dd><dt>结果</dt><dd><strong>真实跨进程恢复成功，两镜头仅 2 次视频 POST，无首镜头重提。</strong>402 后充值复用成功图，仅被拒绝图新 attempt。默认并发 2/1、月预算 500/100 元；实际成本节省未测。</dd></dl></article>
+        </div>
+      </section>
+
+      <section class="section" id="results" aria-labelledby="results-title">
+        <div class="section-heading"><div class="section-num">04 / RESULTS</div><div><h2 id="results-title">已完成什么，什么仍待验证</h2><p>以下数字是 2026-10-04 当前工程批次的验证结果。能力变化、内容质量和业务价值采用各自证据。</p></div></div>
+        <!-- ENGINEERING_STATUS: 用本轮真实完整回归更新；不可把测试数写成内容成功率。 -->
+        <div class="stats" aria-label="当前工程验证">
+          <article class="stat"><div class="stat-value">357<span>/ 357</span></div><h3>后端测试通过</h3><p>当前完整回归批次</p></article>
+          <article class="stat"><div class="stat-value">69<span>/ 69</span></div><h3>前端测试通过</h3><p>当前完整回归批次</p></article>
+          <article class="stat"><div class="stat-value">通过</div><h3>类型检查 · Lint · 构建</h3><p>新运行版本已启动，额度展示可见</p></article>
+        </div>
+        <p class="subtle-note" style="margin:0 0 22px">历史 267/60 为上一轮自查快照，保留在原验收证据中。上述结果验证工程行为，不直接证明真实生成质量或多用户生产容量。</p>
+        <div class="table-wrap"><table class="change-table"><caption class="skip">项目能力的前后变化与边界</caption><thead><tr><th scope="col">能力</th><th scope="col">原状态</th><th scope="col">当前变化</th><th scope="col">结论边界</th></tr></thead><tbody>
+          <tr><td>创作链路</td><td>已有故事成片流程</td><td><strong>双主链各 1 集 2 镜头真实成片完成</strong>，均在浏览器播放至结束</td><td>工程闭环通过；内容质量需迭代</td></tr>
+          <tr><td>模型选择</td><td>使用平台默认模型</td><td>普通用户可选择公开模型，实际请求与历史来源可追溯</td><td>已验证调用合同，未完成模型质量排名</td></tr>
+          <tr><td>局部修改</td><td>修改、版本与下游关系需要明确</td><td>支持选版、定向重生成和过期依赖阻断</td><td>时间与返工成本节省未测</td></tr>
+          <tr><td>任务恢复</td><td>中断后无法完整续接供应商任务</td><td>已实测跨进程视频续接无首镜头重复 POST；402 后成功图复用，仅拒绝位置新 attempt</td><td>unknown 仍需核对；Edge TTS 不支持该类续接</td></tr>
+          <tr><td>费用控制</td><td>缺少完整并发和预算边界</td><td>全局/账号并发限制、月度预留、按表估算及用量展示</td><td>预算账本不等于供应商实付账单</td></tr>
+          <tr><td>媒体可靠性</td><td>存在编码、奇数尺寸、超时及预览错误残留问题</td><td>补兼容处理、FFmpeg 超时取消回收与媒体切换错误恢复</td><td>真实媒体工程验证与新内容质量分开判断</td></tr>
+          <tr><td>资料检索</td><td>开发集 Recall@5 为 0.8182</td><td>阈值 0.55 调整为 0.48 后，同一开发集为 1.00</td><td>独立集仍为 0.80，低于 0.85 门槛</td></tr>
+        </tbody></table></div>
+
+        <!-- REAL_SAMPLE_STATUS_START: 本轮工程闭环已验收。后续质量评分、声音听审和实付核对必须各有新证据后再更新。 -->
+        <aside class="status-block" id="real-sample-status" aria-labelledby="sample-status-title">
+          <div class="status-head"><h3 id="sample-status-title">真实样片 · 工程闭环通过；内容质量需迭代</h3><span class="status-label">两条成片可播放</span></div>
+          <p><strong>故事：</strong>1 人、1 场景、1 集、2 镜头，1280×720，10.099 秒。<strong>漫剧：</strong>同样为 1 人、1 场景、1 集、2 镜头，720×1280，3.755 秒，含 2 句中文字幕与 Edge TTS。两片均为 H264/AAC、yuv420p，session_completed，浏览器播放到 ended 且无 error。</p>
+          <p><strong>人工介入与修正：</strong>故事原 5 镜头、漫剧原 4 镜头，人工各编辑为 2；场景误用人物 prompt 带入女性形象，修正 SETTING_PROMPT 后仅重绘 l1；voice_map 臆造声线 ID，经结构修复再生成，提示词加入动态支持声线。</p>
+          <p><strong>仍需改进：</strong>故事灯塔尺度和人物合成感、漫画摄影背景与人物线稿的风格统一、信封跨镜头颜色仍有偏差。语音自然度未完成人工听审，不能宣称 D7 全优；两个小样本也不证明长期稳定性或多人生产容量。</p>
+          <p><a href="../evidence/真实样片验收/样片预览.html"><strong>打开故事与漫剧样片预览 →</strong></a> &nbsp; <a href="../evidence/真实样片验收/验收记录.md">查看验收记录 →</a></p>
+          <small>恢复证据：视频第 1 镜头任务 ID 保存后主动终止隔离 worker，再由新进程恢复；两镜头总视频 POST 仅 2 次，无重复首镜头。真实 HTTP402 后充值恢复复用第一张图，仅第二张新 attempt。模型、执行与产物见结构化结果；费用口径见下方。</small>
+        </aside>
+        <!-- REAL_SAMPLE_STATUS_END -->
+
+        <h3 class="mini-heading">质量评价：三类证据分别看</h3>
+        <div class="quality-grid">
+          <article class="quality-card"><h3>工程行为</h3><p>验证输入与输出合同、权限隔离、阶段和版本状态、任务恢复、费用边界、媒体格式及已知失败场景。</p><span class="quality-tag">当前工程检查通过</span></article>
+          <article class="quality-card"><h3>真实 AIGC 内容</h3><p>按 D7 判断符合描述、质量可用、风格一致和内容边界。采用既有 1–3 分规则：平均不低于 2，且无 1 分项。本轮视觉仍有偏差，语音自然度未听审，不以历史评分代签。</p><span class="quality-tag pending">AC07 / COMIC07 需质量迭代；RAG08 待验</span></article>
+          <article class="quality-card"><h3>检索泛化</h3><p>开发集用于校准，独立留出集判断泛化。当前独立集 Recall@5 = 0.80，H01、H07、H08 失败，不能因开发集通过而覆盖。</p><span class="quality-tag pending">独立集未达 0.85 门槛</span></article>
+        </div>
+        <div class="badcase-flow" aria-label="失败案例闭环"><span>保留原输入与产物</span><b aria-hidden="true">→</b><span>标注失败维度与版本</span><b aria-hidden="true">→</b><span>定位问题并修正</span><b aria-hidden="true">→</b><span>旧集回归 + 新样本验证</span></div>
+        <p class="subtle-note">归因覆盖需求输入、检索、提示词 / 模型、上游引用、供应商、媒体合成和界面；无法归因则保留待查，不强行归结为模型效果。</p>
+
+        <h3 class="mini-heading">提效与成本：先明确控制和计量口径</h3>
+        <div class="cost-grid">
+          <article class="cost-card"><div class="cost-numbers">2 / 1 <small>平台 / 单账号并发执行</small></div><h3>限制同时发生的生成</h3><p>pending / running 执行计入限制。默认值可配置；普通浏览、保存、确认与下载不因费用展示异常被阻断。</p></article>
+          <article class="cost-card"><div class="cost-numbers">¥500 / ¥100 <small>平台 / 账号月度预算</small></div><h3>生成前预留，完成后按用量核算</h3><p>按北京时间自然月控制。区分按价格表估算、尚未结算的预留与供应商实际回报；实付 <code>null</code> 显示待核实，不写成 0 元。</p></article>
+        </div>
+        <div class="note"><strong>本轮按表估算合计 9.34644 元</strong>，另一次 LLM 超时保留 0.114967 元预留；30 条模型账本为 28 completed、1 rejected、1 uncertain，Edge TTS 不计入这 30 笔。供应商实付仍为 <code>null</code>。<strong>制作效率提升与实际费用节省未测</strong>，不能把本轮估算转成账单实付、合格单片成本或节省比例。</div>
+
+        <details class="details-box" id="measurement-plan">
+          <summary>查看待采集指标与分母定义</summary>
+          <div class="details-content"><p>以下是持续采集口径，尚无受控业务效率基线。单次中断恢复与两条成片不直接换算成长期成功率；每批需带日期、版本、任务类型、样本数、失败 / 取消数与来源，故事和漫剧分别统计。</p>
+            <div class="table-wrap"><table class="metrics-table"><thead><tr><th scope="col">指标</th><th scope="col">计算口径</th><th scope="col">限制与分母</th></tr></thead><tbody>
+              <tr><td>单集技术完成率</td><td>成功导出且通过解码 / 播放检查的项目数 ÷ 同批开始首次生成的项目数</td><td>保留失败、超时；取消单列，同时报告包含与剔除取消的口径</td></tr>
+              <tr><td>内容验收通过率</td><td>通过冻结质量要求的成片数 ÷ 完成人工评价的成片数</td><td>另报技术失败与待评数；缺少评分即待验</td></tr>
+              <tr><td>镜头首次通过率</td><td>首轮生成评为可用的镜头数 ÷ 预先选定且完成首轮评审的镜头数</td><td>返修结果不能计为首次通过；生成失败和未评另报</td></tr>
+              <tr><td>角色一致性</td><td>冻结检查项全部合格的镜头对数 ÷ 预先定义的同角色有效镜头对数</td><td>评审前固定身份、外观、服饰与镜头对；无重复出镜不构成样本</td></tr>
+              <tr><td>语音与字幕</td><td>说话人、可懂度、文字与时间对齐通过的对白句数 ÷ 抽样中完成检查的对白句数</td><td>句子和镜头不混用分母；自然度人工评分单列</td></tr>
+              <tr><td>人工返修率</td><td>首次审查后至少修改一次的产物单元数 ÷ 完成首次审查的产物单元数</td><td>剧本、镜头图、对白分开；同一单元不重复计入</td></tr>
+              <tr><td>制作耗时与提效</td><td>总历时与人工活跃时间分别记录；提效比例 =（基线耗时 − 平台耗时）÷ 基线耗时</td><td>同一创作者、相近复杂度、同一验收门槛成对比较；基线未测不算比例</td></tr>
+              <tr><td>合格成片成本</td><td>同批生成、失败、重试及必要服务的可核对费用 ÷ 验收合格成片数</td><td>合格数为 0 则无可计算单片成本；估算与账单实付分列</td></tr>
+              <tr><td>局部重生成节省</td><td>同一修改需求下，完整重生成对照与局部重生成的调用量、费用分别记录</td><td>未执行完整对照时只可称估算，不能写成实付节省</td></tr>
+              <tr><td>供应商续接成功率</td><td>通过原任务查询 / 下载恢复且无重复提交的任务数 ÷ 已提交且可观测的受控中断任务数</td><td>未知提交、无任务 ID、供应商失败另分组；需验证跨进程重启</td></tr>
+              <tr><td>限额有效性</td><td>正确拒绝且未新增供应商请求的超限尝试数 ÷ 预先构造的全部超限尝试数</td><td>包含并发竞态，同时验证未超限正常请求</td></tr>
+              <tr><td>RAG 检索与采用</td><td>Recall@5 按有答案 case 的 gold 文档召回比例宏平均；正确采用且无冲突的任务数 ÷ 需引用资料且已评价的任务数</td><td>无答案、固定约束、版本与删除单列；检索分数不等于创作正确率</td></tr>
+            </tbody></table></div>
+          </div>
+        </details>
+
+        <h3 class="mini-heading" id="evidence">证据入口与文档地图</h3>
+        <div class="evidence-grid">
+          <article class="evidence-card"><h3>需求与范围</h3><p>用户、场景、两条链路的产物和验收条件。</p><a href="../PRD/PRD.md">PRD ↗</a><a href="../PRD/PRD补全清单.md">需求补全清单 ↗</a></article>
+          <article class="evidence-card"><h3>架构与技术</h3><p>技术职责、模型接入、恢复和预算合同。</p><a href="../阶段文档/技术接入方案-汇报评审版.md">技术接入方案 ↗</a><a href="../阶段文档/架构方案.md">架构方案 ↗</a></article>
+          <article class="evidence-card"><h3>双链路与版本</h3><p>编辑、确认、选版、失效与成片关系。</p><a href="../阶段文档/V1.1-创作闭环-技术适配与开发说明.md">故事创作闭环 ↗</a><a href="../阶段文档/漫剧双链路技术适配与开发说明.md">漫剧双链路说明 ↗</a></article>
+          <article class="evidence-card"><h3>质量与真实样片</h3><p>本轮成片、工程证据、质量偏差和评价口径。</p><a href="../evidence/真实样片验收/样片预览.html">故事 / 漫剧样片预览 ↗</a><a href="../evidence/真实样片验收/工程验证.json">本轮工程验证 ↗</a><a href="../Agent/04-评测报告.md">评测报告 ↗</a><a href="../RAG/RAG评测方案.md">RAG 评测方案 ↗</a></article>
+          <article class="evidence-card"><h3>运行与当前状态</h3><p>启动、恢复、用量解释及最新验收进展。</p><a href="../../README.md">项目 README ↗</a><a href="../使用与运维说明.md">使用与运维说明 ↗</a><a href="../项目状态.md">当前项目状态 ↗</a></article>
+          <article class="evidence-card"><h3>项目叙述与原始证据</h3><p>可维护的项目经历与带日期的历史自查。</p><a href="主项目说明与项目经历.md">项目说明 Markdown ↗</a><a href="../evidence/整体链路自查/验收记录.md">上一轮整体自查证据 ↗</a><a href="../文档目录.md">完整文档目录 ↗</a></article>
+        </div>
+        <aside class="current-boundaries" aria-labelledby="boundary-title"><h3 id="boundary-title">当前边界</h3><ul><li>两条真实样片已完成工程闭环；尺度、人物合成感、画风与颜色需迭代，语音自然度未人工听审。</li><li>RAG 独立集 Recall@5 为 0.80，未达到 0.85 门槛，失败案例保留，RAG08 采用质量另验。</li><li>角色动作短片当前不等于完整动作迁移；图片配音口播无嘴型同步。</li><li>故事后期以拼接为主，完整配音配乐与普通界面首尾帧流程未全部交付。</li><li>原输入改变或提交结果未知时不能盲目续接；明确未受理可人工新 attempt，TTS 失败可能重新合成。</li><li>单 worker、SQLite 和本地 Qdrant 适用于当前形态；商业容量、云备份恢复和分布式执行待建设。</li><li>尚无可核实的商业用户数、收入、留存、效率基线和实际成本节省，账单实付未知。</li><li>两个小样本和工程检查不直接证明长期供应商稳定性、多人容量或商业可行性。</li></ul></aside>
+      </section>
+    </div>
+
+    <section class="resume" id="resume-panel" role="tabpanel" aria-labelledby="tab-resume" tabindex="0" hidden>
+      <header class="resume-header"><h1>AI造梦机</h1><p class="resume-role">AI 产品经理 / 产品负责人</p></header>
+      <p class="resume-subtitle">AI 视频创作与项目资产管理平台</p>
+      <p class="resume-dimensions"><strong>核心维度：</strong>产品架构｜AI 任务编排与 HITL｜RAG 与 Context｜多模态模型与 Prompt｜评测与成本治理</p>
+      <section class="resume-section"><h2>项目概述</h2><p>AI造梦机面向个人创作者和小型内容团队，提供故事短视频与漫剧的一体化创作。通过多模态模型、RAG 和项目资产管理，打通创意到成片，解决工具分散、上下文断层与素材复用难题。</p></section>
+      <section class="resume-section"><h2>职责描述</h2><p class="resume-remit"><strong>负责 AI造梦机从 0 到 1 的产品设计、研发落地与商业化推进，统筹需求规划、产品架构、多模态模型策略、质量评测及成本治理。</strong></p><div class="responsibilities">
+        <p><strong>【需求洞察与产品规划】</strong>围绕故事创作、漫剧制作与内容复用场景，拆解用户任务与创作痛点，定义 2 条主链路、3 种快捷工具的功能边界；负责 PRD、信息架构、迭代优先级及验收标准，形成以项目为核心的产品体系。</p>
+        <p><strong>【产品架构与 AI 任务编排】</strong>将两类创作任务分别建模为 6 阶段状态机，定义节点输入输出、产物依赖与推进条件；设计人工审核、内容编辑、版本选择和定向重生成的 HITL 机制，通过版本血缘与下游失效标记，保障创作可控及跨阶段内容衔接。</p>
+        <p><strong>【RAG 与 Context Engineering】</strong>搭建创作知识库，设计文档分块、Embedding 向量检索、Top-K 召回与相似度阈值；按阶段注入角色设定、固定约束、检索资料及已确认产物，配套上下文预算、引用快照与版本追溯，支撑知识复用与生成依据可查。</p>
+        <p><strong>【多模态模型与 Prompt 策略】</strong>围绕剧本、图像、视频及 TTS 配音建立模型能力适配矩阵与阶段化 Prompt 模板；将角色身份、空间关系、镜头数量、视觉风格和声线选项转化为生成约束，结合结构化输出、Schema 校验与有限重试，控制格式异常和内容偏题。</p>
+        <p><strong>【质量评测与数据驱动迭代】</strong>构建覆盖需求符合、人物一致、画面质量、镜头运动及配音字幕的 5 维评价标准；建立开发集与独立 Holdout 检索评测，结合 Recall@5、约束覆盖及 Bad Case 归因，将评审发现回流至 Prompt、检索参数与产品规则。</p>
+        <p><strong>【产品交付与成本治理】</strong>通过 AI 协作推进前后端集成、真实样片验收与版本交付，落地请求幂等、任务状态持久化及调用追溯；建立并发准入、预算预留和模型用量台账，以费用估算支撑成本分析与商业定价决策。</p>
+      </div></section>
+      <section class="resume-section"><h2>项目成果</h2><ol>
+        <li>作为项目负责人，完成 AI造梦机从 <strong>0 到 1 的产品设计与落地</strong>，跑通创意输入、知识资料引用、剧本生成、角色场景设定、分镜、画面生成、配音字幕及成片导出的完整流程，形成故事短视频与漫剧双链路创作平台。</li>
+        <li>将两类作品制作分别标准化为 <strong>6 个创作阶段</strong>，打通文本、图像、视频与配音能力，支持跨阶段内容继承、局部重生成和历史选版，使用户能够围绕同一作品持续修订、复用素材并完成成片制作。</li>
+        <li>建立 <strong>5 个内容质量维度、26 项知识检索评测用例</strong>，将创作约束、人物一致性和资料引用要求转化为可检查的评价规则；通过评审、问题归因与策略调整，形成支持模型和 Prompt 持续优化的质量迭代机制。</li>
+        <li>沉淀角色与场景设定、创作知识库、模型适配、Prompt 约束、素材版本及 Bad Case 分析方法，使内容资产和创作经验持续积累，并支持后续题材扩展与创作流程复用。</li>
+      </ol></section>
+    </section>
+    <footer class="footer"><p>AI造梦机 · 项目说明与项目经历<br>事实截至 2026-10-04；后续以带日期的运行状态及验收证据更新。</p><p class="source-nav"><a href="主项目说明与项目经历.md">可维护文字源</a> · <a href="../项目状态.md">最新项目状态</a><br>单文件离线阅读 · 无外部字体、脚本或图片依赖</p></footer>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+      const setView = (view, focus = false) => {
+        const index = view === 'resume' ? 1 : 0;
+        tabs.forEach((tab, i) => {
+          tab.setAttribute('aria-selected', String(i === index));
+          tab.tabIndex = i === index ? 0 : -1;
+          panels[i].hidden = i !== index;
+        });
+        document.title = index ? 'AI造梦机 · 简历版项目经历' : 'AI造梦机 · 项目说明与项目经历';
+        if (focus) tabs[index].focus();
+      };
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+          setView(i ? 'resume' : 'project');
+          window.scrollTo({top: 0, behavior: 'auto'});
+        });
+        tab.addEventListener('keydown', event => {
+          let next = null;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') next = i === 0 ? 1 : 0;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          if (next !== null) { event.preventDefault(); setView(next ? 'resume' : 'project', true); }
+        });
+      });
+      document.getElementById('print-button').addEventListener('click', () => window.print());
+      if (new URLSearchParams(window.location.search).get('view') === 'resume') setView('resume');
+      if (window.location.hash === '#resume') setView('resume');
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+{
+  "run_id": "6f6a1f8d-36e4-4456-bbef-3be3c3387ab5",
+  "started_at_utc": "2026-10-06T05:20:14.018157+00:00",
+  "finished_at_utc": "2026-10-06T05:23:33.401779+00:00",
+  "paid_llm_calls_total": 62,
+  "call_cap": 60,
+  "baseline": {
+    "dev": {
+      "case_count": 15,
+      "passed_count": 12,
+      "failed_case_ids": [
+        "R01",
+        "R11",
+        "R12"
+      ],
+      "answerable_count": 11,
+      "false_refusal_count": 2,
+      "false_refusal_rate": 0.18181818181818182,
+      "noanswer_count": 1,
+      "correct_refusal_count": 0,
+      "correct_refusal_rate": 0.0,
+      "flag_H07": null,
+      "flag_H08": null,
+      "flag_R12": {
+        "case_id": "R12",
+        "query": "木星大红斑中心的精确气压是多少帕？",
+        "status": "matched",
+        "hit_labels": [],
+        "rejected_labels": [],
+        "recall_at_5": null,
+        "adequacy": {},
+        "warnings": [
+          "本次仅载入固定约束，未命中其他相关资料"
+        ],
+        "retrieval_mode": "vector",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": false,
+            "detail": "status=matched"
+          },
+          {
+            "rule": "REF04",
+            "passed": false,
+            "detail": "no-answer must refuse or have no retrieval"
+          }
+        ],
+        "passed": false,
+        "latency_ms": null,
+        "wall_latency_ms": 10.273583000525832
+      },
+      "adequacy_latency_ms": {
+        "p50": 6643.787291501212,
+        "mean": 6610.379649700917,
+        "count": 10
+      },
+      "paid_llm_calls": 20
+    },
+    "holdout": {
+      "case_count": 8,
+      "passed_count": 6,
+      "failed_case_ids": [
+        "H01",
+        "H05"
+      ],
+      "answerable_count": 5,
+      "false_refusal_count": 2,
+      "false_refusal_rate": 0.4,
+      "noanswer_count": 2,
+      "correct_refusal_count": 2,
+      "correct_refusal_rate": 1.0,
+      "flag_H07": {
+        "case_id": "H07",
+        "query": "照相馆的陆遥，他母亲的姓名是什么？",
+        "status": "insufficient",
+        "hit_labels": [],
+        "rejected_labels": [
+          "luyao"
+        ],
+        "recall_at_5": null,
+        "adequacy": {
+          "sufficient": false,
+          "reason": "资料仅提供了陆遥的年龄、职业、身体状况及性格偏好，未提及任何关于其家庭成员的信息，无法回答其母亲的姓名。",
+          "unsupported_facts": [
+            "陆遥母亲的姓名"
+          ],
+          "degraded": false,
+          "latency_ms": 4903.616083000088,
+          "model": "qwen3.5-plus"
+        },
+        "warnings": [
+          "资料未覆盖：陆遥母亲的姓名。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+        ],
+        "retrieval_mode": "vector",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": true,
+            "detail": "status=insufficient"
+          },
+          {
+            "rule": "REF03",
+            "passed": true,
+            "detail": "adequacy=False degraded=False"
+          },
+          {
+            "rule": "REF04",
+            "passed": true,
+            "detail": "no-answer must refuse or have no retrieval"
+          }
+        ],
+        "passed": true,
+        "latency_ms": 4903.616083000088,
+        "wall_latency_ms": 4914.186791997054
+      },
+      "flag_H08": {
+        "case_id": "H08",
+        "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+        "status": "insufficient",
+        "hit_labels": [],
+        "rejected_labels": [
+          "qinghe"
+        ],
+        "recall_at_5": null,
+        "adequacy": {
+          "sufficient": false,
+          "reason": "资料中仅描述了青禾杯的材质、容量、配件及清洗方式，未提及具体的销售价格数值，无法回答用户关于价格的提问。",
+          "unsupported_facts": [
+            "青禾杯玻璃茶杯的销售价格"
+          ],
+          "degraded": false,
+          "latency_ms": 5217.037999995227,
+          "model": "qwen3.5-plus"
+        },
+        "warnings": [
+          "资料未覆盖：青禾杯玻璃茶杯的销售价格。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+        ],
+        "retrieval_mode": "vector",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": true,
+            "detail": "status=insufficient"
+          },
+          {
+            "rule": "REF03",
+            "passed": true,
+            "detail": "adequacy=False degraded=False"
+          },
+          {
+            "rule": "REF04",
+            "passed": true,
+            "detail": "no-answer must refuse or have no retrieval"
+          }
+        ],
+        "passed": true,
+        "latency_ms": 5217.037999995227,
+        "wall_latency_ms": 5225.701624993235
+      },
+      "flag_R12": null,
+      "adequacy_latency_ms": {
+        "p50": 6370.1097080047475,
+        "mean": 6535.417267857286,
+        "count": 7
+      },
+      "paid_llm_calls": 14
+    }
+  },
+  "hybrid": {
+    "dev": {
+      "case_count": 15,
+      "passed_count": 12,
+      "failed_case_ids": [
+        "R01",
+        "R11",
+        "R17"
+      ],
+      "answerable_count": 11,
+      "false_refusal_count": 3,
+      "false_refusal_rate": 0.2727272727272727,
+      "noanswer_count": 1,
+      "correct_refusal_count": 1,
+      "correct_refusal_rate": 1.0,
+      "flag_H07": null,
+      "flag_H08": null,
+      "flag_R12": {
+        "case_id": "R12",
+        "query": "木星大红斑中心的精确气压是多少帕？",
+        "status": "insufficient",
+        "hit_labels": [],
+        "rejected_labels": [
+          "tone",
+          "palette",
+          "hero",
+          "camera",
+          "mentor"
+        ],
+        "recall_at_5": null,
+        "adequacy": {
+          "sufficient": false,
+          "reason": "提供的资料片段主要涉及虚构作品（潮汐城）的人物设定、视觉风格和叙事语调，完全未包含关于木星大红斑的任何天文数据或科学事实。因此，无法从中获取木星大红斑中心的气压数值。",
+          "unsupported_facts": [
+            "木星大红斑中心的气压数值"
+          ],
+          "degraded": false,
+          "latency_ms": 4973.895292001544,
+          "model": "qwen3.5-plus"
+        },
+        "warnings": [
+          "资料未覆盖：木星大红斑中心的气压数值。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+        ],
+        "retrieval_mode": "hybrid_rrf",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": true,
+            "detail": "status=insufficient"
+          },
+          {
+            "rule": "REF03",
+            "passed": true,
+            "detail": "adequacy=False degraded=False"
+          },
+          {
+            "rule": "REF04",
+            "passed": true,
+            "detail": "no-answer must refuse or have no retrieval"
+          }
+        ],
+        "passed": true,
+        "latency_ms": 4973.895292001544,
+        "wall_latency_ms": 4986.079499998596
+      },
+      "adequacy_latency_ms": {
+        "p50": 6537.134416998015,
+        "mean": 5738.33332513459,
+        "count": 15
+      },
+      "paid_llm_calls": 28
+    },
+    "r12_ok": false,
+    "enable_recommendation": false,
+    "skip_reason": "hybrid did not keep R12 refused with low false-refusal on DEV"
+  }
+}

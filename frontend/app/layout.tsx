@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AuthProvider } from "@/features/auth/AuthProvider";
 import "./globals.css";
+import "./cinema.css";
 
 export const metadata: Metadata = {
   title: "AI造梦机",

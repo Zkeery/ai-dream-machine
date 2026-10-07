@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "run_id": "ef5772fcf96747d4833b209ddf0c2dc9",
+  "started_at_utc": "2026-10-06T04:16:32.746517+00:00",
+  "mode": "full",
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "dependencies": {
+    "fastembed": "0.7.4",
+    "qdrant-client": "1.19.1",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3",
+    "huggingface-hub": "1.33.0",
+    "tokenizers": "0.23.2",
+    "pydantic": "2.13.5",
+    "pypdf": "6.19.0",
+    "python-docx": null
+  },
+  "score_diagnostics": true,
+  "scoring_protocol": "Deterministic gold ID/version/text assertions; no LLM judge; no synthetic scores",
+  "compare_meta": {
+    "model_key": "jina-embeddings-v2-base-zh",
+    "model_name": "jinaai/jina-embeddings-v2-base-zh",
+    "role": "fastembed_zh_substitute",
+    "threshold": 0.48,
+    "tag": "dev-t048",
+    "note": "FastEmbed 支持的中文/多语言替代候选（因 bge-base-zh / bge-m3 不可用）",
+    "wrapper": "/tmp/rag_embed_compare/run_compare.py",
+    "project_source_modified": false
+  },
+  "execution_error": {
+    "type": "RuntimeError",
+    "message": "A preloaded local ONNX model snapshot is required; runner does not download models",
+    "traceback": "Traceback (most recent call last):\n  File \"/tmp/rag_embed_compare/run_compare.py\", line 269, in run_one\n    model=ev.model_binding(cache),\n          ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/backend/scripts/evaluate_rag.py\", line 61, in model_binding\n    raise RuntimeError(\"A preloaded local ONNX model snapshot is required; runner does not download models\")\nRuntimeError: A preloaded local ONNX model snapshot is required; runner does not download models\n"
+  },
+  "summary": {
+    "decision": "STOP",
+    "paid_model_calls": 0,
+    "generation_effect_accepted": false
+  },
+  "finished_at_utc": "2026-10-06T04:16:32.753163+00:00",
+  "elapsed_ms": 2.409957996860612
+}

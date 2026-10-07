@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-04",
+  "test_account": "temporary ordinary user",
+  "sessions": [
+    {
+      "id": "1791095649208",
+      "project_type": "comic",
+      "model_selection": {
+        "text": "qwen3.5-plus",
+        "image": "qwen-image-2.0-pro"
+      },
+      "status": "idle",
+      "artifact_count": 0
+    },
+    {
+      "id": "1791095717252",
+      "project_type": "story",
+      "model_selection": {
+        "text": "qwen3.5-flash",
+        "image": "qwen-image-2.0-pro",
+        "video_first_frame": "wan2.6-i2v"
+      },
+      "status": "idle",
+      "artifact_count": 0
+    }
+  ],
+  "status": {
+    "/api/settings": 403,
+    "/api/admin/sandbox": 403,
+    "/api/models": 200
+  },
+  "deleted": [
+    {
+      "id": "1791095649208",
+      "status": 204
+    },
+    {
+      "id": "1791095717252",
+      "status": 204
+    }
+  ],
+  "paid_model_calls": 0
+}

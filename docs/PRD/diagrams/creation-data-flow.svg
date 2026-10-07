@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+<title id="title">AI造梦机创作数据与版本依赖</title><desc id="desc">剧本生成角色图和分镜，分镜生成参考图，参考图与分镜生成视频，视频拼接成片。选定角色与场景图片已经进入参考图及参考模式视频请求；输入版本可追溯，上游编辑与选版会标记受影响下游失效。真实模型一致性效果尚未验收。</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1L8 5L0 9" fill="none" stroke="#64748b" stroke-width="1.5"/></marker><marker id="target" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 1L8 5L0 9" fill="none" stroke="#6486ad" stroke-width="1.5"/></marker></defs>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;fill:#263345}.title{font-size:28px;font-weight:650}.sub{font-size:18px;fill:#6b7280}.label{font-size:21px;font-weight:600}.body{font-size:18px;fill:#536173}.note{font-size:17px;fill:#52749c}.box{fill:#fff;stroke:#cbd3df;stroke-width:2}.integrated{fill:#eff6ff;stroke:#7495bd;stroke-width:2}.line{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}.connected{fill:none;stroke:#6486ad;stroke-width:2;marker-end:url(#target)}</style>
+<rect width="1200" height="680" rx="18" fill="#f8fafc"/>
+<text x="40" y="43" class="title">03 / 创作数据与版本依赖</text><text x="40" y="75" class="sub">角色 / 场景图片已传入生成请求；蓝线为本轮接入关系，一致性效果待验收。</text>
+<rect x="285" y="120" width="230" height="104" rx="10" class="box"/><text x="400" y="156" text-anchor="middle" class="label">02 角色 / 场景</text><text x="400" y="185" text-anchor="middle" class="body">生成图片 · 选版复用</text><text x="400" y="210" text-anchor="middle" class="sub">作为后续图片参考</text>
+<path d="M140 270V172H285" class="line"/><text x="162" y="240" class="sub">剧本描述</text>
+<path d="M515 172H880V270" class="connected"/><path d="M630 172V270" class="connected"/><circle cx="630" cy="172" r="4" fill="#6486ad"/>
+<text x="540" y="151" class="note">选定角色 / 场景图（已接入）</text><text x="650" y="245" class="note">图片参考</text><text x="900" y="245" class="note">参考模式</text>
+<rect x="60" y="270" width="160" height="100" rx="10" class="box"/><text x="140" y="307" text-anchor="middle" class="label">01 剧本</text><text x="140" y="339" text-anchor="middle" class="body">创意 / 剧情</text>
+<rect x="300" y="270" width="160" height="100" rx="10" class="box"/><text x="380" y="307" text-anchor="middle" class="label">03 分镜</text><text x="380" y="339" text-anchor="middle" class="body">镜头 / 提示词</text>
+<rect x="550" y="270" width="160" height="100" rx="10" class="box"/><text x="630" y="307" text-anchor="middle" class="label">04 参考图</text><text x="630" y="339" text-anchor="middle" class="body">分镜画面</text>
+<rect x="800" y="270" width="160" height="100" rx="10" class="box"/><text x="880" y="307" text-anchor="middle" class="label">05 视频片段</text><text x="880" y="339" text-anchor="middle" class="body">图像 + 提示词</text>
+<rect x="1030" y="270" width="140" height="100" rx="10" class="box"/><text x="1100" y="307" text-anchor="middle" class="label">06 成片</text><text x="1100" y="339" text-anchor="middle" class="body">片段拼接</text>
+<path d="M220 320H300" class="line"/><path d="M460 320H550" class="line"/><path d="M710 320H800" class="line"/><path d="M960 320H1030" class="line"/>
+<path d="M380 370V412H880V370" class="line"/><text x="630" y="445" text-anchor="middle" class="sub">分镜提示词 / 镜头信息</text>
+<rect x="60" y="495" width="1110" height="108" rx="12" class="integrated"/><text x="85" y="531" class="label">版本管理与下游更新 · 已接入</text><text x="85" y="574" class="body">记录真实输入版本</text><text x="390" y="574" class="body">上游编辑 / 选版 → 下游失效</text><text x="827" y="574" class="body">输入匹配 → 当前成片导出</text>
+<text x="60" y="635" class="sub">历史产物可单独导出；旧版输入不匹配仍失效。配音 / 配乐 / 字幕待补齐，故事后期目前仅拼接。</text>
+<path d="M60 657H98" stroke="#64748b" stroke-width="2"/><text x="110" y="663" class="sub">已有数据依赖</text><path d="M340 657H378" stroke="#6486ad" stroke-width="2"/><text x="390" y="663" class="sub">本轮已接入的依赖与版本规则</text>
+</svg>

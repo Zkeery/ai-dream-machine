@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "run_id": "0920d4e19967490e8a41803230d5ad4c",
+  "started_at_utc": "2026-10-06T04:15:53.444666+00:00",
+  "finished_at_utc": "2026-10-06T04:15:53.444667+00:00",
+  "mode": "model_compare_unsupported",
+  "model_name": "BAAI/bge-m3",
+  "role": "planned_candidate",
+  "fastembed_supported": false,
+  "decision": "STOP",
+  "execution_error": {
+    "type": "UnsupportedModel",
+    "message": "FastEmbed TextEmbedding 不支持模型 BAAI/bge-m3。 list_supported_models() 中无该名称。FastEmbed TextEmbedding 不支持该模型名"
+  },
+  "paid_model_calls": 0,
+  "note": "FastEmbed TextEmbedding 不支持该模型名",
+  "summary": {
+    "decision": "STOP",
+    "paid_model_calls": 0,
+    "generation_effect_accepted": false,
+    "reason": "FastEmbed TextEmbedding 不支持模型 BAAI/bge-m3。 list_supported_models() 中无该名称。FastEmbed TextEmbedding 不支持该模型名"
+  }
+}

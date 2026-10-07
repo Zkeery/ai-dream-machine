@@ -1,0 +1,2563 @@
+{
+  "schema_version": 1,
+  "run_id": "real-20261004-v1",
+  "exported_at": "2026-10-04T08:23:43.177124+00:00",
+  "sources": {
+    "database": "app.db",
+    "database_scope": "isolated_acceptance_data",
+    "database_read_mode": "mode=ro; query_only; single read transaction",
+    "run_file": "run.json",
+    "run_file_sha256": "20a8acfea6b42eae427592cc5fd254ca9280e342d5b2c900cf5dab53330acf1b",
+    "run_updated_at": 1791102222.980501
+  },
+  "paid_provider_calls": true,
+  "cases": {
+    "story": {
+      "case": "story",
+      "session_ref": "sha256:0b537e9e0c0f242abf572be865012442628adcb0153232df0d76c24d9d464802",
+      "session_status": "session_completed",
+      "current_stage": "post_production",
+      "original_request": {
+        "idea": "雨后的海边灯塔，一位穿深蓝外套、系红围巾的青年林舟，在灯塔门前拾起一封信，然后望向亮起的灯塔。严格限定：只有林舟一名角色，只有海边灯塔一处场景，只有一集，故事只包含拾信和望塔两个镜头，不增加其他人物、回忆或地点。台词只用两句：雨停了。灯塔在等我。",
+        "episodes": 1,
+        "video_ratio": "16:9",
+        "resolution": "720P",
+        "style": "cinematic realistic",
+        "models": {
+          "text": "qwen3.5-plus",
+          "image": "qwen-image-2.0",
+          "video_first_frame": "wan2.7-i2v",
+          "video_start_end": null,
+          "video_reference": null
+        }
+      },
+      "stage_count": 6,
+      "stages": [
+        {
+          "stage": "script_generation",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 50.831,
+          "models": [
+            "qwen3.5-plus"
+          ],
+          "artifact_scope": {
+            "characters": [
+              {
+                "id": "c1",
+                "name": "林舟"
+              }
+            ],
+            "characters_count": 1,
+            "settings": [
+              {
+                "id": "l1",
+                "name": "海边灯塔"
+              }
+            ],
+            "settings_count": 1,
+            "episodes_count": 1
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:5f4a51286a065d558cf8e487910b03a05596c53bf2c2892249e711e284c39caa",
+              "stage": "script_generation",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791100412.9976802,
+              "updated_at": 1791100463.8222668,
+              "elapsed_seconds": 50.831,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3.5-plus"
+              ],
+              "had_error": false,
+              "ledger_call_count": 1
+            }
+          ]
+        },
+        {
+          "stage": "character_design",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 18.031,
+          "models": [
+            "qwen-image-2.0",
+            "qwen3-vl-flash"
+          ],
+          "artifact_scope": {
+            "characters": [
+              {
+                "id": "",
+                "name": "林舟"
+              }
+            ],
+            "characters_count": 1,
+            "settings": [
+              {
+                "id": "",
+                "name": "海边灯塔"
+              }
+            ],
+            "settings_count": 1
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+              "stage": "character_design",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791100512.5364218,
+              "updated_at": 1791100530.567016,
+              "elapsed_seconds": 18.031,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": false,
+              "ledger_call_count": 4
+            }
+          ]
+        },
+        {
+          "stage": "storyboard",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 65.661,
+          "models": [
+            "qwen3.5-plus"
+          ],
+          "artifact_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s1",
+              "s2"
+            ]
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:a920795d8f561a7340ec1e7e10a62223f480f2cfe9f10698a765defbb5d20d38",
+              "stage": "storyboard",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791100570.3776069,
+              "updated_at": 1791100635.9891489,
+              "elapsed_seconds": 65.657,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3.5-plus"
+              ],
+              "had_error": false,
+              "ledger_call_count": 1
+            },
+            {
+              "execution_ref": "sha256:855f118e4f8f31bc5bdc8daee7bcd37c8b97535458819ac06a8b2abf031b287f",
+              "stage": "storyboard",
+              "operation": "save",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791100728.262847,
+              "updated_at": 1791100728.266933,
+              "elapsed_seconds": 0.004,
+              "elapsed_basis": "execution_updated_minus_created",
+              "elapsed_is_final": true,
+              "models": [],
+              "had_error": false,
+              "ledger_call_count": 0
+            }
+          ]
+        },
+        {
+          "stage": "reference_generation",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 2,
+          "elapsed_seconds_total": 46.039,
+          "models": [
+            "qwen-image-2.0",
+            "qwen3-vl-flash"
+          ],
+          "artifact_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s1",
+              "s2"
+            ]
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+              "stage": "reference_generation",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "failed",
+              "created_at": 1791100762.074851,
+              "updated_at": 1791100781.587446,
+              "elapsed_seconds": 19.634,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": true,
+              "ledger_call_count": 3
+            },
+            {
+              "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+              "stage": "reference_generation",
+              "operation": "generate",
+              "source_execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+              "status": "completed",
+              "created_at": 1791101582.5521762,
+              "updated_at": 1791101608.777584,
+              "elapsed_seconds": 26.405,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": false,
+              "ledger_call_count": 3
+            }
+          ]
+        },
+        {
+          "stage": "video_generation",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 2,
+          "elapsed_seconds_total": 200.472,
+          "models": [
+            "qwen3-vl-flash",
+            "wan2.7-i2v"
+          ],
+          "artifact_scope": {
+            "segments_count": 2
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+              "stage": "video_generation",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "interrupted",
+              "created_at": 1791101727.963273,
+              "updated_at": 1791101815.948867,
+              "elapsed_seconds": 87.986,
+              "elapsed_basis": "execution_updated_minus_created",
+              "elapsed_is_final": true,
+              "models": [
+                "wan2.7-i2v"
+              ],
+              "had_error": true,
+              "ledger_call_count": 1
+            },
+            {
+              "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+              "stage": "video_generation",
+              "operation": "generate",
+              "source_execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+              "status": "completed",
+              "created_at": 1791101816.507756,
+              "updated_at": 1791101928.9855208,
+              "elapsed_seconds": 112.486,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3-vl-flash",
+                "wan2.7-i2v"
+              ],
+              "had_error": false,
+              "ledger_call_count": 3
+            }
+          ]
+        },
+        {
+          "stage": "post_production",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 0.21,
+          "models": [],
+          "artifact_scope": null,
+          "executions": [
+            {
+              "execution_ref": "sha256:9db12aa18c952e13b99fc7000dd105f732298c84505c0961a2b1b8f7210d06a6",
+              "stage": "post_production",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101985.605679,
+              "updated_at": 1791101985.702178,
+              "elapsed_seconds": 0.21,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [],
+              "had_error": false,
+              "ledger_call_count": 0
+            }
+          ]
+        }
+      ],
+      "execution_count": 9,
+      "provider_jobs": [
+        {
+          "job_ref": "sha256:885bc4b6cad7212a4841d0efd427f12d9faa8915b50af8105971c2314fe7e4c4",
+          "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+          "scope_execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+          "stage": "character_design",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "d036e16baf4512cc6fa9358154533ae84b006de22e953ae778ddb5e21aa832ca",
+          "error_code": null,
+          "created_at": 1791100512.5418198,
+          "updated_at": 1791100520.703774
+        },
+        {
+          "job_ref": "sha256:34a160b847cc5fa8058c54d302dfe468adb8f5dca76212c6bcded9445656b0e9",
+          "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+          "scope_execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+          "stage": "character_design",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "75de62c56c13fc75f23a9c4be57affeee38c3c2d3e8ae249d5aa402009aa6ca8",
+          "error_code": null,
+          "created_at": 1791100522.682485,
+          "updated_at": 1791100528.1359491
+        },
+        {
+          "job_ref": "sha256:ad4aad38111baa5b3096d0b06d8b715decf99f9c4faec4c7e1b8064a92b4d161",
+          "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+          "scope_execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+          "stage": "reference_generation",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "3c86471af57ceb090536ed51af0f1d326006ad73e4d97bd40b228361205f4b96",
+          "error_code": null,
+          "created_at": 1791100762.087308,
+          "updated_at": 1791101585.018977
+        },
+        {
+          "job_ref": "sha256:55a06dfc6bca5e502876c66e6a456908fa30e998160f056b7492c7f35f87b958",
+          "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+          "scope_execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+          "stage": "reference_generation",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "rejected",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": 402,
+          "has_rejection_evidence": true,
+          "has_remote_job": false,
+          "has_result_url": false,
+          "has_local_result": false,
+          "result_sha256": null,
+          "error_code": "IMAGE_SUBMIT_REJECTED",
+          "created_at": 1791100779.315517,
+          "updated_at": 1791101582.5330229
+        },
+        {
+          "job_ref": "sha256:490bfce1539118c5d057123927947ecc5e4135a4d36a6323f3e30f8aa4a3e40c",
+          "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+          "scope_execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+          "stage": "reference_generation",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 2,
+          "retry_of_ref": "sha256:55a06dfc6bca5e502876c66e6a456908fa30e998160f056b7492c7f35f87b958",
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "e0c71bc5c5b8dd2b610fb6d9cc2de0befd55d2cbe607620ee763602f6b31f91b",
+          "error_code": null,
+          "created_at": 1791101591.091858,
+          "updated_at": 1791101605.984784
+        },
+        {
+          "job_ref": "sha256:67f6bc5d4c6b3f636d8dc9a587021a71277586daaf7262a39ed1699c50154b44",
+          "execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+          "scope_execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+          "stage": "video_generation",
+          "kind": "video",
+          "model": "wan2.7-i2v",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": true,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "62470c378259286efeaa0fd447979dab987a4e19f69524a9fbb37f7699efe6f6",
+          "error_code": null,
+          "created_at": 1791101727.9882329,
+          "updated_at": 1791101835.300338
+        },
+        {
+          "job_ref": "sha256:23dd369d24f9ea723d04db12fc28fac512281bd5a9be58b6b6adbb685add26af",
+          "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+          "scope_execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+          "stage": "video_generation",
+          "kind": "video",
+          "model": "wan2.7-i2v",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": true,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "92f08ff998e77a1707622ecf546eb5ae60c13e0db275232a1bcf96a9be402f12",
+          "error_code": null,
+          "created_at": 1791101838.128279,
+          "updated_at": 1791101926.113209
+        }
+      ],
+      "ledger": {
+        "summary": {
+          "calls": 16,
+          "status_counts": {
+            "completed": 15,
+            "rejected": 1
+          },
+          "reserved_cny": 0.0,
+          "calculated_cny": 7.854216,
+          "provider_reported_cny": null,
+          "provider_reported_calls": 0,
+          "provider_reported_complete": false,
+          "rejected_reservation_released_cny": 0.2256,
+          "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+        },
+        "calls": [
+          {
+            "call_ref": "sha256:f09a7e738df336524bee2ff5f7c027e5ed5fa8a204602fe8ab7e193e1167fda5",
+            "execution_ref": "sha256:5f4a51286a065d558cf8e487910b03a05596c53bf2c2892249e711e284c39caa",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 1652,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.114984,
+            "held_cny": 0,
+            "calculated_cny": 0.077935,
+            "provider_reported_cny": null,
+            "created_at": 1791100413.002406,
+            "updated_at": 1791100463.7259068
+          },
+          {
+            "call_ref": "sha256:885bc4b6cad7212a4841d0efd427f12d9faa8915b50af8105971c2314fe7e4c4",
+            "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791100512.543539,
+            "updated_at": 1791100517.5923882
+          },
+          {
+            "call_ref": "sha256:b1173c22b1513a4efe65ed99bcdcd7813d818cf288fb6d662533894928fe5fa7",
+            "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000674,
+            "provider_reported_cny": null,
+            "created_at": 1791100520.751884,
+            "updated_at": 1791100522.676899
+          },
+          {
+            "call_ref": "sha256:34a160b847cc5fa8058c54d302dfe468adb8f5dca76212c6bcded9445656b0e9",
+            "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791100522.685038,
+            "updated_at": 1791100527.8195431
+          },
+          {
+            "call_ref": "sha256:fe0f7de9d5e2cea0f8661dd796a1f2b27690a8aa5d1e5802db38253fc54e14b9",
+            "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00074,
+            "provider_reported_cny": null,
+            "created_at": 1791100528.15495,
+            "updated_at": 1791100530.5559812
+          },
+          {
+            "call_ref": "sha256:f9ffa60263cdc8d386f67c67291d7fc6ee3864817f63706e2cfea3e99a79dd14",
+            "execution_ref": "sha256:a920795d8f561a7340ec1e7e10a62223f480f2cfe9f10698a765defbb5d20d38",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 1997,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.116497,
+            "held_cny": 0,
+            "calculated_cny": 0.101012,
+            "provider_reported_cny": null,
+            "created_at": 1791100570.3819919,
+            "updated_at": 1791100635.9847429
+          },
+          {
+            "call_ref": "sha256:ad4aad38111baa5b3096d0b06d8b715decf99f9c4faec4c7e1b8064a92b4d161",
+            "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791100762.094709,
+            "updated_at": 1791100775.6835232
+          },
+          {
+            "call_ref": "sha256:2a9a040c55cc2f4c204c8b3ca7d94b66fc570f5a9cbed440f58c56395e0266d9",
+            "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000674,
+            "provider_reported_cny": null,
+            "created_at": 1791100777.002655,
+            "updated_at": 1791100779.3013608
+          },
+          {
+            "call_ref": "sha256:55a06dfc6bca5e502876c66e6a456908fa30e998160f056b7492c7f35f87b958",
+            "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "rejected",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.0,
+            "provider_reported_cny": null,
+            "created_at": 1791100779.327478,
+            "updated_at": 1791100781.571829
+          },
+          {
+            "call_ref": "sha256:6c95a9ca14ed6e758dfeb14c9d6392d26fa380005a7b331fb2c21a1e7f7c4c12",
+            "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000674,
+            "provider_reported_cny": null,
+            "created_at": 1791101585.070074,
+            "updated_at": 1791101591.085213
+          },
+          {
+            "call_ref": "sha256:490bfce1539118c5d057123927947ecc5e4135a4d36a6323f3e30f8aa4a3e40c",
+            "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791101591.1014159,
+            "updated_at": 1791101604.969803
+          },
+          {
+            "call_ref": "sha256:c7c5ead2f2a6750e4c774670c0656d2bf9e9a1689ef2fdd089f4b8cb22bae42b",
+            "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000707,
+            "provider_reported_cny": null,
+            "created_at": 1791101606.017867,
+            "updated_at": 1791101608.7680361
+          },
+          {
+            "call_ref": "sha256:67f6bc5d4c6b3f636d8dc9a587021a71277586daaf7262a39ed1699c50154b44",
+            "execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+            "model": "wan2.7-i2v",
+            "kind": "video",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "seconds": 5.0,
+              "resolution": "720P"
+            },
+            "price_snapshot_sha256": "74bccd2eedb8e29752f979545e502e6c294d6d2d999771036b6e10a728076ef8",
+            "original_reservation_cny": 3.384,
+            "held_cny": 0,
+            "calculated_cny": 3.384,
+            "provider_reported_cny": null,
+            "created_at": 1791101727.995003,
+            "updated_at": 1791101832.2010088
+          },
+          {
+            "call_ref": "sha256:3faa2d88944307cfa41293f1700653bc47a5a8935c29e7cfc229f7ba6e5531c1",
+            "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00072,
+            "provider_reported_cny": null,
+            "created_at": 1791101835.4265778,
+            "updated_at": 1791101838.111928
+          },
+          {
+            "call_ref": "sha256:23dd369d24f9ea723d04db12fc28fac512281bd5a9be58b6b6adbb685add26af",
+            "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+            "model": "wan2.7-i2v",
+            "kind": "video",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "seconds": 5.0,
+              "resolution": "720P"
+            },
+            "price_snapshot_sha256": "74bccd2eedb8e29752f979545e502e6c294d6d2d999771036b6e10a728076ef8",
+            "original_reservation_cny": 3.384,
+            "held_cny": 0,
+            "calculated_cny": 3.384,
+            "provider_reported_cny": null,
+            "created_at": 1791101838.1433249,
+            "updated_at": 1791101921.920238
+          },
+          {
+            "call_ref": "sha256:826b046a8b4cfe6bf81344f593fec6829b0211d9ac8b2d30a012728b45a970ea",
+            "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00068,
+            "provider_reported_cny": null,
+            "created_at": 1791101926.2553222,
+            "updated_at": 1791101928.9696279
+          }
+        ]
+      },
+      "scope_changes": [
+        {
+          "execution_ref": "sha256:855f118e4f8f31bc5bdc8daee7bcd37c8b97535458819ac06a8b2abf031b287f",
+          "stage": "storyboard",
+          "operation": "manual_scope_edit",
+          "at": 1791100728.262847,
+          "status": "completed",
+          "target_ids": [],
+          "before_scope": {
+            "shots_count": 5,
+            "shot_ids": [
+              "s1",
+              "s2",
+              "s3",
+              "s4",
+              "s5"
+            ]
+          },
+          "after_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s1",
+              "s2"
+            ]
+          },
+          "payload_sha256": "5ec03ee5021424223e3ea8d5fc1cfeb16c286828bb2b6af0aa5d1b185927e820",
+          "note": "Manual save scope is from persisted request; targeted regeneration is not a new full run."
+        }
+      ],
+      "generated_scope_history": {
+        "script_generation": [
+          {
+            "version_ref": "sha256:bdf077e66fe0861a1cc74fb9fb9d13dc9db9d493d31a29c3525a552174265154",
+            "created_at": 1791100463.786556,
+            "reason": "generated",
+            "scope": {
+              "characters": [
+                {
+                  "id": "c1",
+                  "name": "林舟"
+                }
+              ],
+              "characters_count": 1,
+              "settings": [
+                {
+                  "id": "l1",
+                  "name": "海边灯塔"
+                }
+              ],
+              "settings_count": 1,
+              "episodes_count": 1
+            }
+          }
+        ],
+        "character_design": [
+          {
+            "version_ref": "sha256:ee98e5c51ca0bc9119f1631a27b9dc96d2f79b58233bba9ea79d1baa7b24d2aa",
+            "created_at": 1791100530.5623622,
+            "reason": "generated",
+            "scope": {
+              "characters": [
+                {
+                  "id": "",
+                  "name": "林舟"
+                }
+              ],
+              "characters_count": 1,
+              "settings": [
+                {
+                  "id": "",
+                  "name": "海边灯塔"
+                }
+              ],
+              "settings_count": 1
+            }
+          }
+        ],
+        "storyboard": [
+          {
+            "version_ref": "sha256:ccb0ca962d68d5134fa9ce3eb969b62abf122ceeca0787d9c5c95734beaf3121",
+            "created_at": 1791100635.9870248,
+            "reason": "generated",
+            "scope": {
+              "shots_count": 5,
+              "shot_ids": [
+                "s1",
+                "s2",
+                "s3",
+                "s4",
+                "s5"
+              ]
+            }
+          }
+        ]
+      },
+      "media": {
+        "status": "exported",
+        "final_video": "story.mp4",
+        "quality_verdict": "NEED_REVIEW",
+        "source_sha256": "51170b05a2755628079d1e18ab223e339952a1bc65c6aa961fa6a288815b5eac",
+        "sha256": "51170b05a2755628079d1e18ab223e339952a1bc65c6aa961fa6a288815b5eac",
+        "size_bytes": 7136624,
+        "ffprobe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "index": 0,
+              "codec_name": "h264",
+              "codec_type": "video",
+              "width": 1280,
+              "height": 720,
+              "pix_fmt": "yuv420p",
+              "r_frame_rate": "30/1",
+              "avg_frame_rate": "576000/19273",
+              "duration": "10.038021",
+              "nb_frames": "300"
+            },
+            {
+              "index": 1,
+              "codec_name": "aac",
+              "codec_type": "audio",
+              "sample_rate": "44100",
+              "channels": 2,
+              "r_frame_rate": "0/0",
+              "avg_frame_rate": "0/0",
+              "duration": "10.099229",
+              "nb_frames": "436"
+            }
+          ],
+          "format": {
+            "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+            "duration": "10.099229",
+            "size": "7136624"
+          }
+        },
+        "contact_sheet": {
+          "path": "story-contact-sheet.jpg",
+          "sample_times_seconds": [
+            1.01,
+            3.535,
+            6.06,
+            8.584
+          ],
+          "sha256": "070464db850dc268c159ca5f06e9b32346401ede009f4a2278eee6c97b2e1d02",
+          "method": "4 frames at 10%, 35%, 60%, 85%; exploratory visual evidence, not exhaustive video QA"
+        }
+      },
+      "quality_review": {
+        "status": "NEED_REVIEW",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rules": {
+          "Q01": null,
+          "Q02": null,
+          "Q03": null,
+          "Q04": null,
+          "Q05": null
+        },
+        "notes": "人工画面、连续运动及声音验收待填写；机器导出不产生质量通过结论。"
+      }
+    },
+    "comic": {
+      "case": "comic",
+      "session_ref": "sha256:0d7cb3a0148cc473d025b38e7117e74c36967413997314e2db6222a8164b6bcf",
+      "session_status": "session_completed",
+      "current_stage": "comic_composition",
+      "original_request": {
+        "idea": "雨后的海边灯塔，一位穿深蓝外套、系红围巾的青年林舟，在灯塔门前拾起一封信，然后望向亮起的灯塔。严格限定：只有林舟一名角色，只有海边灯塔一处场景，只有一集，故事只包含拾信和望塔两个镜头，不增加其他人物、回忆或地点。台词只用两句：雨停了。灯塔在等我。",
+        "episodes": 1,
+        "video_ratio": "9:16",
+        "resolution": "720P",
+        "style": "cinematic manga",
+        "models": {
+          "text": "qwen3.5-plus",
+          "image": "qwen-image-2.0",
+          "video_first_frame": null,
+          "video_start_end": null,
+          "video_reference": null
+        }
+      },
+      "stage_count": 6,
+      "stages": [
+        {
+          "stage": "script_generation",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 2,
+          "elapsed_seconds_total": 235.26,
+          "models": [
+            "qwen3.5-plus"
+          ],
+          "artifact_scope": {
+            "characters": [
+              {
+                "id": "c1",
+                "name": "林舟"
+              }
+            ],
+            "characters_count": 1,
+            "settings": [
+              {
+                "id": "l1",
+                "name": "海边灯塔"
+              }
+            ],
+            "settings_count": 1,
+            "episodes_count": 1
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:dba2233143c45b1e08a97cc484251e4efc354e3cd27567e3a366814ac9d39f2d",
+              "stage": "script_generation",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "failed",
+              "created_at": 1791100934.477052,
+              "updated_at": 1791101114.7424982,
+              "elapsed_seconds": 180.384,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3.5-plus"
+              ],
+              "had_error": true,
+              "ledger_call_count": 1
+            },
+            {
+              "execution_ref": "sha256:98332273dabb28948fd79dd32e9c886e819118ec8fc67a5a516ec3e26534de49",
+              "stage": "script_generation",
+              "operation": "regenerate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101195.5024798,
+              "updated_at": 1791101250.3200672,
+              "elapsed_seconds": 54.876,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3.5-plus"
+              ],
+              "had_error": false,
+              "ledger_call_count": 1
+            }
+          ]
+        },
+        {
+          "stage": "character_design",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 2,
+          "elapsed_seconds_total": 32.521,
+          "models": [
+            "qwen-image-2.0",
+            "qwen3-vl-flash"
+          ],
+          "artifact_scope": {
+            "characters": [
+              {
+                "id": "",
+                "name": "林舟"
+              }
+            ],
+            "characters_count": 1,
+            "settings": [
+              {
+                "id": "",
+                "name": "海边灯塔"
+              }
+            ],
+            "settings_count": 1
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+              "stage": "character_design",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101295.312741,
+              "updated_at": 1791101313.4448671,
+              "elapsed_seconds": 18.301,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": false,
+              "ledger_call_count": 4
+            },
+            {
+              "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+              "stage": "character_design",
+              "operation": "regenerate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101649.187071,
+              "updated_at": 1791101663.285912,
+              "elapsed_seconds": 14.22,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": false,
+              "ledger_call_count": 2
+            }
+          ]
+        },
+        {
+          "stage": "comic_storyboard",
+          "current_status": "completed",
+          "execution_count": 2,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 178.566,
+          "models": [
+            "qwen3.5-plus"
+          ],
+          "artifact_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s2",
+              "s4"
+            ],
+            "dialogues": [
+              {
+                "line_id": "line1",
+                "speaker_id": "c1",
+                "text": "雨停了。"
+              },
+              {
+                "line_id": "line2",
+                "speaker_id": "c1",
+                "text": "灯塔在等我。"
+              }
+            ]
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:ab395abfa16243613cf83dbfcb86532cb290378ca06d04ab3f61ffd330bff0ca",
+              "stage": "comic_storyboard",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101357.3838599,
+              "updated_at": 1791101535.953407,
+              "elapsed_seconds": 178.561,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen3.5-plus"
+              ],
+              "had_error": false,
+              "ledger_call_count": 2
+            },
+            {
+              "execution_ref": "sha256:c80a0661027e2775f7f457f4d443241840ef646037c83f32add2a84f194cd969",
+              "stage": "comic_storyboard",
+              "operation": "save",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791101628.4574919,
+              "updated_at": 1791101628.462494,
+              "elapsed_seconds": 0.005,
+              "elapsed_basis": "execution_updated_minus_created",
+              "elapsed_is_final": true,
+              "models": [],
+              "had_error": false,
+              "ledger_call_count": 0
+            }
+          ]
+        },
+        {
+          "stage": "comic_panels",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 35.276,
+          "models": [
+            "qwen-image-2.0",
+            "qwen3-vl-flash"
+          ],
+          "artifact_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s2",
+              "s4"
+            ]
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+              "stage": "comic_panels",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791102027.06255,
+              "updated_at": 1791102062.273185,
+              "elapsed_seconds": 35.276,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [
+                "qwen-image-2.0",
+                "qwen3-vl-flash"
+              ],
+              "had_error": false,
+              "ledger_call_count": 4
+            }
+          ]
+        },
+        {
+          "stage": "comic_audio",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 2.028,
+          "models": [],
+          "artifact_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s2",
+              "s4"
+            ]
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:631ec8e625659555afd7115d45ede2e7b6d2a76ea523d6662c7c49021c69a5b7",
+              "stage": "comic_audio",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791102116.341909,
+              "updated_at": 1791102118.353812,
+              "elapsed_seconds": 2.028,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [],
+              "had_error": false,
+              "ledger_call_count": 0
+            }
+          ]
+        },
+        {
+          "stage": "comic_composition",
+          "current_status": "completed",
+          "execution_count": 1,
+          "generation_execution_count": 1,
+          "elapsed_seconds_total": 3.393,
+          "models": [],
+          "artifact_scope": {
+            "segments_count": 2
+          },
+          "executions": [
+            {
+              "execution_ref": "sha256:f04cc36a8866432ab033f7340d9b34f36805aac825978a822525bc3547f80628",
+              "stage": "comic_composition",
+              "operation": "generate",
+              "source_execution_ref": null,
+              "status": "completed",
+              "created_at": 1791102153.750305,
+              "updated_at": 1791102156.965457,
+              "elapsed_seconds": 3.393,
+              "elapsed_basis": "run_record_wall_clock",
+              "elapsed_is_final": true,
+              "models": [],
+              "had_error": false,
+              "ledger_call_count": 0
+            }
+          ]
+        }
+      ],
+      "execution_count": 9,
+      "provider_jobs": [
+        {
+          "job_ref": "sha256:fb0b451ec595f6220423dd7da3cc52f017eea152d8322a0cf1193211c6ddf904",
+          "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+          "scope_execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+          "stage": "character_design",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "3df0e89af2974c96909b8172203463b74928511f4639178d9804fe5b490e335a",
+          "error_code": null,
+          "created_at": 1791101295.3253078,
+          "updated_at": 1791101303.010265
+        },
+        {
+          "job_ref": "sha256:8e3f6ec513d1da60faeaabba145327eb03612ad6f48f28340f29444c8362fa02",
+          "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+          "scope_execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+          "stage": "character_design",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "0ff96f1771a6bbfacae450bb042dd8a2db46b9b98035bde8e07034e51b2272fe",
+          "error_code": null,
+          "created_at": 1791101305.369238,
+          "updated_at": 1791101311.130767
+        },
+        {
+          "job_ref": "sha256:cbe7dc6541f6ee686d779aa08c360e8283fce38e0844fd80c8a59d2ed6d21b36",
+          "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+          "scope_execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+          "stage": "character_design",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "f197c00866f8c67002053db06b97c2a64068b9a557d29fbfb3526b9241ddb0ed",
+          "error_code": null,
+          "created_at": 1791101649.199856,
+          "updated_at": 1791101660.972045
+        },
+        {
+          "job_ref": "sha256:c22542030eaaea40e2eb0382ef7ac84f77f3a7712452fcd6f12cabd554d543ef",
+          "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+          "scope_execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+          "stage": "comic_panels",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "9af7ae26bd79ccda835441de1dea47056d7649f65e5bc3cbf7cdf09f243850cd",
+          "error_code": null,
+          "created_at": 1791102027.0798101,
+          "updated_at": 1791102042.234451
+        },
+        {
+          "job_ref": "sha256:0b32c7d2ee87d9d57154515438a648dadd12a1a06a37b5f79c3d2fb0f4743fdc",
+          "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+          "scope_execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+          "stage": "comic_panels",
+          "kind": "image",
+          "model": "qwen-image-2.0",
+          "status": "completed",
+          "attempt": 1,
+          "retry_of_ref": null,
+          "http_status": null,
+          "has_rejection_evidence": false,
+          "has_remote_job": false,
+          "has_result_url": true,
+          "has_local_result": true,
+          "result_sha256": "a15c4ace4946eb79abfd68d8dd5b1bbb2616c13ff041ba8bf1f1b8ed8dccda17",
+          "error_code": null,
+          "created_at": 1791102044.7176151,
+          "updated_at": 1791102059.25366
+        }
+      ],
+      "ledger": {
+        "summary": {
+          "calls": 14,
+          "status_counts": {
+            "uncertain": 1,
+            "completed": 13
+          },
+          "reserved_cny": 0.114967,
+          "calculated_cny": 1.492224,
+          "provider_reported_cny": null,
+          "provider_reported_calls": 0,
+          "provider_reported_complete": false,
+          "rejected_reservation_released_cny": 0.0,
+          "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+        },
+        "calls": [
+          {
+            "call_ref": "sha256:fe0447c121227311044f13c2acfbea0161daa289176c540e0376e9aab6e30000",
+            "execution_ref": "sha256:dba2233143c45b1e08a97cc484251e4efc354e3cd27567e3a366814ac9d39f2d",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "uncertain",
+            "reserved_units": {
+              "input_tokens": 1648,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.114967,
+            "held_cny": 0.114967,
+            "calculated_cny": 0.0,
+            "provider_reported_cny": null,
+            "created_at": 1791100934.494936,
+            "updated_at": 1791101114.73422
+          },
+          {
+            "call_ref": "sha256:ac17a5ea7d7e71bf2e472729f82e516731b19eaae414fcc04d42b5362945ab80",
+            "execution_ref": "sha256:98332273dabb28948fd79dd32e9c886e819118ec8fc67a5a516ec3e26534de49",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 1648,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.114967,
+            "held_cny": 0,
+            "calculated_cny": 0.083853,
+            "provider_reported_cny": null,
+            "created_at": 1791101195.519707,
+            "updated_at": 1791101250.3147352
+          },
+          {
+            "call_ref": "sha256:fb0b451ec595f6220423dd7da3cc52f017eea152d8322a0cf1193211c6ddf904",
+            "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791101295.326873,
+            "updated_at": 1791101300.5923011
+          },
+          {
+            "call_ref": "sha256:1e5d0684e739d49f384b17ca960519c074a63aa30dd6b57ecfa7df25f951ebe5",
+            "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000713,
+            "provider_reported_cny": null,
+            "created_at": 1791101303.071157,
+            "updated_at": 1791101305.359827
+          },
+          {
+            "call_ref": "sha256:8e3f6ec513d1da60faeaabba145327eb03612ad6f48f28340f29444c8362fa02",
+            "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791101305.37276,
+            "updated_at": 1791101310.838212
+          },
+          {
+            "call_ref": "sha256:04df6f69133bd98241aab50a432ae6757f6de636f68b44ed01e451b90f09b090",
+            "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.000733,
+            "provider_reported_cny": null,
+            "created_at": 1791101311.164664,
+            "updated_at": 1791101313.435275
+          },
+          {
+            "call_ref": "sha256:7c51fed3f2dfe1f53814ceb806d2d63fd8f022edfbc76ccaac40320b83f391df",
+            "execution_ref": "sha256:ab395abfa16243613cf83dbfcb86532cb290378ca06d04ab3f61ffd330bff0ca",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 2721,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.119671,
+            "held_cny": 0,
+            "calculated_cny": 0.128601,
+            "provider_reported_cny": null,
+            "created_at": 1791101357.400228,
+            "updated_at": 1791101440.63872
+          },
+          {
+            "call_ref": "sha256:0f65091c90b481b3d656d64b192395665e62408edfd6baca15eebe03d9b1fd8d",
+            "execution_ref": "sha256:ab395abfa16243613cf83dbfcb86532cb290378ca06d04ab3f61ffd330bff0ca",
+            "model": "qwen3.5-plus",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 2721,
+              "output_tokens": 4096
+            },
+            "price_snapshot_sha256": "230e6cba4db813dbe222670aeba6b7fa8bfda470d81ebe5d1b5d7098fb1dcf01",
+            "original_reservation_cny": 0.119671,
+            "held_cny": 0,
+            "calculated_cny": 0.148224,
+            "provider_reported_cny": null,
+            "created_at": 1791101440.645451,
+            "updated_at": 1791101535.940539
+          },
+          {
+            "call_ref": "sha256:cbe7dc6541f6ee686d779aa08c360e8283fce38e0844fd80c8a59d2ed6d21b36",
+            "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791101649.202632,
+            "updated_at": 1791101655.140055
+          },
+          {
+            "call_ref": "sha256:38627ade9bd22398258e5601caa3fccc2da47a994e7cfb1c97bf043557ba13ce",
+            "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00068,
+            "provider_reported_cny": null,
+            "created_at": 1791101661.020496,
+            "updated_at": 1791101663.280083
+          },
+          {
+            "call_ref": "sha256:c22542030eaaea40e2eb0382ef7ac84f77f3a7712452fcd6f12cabd554d543ef",
+            "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791102027.089393,
+            "updated_at": 1791102040.969773
+          },
+          {
+            "call_ref": "sha256:c62351714560a74b3e955eb826de61ea7f760169cce5e0604ce4678d1e2d42ab",
+            "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00074,
+            "provider_reported_cny": null,
+            "created_at": 1791102042.274996,
+            "updated_at": 1791102044.702952
+          },
+          {
+            "call_ref": "sha256:0b32c7d2ee87d9d57154515438a648dadd12a1a06a37b5f79c3d2fb0f4743fdc",
+            "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+            "model": "qwen-image-2.0",
+            "kind": "image",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "images": 1
+            },
+            "price_snapshot_sha256": "3c3722f65abfaa9c617e3d1d1c29745c2e9df02b0246b040ddd433bacf66f50e",
+            "original_reservation_cny": 0.2256,
+            "held_cny": 0,
+            "calculated_cny": 0.2256,
+            "provider_reported_cny": null,
+            "created_at": 1791102044.736834,
+            "updated_at": 1791102058.179826
+          },
+          {
+            "call_ref": "sha256:4dd3f06edb2a6c7e930f1388e6dca9f31173b5f64d4cf9e9807213aa9ba31ee3",
+            "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+            "model": "qwen3-vl-flash",
+            "kind": "text",
+            "month": "2026-10",
+            "status": "completed",
+            "reserved_units": {
+              "input_tokens": 33279,
+              "output_tokens": 512
+            },
+            "price_snapshot_sha256": "9752cd19fef213c3ea4acd65b8a2e373287cc58f130227d7da6e38169c8b5854",
+            "original_reservation_cny": 0.025252,
+            "held_cny": 0,
+            "calculated_cny": 0.00068,
+            "provider_reported_cny": null,
+            "created_at": 1791102059.292066,
+            "updated_at": 1791102062.254816
+          }
+        ]
+      },
+      "scope_changes": [
+        {
+          "execution_ref": "sha256:98332273dabb28948fd79dd32e9c886e819118ec8fc67a5a516ec3e26534de49",
+          "stage": "script_generation",
+          "operation": "regenerate",
+          "at": 1791101195.5024798,
+          "status": "completed",
+          "target_ids": [],
+          "before_scope": null,
+          "after_scope": null,
+          "payload_sha256": "d7a250ca945a842a84a358804841e26544e39c797d16b83f23f4ca2f3f7cab82",
+          "note": "Manual save scope is from persisted request; targeted regeneration is not a new full run."
+        },
+        {
+          "execution_ref": "sha256:c80a0661027e2775f7f457f4d443241840ef646037c83f32add2a84f194cd969",
+          "stage": "comic_storyboard",
+          "operation": "manual_scope_edit",
+          "at": 1791101628.4574919,
+          "status": "completed",
+          "target_ids": [],
+          "before_scope": {
+            "shots_count": 4,
+            "shot_ids": [
+              "s1",
+              "s2",
+              "s3",
+              "s4"
+            ],
+            "dialogues": [
+              {
+                "line_id": "line1",
+                "speaker_id": "c1",
+                "text": "雨停了。"
+              },
+              {
+                "line_id": "line2",
+                "speaker_id": "c1",
+                "text": "灯塔在等我。"
+              }
+            ]
+          },
+          "after_scope": {
+            "shots_count": 2,
+            "shot_ids": [
+              "s2",
+              "s4"
+            ],
+            "dialogues": [
+              {
+                "line_id": "line1",
+                "speaker_id": "c1",
+                "text": "雨停了。"
+              },
+              {
+                "line_id": "line2",
+                "speaker_id": "c1",
+                "text": "灯塔在等我。"
+              }
+            ]
+          },
+          "payload_sha256": "802e46ef50d2ef78afd918a183c803de8746b880e4b9977b2ef63f7559ac78c6",
+          "note": "Manual save scope is from persisted request; targeted regeneration is not a new full run."
+        },
+        {
+          "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+          "stage": "character_design",
+          "operation": "regenerate",
+          "at": 1791101649.187071,
+          "status": "completed",
+          "target_ids": [
+            "l1"
+          ],
+          "before_scope": {
+            "characters": [
+              {
+                "id": "",
+                "name": "林舟"
+              }
+            ],
+            "characters_count": 1,
+            "settings": [
+              {
+                "id": "",
+                "name": "海边灯塔"
+              }
+            ],
+            "settings_count": 1
+          },
+          "after_scope": null,
+          "payload_sha256": "4b4ee3c27745c1e920c7631cdd490450bd535d3806d1a0fbefcb9531293a4a06",
+          "note": "Manual save scope is from persisted request; targeted regeneration is not a new full run."
+        }
+      ],
+      "generated_scope_history": {
+        "script_generation": [
+          {
+            "version_ref": "sha256:f3da8b750e5fa603494602f594460125af2bb706729ed1023edf3b0c202fed08",
+            "created_at": 1791101250.317887,
+            "reason": "generated",
+            "scope": {
+              "characters": [
+                {
+                  "id": "c1",
+                  "name": "林舟"
+                }
+              ],
+              "characters_count": 1,
+              "settings": [
+                {
+                  "id": "l1",
+                  "name": "海边灯塔"
+                }
+              ],
+              "settings_count": 1,
+              "episodes_count": 1
+            }
+          }
+        ],
+        "character_design": [
+          {
+            "version_ref": "sha256:ad93830d6d93387c6c5b4b4f8772bdee7e2b231691f6033503e5bb31e175901a",
+            "created_at": 1791101313.4409978,
+            "reason": "generated",
+            "scope": {
+              "characters": [
+                {
+                  "id": "",
+                  "name": "林舟"
+                }
+              ],
+              "characters_count": 1,
+              "settings": [
+                {
+                  "id": "",
+                  "name": "海边灯塔"
+                }
+              ],
+              "settings_count": 1
+            }
+          },
+          {
+            "version_ref": "sha256:68ae371e857b6c314c31c05626638acf4f63d8142cf93ec728df7b2dac97a907",
+            "created_at": 1791101663.283204,
+            "reason": "generated",
+            "scope": {
+              "characters": [
+                {
+                  "id": "",
+                  "name": "林舟"
+                }
+              ],
+              "characters_count": 1,
+              "settings": [
+                {
+                  "id": "",
+                  "name": "海边灯塔"
+                }
+              ],
+              "settings_count": 1
+            }
+          }
+        ],
+        "comic_storyboard": [
+          {
+            "version_ref": "sha256:8cd0a5560ba572b9d000e4a8677b0be4bbc662e090f7fce260974e28c5f9f586",
+            "created_at": 1791101535.947325,
+            "reason": "generated",
+            "scope": {
+              "shots_count": 4,
+              "shot_ids": [
+                "s1",
+                "s2",
+                "s3",
+                "s4"
+              ],
+              "dialogues": [
+                {
+                  "line_id": "line1",
+                  "speaker_id": "c1",
+                  "text": "雨停了。"
+                },
+                {
+                  "line_id": "line2",
+                  "speaker_id": "c1",
+                  "text": "灯塔在等我。"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "media": {
+        "status": "exported",
+        "final_video": "comic.mp4",
+        "quality_verdict": "NEED_REVIEW",
+        "source_sha256": "54f2cfa94846f5be04a3f302847c68dd41466fe4d9edf904fd40bfeff4ffb6c3",
+        "sha256": "54f2cfa94846f5be04a3f302847c68dd41466fe4d9edf904fd40bfeff4ffb6c3",
+        "size_bytes": 1128841,
+        "ffprobe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "index": 0,
+              "codec_name": "h264",
+              "codec_type": "video",
+              "width": 720,
+              "height": 1280,
+              "pix_fmt": "yuv420p",
+              "r_frame_rate": "24/1",
+              "avg_frame_rate": "24/1",
+              "duration": "3.750000",
+              "nb_frames": "90"
+            },
+            {
+              "index": 1,
+              "codec_name": "aac",
+              "codec_type": "audio",
+              "sample_rate": "48000",
+              "channels": 2,
+              "r_frame_rate": "0/0",
+              "avg_frame_rate": "0/0",
+              "duration": "3.754667",
+              "nb_frames": "176"
+            }
+          ],
+          "format": {
+            "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+            "duration": "3.754667",
+            "size": "1128841"
+          }
+        },
+        "contact_sheet": {
+          "path": "comic-contact-sheet.jpg",
+          "sample_times_seconds": [
+            0.375,
+            1.314,
+            2.253,
+            3.191
+          ],
+          "sha256": "6aa67d5c894d280e1c44f87ac44ed172dd53218aab204a1aafecb32f861de096",
+          "method": "4 frames at 10%, 35%, 60%, 85%; exploratory visual evidence, not exhaustive video QA"
+        }
+      },
+      "quality_review": {
+        "status": "NEED_REVIEW",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rules": {
+          "Q01": null,
+          "Q02": null,
+          "Q03": null,
+          "Q04": null,
+          "Q05": null
+        },
+        "notes": "人工画面、连续运动及声音验收待填写；机器导出不产生质量通过结论。"
+      }
+    }
+  },
+  "quality_verdict": "NEED_REVIEW",
+  "limitations": [
+    "两例探索性真实验收，不推断总体稳定性或一次通过率。",
+    "执行耗时取实测记录；缺记录时使用执行更新时间减创建时间，不代表精确供应商处理耗时。",
+    "四帧只用于定位画面，不能代替连续播放和听审。",
+    "供应商实付无账单时保留 null。",
+    "导出不会修改应用数据库、run.json 或调用模型；正在运行的阶段可以继续更新源数据。"
+  ],
+  "ledger_total": {
+    "calls": 30,
+    "status_counts": {
+      "completed": 28,
+      "rejected": 1,
+      "uncertain": 1
+    },
+    "reserved_cny": 0.114967,
+    "calculated_cny": 9.34644,
+    "provider_reported_cny": null,
+    "provider_reported_calls": 0,
+    "provider_reported_complete": false,
+    "rejected_reservation_released_cny": 0.2256,
+    "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+  },
+  "ledger_by_model": [
+    {
+      "model": "qwen-image-2.0",
+      "kind": "image",
+      "calls": 10,
+      "status_counts": {
+        "completed": 9,
+        "rejected": 1
+      },
+      "reserved_cny": 0.0,
+      "calculated_cny": 2.0304,
+      "provider_reported_cny": null,
+      "provider_reported_calls": 0,
+      "provider_reported_complete": false,
+      "rejected_reservation_released_cny": 0.2256,
+      "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+    },
+    {
+      "model": "qwen3-vl-flash",
+      "kind": "text",
+      "calls": 12,
+      "status_counts": {
+        "completed": 12
+      },
+      "reserved_cny": 0.0,
+      "calculated_cny": 0.008415,
+      "provider_reported_cny": null,
+      "provider_reported_calls": 0,
+      "provider_reported_complete": false,
+      "rejected_reservation_released_cny": 0.0,
+      "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+    },
+    {
+      "model": "qwen3.5-plus",
+      "kind": "text",
+      "calls": 6,
+      "status_counts": {
+        "completed": 5,
+        "uncertain": 1
+      },
+      "reserved_cny": 0.114967,
+      "calculated_cny": 0.539625,
+      "provider_reported_cny": null,
+      "provider_reported_calls": 0,
+      "provider_reported_complete": false,
+      "rejected_reservation_released_cny": 0.0,
+      "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+    },
+    {
+      "model": "wan2.7-i2v",
+      "kind": "video",
+      "calls": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "reserved_cny": 0.0,
+      "calculated_cny": 6.768,
+      "provider_reported_cny": null,
+      "provider_reported_calls": 0,
+      "provider_reported_complete": false,
+      "rejected_reservation_released_cny": 0.0,
+      "accounting_notice": "按价格表估算；未知结果保留预留。供应商实付未提供时为 null，预留释放不代表退款。"
+    }
+  ],
+  "run_events": [
+    {
+      "stage": "script_generation",
+      "status": "stage_completed",
+      "elapsed_seconds": 50.831,
+      "execution_ref": "sha256:5f4a51286a065d558cf8e487910b03a05596c53bf2c2892249e711e284c39caa",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "character_design",
+      "status": "stage_completed",
+      "elapsed_seconds": 18.031,
+      "execution_ref": "sha256:e2f309a705824afc391dfdce1f482ec735d91a519ae2a2e92d5dd77deac131e1",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "storyboard",
+      "status": "stage_completed",
+      "elapsed_seconds": 65.657,
+      "execution_ref": "sha256:a920795d8f561a7340ec1e7e10a62223f480f2cfe9f10698a765defbb5d20d38",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "case": "story",
+      "stage": "storyboard",
+      "operation": "manual_scope_edit",
+      "status": "stage_completed",
+      "execution_ref": "sha256:855f118e4f8f31bc5bdc8daee7bcd37c8b97535458819ac06a8b2abf031b287f",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "reference_generation",
+      "status": "failed",
+      "elapsed_seconds": 19.634,
+      "execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+      "source_execution_ref": null,
+      "had_error": true
+    },
+    {
+      "stage": "script_generation",
+      "status": "failed",
+      "elapsed_seconds": 180.384,
+      "execution_ref": "sha256:dba2233143c45b1e08a97cc484251e4efc354e3cd27567e3a366814ac9d39f2d",
+      "source_execution_ref": null,
+      "had_error": true
+    },
+    {
+      "stage": "script_generation",
+      "operation": "regenerate",
+      "status": "stage_completed",
+      "elapsed_seconds": 54.876,
+      "execution_ref": "sha256:98332273dabb28948fd79dd32e9c886e819118ec8fc67a5a516ec3e26534de49",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "character_design",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 18.301,
+      "execution_ref": "sha256:1fd507fb6d24427cff4ea76fbeb989736ea830a42c8fb74b0b8adf1573f7cc9d",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "comic_storyboard",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 178.561,
+      "execution_ref": "sha256:ab395abfa16243613cf83dbfcb86532cb290378ca06d04ab3f61ffd330bff0ca",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "reference_generation",
+      "operation": "resume",
+      "status": "stage_completed",
+      "elapsed_seconds": 26.405,
+      "execution_ref": "sha256:43ec2aedc4a28663adcd2187ec537e74cc8da2695375626bc446eb948ea29432",
+      "source_execution_ref": "sha256:d1bcf796f30ed4055eb22a225e215862498fe3bd18e5cbe28df6532e9c2655cf",
+      "had_error": false
+    },
+    {
+      "case": "comic",
+      "stage": "comic_storyboard",
+      "operation": "manual_scope_edit",
+      "status": "stage_completed",
+      "execution_ref": "sha256:c80a0661027e2775f7f457f4d443241840ef646037c83f32add2a84f194cd969",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "character_design",
+      "operation": "regenerate",
+      "status": "stage_completed",
+      "elapsed_seconds": 14.22,
+      "execution_ref": "sha256:2587e9ac3e0cbeca4db98c128201d793156d7f1f15ea9df016c2219d8dca917e",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "case": "story",
+      "stage": "video_generation",
+      "operation": "controlled_process_restart",
+      "status": "failed",
+      "at": 1791101815.9505439,
+      "execution_ref": null,
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "video_generation",
+      "operation": "resume",
+      "status": "stage_completed",
+      "elapsed_seconds": 112.486,
+      "execution_ref": "sha256:320234ef0ce3d89e10968cec87117ba3f6793345a9712be22ed738062bb8db6c",
+      "source_execution_ref": "sha256:0d439ebe577cabd4189d77131e2819f05bdd2235940fca63c3c6ca4b1c8f6eee",
+      "had_error": false
+    },
+    {
+      "stage": "post_production",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 0.21,
+      "execution_ref": "sha256:9db12aa18c952e13b99fc7000dd105f732298c84505c0961a2b1b8f7210d06a6",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "comic_panels",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 35.276,
+      "execution_ref": "sha256:f1705563ab5d2e8118ccb8c200a363a6b3eb3d71f7660515f6ff6a03d8d8ab7d",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "comic_audio",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 2.028,
+      "execution_ref": "sha256:631ec8e625659555afd7115d45ede2e7b6d2a76ea523d6662c7c49021c69a5b7",
+      "source_execution_ref": null,
+      "had_error": false
+    },
+    {
+      "stage": "comic_composition",
+      "operation": "generate",
+      "status": "stage_completed",
+      "elapsed_seconds": 3.393,
+      "execution_ref": "sha256:f04cc36a8866432ab033f7340d9b34f36805aac825978a822525bc3547f80628",
+      "source_execution_ref": null,
+      "had_error": false
+    }
+  ],
+  "source_code_versions": [
+    {
+      "path": "backend/app/__init__.py",
+      "initial_sha256": "efcc8265d307c9e25f55a88e764c15d337469176450d8d83ab8b4b98e9a46e53",
+      "latest_recorded_sha256": "efcc8265d307c9e25f55a88e764c15d337469176450d8d83ab8b4b98e9a46e53",
+      "export_time_sha256": "efcc8265d307c9e25f55a88e764c15d337469176450d8d83ab8b4b98e9a46e53",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/__init__.py",
+      "initial_sha256": "3fd3b71826659a6cb729272ad730f8a5c95a76d9bf89fd0b7350c3b019bf3d0a",
+      "latest_recorded_sha256": "3fd3b71826659a6cb729272ad730f8a5c95a76d9bf89fd0b7350c3b019bf3d0a",
+      "export_time_sha256": "3fd3b71826659a6cb729272ad730f8a5c95a76d9bf89fd0b7350c3b019bf3d0a",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/auth.py",
+      "initial_sha256": "3946a9d6341bc637ed80405499a34cdaf064e9e3c3912c8facd7c9643ba56a77",
+      "latest_recorded_sha256": "3946a9d6341bc637ed80405499a34cdaf064e9e3c3912c8facd7c9643ba56a77",
+      "export_time_sha256": "3946a9d6341bc637ed80405499a34cdaf064e9e3c3912c8facd7c9643ba56a77",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/deps.py",
+      "initial_sha256": "254dc57100bfa948df22f71597a96c58f3a0545ed41b836d5be2f0d8ea6777a1",
+      "latest_recorded_sha256": "254dc57100bfa948df22f71597a96c58f3a0545ed41b836d5be2f0d8ea6777a1",
+      "export_time_sha256": "254dc57100bfa948df22f71597a96c58f3a0545ed41b836d5be2f0d8ea6777a1",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/files.py",
+      "initial_sha256": "0a0297d2c44901a57fa102f89c69146dfbed07254e6462866cd556f9918ef905",
+      "latest_recorded_sha256": "0a0297d2c44901a57fa102f89c69146dfbed07254e6462866cd556f9918ef905",
+      "export_time_sha256": "0a0297d2c44901a57fa102f89c69146dfbed07254e6462866cd556f9918ef905",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/health.py",
+      "initial_sha256": "8d36b7c60217f22d3a15f554c77bf0f124cdc9a8c7699a9bafc61f6d683dd1f5",
+      "latest_recorded_sha256": "8d36b7c60217f22d3a15f554c77bf0f124cdc9a8c7699a9bafc61f6d683dd1f5",
+      "export_time_sha256": "8d36b7c60217f22d3a15f554c77bf0f124cdc9a8c7699a9bafc61f6d683dd1f5",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/knowledge.py",
+      "initial_sha256": "b1d85971693c81ca4e4cc7ee0c80969c45d9a2b8165d8ec79da061b817663084",
+      "latest_recorded_sha256": "b1d85971693c81ca4e4cc7ee0c80969c45d9a2b8165d8ec79da061b817663084",
+      "export_time_sha256": "b1d85971693c81ca4e4cc7ee0c80969c45d9a2b8165d8ec79da061b817663084",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/models.py",
+      "initial_sha256": "ac886b9a810c1c1292872dbe6d235a57397d8ff30f0ee4ce1af0b55a991433f1",
+      "latest_recorded_sha256": "ac886b9a810c1c1292872dbe6d235a57397d8ff30f0ee4ce1af0b55a991433f1",
+      "export_time_sha256": "ac886b9a810c1c1292872dbe6d235a57397d8ff30f0ee4ce1af0b55a991433f1",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/sessions.py",
+      "initial_sha256": "5cb0b38d8b09cb03167c67fd7b046805193833c4f28049782124d1d1e336764d",
+      "latest_recorded_sha256": "5cb0b38d8b09cb03167c67fd7b046805193833c4f28049782124d1d1e336764d",
+      "export_time_sha256": "5cb0b38d8b09cb03167c67fd7b046805193833c4f28049782124d1d1e336764d",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/settings.py",
+      "initial_sha256": "537013887c6b90e3c604a53626405784cbb0b53098bf1f2b8b4e1d184d9a3f54",
+      "latest_recorded_sha256": "537013887c6b90e3c604a53626405784cbb0b53098bf1f2b8b4e1d184d9a3f54",
+      "export_time_sha256": "537013887c6b90e3c604a53626405784cbb0b53098bf1f2b8b4e1d184d9a3f54",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/tasks.py",
+      "initial_sha256": "afcaf67a03cd9c2d7bddacbaa3dcf01dd65b346f047ce6910cb32322c3cc131e",
+      "latest_recorded_sha256": "afcaf67a03cd9c2d7bddacbaa3dcf01dd65b346f047ce6910cb32322c3cc131e",
+      "export_time_sha256": "afcaf67a03cd9c2d7bddacbaa3dcf01dd65b346f047ce6910cb32322c3cc131e",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/api/usage.py",
+      "initial_sha256": "af0fcf04b2b7d7f20efa697a088cfba0d1179d2fe8a29cbdd3c6d1186302a2e8",
+      "latest_recorded_sha256": "af0fcf04b2b7d7f20efa697a088cfba0d1179d2fe8a29cbdd3c6d1186302a2e8",
+      "export_time_sha256": "af0fcf04b2b7d7f20efa697a088cfba0d1179d2fe8a29cbdd3c6d1186302a2e8",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/core/__init__.py",
+      "initial_sha256": "581f3034dd7020678d74db8153f9e8539557d3cf199e94f6dc7596576fb93843",
+      "latest_recorded_sha256": "581f3034dd7020678d74db8153f9e8539557d3cf199e94f6dc7596576fb93843",
+      "export_time_sha256": "581f3034dd7020678d74db8153f9e8539557d3cf199e94f6dc7596576fb93843",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/core/config.py",
+      "initial_sha256": "c392abc2d398048f308ddc2516b554cf01633f800e25c621c3113085c78b39d9",
+      "latest_recorded_sha256": "c392abc2d398048f308ddc2516b554cf01633f800e25c621c3113085c78b39d9",
+      "export_time_sha256": "c392abc2d398048f308ddc2516b554cf01633f800e25c621c3113085c78b39d9",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/core/errors.py",
+      "initial_sha256": "7a397fc42d8a2a9903373bbec2fab0bd470b8883b4a6f7ac89e9550582137db0",
+      "latest_recorded_sha256": "7a397fc42d8a2a9903373bbec2fab0bd470b8883b4a6f7ac89e9550582137db0",
+      "export_time_sha256": "7a397fc42d8a2a9903373bbec2fab0bd470b8883b4a6f7ac89e9550582137db0",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/core/logging_config.py",
+      "initial_sha256": "1ae12d0b48eed7ab61736f27413253ba5d13cb8584bd1d1528d6f1b7dc01c7f0",
+      "latest_recorded_sha256": "1ae12d0b48eed7ab61736f27413253ba5d13cb8584bd1d1528d6f1b7dc01c7f0",
+      "export_time_sha256": "1ae12d0b48eed7ab61736f27413253ba5d13cb8584bd1d1528d6f1b7dc01c7f0",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/core/path_security.py",
+      "initial_sha256": "3621df9c9ff035885b1974e471d0527eb6d7c0d4dacc2d89aa9c590325e12bb4",
+      "latest_recorded_sha256": "3621df9c9ff035885b1974e471d0527eb6d7c0d4dacc2d89aa9c590325e12bb4",
+      "export_time_sha256": "3621df9c9ff035885b1974e471d0527eb6d7c0d4dacc2d89aa9c590325e12bb4",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/main.py",
+      "initial_sha256": "0c76a05c1e85c1b5e702733a47b99c81f4b11232cb6495bccc0d8a0e09fbf54e",
+      "latest_recorded_sha256": "0c76a05c1e85c1b5e702733a47b99c81f4b11232cb6495bccc0d8a0e09fbf54e",
+      "export_time_sha256": "0c76a05c1e85c1b5e702733a47b99c81f4b11232cb6495bccc0d8a0e09fbf54e",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/models/__init__.py",
+      "initial_sha256": "de990ff7608d4e263d552777b30b98cf8716235f5656bf981d84640792192306",
+      "latest_recorded_sha256": "de990ff7608d4e263d552777b30b98cf8716235f5656bf981d84640792192306",
+      "export_time_sha256": "de990ff7608d4e263d552777b30b98cf8716235f5656bf981d84640792192306",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/models/image_client.py",
+      "initial_sha256": "74b6bb3c02222f81d4ae313aa11b84ee58f8a3387f61d85ed1969a2cf96903ad",
+      "latest_recorded_sha256": "d95c219d3a020f1fbec2513048e7d2bcbd58a6633a75d40e7eb41924d9d66aef",
+      "export_time_sha256": "d95c219d3a020f1fbec2513048e7d2bcbd58a6633a75d40e7eb41924d9d66aef",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/models/llm_client.py",
+      "initial_sha256": "6be6891b289f65251b8bcb296f485038013a07f49939902c0eab61c975661c7a",
+      "latest_recorded_sha256": "6be6891b289f65251b8bcb296f485038013a07f49939902c0eab61c975661c7a",
+      "export_time_sha256": "6be6891b289f65251b8bcb296f485038013a07f49939902c0eab61c975661c7a",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/models/tts_client.py",
+      "initial_sha256": "d2cb048f69e68246d322447c26ddbacc256f87de6279c29bf92093a6db9db4d3",
+      "latest_recorded_sha256": "d2cb048f69e68246d322447c26ddbacc256f87de6279c29bf92093a6db9db4d3",
+      "export_time_sha256": "d2cb048f69e68246d322447c26ddbacc256f87de6279c29bf92093a6db9db4d3",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/models/video_client.py",
+      "initial_sha256": "b7ae6dfcfbace48a7922fdd49402d0c1951df4ba089be4f71ad139633ec43877",
+      "latest_recorded_sha256": "a7c02853497156d9426446f77ba11b01810b81f84a9e7bd4e884d1a1978a953d",
+      "export_time_sha256": "a7c02853497156d9426446f77ba11b01810b81f84a9e7bd4e884d1a1978a953d",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/models/vlm_client.py",
+      "initial_sha256": "4902c76a38e073d1efc0b9d804673044a49c87c60332cbee0b2ae891ce1dab6f",
+      "latest_recorded_sha256": "4902c76a38e073d1efc0b9d804673044a49c87c60332cbee0b2ae891ce1dab6f",
+      "export_time_sha256": "4902c76a38e073d1efc0b9d804673044a49c87c60332cbee0b2ae891ce1dab6f",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/schemas/__init__.py",
+      "initial_sha256": "48a4477788c2635f481c84e8472dae3d1a0dcde446fd8ed29c7fc389145f8c7d",
+      "latest_recorded_sha256": "48a4477788c2635f481c84e8472dae3d1a0dcde446fd8ed29c7fc389145f8c7d",
+      "export_time_sha256": "48a4477788c2635f481c84e8472dae3d1a0dcde446fd8ed29c7fc389145f8c7d",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/schemas/knowledge.py",
+      "initial_sha256": "495e6ab628a8e7d04c548868dcb6eb0978ead3e5e58688c8770e2c5cb2969658",
+      "latest_recorded_sha256": "495e6ab628a8e7d04c548868dcb6eb0978ead3e5e58688c8770e2c5cb2969658",
+      "export_time_sha256": "495e6ab628a8e7d04c548868dcb6eb0978ead3e5e58688c8770e2c5cb2969658",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/schemas/models.py",
+      "initial_sha256": "75e1b2c346e18e4ffeb0738ee69a85787c1594061c2b20b507c635a2047d158b",
+      "latest_recorded_sha256": "75e1b2c346e18e4ffeb0738ee69a85787c1594061c2b20b507c635a2047d158b",
+      "export_time_sha256": "75e1b2c346e18e4ffeb0738ee69a85787c1594061c2b20b507c635a2047d158b",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/schemas/session.py",
+      "initial_sha256": "20959b58e5ac5d349c87ea4609a56f1d48e89ef85dfe038ddc622768177b7f7e",
+      "latest_recorded_sha256": "20959b58e5ac5d349c87ea4609a56f1d48e89ef85dfe038ddc622768177b7f7e",
+      "export_time_sha256": "20959b58e5ac5d349c87ea4609a56f1d48e89ef85dfe038ddc622768177b7f7e",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/schemas/task.py",
+      "initial_sha256": "d2a3df41dd2ee5314487e6228ce4478fc973ae46a108421eaf9ff3010f485994",
+      "latest_recorded_sha256": "d2a3df41dd2ee5314487e6228ce4478fc973ae46a108421eaf9ff3010f485994",
+      "export_time_sha256": "d2a3df41dd2ee5314487e6228ce4478fc973ae46a108421eaf9ff3010f485994",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/__init__.py",
+      "initial_sha256": "99a2198fd129f7904f809188227addd816f0ffaa4ad9cea868f7e2989fd5a8f1",
+      "latest_recorded_sha256": "99a2198fd129f7904f809188227addd816f0ffaa4ad9cea868f7e2989fd5a8f1",
+      "export_time_sha256": "99a2198fd129f7904f809188227addd816f0ffaa4ad9cea868f7e2989fd5a8f1",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/asset_library.py",
+      "initial_sha256": "9b74dfbdac9bf07c963184c71b72d143dd6c85463d16af703ed9e1e9eda8e5ca",
+      "latest_recorded_sha256": "9b74dfbdac9bf07c963184c71b72d143dd6c85463d16af703ed9e1e9eda8e5ca",
+      "export_time_sha256": "9b74dfbdac9bf07c963184c71b72d143dd6c85463d16af703ed9e1e9eda8e5ca",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/auth.py",
+      "initial_sha256": "46b2eb9377bd79b5bf0bf75643939a65184a56e2f2ab1c2d2885b1358aa640df",
+      "latest_recorded_sha256": "46b2eb9377bd79b5bf0bf75643939a65184a56e2f2ab1c2d2885b1358aa640df",
+      "export_time_sha256": "46b2eb9377bd79b5bf0bf75643939a65184a56e2f2ab1c2d2885b1358aa640df",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/comic_renderer.py",
+      "initial_sha256": "8510d8b564299a5e3e889e42575a9625789af9313b41acbd70cc32119d9bebf5",
+      "latest_recorded_sha256": "8510d8b564299a5e3e889e42575a9625789af9313b41acbd70cc32119d9bebf5",
+      "export_time_sha256": "8510d8b564299a5e3e889e42575a9625789af9313b41acbd70cc32119d9bebf5",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/comic_workflow.py",
+      "initial_sha256": "f8a3e59d00fddd0c4eaa7816214fa7ef4693d9f4908b1de1a9c9fc282491efb6",
+      "latest_recorded_sha256": "0f3250b90055743a0ccd422c4bf5883c9deddbdabd900b7b42d211711481878e",
+      "export_time_sha256": "0f3250b90055743a0ccd422c4bf5883c9deddbdabd900b7b42d211711481878e",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/content_review.py",
+      "initial_sha256": "0cbae81a4c569abeea4f83599317211cf349b71799e7580a24fd1661210d4f60",
+      "latest_recorded_sha256": "0cbae81a4c569abeea4f83599317211cf349b71799e7580a24fd1661210d4f60",
+      "export_time_sha256": "0cbae81a4c569abeea4f83599317211cf349b71799e7580a24fd1661210d4f60",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/cost_control.py",
+      "initial_sha256": "4bca220cbc5e52e0498737c2a8c6ad727c20ef8b6b463a204a30d88f5308e705",
+      "latest_recorded_sha256": "8b263a2c487e857dfd47a2164cb62f28492ba44ea958b6a3988dd4de294348d0",
+      "export_time_sha256": "8b263a2c487e857dfd47a2164cb62f28492ba44ea958b6a3988dd4de294348d0",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/db.py",
+      "initial_sha256": "fb2e7ed18adcff84c1857c0e8227129161e351641272f32ad52eb686d141ff61",
+      "latest_recorded_sha256": "fb2e7ed18adcff84c1857c0e8227129161e351641272f32ad52eb686d141ff61",
+      "export_time_sha256": "fb2e7ed18adcff84c1857c0e8227129161e351641272f32ad52eb686d141ff61",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/execution_store.py",
+      "initial_sha256": "33130622f9afc167c1591511954e723f85944997db3606a07447558f312edc21",
+      "latest_recorded_sha256": "2d44dc864aa9282e14be606889d5d1553a45e12991dd8a21ad128fc252118292",
+      "export_time_sha256": "2d44dc864aa9282e14be606889d5d1553a45e12991dd8a21ad128fc252118292",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/ffmpeg_util.py",
+      "initial_sha256": "1aa253bde0a71385321b3caabfc49f945e233cf00cd40767722ef23880ba429b",
+      "latest_recorded_sha256": "1aa253bde0a71385321b3caabfc49f945e233cf00cd40767722ef23880ba429b",
+      "export_time_sha256": "1aa253bde0a71385321b3caabfc49f945e233cf00cd40767722ef23880ba429b",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/knowledge_retrieval.py",
+      "initial_sha256": "ec423835bbb0374da3d3c3ef8d79cb08395df8352fd17759c3234d577c4a4663",
+      "latest_recorded_sha256": "ec423835bbb0374da3d3c3ef8d79cb08395df8352fd17759c3234d577c4a4663",
+      "export_time_sha256": "ec423835bbb0374da3d3c3ef8d79cb08395df8352fd17759c3234d577c4a4663",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/knowledge_store.py",
+      "initial_sha256": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9",
+      "latest_recorded_sha256": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9",
+      "export_time_sha256": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/model_catalog.py",
+      "initial_sha256": "16cc9f38b2c2e49a31cd3d19dfdaf30e35c2bf63dbe71215ec7ed75fcf81e735",
+      "latest_recorded_sha256": "16cc9f38b2c2e49a31cd3d19dfdaf30e35c2bf63dbe71215ec7ed75fcf81e735",
+      "export_time_sha256": "16cc9f38b2c2e49a31cd3d19dfdaf30e35c2bf63dbe71215ec7ed75fcf81e735",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/orchestrator.py",
+      "initial_sha256": "7bce53f1458b0ffbc6d224eb05fbadc41f5b05b28ef5c5fc9d8ab3e2fb3fdd49",
+      "latest_recorded_sha256": "0f7e85bdf9225e78f60d69e2a60bd1d021885c529572d24323e67da5050cbfff",
+      "export_time_sha256": "0f7e85bdf9225e78f60d69e2a60bd1d021885c529572d24323e67da5050cbfff",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/prompts.py",
+      "initial_sha256": "ee711853662332022ac357e83c24399ebd6ab44b2767198c4105716464c4cb20",
+      "latest_recorded_sha256": "60183268c3d5f59a066b02c10d503e61c6ee72cf639ad63cca923322f1b42d23",
+      "export_time_sha256": "60183268c3d5f59a066b02c10d503e61c6ee72cf639ad63cca923322f1b42d23",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/provider_jobs.py",
+      "initial_sha256": "0ab12afeb34a2d4d2e6f032680dfe276d571db84ac81c0beb167d6065d5dfe3d",
+      "latest_recorded_sha256": "fe1e8a1f919909add23247985411d695762130a1a7c88582bd33a4e5d121a527",
+      "export_time_sha256": "fe1e8a1f919909add23247985411d695762130a1a7c88582bd33a4e5d121a527",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/recovery.py",
+      "initial_sha256": "bc0b09220ea7c63b657022fb45644c344b7a7a3cac7d94f9dbc696b1cc3807bf",
+      "latest_recorded_sha256": "169cbc5f6f152e19909af69c841a3e0339e5f1255a78d638052b4b69ab8227f1",
+      "export_time_sha256": "169cbc5f6f152e19909af69c841a3e0339e5f1255a78d638052b4b69ab8227f1",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/session_store.py",
+      "initial_sha256": "f98572935f4d63c40cd0038afd97459ece6389e7859037b9778a5fc60882800c",
+      "latest_recorded_sha256": "f98572935f4d63c40cd0038afd97459ece6389e7859037b9778a5fc60882800c",
+      "export_time_sha256": "f98572935f4d63c40cd0038afd97459ece6389e7859037b9778a5fc60882800c",
+      "changed_since_start": false
+    },
+    {
+      "path": "backend/app/services/short_pipelines.py",
+      "initial_sha256": "b1cbb1190f8649671e638ce061d89efc645ec11a25bd17906e015719131cd170",
+      "latest_recorded_sha256": "9b320188b40c0b77a05e78667a8663071e8a9147bd07b69dd8d093caa89354fe",
+      "export_time_sha256": "9b320188b40c0b77a05e78667a8663071e8a9147bd07b69dd8d093caa89354fe",
+      "changed_since_start": true
+    },
+    {
+      "path": "backend/app/services/task_store.py",
+      "initial_sha256": "7d627c453e6388c666a5713a0d076999dee34506802dadc7149ff3d0cbc8cf57",
+      "latest_recorded_sha256": "7d627c453e6388c666a5713a0d076999dee34506802dadc7149ff3d0cbc8cf57",
+      "export_time_sha256": "7d627c453e6388c666a5713a0d076999dee34506802dadc7149ff3d0cbc8cf57",
+      "changed_since_start": false
+    }
+  ],
+  "file_manifest": [
+    {
+      "path": "comic-board-edited.json",
+      "sha256": "d5b70ca9d4e13d25fcd23a6e726c4f6ddf7faced5eea2b2059848359e146e318",
+      "size_bytes": 1119
+    },
+    {
+      "path": "comic-contact-sheet.jpg",
+      "sha256": "6aa67d5c894d280e1c44f87ac44ed172dd53218aab204a1aafecb32f861de096",
+      "size_bytes": 148133
+    },
+    {
+      "path": "comic-setting-regenerate.json",
+      "sha256": "940f682b8590b7e342df1acee3066113284bb7e27b46459b95857cff1268e82d",
+      "size_bytes": 22
+    },
+    {
+      "path": "comic.mp4",
+      "sha256": "54f2cfa94846f5be04a3f302847c68dd41466fe4d9edf904fd40bfeff4ffb6c3",
+      "size_bytes": 1128841
+    },
+    {
+      "path": "project-document-desktop.png",
+      "sha256": "071c8a1273fd46d423c1335f1b258a06711816de2c0c9660124ae14b6f9e558d",
+      "size_bytes": 128681
+    },
+    {
+      "path": "project-document-mobile.png",
+      "sha256": "89c009390e6b2a77a213ca5c9fbf87e0f21f4c36d8c618105d37f4237c035ad6",
+      "size_bytes": 115944
+    },
+    {
+      "path": "project-document-results.png",
+      "sha256": "e86f2f97fcf68d83daf522003735568d911411ee39e66e48c049626a21b45347",
+      "size_bytes": 100747
+    },
+    {
+      "path": "run.json",
+      "sha256": "20a8acfea6b42eae427592cc5fd254ca9280e342d5b2c900cf5dab53330acf1b",
+      "size_bytes": 20101
+    },
+    {
+      "path": "story-board-edited.json",
+      "sha256": "c2ee0ed597fa5454f7a8120a3646f2b8700103cd14a632b8b303056503d9b186",
+      "size_bytes": 1251
+    },
+    {
+      "path": "story-contact-sheet.jpg",
+      "sha256": "070464db850dc268c159ca5f06e9b32346401ede009f4a2278eee6c97b2e1d02",
+      "size_bytes": 165751
+    },
+    {
+      "path": "story.mp4",
+      "sha256": "51170b05a2755628079d1e18ab223e339952a1bc65c6aa961fa6a288815b5eac",
+      "size_bytes": 7136624
+    },
+    {
+      "path": "usage-desktop.png",
+      "sha256": "9f78f2945b62e7ada45aaf824d8478587990d25202a4efa33b657ed35eec69d2",
+      "size_bytes": 745879
+    },
+    {
+      "path": "工程验证.json",
+      "sha256": "9426e834c22cbe00be8d5caa035b94d2721505dd732a2e1d584c8e64df3e09ba",
+      "size_bytes": 1041
+    },
+    {
+      "path": "目标与评分.md",
+      "sha256": "e3107757d6cb90a7782a2b0be24f41c6eca4a52c7706a679a73f648b6c907a35",
+      "size_bytes": 4296
+    }
+  ],
+  "public_evidence_sha256": "6422a6744c1e884795ef24e65fb732a05a267fe7aba272aba57ff0fb7092e3a2",
+  "redaction_check": {
+    "passed": true,
+    "checked": [
+      "no raw vendor job IDs",
+      "no provider URLs",
+      "no credential-shaped values",
+      "no owner IDs",
+      "no raw provider errors"
+    ]
+  }
+}

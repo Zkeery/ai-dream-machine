@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "eval_version": "rag-creation-zh-holdout-v1",
+  "purpose": "未用于开发集阈值校准的新合成资料与意译查询；含同域无答案，不能据此宣称生产准确率",
+  "configuration": {
+    "top_k": 5,
+    "repeats": 2,
+    "retry_count": 0,
+    "recall_pass_threshold": 0.85,
+    "constraint_pass_threshold": 1.0,
+    "critical_pass_threshold": 1.0
+  },
+  "owners": ["holdout-owner-a"],
+  "libraries": [
+    {"id": "characters", "owner": "holdout-owner-a", "name": "镜海人物", "kind": "character", "constraints": "陆遥始终是三十一岁的成年人，不能改成未成年人。"},
+    {"id": "world", "owner": "holdout-owner-a", "name": "镜海小镇", "kind": "world", "constraints": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"},
+    {"id": "style", "owner": "holdout-owner-a", "name": "木刻画面", "kind": "style", "constraints": "画面采用木刻版画，禁止使用写实摄影外观。"},
+    {"id": "brand", "owner": "holdout-owner-a", "name": "青禾杯品牌", "kind": "brand", "constraints": "青禾杯是玻璃杯，不得夸大成能够治疗疾病或全天保温的产品。"}
+  ],
+  "documents": [
+    {"id": "luyao", "library": "characters", "title": "陆遥人物档案", "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。"},
+    {"id": "liuli", "library": "characters", "title": "琉璃人物档案", "text": "琉璃是盐池的检验员，擅长辨认不同矿物的颜色。她行事果断，习惯用短句表达建议，总在工作服口袋里放一块带刻度的小镜片。"},
+    {"id": "redmoon", "library": "world", "title": "镜海红月规则", "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"},
+    {"id": "salt", "library": "world", "title": "镜海盐池", "text": "盐池每周一开放采样，由检验员记录盐水浓度。工人使用木质栈道进出盐池，禁止穿越未标示深度的水面。小镇照相馆位于栈道入口的白墙屋内。"},
+    {"id": "woodcut", "library": "style", "title": "木刻版画方案", "text": "画面使用木刻版画的黑色刀痕和粗糙印版边缘，以土黄和深蓝两次套色。允许少量颜色错位，阴影通过密集排线表现。表面保留纸纤维与印墨不均，避免摄影级的光滑质感。"},
+    {"id": "qinghe", "library": "brand", "title": "青禾杯产品说明", "text": "青禾杯采用耐热玻璃，容量为三百毫升，杯壁透明，适合观察茶汤颜色。产品附带可拆卸的软木杯垫。清洗推荐温水手洗，不放进洗碗机，不承诺长时间保温。"}
+  ],
+  "updates": [],
+  "deletions": [],
+  "cases": [
+    {"case_id": "H01", "category": "新人物意译", "query": "男主为什么会主动避开忽然很响的地方？", "owner": "holdout-owner-a", "libraries": ["characters"], "expected_documents": ["luyao"]},
+    {"case_id": "H02", "category": "新世界意译", "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？", "owner": "holdout-owner-a", "libraries": ["world"], "expected_documents": ["redmoon"]},
+    {"case_id": "H03", "category": "新风格意译", "query": "想让画面像手工印出来的，有刻痕、两层油墨稍微对不齐，应采用什么方法？", "owner": "holdout-owner-a", "libraries": ["style"], "expected_documents": ["woodcut"]},
+    {"case_id": "H04", "category": "新品牌意译", "query": "介绍这款茶杯时，能写哪些有依据的材质和搭配部件？", "owner": "holdout-owner-a", "libraries": ["brand"], "expected_documents": ["qinghe"]},
+    {"case_id": "H05", "category": "新资料跨库", "query": "照相馆的陆遥遇到红月时，拍摄安排需要考虑哪些人物弱点和小镇规则？", "owner": "holdout-owner-a", "libraries": ["characters", "world"], "expected_documents": ["luyao", "redmoon"]},
+    {"case_id": "H06", "category": "新固定约束", "query": "写一场红月夜大家在街上热闹游玩的场景", "owner": "holdout-owner-a", "libraries": ["world"], "expected_documents": [], "expected_constraints": ["world"], "critical": true},
+    {"case_id": "H07", "category": "同域无答案", "query": "照相馆的陆遥，他母亲的姓名是什么？", "owner": "holdout-owner-a", "libraries": ["characters"], "expected_documents": [], "expect_empty_hits": true, "critical": true},
+    {"case_id": "H08", "category": "同域无答案", "query": "青禾杯玻璃茶杯的销售价格是多少钱？", "owner": "holdout-owner-a", "libraries": ["brand"], "expected_documents": [], "expect_empty_hits": true, "critical": true}
+  ]
+}

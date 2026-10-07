@@ -28,7 +28,7 @@ def _fake_download(self, url, out):
     return out
 
 
-def test_post_retries_on_5xx_then_succeeds(monkeypatch, tmp_path):
+def test_post_does_not_resubmit_after_5xx(monkeypatch, tmp_path):
     posts = {"n": 0}
 
     def fake_request(method, url, **kwargs):
@@ -44,9 +44,11 @@ def test_post_retries_on_5xx_then_succeeds(monkeypatch, tmp_path):
     monkeypatch.setattr(config.settings, "max_retries", 2)
     c = VideoClient()
     c.poll_interval = 0
-    out = c.image_to_video(__file__, "挥手", tmp_path / "o.mp4", mode="reference")
-    assert out.exists()
-    assert posts["n"] == 2  # 第一次 500，第二次成功
+    with pytest.raises(AppError) as caught:
+        c.image_to_video(__file__, "挥手", tmp_path / "o.mp4", mode="reference")
+    assert caught.value.code == "VIDEO_SUBMIT_UNCONFIRMED"
+    assert posts["n"] == 1
+    assert not (tmp_path / "o.mp4").exists()
 
 
 def test_post_fails_fast_on_4xx(monkeypatch, tmp_path):
@@ -66,7 +68,7 @@ def test_post_fails_fast_on_4xx(monkeypatch, tmp_path):
     assert posts["n"] == 1  # 4xx 不重试
 
 
-def test_post_retries_on_http_error(monkeypatch, tmp_path):
+def test_post_does_not_resubmit_after_unknown_transport_result(monkeypatch, tmp_path):
     posts = {"n": 0}
 
     def fake_request(method, url, **kwargs):
@@ -82,6 +84,8 @@ def test_post_retries_on_http_error(monkeypatch, tmp_path):
     monkeypatch.setattr(config.settings, "max_retries", 2)
     c = VideoClient()
     c.poll_interval = 0
-    out = c.image_to_video(__file__, "挥手", tmp_path / "o.mp4")
-    assert out.exists()
-    assert posts["n"] == 3  # 两次超时 + 一次成功
+    with pytest.raises(AppError) as caught:
+        c.image_to_video(__file__, "挥手", tmp_path / "o.mp4")
+    assert caught.value.code == "VIDEO_SUBMIT_UNCONFIRMED"
+    assert posts["n"] == 1
+    assert not (tmp_path / "o.mp4").exists()

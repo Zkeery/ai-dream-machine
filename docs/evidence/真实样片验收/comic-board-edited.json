@@ -1,0 +1,7 @@
+{
+  "shots": [
+    {"shot_id":"s2","episode_number":1,"description":"林舟蹲下拾起信封，红围巾随风轻扬","prompt":"cinematic manga style, young man squatting, dark blue coat, red scarf flowing, hand picking up envelope, wet ground reflection, same character and location as references, no other people, no text","character_ids":["c1"],"setting_ids":["l1"],"motion":"push_in","silent_duration":2,"dialogues":[{"line_id":"line1","speaker_id":"c1","text":"雨停了。","emotion":"平静"}]},
+    {"shot_id":"s4","episode_number":1,"description":"林舟起身凝视灯塔，眼神坚定，手持信件","prompt":"cinematic manga style, young man standing, holding letter, looking up at white lighthouse, determined expression, warm light on face, dark blue coat, red scarf, same character and location as references, no other people, no text","character_ids":["c1"],"setting_ids":["l1"],"motion":"push_in","silent_duration":2,"dialogues":[{"line_id":"line2","speaker_id":"c1","text":"灯塔在等我。","emotion":"坚定"}]}
+  ],
+  "voice_map":{"narrator":"zh-CN-XiaoxiaoNeural","c1":"zh-CN-YunxiNeural"}
+}

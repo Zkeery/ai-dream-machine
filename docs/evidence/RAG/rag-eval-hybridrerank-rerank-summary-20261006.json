@@ -1,0 +1,2022 @@
+{
+  "started_at_utc": "2026-10-06T04:43:40.566062+00:00",
+  "rerank_meta": {
+    "model": "Xenova/ms-marco-MiniLM-L-6-v2",
+    "cache": "/tmp/rag_hybrid_rerank_models_tiny",
+    "load_warmup_ms": 104.69325000303797,
+    "cache_bytes": 93367870,
+    "note": "English MS MARCO MiniLM; Chinese semantic quality not guaranteed; used because BGE download incomplete",
+    "chinese_quality_supported": false
+  },
+  "schemes": {
+    "rerank": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 0.8888888888888888,
+        "failed_case_ids": [
+          "R12"
+        ],
+        "noncompensable_failures": [
+          {
+            "case_id": "R12",
+            "repetition": 1,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "R12",
+            "repetition": 2,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          }
+        ],
+        "latency_ms": {
+          "p50": 11.945625003136229,
+          "p95": 43.96729099971708
+        },
+        "decision": "LOCAL_ENGINEERING_FAIL",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": false,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "params": {
+        "candidate_n": 20,
+        "rrf_k": 60,
+        "vector_threshold": -1.0,
+        "rerank_threshold": null
+      },
+      "threshold_sweep": [
+        {
+          "threshold": null,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 11.945625003136229,
+              "p95": 43.96729099971708
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -5.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.4704580011894,
+              "p95": 42.57116700318875
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -2.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.340875000518281,
+              "p95": 46.720375001314096
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -1.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 15.104540994798299,
+              "p95": 43.042541001341306
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -0.5,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.591624996275641,
+              "p95": 42.01312499935739
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 0.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.047790994984098,
+              "p95": 42.75370800314704
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 0.5,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.544542005343828,
+              "p95": 42.23295900010271
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 1.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 14.495542003714945,
+              "p95": 50.9515410012682
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 2.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.25062499725027,
+              "p95": 43.828583002323285
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 5.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.58008299919311,
+              "p95": 49.05316700023832
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.1026,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.179833996924572,
+              "p95": 46.75045799376676
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.662,
+          "objective": [
+            1,
+            0.8888888888888888,
+            0.7272727272727273,
+            -4
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 0.7272727272727273,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R02",
+              "R04",
+              "R08",
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 11.888042005011812,
+              "p95": 46.53291599970544
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": false,
+              "R03": true,
+              "R04": false,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": false,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.9465,
+          "objective": [
+            1,
+            0.8888888888888888,
+            0.4090909090909091,
+            -8
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 0.4090909090909091,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R01",
+              "R02",
+              "R04",
+              "R05",
+              "R06",
+              "R07",
+              "R08",
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.529583997093141,
+              "p95": 44.29895900102565
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": false,
+              "R02": false,
+              "R03": true,
+              "R04": false,
+              "R05": false,
+              "R06": false,
+              "R07": false,
+              "R08": false,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "probe_empty_scores": [
+        8.237265586853027,
+        8.059496879577637,
+        7.928005218505859,
+        7.926281452178955,
+        7.839323043823242
+      ],
+      "probe_gold_top_scores": [
+        7.942172527313232,
+        8.042098999023438,
+        8.063078880310059,
+        7.493769645690918,
+        7.682288646697998,
+        8.04143238067627,
+        7.946544647216797,
+        7.422884464263916,
+        8.01562786102295,
+        8.550764083862305,
+        8.501466751098633
+      ],
+      "holdout": {
+        "summary": {
+          "case_count": 8,
+          "query_runs": 16,
+          "expected_query_runs": 16,
+          "data_complete": true,
+          "recall_cases_per_repetition": 5,
+          "macro_recall_at_5": 1.0,
+          "constraint_coverage": 1.0,
+          "critical_case_pass_rate": 0.3333333333333333,
+          "failed_case_ids": [
+            "H07",
+            "H08"
+          ],
+          "noncompensable_failures": [
+            {
+              "case_id": "H07",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H07",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            }
+          ],
+          "latency_ms": {
+            "p50": 10.090042000229005,
+            "p95": 18.40233400434954
+          },
+          "decision": "LOCAL_ENGINEERING_FAIL",
+          "paid_model_calls": 0,
+          "generation_effect_accepted": false,
+          "per_case_pass": {
+            "H01": true,
+            "H02": true,
+            "H03": true,
+            "H04": true,
+            "H05": true,
+            "H06": true,
+            "H07": false,
+            "H08": false
+          }
+        },
+        "flags": {
+          "H01": {
+            "case_id": "H01",
+            "passed": true,
+            "recall_at_5": 1.0,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 11.50699999925564
+          },
+          "H07": {
+            "case_id": "H07",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 11.488791504234541
+          },
+          "H08": {
+            "case_id": "H08",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "qinghe"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 8.354374996997649
+          }
+        },
+        "params": {
+          "candidate_n": 20,
+          "rrf_k": 60,
+          "vector_threshold": -1.0,
+          "rerank_threshold": null
+        },
+        "run_id": "b13d86f3-745c-406b-8075-f86a7c9734b2"
+      }
+    },
+    "hybrid_rerank": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 0.8888888888888888,
+        "failed_case_ids": [
+          "R12"
+        ],
+        "noncompensable_failures": [
+          {
+            "case_id": "R12",
+            "repetition": 1,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "R12",
+            "repetition": 2,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          }
+        ],
+        "latency_ms": {
+          "p50": 12.414666001859587,
+          "p95": 47.143750001851004
+        },
+        "decision": "LOCAL_ENGINEERING_FAIL",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": false,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "params": {
+        "candidate_n": 20,
+        "rrf_k": 60,
+        "vector_threshold": -1.0,
+        "rerank_threshold": null
+      },
+      "threshold_sweep": [
+        {
+          "threshold": null,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.414666001859587,
+              "p95": 47.143750001851004
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -5.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.346625000645872,
+              "p95": 44.11587500362657
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -2.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 13.12391600367846,
+              "p95": 42.67450000043027
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -1.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.295791995711625,
+              "p95": 41.272500006016344
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": -0.5,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.08987499558134,
+              "p95": 42.911917000310495
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 0.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.770749999617692,
+              "p95": 45.11674999957904
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 0.5,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.546833997475915,
+              "p95": 42.53012499975739
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 1.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.776292001944967,
+              "p95": 49.88354200031608
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 2.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.997874997381587,
+              "p95": 43.06854199967347
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 5.0,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 13.044792001892347,
+              "p95": 43.57020899624331
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.1026,
+          "objective": [
+            1,
+            0.8888888888888888,
+            1.0,
+            -1
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 1.0,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 11.82183399942005,
+              "p95": 42.87304099852918
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": true,
+              "R03": true,
+              "R04": true,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": true,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.662,
+          "objective": [
+            1,
+            0.8888888888888888,
+            0.7272727272727273,
+            -4
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 0.7272727272727273,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R02",
+              "R04",
+              "R08",
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 12.44804199814098,
+              "p95": 41.687124998134095
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": true,
+              "R02": false,
+              "R03": true,
+              "R04": false,
+              "R05": true,
+              "R06": true,
+              "R07": true,
+              "R08": false,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        },
+        {
+          "threshold": 7.9465,
+          "objective": [
+            1,
+            0.8888888888888888,
+            0.4090909090909091,
+            -8
+          ],
+          "summary": {
+            "case_count": 18,
+            "query_runs": 36,
+            "expected_query_runs": 36,
+            "data_complete": true,
+            "recall_cases_per_repetition": 11,
+            "macro_recall_at_5": 0.4090909090909091,
+            "constraint_coverage": 1.0,
+            "critical_case_pass_rate": 0.8888888888888888,
+            "failed_case_ids": [
+              "R01",
+              "R02",
+              "R04",
+              "R05",
+              "R06",
+              "R07",
+              "R08",
+              "R12"
+            ],
+            "noncompensable_failures": [
+              {
+                "case_id": "R12",
+                "repetition": 1,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              },
+              {
+                "case_id": "R12",
+                "repetition": 2,
+                "rule": "EMP01",
+                "detail": "ordinary hit list must be empty; constraints are not answers"
+              }
+            ],
+            "latency_ms": {
+              "p50": 14.148957998258993,
+              "p95": 49.97737500525545
+            },
+            "decision": "LOCAL_ENGINEERING_FAIL",
+            "paid_model_calls": 0,
+            "generation_effect_accepted": false,
+            "per_case_pass": {
+              "R01": false,
+              "R02": false,
+              "R03": true,
+              "R04": false,
+              "R05": false,
+              "R06": false,
+              "R07": false,
+              "R08": false,
+              "R09": true,
+              "R10": true,
+              "R11": true,
+              "R12": false,
+              "R13": true,
+              "R14": true,
+              "R15": true,
+              "R16": true,
+              "R17": true,
+              "R18": true
+            }
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "holdout": {
+        "summary": {
+          "case_count": 8,
+          "query_runs": 16,
+          "expected_query_runs": 16,
+          "data_complete": true,
+          "recall_cases_per_repetition": 5,
+          "macro_recall_at_5": 1.0,
+          "constraint_coverage": 1.0,
+          "critical_case_pass_rate": 0.3333333333333333,
+          "failed_case_ids": [
+            "H07",
+            "H08"
+          ],
+          "noncompensable_failures": [
+            {
+              "case_id": "H07",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H07",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            }
+          ],
+          "latency_ms": {
+            "p50": 10.122458996193018,
+            "p95": 17.059208003047388
+          },
+          "decision": "LOCAL_ENGINEERING_FAIL",
+          "paid_model_calls": 0,
+          "generation_effect_accepted": false,
+          "per_case_pass": {
+            "H01": true,
+            "H02": true,
+            "H03": true,
+            "H04": true,
+            "H05": true,
+            "H06": true,
+            "H07": false,
+            "H08": false
+          }
+        },
+        "flags": {
+          "H01": {
+            "case_id": "H01",
+            "passed": true,
+            "recall_at_5": 1.0,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 11.234083500312408
+          },
+          "H07": {
+            "case_id": "H07",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 10.472083999047754
+          },
+          "H08": {
+            "case_id": "H08",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "qinghe"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 6.4366869955847505
+          }
+        },
+        "params": {
+          "candidate_n": 20,
+          "rrf_k": 60,
+          "vector_threshold": -1.0,
+          "rerank_threshold": null
+        },
+        "run_id": "1a9d257a-4015-4aae-a19f-d0c967d21098"
+      }
+    }
+  },
+  "finished_at_utc": "2026-10-06T04:43:58.641758+00:00"
+}

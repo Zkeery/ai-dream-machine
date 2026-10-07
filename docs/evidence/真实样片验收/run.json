@@ -1,0 +1,411 @@
+{
+  "run_id": "real-20261004-v1",
+  "created_at": 1791100257.6499321,
+  "cases": {
+    "story": {
+      "session_id": "1791100257650",
+      "stages": [
+        {
+          "stage": "script_generation",
+          "execution_id": "f9a936691459455c87711b0ae973befa",
+          "status": "stage_completed",
+          "elapsed_seconds": 50.831,
+          "error": null
+        },
+        {
+          "stage": "character_design",
+          "execution_id": "f501d24f6afa4d82a25530a99ff70409",
+          "status": "stage_completed",
+          "elapsed_seconds": 18.031,
+          "error": null
+        },
+        {
+          "stage": "storyboard",
+          "execution_id": "b20912491e954ee78bbef0494544cbe7",
+          "status": "stage_completed",
+          "elapsed_seconds": 65.657,
+          "error": null
+        },
+        {
+          "stage": "reference_generation",
+          "execution_id": "a98d05e28a264882a527c28dfa27fbd2",
+          "status": "failed",
+          "elapsed_seconds": 19.634,
+          "error": "图片接口返回 402"
+        },
+        {
+          "stage": "reference_generation",
+          "operation": "resume",
+          "execution_id": "0bb7f933a2254415986372dfdbef3e2e",
+          "source_execution_id": "a98d05e28a264882a527c28dfa27fbd2",
+          "status": "stage_completed",
+          "elapsed_seconds": 26.405,
+          "error": null
+        },
+        {
+          "stage": "video_generation",
+          "operation": "resume",
+          "execution_id": "84311da327fb419cad5485dec2227ad9",
+          "source_execution_id": "37b18d43208e43259edcc8bed23a19a3",
+          "status": "stage_completed",
+          "elapsed_seconds": 112.486,
+          "error": null
+        },
+        {
+          "stage": "post_production",
+          "operation": "generate",
+          "execution_id": "c3125239209d4aaf9eb4f0b379ff302a",
+          "status": "stage_completed",
+          "elapsed_seconds": 0.21,
+          "error": null
+        }
+      ],
+      "created_at": 1791100257.652241
+    },
+    "comic": {
+      "session_id": "1791100498185",
+      "stages": [
+        {
+          "stage": "script_generation",
+          "execution_id": "21d4d28b34cd46b393671e07869fc145",
+          "status": "failed",
+          "elapsed_seconds": 180.384,
+          "error": "文本请求中断，结果未确认，已停止自动重试；请检查任务记录后再决定是否重新生成"
+        },
+        {
+          "stage": "script_generation",
+          "operation": "regenerate",
+          "execution_id": "e0ee0e591a6248d289686244db11918d",
+          "status": "stage_completed",
+          "elapsed_seconds": 54.876,
+          "error": null
+        },
+        {
+          "stage": "character_design",
+          "operation": "generate",
+          "execution_id": "7f04f4b9a1db4c429bd0cf87be13e2e5",
+          "status": "stage_completed",
+          "elapsed_seconds": 18.301,
+          "error": null
+        },
+        {
+          "stage": "comic_storyboard",
+          "operation": "generate",
+          "execution_id": "df9c2b0d275a489589a755ebe6a52dfc",
+          "status": "stage_completed",
+          "elapsed_seconds": 178.561,
+          "error": null
+        },
+        {
+          "stage": "character_design",
+          "operation": "regenerate",
+          "execution_id": "6600481f4d4846dab6357c4b90eb6b21",
+          "status": "stage_completed",
+          "elapsed_seconds": 14.22,
+          "error": null
+        },
+        {
+          "stage": "comic_panels",
+          "operation": "generate",
+          "execution_id": "6cdf38145f4641ea8324df65c9d44513",
+          "status": "stage_completed",
+          "elapsed_seconds": 35.276,
+          "error": null
+        },
+        {
+          "stage": "comic_audio",
+          "operation": "generate",
+          "execution_id": "3b589c366e21419e82fdbefae5611e08",
+          "status": "stage_completed",
+          "elapsed_seconds": 2.028,
+          "error": null
+        },
+        {
+          "stage": "comic_composition",
+          "operation": "generate",
+          "execution_id": "4203fc21bcf644d8a3a37334b0b344b7",
+          "status": "stage_completed",
+          "elapsed_seconds": 3.393,
+          "error": null
+        }
+      ],
+      "created_at": 1791100498.186759
+    }
+  },
+  "events": [
+    {
+      "stage": "script_generation",
+      "execution_id": "f9a936691459455c87711b0ae973befa",
+      "status": "stage_completed",
+      "elapsed_seconds": 50.831,
+      "error": null
+    },
+    {
+      "stage": "character_design",
+      "execution_id": "f501d24f6afa4d82a25530a99ff70409",
+      "status": "stage_completed",
+      "elapsed_seconds": 18.031,
+      "error": null
+    },
+    {
+      "stage": "storyboard",
+      "execution_id": "b20912491e954ee78bbef0494544cbe7",
+      "status": "stage_completed",
+      "elapsed_seconds": 65.657,
+      "error": null
+    },
+    {
+      "case": "story",
+      "stage": "storyboard",
+      "operation": "manual_scope_edit",
+      "execution_id": "5df8225a063645a0b9ab79c7cf19eda6",
+      "input": "docs/evidence/真实样片验收/story-board-edited.json",
+      "status": "stage_completed",
+      "error": null
+    },
+    {
+      "stage": "reference_generation",
+      "execution_id": "a98d05e28a264882a527c28dfa27fbd2",
+      "status": "failed",
+      "elapsed_seconds": 19.634,
+      "error": "图片接口返回 402"
+    },
+    {
+      "stage": "script_generation",
+      "execution_id": "21d4d28b34cd46b393671e07869fc145",
+      "status": "failed",
+      "elapsed_seconds": 180.384,
+      "error": "文本请求中断，结果未确认，已停止自动重试；请检查任务记录后再决定是否重新生成"
+    },
+    {
+      "stage": "script_generation",
+      "operation": "regenerate",
+      "execution_id": "e0ee0e591a6248d289686244db11918d",
+      "status": "stage_completed",
+      "elapsed_seconds": 54.876,
+      "error": null
+    },
+    {
+      "stage": "character_design",
+      "operation": "generate",
+      "execution_id": "7f04f4b9a1db4c429bd0cf87be13e2e5",
+      "status": "stage_completed",
+      "elapsed_seconds": 18.301,
+      "error": null
+    },
+    {
+      "stage": "comic_storyboard",
+      "operation": "generate",
+      "execution_id": "df9c2b0d275a489589a755ebe6a52dfc",
+      "status": "stage_completed",
+      "elapsed_seconds": 178.561,
+      "error": null
+    },
+    {
+      "stage": "reference_generation",
+      "operation": "resume",
+      "execution_id": "0bb7f933a2254415986372dfdbef3e2e",
+      "source_execution_id": "a98d05e28a264882a527c28dfa27fbd2",
+      "status": "stage_completed",
+      "elapsed_seconds": 26.405,
+      "error": null
+    },
+    {
+      "case": "comic",
+      "stage": "comic_storyboard",
+      "operation": "manual_scope_edit",
+      "execution_id": "6ef549fd23884430a548ff373ec6fa56",
+      "input": "docs/evidence/真实样片验收/comic-board-edited.json",
+      "status": "stage_completed",
+      "error": null
+    },
+    {
+      "stage": "character_design",
+      "operation": "regenerate",
+      "execution_id": "6600481f4d4846dab6357c4b90eb6b21",
+      "status": "stage_completed",
+      "elapsed_seconds": 14.22,
+      "error": null
+    },
+    {
+      "case": "story",
+      "operation": "controlled_process_restart",
+      "result": {
+        "session": 1,
+        "task": 0
+      },
+      "stage": "video_generation",
+      "status": "failed",
+      "at": 1791101815.9505439
+    },
+    {
+      "stage": "video_generation",
+      "operation": "resume",
+      "execution_id": "84311da327fb419cad5485dec2227ad9",
+      "source_execution_id": "37b18d43208e43259edcc8bed23a19a3",
+      "status": "stage_completed",
+      "elapsed_seconds": 112.486,
+      "error": null
+    },
+    {
+      "stage": "post_production",
+      "operation": "generate",
+      "execution_id": "c3125239209d4aaf9eb4f0b379ff302a",
+      "status": "stage_completed",
+      "elapsed_seconds": 0.21,
+      "error": null
+    },
+    {
+      "stage": "comic_panels",
+      "operation": "generate",
+      "execution_id": "6cdf38145f4641ea8324df65c9d44513",
+      "status": "stage_completed",
+      "elapsed_seconds": 35.276,
+      "error": null
+    },
+    {
+      "stage": "comic_audio",
+      "operation": "generate",
+      "execution_id": "3b589c366e21419e82fdbefae5611e08",
+      "status": "stage_completed",
+      "elapsed_seconds": 2.028,
+      "error": null
+    },
+    {
+      "stage": "comic_composition",
+      "operation": "generate",
+      "execution_id": "4203fc21bcf644d8a3a37334b0b344b7",
+      "status": "stage_completed",
+      "elapsed_seconds": 3.393,
+      "error": null
+    }
+  ],
+  "protocol": "目标与评分.md",
+  "paid_provider_calls": true,
+  "provider_reported_cny": null,
+  "quality_verdict": "NEED_REVIEW",
+  "usage": {
+    "scope": "account",
+    "month": "2026-10",
+    "currency": "CNY",
+    "limit_cny": 50.0,
+    "reserved_cny": 0.114967,
+    "calculated_cny": 9.34644,
+    "provider_reported_cny": null,
+    "uncertain_calls": 1,
+    "estimated_completed_calls": 28,
+    "remaining_cny": 40.538593,
+    "concurrency": {
+      "active": 0,
+      "account_limit": 1,
+      "global_limit": 2
+    },
+    "missing_price_models": [],
+    "notice": "预留及估算用于生成限额；按模型用量和价格表计算的费用不是供应商实付账单。未确认的提交保留预留。"
+  },
+  "updated_at": 1791102222.980501,
+  "initial_source_versions": {
+    "backend/app/__init__.py": "efcc8265d307c9e25f55a88e764c15d337469176450d8d83ab8b4b98e9a46e53",
+    "backend/app/api/__init__.py": "3fd3b71826659a6cb729272ad730f8a5c95a76d9bf89fd0b7350c3b019bf3d0a",
+    "backend/app/api/auth.py": "3946a9d6341bc637ed80405499a34cdaf064e9e3c3912c8facd7c9643ba56a77",
+    "backend/app/api/deps.py": "254dc57100bfa948df22f71597a96c58f3a0545ed41b836d5be2f0d8ea6777a1",
+    "backend/app/api/files.py": "0a0297d2c44901a57fa102f89c69146dfbed07254e6462866cd556f9918ef905",
+    "backend/app/api/health.py": "8d36b7c60217f22d3a15f554c77bf0f124cdc9a8c7699a9bafc61f6d683dd1f5",
+    "backend/app/api/knowledge.py": "b1d85971693c81ca4e4cc7ee0c80969c45d9a2b8165d8ec79da061b817663084",
+    "backend/app/api/models.py": "ac886b9a810c1c1292872dbe6d235a57397d8ff30f0ee4ce1af0b55a991433f1",
+    "backend/app/api/sessions.py": "5cb0b38d8b09cb03167c67fd7b046805193833c4f28049782124d1d1e336764d",
+    "backend/app/api/settings.py": "537013887c6b90e3c604a53626405784cbb0b53098bf1f2b8b4e1d184d9a3f54",
+    "backend/app/api/tasks.py": "afcaf67a03cd9c2d7bddacbaa3dcf01dd65b346f047ce6910cb32322c3cc131e",
+    "backend/app/api/usage.py": "af0fcf04b2b7d7f20efa697a088cfba0d1179d2fe8a29cbdd3c6d1186302a2e8",
+    "backend/app/core/__init__.py": "581f3034dd7020678d74db8153f9e8539557d3cf199e94f6dc7596576fb93843",
+    "backend/app/core/config.py": "c392abc2d398048f308ddc2516b554cf01633f800e25c621c3113085c78b39d9",
+    "backend/app/core/errors.py": "7a397fc42d8a2a9903373bbec2fab0bd470b8883b4a6f7ac89e9550582137db0",
+    "backend/app/core/logging_config.py": "1ae12d0b48eed7ab61736f27413253ba5d13cb8584bd1d1528d6f1b7dc01c7f0",
+    "backend/app/core/path_security.py": "3621df9c9ff035885b1974e471d0527eb6d7c0d4dacc2d89aa9c590325e12bb4",
+    "backend/app/main.py": "0c76a05c1e85c1b5e702733a47b99c81f4b11232cb6495bccc0d8a0e09fbf54e",
+    "backend/app/models/__init__.py": "de990ff7608d4e263d552777b30b98cf8716235f5656bf981d84640792192306",
+    "backend/app/models/image_client.py": "74b6bb3c02222f81d4ae313aa11b84ee58f8a3387f61d85ed1969a2cf96903ad",
+    "backend/app/models/llm_client.py": "6be6891b289f65251b8bcb296f485038013a07f49939902c0eab61c975661c7a",
+    "backend/app/models/tts_client.py": "d2cb048f69e68246d322447c26ddbacc256f87de6279c29bf92093a6db9db4d3",
+    "backend/app/models/video_client.py": "b7ae6dfcfbace48a7922fdd49402d0c1951df4ba089be4f71ad139633ec43877",
+    "backend/app/models/vlm_client.py": "4902c76a38e073d1efc0b9d804673044a49c87c60332cbee0b2ae891ce1dab6f",
+    "backend/app/schemas/__init__.py": "48a4477788c2635f481c84e8472dae3d1a0dcde446fd8ed29c7fc389145f8c7d",
+    "backend/app/schemas/knowledge.py": "495e6ab628a8e7d04c548868dcb6eb0978ead3e5e58688c8770e2c5cb2969658",
+    "backend/app/schemas/models.py": "75e1b2c346e18e4ffeb0738ee69a85787c1594061c2b20b507c635a2047d158b",
+    "backend/app/schemas/session.py": "20959b58e5ac5d349c87ea4609a56f1d48e89ef85dfe038ddc622768177b7f7e",
+    "backend/app/schemas/task.py": "d2a3df41dd2ee5314487e6228ce4478fc973ae46a108421eaf9ff3010f485994",
+    "backend/app/services/__init__.py": "99a2198fd129f7904f809188227addd816f0ffaa4ad9cea868f7e2989fd5a8f1",
+    "backend/app/services/asset_library.py": "9b74dfbdac9bf07c963184c71b72d143dd6c85463d16af703ed9e1e9eda8e5ca",
+    "backend/app/services/auth.py": "46b2eb9377bd79b5bf0bf75643939a65184a56e2f2ab1c2d2885b1358aa640df",
+    "backend/app/services/comic_renderer.py": "8510d8b564299a5e3e889e42575a9625789af9313b41acbd70cc32119d9bebf5",
+    "backend/app/services/comic_workflow.py": "f8a3e59d00fddd0c4eaa7816214fa7ef4693d9f4908b1de1a9c9fc282491efb6",
+    "backend/app/services/content_review.py": "0cbae81a4c569abeea4f83599317211cf349b71799e7580a24fd1661210d4f60",
+    "backend/app/services/cost_control.py": "4bca220cbc5e52e0498737c2a8c6ad727c20ef8b6b463a204a30d88f5308e705",
+    "backend/app/services/db.py": "fb2e7ed18adcff84c1857c0e8227129161e351641272f32ad52eb686d141ff61",
+    "backend/app/services/execution_store.py": "33130622f9afc167c1591511954e723f85944997db3606a07447558f312edc21",
+    "backend/app/services/ffmpeg_util.py": "1aa253bde0a71385321b3caabfc49f945e233cf00cd40767722ef23880ba429b",
+    "backend/app/services/knowledge_retrieval.py": "ec423835bbb0374da3d3c3ef8d79cb08395df8352fd17759c3234d577c4a4663",
+    "backend/app/services/knowledge_store.py": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9",
+    "backend/app/services/model_catalog.py": "16cc9f38b2c2e49a31cd3d19dfdaf30e35c2bf63dbe71215ec7ed75fcf81e735",
+    "backend/app/services/orchestrator.py": "7bce53f1458b0ffbc6d224eb05fbadc41f5b05b28ef5c5fc9d8ab3e2fb3fdd49",
+    "backend/app/services/prompts.py": "ee711853662332022ac357e83c24399ebd6ab44b2767198c4105716464c4cb20",
+    "backend/app/services/provider_jobs.py": "0ab12afeb34a2d4d2e6f032680dfe276d571db84ac81c0beb167d6065d5dfe3d",
+    "backend/app/services/recovery.py": "bc0b09220ea7c63b657022fb45644c344b7a7a3cac7d94f9dbc696b1cc3807bf",
+    "backend/app/services/session_store.py": "f98572935f4d63c40cd0038afd97459ece6389e7859037b9778a5fc60882800c",
+    "backend/app/services/short_pipelines.py": "b1cbb1190f8649671e638ce061d89efc645ec11a25bd17906e015719131cd170",
+    "backend/app/services/task_store.py": "7d627c453e6388c666a5713a0d076999dee34506802dadc7149ff3d0cbc8cf57",
+    "backend/model-cost-rates.json": "894d124909402c5911ec97bfba56430bc11898622642fc26db705925f1d903b2"
+  },
+  "latest_source_versions": {
+    "backend/app/__init__.py": "efcc8265d307c9e25f55a88e764c15d337469176450d8d83ab8b4b98e9a46e53",
+    "backend/app/api/__init__.py": "3fd3b71826659a6cb729272ad730f8a5c95a76d9bf89fd0b7350c3b019bf3d0a",
+    "backend/app/api/auth.py": "3946a9d6341bc637ed80405499a34cdaf064e9e3c3912c8facd7c9643ba56a77",
+    "backend/app/api/deps.py": "254dc57100bfa948df22f71597a96c58f3a0545ed41b836d5be2f0d8ea6777a1",
+    "backend/app/api/files.py": "0a0297d2c44901a57fa102f89c69146dfbed07254e6462866cd556f9918ef905",
+    "backend/app/api/health.py": "8d36b7c60217f22d3a15f554c77bf0f124cdc9a8c7699a9bafc61f6d683dd1f5",
+    "backend/app/api/knowledge.py": "b1d85971693c81ca4e4cc7ee0c80969c45d9a2b8165d8ec79da061b817663084",
+    "backend/app/api/models.py": "ac886b9a810c1c1292872dbe6d235a57397d8ff30f0ee4ce1af0b55a991433f1",
+    "backend/app/api/sessions.py": "5cb0b38d8b09cb03167c67fd7b046805193833c4f28049782124d1d1e336764d",
+    "backend/app/api/settings.py": "537013887c6b90e3c604a53626405784cbb0b53098bf1f2b8b4e1d184d9a3f54",
+    "backend/app/api/tasks.py": "afcaf67a03cd9c2d7bddacbaa3dcf01dd65b346f047ce6910cb32322c3cc131e",
+    "backend/app/api/usage.py": "af0fcf04b2b7d7f20efa697a088cfba0d1179d2fe8a29cbdd3c6d1186302a2e8",
+    "backend/app/core/__init__.py": "581f3034dd7020678d74db8153f9e8539557d3cf199e94f6dc7596576fb93843",
+    "backend/app/core/config.py": "c392abc2d398048f308ddc2516b554cf01633f800e25c621c3113085c78b39d9",
+    "backend/app/core/errors.py": "7a397fc42d8a2a9903373bbec2fab0bd470b8883b4a6f7ac89e9550582137db0",
+    "backend/app/core/logging_config.py": "1ae12d0b48eed7ab61736f27413253ba5d13cb8584bd1d1528d6f1b7dc01c7f0",
+    "backend/app/core/path_security.py": "3621df9c9ff035885b1974e471d0527eb6d7c0d4dacc2d89aa9c590325e12bb4",
+    "backend/app/main.py": "0c76a05c1e85c1b5e702733a47b99c81f4b11232cb6495bccc0d8a0e09fbf54e",
+    "backend/app/models/__init__.py": "de990ff7608d4e263d552777b30b98cf8716235f5656bf981d84640792192306",
+    "backend/app/models/image_client.py": "d95c219d3a020f1fbec2513048e7d2bcbd58a6633a75d40e7eb41924d9d66aef",
+    "backend/app/models/llm_client.py": "6be6891b289f65251b8bcb296f485038013a07f49939902c0eab61c975661c7a",
+    "backend/app/models/tts_client.py": "d2cb048f69e68246d322447c26ddbacc256f87de6279c29bf92093a6db9db4d3",
+    "backend/app/models/video_client.py": "a7c02853497156d9426446f77ba11b01810b81f84a9e7bd4e884d1a1978a953d",
+    "backend/app/models/vlm_client.py": "4902c76a38e073d1efc0b9d804673044a49c87c60332cbee0b2ae891ce1dab6f",
+    "backend/app/schemas/__init__.py": "48a4477788c2635f481c84e8472dae3d1a0dcde446fd8ed29c7fc389145f8c7d",
+    "backend/app/schemas/knowledge.py": "495e6ab628a8e7d04c548868dcb6eb0978ead3e5e58688c8770e2c5cb2969658",
+    "backend/app/schemas/models.py": "75e1b2c346e18e4ffeb0738ee69a85787c1594061c2b20b507c635a2047d158b",
+    "backend/app/schemas/session.py": "20959b58e5ac5d349c87ea4609a56f1d48e89ef85dfe038ddc622768177b7f7e",
+    "backend/app/schemas/task.py": "d2a3df41dd2ee5314487e6228ce4478fc973ae46a108421eaf9ff3010f485994",
+    "backend/app/services/__init__.py": "99a2198fd129f7904f809188227addd816f0ffaa4ad9cea868f7e2989fd5a8f1",
+    "backend/app/services/asset_library.py": "9b74dfbdac9bf07c963184c71b72d143dd6c85463d16af703ed9e1e9eda8e5ca",
+    "backend/app/services/auth.py": "46b2eb9377bd79b5bf0bf75643939a65184a56e2f2ab1c2d2885b1358aa640df",
+    "backend/app/services/comic_renderer.py": "8510d8b564299a5e3e889e42575a9625789af9313b41acbd70cc32119d9bebf5",
+    "backend/app/services/comic_workflow.py": "0f3250b90055743a0ccd422c4bf5883c9deddbdabd900b7b42d211711481878e",
+    "backend/app/services/content_review.py": "0cbae81a4c569abeea4f83599317211cf349b71799e7580a24fd1661210d4f60",
+    "backend/app/services/cost_control.py": "8b263a2c487e857dfd47a2164cb62f28492ba44ea958b6a3988dd4de294348d0",
+    "backend/app/services/db.py": "fb2e7ed18adcff84c1857c0e8227129161e351641272f32ad52eb686d141ff61",
+    "backend/app/services/execution_store.py": "2d44dc864aa9282e14be606889d5d1553a45e12991dd8a21ad128fc252118292",
+    "backend/app/services/ffmpeg_util.py": "1aa253bde0a71385321b3caabfc49f945e233cf00cd40767722ef23880ba429b",
+    "backend/app/services/knowledge_retrieval.py": "ec423835bbb0374da3d3c3ef8d79cb08395df8352fd17759c3234d577c4a4663",
+    "backend/app/services/knowledge_store.py": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9",
+    "backend/app/services/model_catalog.py": "16cc9f38b2c2e49a31cd3d19dfdaf30e35c2bf63dbe71215ec7ed75fcf81e735",
+    "backend/app/services/orchestrator.py": "0f7e85bdf9225e78f60d69e2a60bd1d021885c529572d24323e67da5050cbfff",
+    "backend/app/services/prompts.py": "60183268c3d5f59a066b02c10d503e61c6ee72cf639ad63cca923322f1b42d23",
+    "backend/app/services/provider_jobs.py": "fe1e8a1f919909add23247985411d695762130a1a7c88582bd33a4e5d121a527",
+    "backend/app/services/recovery.py": "169cbc5f6f152e19909af69c841a3e0339e5f1255a78d638052b4b69ab8227f1",
+    "backend/app/services/session_store.py": "f98572935f4d63c40cd0038afd97459ece6389e7859037b9778a5fc60882800c",
+    "backend/app/services/short_pipelines.py": "9b320188b40c0b77a05e78667a8663071e8a9147bd07b69dd8d093caa89354fe",
+    "backend/app/services/task_store.py": "7d627c453e6388c666a5713a0d076999dee34506802dadc7149ff3d0cbc8cf57",
+    "backend/model-cost-rates.json": "894d124909402c5911ec97bfba56430bc11898622642fc26db705925f1d903b2"
+  }
+}

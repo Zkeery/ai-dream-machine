@@ -1,0 +1,2459 @@
+{
+  "started_at": 1791045366.861435,
+  "status": "passed",
+  "assertions": [
+    {
+      "name": "real_model_cache_exists",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated_knowledge_request_rejected",
+      "passed": true
+    },
+    {
+      "name": "temporary_account_login",
+      "passed": true
+    },
+    {
+      "name": "temporary_account_login",
+      "passed": true
+    },
+    {
+      "name": "create_library_api",
+      "passed": true
+    },
+    {
+      "name": "upload_role_document",
+      "passed": true
+    },
+    {
+      "name": "upload_constraint",
+      "passed": true
+    },
+    {
+      "name": "cross_owner_document_read_rejected",
+      "passed": true
+    },
+    {
+      "name": "cross_owner_library_search_rejected",
+      "passed": true
+    },
+    {
+      "name": "real_semantic_preview_api",
+      "passed": true
+    },
+    {
+      "name": "normal_document_retrieved_by_real_embedding",
+      "passed": true
+    },
+    {
+      "name": "create_bound_session_api",
+      "passed": true
+    },
+    {
+      "name": "cross_owner_session_read_rejected",
+      "passed": true
+    },
+    {
+      "name": "script_generation_sse_done",
+      "passed": true,
+      "detail": [
+        "progress",
+        "progress",
+        "progress",
+        "progress",
+        "done"
+      ]
+    },
+    {
+      "name": "script_generation_source_snapshots_saved",
+      "passed": true
+    },
+    {
+      "name": "storyboard_sse_done",
+      "passed": true,
+      "detail": [
+        "progress",
+        "progress",
+        "progress",
+        "progress",
+        "done"
+      ]
+    },
+    {
+      "name": "storyboard_source_snapshots_saved",
+      "passed": true
+    },
+    {
+      "name": "both_stage_prompts_receive_real_sources_and_boundary",
+      "passed": true
+    },
+    {
+      "name": "reload_persisted_sources",
+      "passed": true
+    },
+    {
+      "name": "update_document_version_api",
+      "passed": true
+    },
+    {
+      "name": "session_reports_knowledge_changes",
+      "passed": true
+    },
+    {
+      "name": "document_update_preserves_generated_source_version",
+      "passed": true
+    },
+    {
+      "name": "save_script_sse_done",
+      "passed": true
+    },
+    {
+      "name": "save_rejects_forged_sources_and_retains_originals",
+      "passed": true
+    },
+    {
+      "name": "manual_edit_source_warning_is_persisted",
+      "passed": true
+    },
+    {
+      "name": "manual_save_makes_no_extra_llm_call",
+      "passed": true
+    },
+    {
+      "name": "delete_document_api",
+      "passed": true
+    },
+    {
+      "name": "delete_document_api",
+      "passed": true
+    },
+    {
+      "name": "deleted_documents_are_absent_from_new_search",
+      "passed": true
+    },
+    {
+      "name": "old_source_snapshots_survive_document_deletion",
+      "passed": true
+    },
+    {
+      "name": "temporary_business_data_removed",
+      "passed": true
+    }
+  ],
+  "verification_boundary": {
+    "real": [
+      "FastAPI authentication and owner checks",
+      "multipart parsing",
+      "SQLite persistence",
+      "BAAI/bge-small-zh-v1.5 embeddings",
+      "Qdrant on-disk filtering and retrieval",
+      "durable execution and SSE",
+      "document revisions and saved citations"
+    ],
+    "substituted": [
+      "StubLLM fixed script/storyboard responses; these do not establish generation quality"
+    ],
+    "paid_calls": 0,
+    "user_business_data_touched": false,
+    "model_cache": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/knowledge/models"
+  },
+  "uploaded_documents": [
+    {
+      "document_id": "2fbce00f17f540039cca5df37b722eaf",
+      "library_id": "609fc4154db140d9acc245141112cd53",
+      "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+      "version_number": 1,
+      "title": "林澈人物设定",
+      "category": "character",
+      "is_constraint": false,
+      "original_name": "林澈人物设定.md",
+      "chunk_count": 1,
+      "created_at": 1791045367.8204632,
+      "updated_at": 1791045367.8204632,
+      "character_count": 48
+    },
+    {
+      "document_id": "ff613599495c4b89a765f9db70707bb3",
+      "library_id": "609fc4154db140d9acc245141112cd53",
+      "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+      "version_number": 1,
+      "title": "人物固定约束",
+      "category": "character",
+      "is_constraint": true,
+      "original_name": "人物固定约束.md",
+      "chunk_count": 1,
+      "created_at": 1791045367.826575,
+      "updated_at": 1791045367.826575,
+      "character_count": 26
+    }
+  ],
+  "retrieval_preview": {
+    "library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "library_versions": {
+      "609fc4154db140d9acc245141112cd53": 3
+    },
+    "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "sources": [
+      {
+        "citation_id": "K1",
+        "library_id": "609fc4154db140d9acc245141112cd53",
+        "document_id": "ff613599495c4b89a765f9db70707bb3",
+        "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+        "version_number": 1,
+        "title": "人物固定约束",
+        "category": "character",
+        "is_constraint": true,
+        "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+        "score": null,
+        "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+      },
+      {
+        "citation_id": "K2",
+        "library_id": "609fc4154db140d9acc245141112cd53",
+        "document_id": "2fbce00f17f540039cca5df37b722eaf",
+        "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+        "version_number": 1,
+        "title": "林澈人物设定",
+        "category": "character",
+        "is_constraint": false,
+        "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+        "score": 0.9341951116222182,
+        "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+      }
+    ],
+    "status": "matched",
+    "warnings": [],
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "score_threshold": 0.48
+  },
+  "sse_traces": {
+    "script_generation": [
+      {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "已接收，正在执行"
+      },
+      {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "正在检索创作知识库"
+      },
+      {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "正在生成剧本"
+      },
+      {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "剧本已生成"
+      },
+      {
+        "type": "done",
+        "stage": null,
+        "message": null
+      }
+    ],
+    "storyboard": [
+      {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "已接收，正在执行"
+      },
+      {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "正在检索创作知识库"
+      },
+      {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "正在规划分镜"
+      },
+      {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "分镜已生成"
+      },
+      {
+        "type": "done",
+        "stage": null,
+        "message": null
+      }
+    ]
+  },
+  "llm_delivery_checks": [
+    {
+      "model_class": "ScriptArtifact",
+      "has_constraint": true,
+      "has_role_fact": true,
+      "has_untrusted_data_boundary": true
+    },
+    {
+      "model_class": "StoryboardArtifact",
+      "has_constraint": true,
+      "has_role_fact": true,
+      "has_untrusted_data_boundary": true
+    }
+  ],
+  "session_before_update": {
+    "session_id": "1791045367838",
+    "owner_id": "4a03485db7f74c53ad04cf6f47971e9d",
+    "idea": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "style": "realistic",
+    "episodes": 1,
+    "video_ratio": "16:9",
+    "resolution": "720P",
+    "expand_idea": false,
+    "video_generation_mode": "first_frame",
+    "status": "stage_completed",
+    "current_stage": "storyboard",
+    "stages_completed": [
+      "script_generation",
+      "storyboard"
+    ],
+    "artifacts": {
+      "script_generation": {
+        "title": "夜航 · 验收样例（生成器替身）",
+        "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+        "genre": [
+          "剧情"
+        ],
+        "mood": "克制",
+        "characters": [
+          {
+            "name": "林澈",
+            "character_id": "c1",
+            "description": "钟表修理师，不会游泳，行动前查看手表。",
+            "role": "主角"
+          }
+        ],
+        "settings": [
+          {
+            "name": "港口钟楼",
+            "setting_id": "l1",
+            "description": "夜色下的旧钟楼与码头。"
+          }
+        ],
+        "episodes": [
+          {
+            "episode_number": 1,
+            "act_title": "岸边的选择",
+            "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      },
+      "storyboard": {
+        "shots": [
+          {
+            "shot_id": "s1",
+            "episode_number": 1,
+            "description": "林澈在港口钟楼修理手表，先确认时间。",
+            "prompt": "cinematic harbour watchmaker",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          },
+          {
+            "shot_id": "s2",
+            "episode_number": 1,
+            "description": "她停在岸边，把救生绳交给水手。",
+            "prompt": "watchmaker on shore hands rope to sailor",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      }
+    },
+    "stale_stages": [],
+    "artifact_versions": {
+      "script_generation": [
+        {
+          "version_id": "23bcc77a0eb24ad79f0a008ac041733c",
+          "artifact": {
+            "title": "夜航 · 验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045367.851039,
+          "reason": "generated",
+          "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be"
+        }
+      ],
+      "storyboard": [
+        {
+          "version_id": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+          "artifact": {
+            "shots": [
+              {
+                "shot_id": "s1",
+                "episode_number": 1,
+                "description": "林澈在港口钟楼修理手表，先确认时间。",
+                "prompt": "cinematic harbour watchmaker",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              },
+              {
+                "shot_id": "s2",
+                "episode_number": 1,
+                "description": "她停在岸边，把救生绳交给水手。",
+                "prompt": "watchmaker on shore hands rope to sailor",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.8921240773427426,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {
+            "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+          },
+          "created_at": 1791045368.068515,
+          "reason": "generated",
+          "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6"
+        }
+      ]
+    },
+    "selected_versions": {
+      "script_generation": "23bcc77a0eb24ad79f0a008ac041733c",
+      "storyboard": "0478dcda9e5c4c8b8e975c5ebf9f49a1"
+    },
+    "execution_inputs": [
+      {
+        "execution_id": "a18a031ce78f4a08ba36a5ba18cbdabd",
+        "stage": "script_generation",
+        "started_at": 1791045367.844065,
+        "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be",
+        "input_versions": {},
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "23bcc77a0eb24ad79f0a008ac041733c",
+        "finished_at": 1791045367.851043,
+        "remaining_stale_items": []
+      },
+      {
+        "execution_id": "c3fd7817c0ff4f6a8215e7dd21e55f91",
+        "stage": "storyboard",
+        "started_at": 1791045368.055927,
+        "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+        "input_versions": {
+          "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+        },
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+        "finished_at": 1791045368.0685198,
+        "remaining_stale_items": []
+      }
+    ],
+    "knowledge_library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "error": null,
+    "created_at": 1791045367.8382359,
+    "updated_at": 1791045368.068523,
+    "execution": {
+      "execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+      "status": "completed",
+      "stage": "storyboard",
+      "last_event": {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "分镜已生成",
+        "percent": 100
+      },
+      "started_at": 1791045368.0546718,
+      "updated_at": 1791045368.06986,
+      "error": null
+    },
+    "knowledge_status": {
+      "changed": false,
+      "warnings": []
+    }
+  },
+  "document_before_update": {
+    "document_id": "2fbce00f17f540039cca5df37b722eaf",
+    "library_id": "609fc4154db140d9acc245141112cd53",
+    "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+    "version_number": 1,
+    "title": "林澈人物设定",
+    "category": "character",
+    "is_constraint": false,
+    "original_name": "林澈人物设定.md",
+    "chunk_count": 1,
+    "created_at": 1791045367.8204632,
+    "updated_at": 1791045367.8204632,
+    "character_count": 48,
+    "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+    "versions": [
+      {
+        "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+        "version_number": 1,
+        "title": "林澈人物设定",
+        "category": "character",
+        "is_constraint": false,
+        "created_at": 1791045367.8204632,
+        "chunk_count": 1
+      }
+    ]
+  },
+  "session_after_update": {
+    "session_id": "1791045367838",
+    "owner_id": "4a03485db7f74c53ad04cf6f47971e9d",
+    "idea": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "style": "realistic",
+    "episodes": 1,
+    "video_ratio": "16:9",
+    "resolution": "720P",
+    "expand_idea": false,
+    "video_generation_mode": "first_frame",
+    "status": "stage_completed",
+    "current_stage": "storyboard",
+    "stages_completed": [
+      "script_generation",
+      "storyboard"
+    ],
+    "artifacts": {
+      "script_generation": {
+        "title": "夜航 · 验收样例（生成器替身）",
+        "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+        "genre": [
+          "剧情"
+        ],
+        "mood": "克制",
+        "characters": [
+          {
+            "name": "林澈",
+            "character_id": "c1",
+            "description": "钟表修理师，不会游泳，行动前查看手表。",
+            "role": "主角"
+          }
+        ],
+        "settings": [
+          {
+            "name": "港口钟楼",
+            "setting_id": "l1",
+            "description": "夜色下的旧钟楼与码头。"
+          }
+        ],
+        "episodes": [
+          {
+            "episode_number": 1,
+            "act_title": "岸边的选择",
+            "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      },
+      "storyboard": {
+        "shots": [
+          {
+            "shot_id": "s1",
+            "episode_number": 1,
+            "description": "林澈在港口钟楼修理手表，先确认时间。",
+            "prompt": "cinematic harbour watchmaker",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          },
+          {
+            "shot_id": "s2",
+            "episode_number": 1,
+            "description": "她停在岸边，把救生绳交给水手。",
+            "prompt": "watchmaker on shore hands rope to sailor",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      }
+    },
+    "stale_stages": [],
+    "artifact_versions": {
+      "script_generation": [
+        {
+          "version_id": "23bcc77a0eb24ad79f0a008ac041733c",
+          "artifact": {
+            "title": "夜航 · 验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045367.851039,
+          "reason": "generated",
+          "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be"
+        }
+      ],
+      "storyboard": [
+        {
+          "version_id": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+          "artifact": {
+            "shots": [
+              {
+                "shot_id": "s1",
+                "episode_number": 1,
+                "description": "林澈在港口钟楼修理手表，先确认时间。",
+                "prompt": "cinematic harbour watchmaker",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              },
+              {
+                "shot_id": "s2",
+                "episode_number": 1,
+                "description": "她停在岸边，把救生绳交给水手。",
+                "prompt": "watchmaker on shore hands rope to sailor",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.8921240773427426,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {
+            "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+          },
+          "created_at": 1791045368.068515,
+          "reason": "generated",
+          "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6"
+        }
+      ]
+    },
+    "selected_versions": {
+      "script_generation": "23bcc77a0eb24ad79f0a008ac041733c",
+      "storyboard": "0478dcda9e5c4c8b8e975c5ebf9f49a1"
+    },
+    "execution_inputs": [
+      {
+        "execution_id": "a18a031ce78f4a08ba36a5ba18cbdabd",
+        "stage": "script_generation",
+        "started_at": 1791045367.844065,
+        "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be",
+        "input_versions": {},
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "23bcc77a0eb24ad79f0a008ac041733c",
+        "finished_at": 1791045367.851043,
+        "remaining_stale_items": []
+      },
+      {
+        "execution_id": "c3fd7817c0ff4f6a8215e7dd21e55f91",
+        "stage": "storyboard",
+        "started_at": 1791045368.055927,
+        "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+        "input_versions": {
+          "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+        },
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+        "finished_at": 1791045368.0685198,
+        "remaining_stale_items": []
+      }
+    ],
+    "knowledge_library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "error": null,
+    "created_at": 1791045367.8382359,
+    "updated_at": 1791045368.068523,
+    "execution": {
+      "execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+      "status": "completed",
+      "stage": "storyboard",
+      "last_event": {
+        "type": "progress",
+        "stage": "storyboard",
+        "message": "分镜已生成",
+        "percent": 100
+      },
+      "started_at": 1791045368.0546718,
+      "updated_at": 1791045368.06986,
+      "error": null
+    },
+    "knowledge_status": {
+      "changed": true,
+      "warnings": [
+        "知识库「夜航 · 全链路验收资料」已有更新；当前作品仍使用生成时的来源版本"
+      ]
+    }
+  },
+  "document_after_update": {
+    "document_id": "2fbce00f17f540039cca5df37b722eaf",
+    "library_id": "609fc4154db140d9acc245141112cd53",
+    "version_id": "e5e850fb9ffa4c24ad006a8eeb703e53",
+    "version_number": 2,
+    "title": "林澈人物设定",
+    "category": "character",
+    "is_constraint": false,
+    "original_name": "人物设定-v2.md",
+    "chunk_count": 1,
+    "created_at": 1791045367.8204632,
+    "updated_at": 1791045368.308633,
+    "character_count": 33,
+    "text": "林澈是一位钟表修理师，不会游泳。她的新工作室搬到了港口钟楼的二楼。",
+    "versions": [
+      {
+        "version_id": "e5e850fb9ffa4c24ad006a8eeb703e53",
+        "version_number": 2,
+        "title": "林澈人物设定",
+        "category": "character",
+        "is_constraint": false,
+        "created_at": 1791045368.308633,
+        "chunk_count": 1
+      },
+      {
+        "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+        "version_number": 1,
+        "title": "林澈人物设定",
+        "category": "character",
+        "is_constraint": false,
+        "created_at": 1791045367.8204632,
+        "chunk_count": 1
+      }
+    ]
+  },
+  "session_after_manual_edit": {
+    "session_id": "1791045367838",
+    "owner_id": "4a03485db7f74c53ad04cf6f47971e9d",
+    "idea": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "style": "realistic",
+    "episodes": 1,
+    "video_ratio": "16:9",
+    "resolution": "720P",
+    "expand_idea": false,
+    "video_generation_mode": "first_frame",
+    "status": "stage_completed",
+    "current_stage": "script_generation",
+    "stages_completed": [
+      "script_generation"
+    ],
+    "artifacts": {
+      "script_generation": {
+        "title": "夜航 · 手动润色验收样例（生成器替身）",
+        "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+        "genre": [
+          "剧情"
+        ],
+        "mood": "克制",
+        "characters": [
+          {
+            "name": "林澈",
+            "character_id": "c1",
+            "description": "钟表修理师，不会游泳，行动前查看手表。",
+            "role": "主角"
+          }
+        ],
+        "settings": [
+          {
+            "name": "港口钟楼",
+            "setting_id": "l1",
+            "description": "夜色下的旧钟楼与码头。"
+          }
+        ],
+        "episodes": [
+          {
+            "episode_number": 1,
+            "act_title": "岸边的选择",
+            "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48,
+          "edited_since_generation": true
+        }
+      },
+      "storyboard": {
+        "shots": [
+          {
+            "shot_id": "s1",
+            "episode_number": 1,
+            "description": "林澈在港口钟楼修理手表，先确认时间。",
+            "prompt": "cinematic harbour watchmaker",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          },
+          {
+            "shot_id": "s2",
+            "episode_number": 1,
+            "description": "她停在岸边，把救生绳交给水手。",
+            "prompt": "watchmaker on shore hands rope to sailor",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      },
+      "character_design": {
+        "stale_items": [
+          "c1",
+          "l1"
+        ]
+      },
+      "reference_generation": {
+        "stale_items": [
+          "s1",
+          "s2"
+        ]
+      },
+      "video_generation": {
+        "stale_items": [
+          "s1",
+          "s2"
+        ]
+      }
+    },
+    "stale_stages": [
+      "character_design",
+      "storyboard",
+      "reference_generation",
+      "video_generation",
+      "post_production"
+    ],
+    "artifact_versions": {
+      "script_generation": [
+        {
+          "version_id": "23bcc77a0eb24ad79f0a008ac041733c",
+          "artifact": {
+            "title": "夜航 · 验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045367.851039,
+          "reason": "generated",
+          "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be"
+        },
+        {
+          "version_id": "9235baecfd95424790de816e4740a8a8",
+          "artifact": {
+            "title": "夜航 · 手动润色验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48,
+              "edited_since_generation": true
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045368.3234508,
+          "reason": "save",
+          "parent_execution_id": "46eb7196e0514d7aaf88ce3d7916645a"
+        }
+      ],
+      "storyboard": [
+        {
+          "version_id": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+          "artifact": {
+            "shots": [
+              {
+                "shot_id": "s1",
+                "episode_number": 1,
+                "description": "林澈在港口钟楼修理手表，先确认时间。",
+                "prompt": "cinematic harbour watchmaker",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              },
+              {
+                "shot_id": "s2",
+                "episode_number": 1,
+                "description": "她停在岸边，把救生绳交给水手。",
+                "prompt": "watchmaker on shore hands rope to sailor",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.8921240773427426,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {
+            "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+          },
+          "created_at": 1791045368.068515,
+          "reason": "generated",
+          "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6"
+        }
+      ]
+    },
+    "selected_versions": {
+      "script_generation": "9235baecfd95424790de816e4740a8a8",
+      "storyboard": "0478dcda9e5c4c8b8e975c5ebf9f49a1"
+    },
+    "execution_inputs": [
+      {
+        "execution_id": "a18a031ce78f4a08ba36a5ba18cbdabd",
+        "stage": "script_generation",
+        "started_at": 1791045367.844065,
+        "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be",
+        "input_versions": {},
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "23bcc77a0eb24ad79f0a008ac041733c",
+        "finished_at": 1791045367.851043,
+        "remaining_stale_items": []
+      },
+      {
+        "execution_id": "c3fd7817c0ff4f6a8215e7dd21e55f91",
+        "stage": "storyboard",
+        "started_at": 1791045368.055927,
+        "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+        "input_versions": {
+          "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+        },
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+        "finished_at": 1791045368.0685198,
+        "remaining_stale_items": []
+      }
+    ],
+    "knowledge_library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "error": null,
+    "created_at": 1791045367.8382359,
+    "updated_at": 1791045368.323833,
+    "execution": {
+      "execution_id": "46eb7196e0514d7aaf88ce3d7916645a",
+      "status": "completed",
+      "stage": "script_generation",
+      "last_event": {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "修改已保存",
+        "percent": 100
+      },
+      "started_at": 1791045368.321986,
+      "updated_at": 1791045368.3261728,
+      "error": null
+    },
+    "knowledge_status": {
+      "changed": true,
+      "warnings": [
+        "知识库「夜航 · 全链路验收资料」已有更新；当前作品仍使用生成时的来源版本"
+      ]
+    }
+  },
+  "session_after_delete": {
+    "session_id": "1791045367838",
+    "owner_id": "4a03485db7f74c53ad04cf6f47971e9d",
+    "idea": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "style": "realistic",
+    "episodes": 1,
+    "video_ratio": "16:9",
+    "resolution": "720P",
+    "expand_idea": false,
+    "video_generation_mode": "first_frame",
+    "status": "stage_completed",
+    "current_stage": "script_generation",
+    "stages_completed": [
+      "script_generation"
+    ],
+    "artifacts": {
+      "script_generation": {
+        "title": "夜航 · 手动润色验收样例（生成器替身）",
+        "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+        "genre": [
+          "剧情"
+        ],
+        "mood": "克制",
+        "characters": [
+          {
+            "name": "林澈",
+            "character_id": "c1",
+            "description": "钟表修理师，不会游泳，行动前查看手表。",
+            "role": "主角"
+          }
+        ],
+        "settings": [
+          {
+            "name": "港口钟楼",
+            "setting_id": "l1",
+            "description": "夜色下的旧钟楼与码头。"
+          }
+        ],
+        "episodes": [
+          {
+            "episode_number": 1,
+            "act_title": "岸边的选择",
+            "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48,
+          "edited_since_generation": true
+        }
+      },
+      "storyboard": {
+        "shots": [
+          {
+            "shot_id": "s1",
+            "episode_number": 1,
+            "description": "林澈在港口钟楼修理手表，先确认时间。",
+            "prompt": "cinematic harbour watchmaker",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          },
+          {
+            "shot_id": "s2",
+            "episode_number": 1,
+            "description": "她停在岸边，把救生绳交给水手。",
+            "prompt": "watchmaker on shore hands rope to sailor",
+            "character_ids": [
+              "c1"
+            ],
+            "setting_ids": [
+              "l1"
+            ]
+          }
+        ],
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        }
+      },
+      "character_design": {
+        "stale_items": [
+          "c1",
+          "l1"
+        ]
+      },
+      "reference_generation": {
+        "stale_items": [
+          "s1",
+          "s2"
+        ]
+      },
+      "video_generation": {
+        "stale_items": [
+          "s1",
+          "s2"
+        ]
+      }
+    },
+    "stale_stages": [
+      "character_design",
+      "storyboard",
+      "reference_generation",
+      "video_generation",
+      "post_production"
+    ],
+    "artifact_versions": {
+      "script_generation": [
+        {
+          "version_id": "23bcc77a0eb24ad79f0a008ac041733c",
+          "artifact": {
+            "title": "夜航 · 验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045367.851039,
+          "reason": "generated",
+          "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be"
+        },
+        {
+          "version_id": "9235baecfd95424790de816e4740a8a8",
+          "artifact": {
+            "title": "夜航 · 手动润色验收样例（生成器替身）",
+            "logline": "不会游泳的钟表修理师林澈在港口协助一次救援。",
+            "genre": [
+              "剧情"
+            ],
+            "mood": "克制",
+            "characters": [
+              {
+                "name": "林澈",
+                "character_id": "c1",
+                "description": "钟表修理师，不会游泳，行动前查看手表。",
+                "role": "主角"
+              }
+            ],
+            "settings": [
+              {
+                "name": "港口钟楼",
+                "setting_id": "l1",
+                "description": "夜色下的旧钟楼与码头。"
+              }
+            ],
+            "episodes": [
+              {
+                "episode_number": 1,
+                "act_title": "岸边的选择",
+                "content": "林澈看了一眼手表。她留在岸边，将救生绳交给水手，协助救回落水者。"
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.9341951116222182,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48,
+              "edited_since_generation": true
+            }
+          },
+          "input_versions": {},
+          "created_at": 1791045368.3234508,
+          "reason": "save",
+          "parent_execution_id": "46eb7196e0514d7aaf88ce3d7916645a"
+        }
+      ],
+      "storyboard": [
+        {
+          "version_id": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+          "artifact": {
+            "shots": [
+              {
+                "shot_id": "s1",
+                "episode_number": 1,
+                "description": "林澈在港口钟楼修理手表，先确认时间。",
+                "prompt": "cinematic harbour watchmaker",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              },
+              {
+                "shot_id": "s2",
+                "episode_number": 1,
+                "description": "她停在岸边，把救生绳交给水手。",
+                "prompt": "watchmaker on shore hands rope to sailor",
+                "character_ids": [
+                  "c1"
+                ],
+                "setting_ids": [
+                  "l1"
+                ]
+              }
+            ],
+            "knowledge_context": {
+              "library_ids": [
+                "609fc4154db140d9acc245141112cd53"
+              ],
+              "library_versions": {
+                "609fc4154db140d9acc245141112cd53": 3
+              },
+              "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+              "sources": [
+                {
+                  "citation_id": "K1",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "ff613599495c4b89a765f9db70707bb3",
+                  "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+                  "version_number": 1,
+                  "title": "人物固定约束",
+                  "category": "character",
+                  "is_constraint": true,
+                  "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+                  "score": null,
+                  "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+                },
+                {
+                  "citation_id": "K2",
+                  "library_id": "609fc4154db140d9acc245141112cd53",
+                  "document_id": "2fbce00f17f540039cca5df37b722eaf",
+                  "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+                  "version_number": 1,
+                  "title": "林澈人物设定",
+                  "category": "character",
+                  "is_constraint": false,
+                  "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+                  "score": 0.8921240773427426,
+                  "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+                }
+              ],
+              "status": "matched",
+              "warnings": [],
+              "embedding_model": "BAAI/bge-small-zh-v1.5",
+              "score_threshold": 0.48
+            }
+          },
+          "input_versions": {
+            "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+          },
+          "created_at": 1791045368.068515,
+          "reason": "generated",
+          "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6"
+        }
+      ]
+    },
+    "selected_versions": {
+      "script_generation": "9235baecfd95424790de816e4740a8a8",
+      "storyboard": "0478dcda9e5c4c8b8e975c5ebf9f49a1"
+    },
+    "execution_inputs": [
+      {
+        "execution_id": "a18a031ce78f4a08ba36a5ba18cbdabd",
+        "stage": "script_generation",
+        "started_at": 1791045367.844065,
+        "parent_execution_id": "fbdc20f0edd44c348aa52b476522b3be",
+        "input_versions": {},
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.9341951116222182,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "23bcc77a0eb24ad79f0a008ac041733c",
+        "finished_at": 1791045367.851043,
+        "remaining_stale_items": []
+      },
+      {
+        "execution_id": "c3fd7817c0ff4f6a8215e7dd21e55f91",
+        "stage": "storyboard",
+        "started_at": 1791045368.055927,
+        "parent_execution_id": "b5ec5bd9962649fd935442b83e9a7cf6",
+        "input_versions": {
+          "script_generation": "23bcc77a0eb24ad79f0a008ac041733c"
+        },
+        "input_artifact_version": null,
+        "input_artifact": null,
+        "generation_request": {},
+        "status": "completed",
+        "knowledge_context": {
+          "library_ids": [
+            "609fc4154db140d9acc245141112cd53"
+          ],
+          "library_versions": {
+            "609fc4154db140d9acc245141112cd53": 3
+          },
+          "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。 夜航 · 验收样例（生成器替身） 不会游泳的钟表修理师林澈在港口协助一次救援。 林澈 分镜构图 视觉风格 realistic",
+          "sources": [
+            {
+              "citation_id": "K1",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "ff613599495c4b89a765f9db70707bb3",
+              "version_id": "fc97bb731a154563b6bfe6dcbfa1726a",
+              "version_number": 1,
+              "title": "人物固定约束",
+              "category": "character",
+              "is_constraint": true,
+              "text": "林澈行动前必须用手表确认时间。不得让她拥有读心能力。",
+              "score": null,
+              "chunk_id": "constraint:fc97bb731a154563b6bfe6dcbfa1726a"
+            },
+            {
+              "citation_id": "K2",
+              "library_id": "609fc4154db140d9acc245141112cd53",
+              "document_id": "2fbce00f17f540039cca5df37b722eaf",
+              "version_id": "bf7f40bf5cbc486c86a43f0aefd84094",
+              "version_number": 1,
+              "title": "林澈人物设定",
+              "category": "character",
+              "is_constraint": false,
+              "text": "林澈是一位钟表修理师，她不会游泳。她住在港口钟楼，平日修理手表，救援时留在岸边把救生绳交给水手。",
+              "score": 0.8921240773427426,
+              "chunk_id": "87c5ac0983a9448e94b4f2a28339a9b0"
+            }
+          ],
+          "status": "matched",
+          "warnings": [],
+          "embedding_model": "BAAI/bge-small-zh-v1.5",
+          "score_threshold": 0.48
+        },
+        "output_version": "0478dcda9e5c4c8b8e975c5ebf9f49a1",
+        "finished_at": 1791045368.0685198,
+        "remaining_stale_items": []
+      }
+    ],
+    "knowledge_library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "error": null,
+    "created_at": 1791045367.8382359,
+    "updated_at": 1791045368.323833,
+    "execution": {
+      "execution_id": "46eb7196e0514d7aaf88ce3d7916645a",
+      "status": "completed",
+      "stage": "script_generation",
+      "last_event": {
+        "type": "progress",
+        "stage": "script_generation",
+        "message": "修改已保存",
+        "percent": 100
+      },
+      "started_at": 1791045368.321986,
+      "updated_at": 1791045368.3261728,
+      "error": null
+    },
+    "knowledge_status": {
+      "changed": true,
+      "warnings": [
+        "知识库「夜航 · 全链路验收资料」已有更新；当前作品仍使用生成时的来源版本"
+      ]
+    }
+  },
+  "search_after_delete": {
+    "library_ids": [
+      "609fc4154db140d9acc245141112cd53"
+    ],
+    "library_versions": {
+      "609fc4154db140d9acc245141112cd53": 6
+    },
+    "query": "钟表修理师林澈不会游泳，在港口钟楼附近协助救援时留在岸边把救生绳交给水手。",
+    "sources": [],
+    "status": "no_match",
+    "warnings": [
+      "所选知识库没有命中相关资料；生成结果不会被标记为已有资料支持"
+    ],
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "score_threshold": 0.48
+  },
+  "library": {
+    "library_id": "609fc4154db140d9acc245141112cd53",
+    "name": "夜航 · 全链路验收资料",
+    "description": "隔离验收样例，临时目录清理后不保留业务数据。",
+    "revision": 1,
+    "created_at": 1791045367.162963,
+    "updated_at": 1791045367.162963,
+    "document_count": 0
+  },
+  "finished_at": 1791045368.3444538,
+  "passed": 31,
+  "total": 31
+}

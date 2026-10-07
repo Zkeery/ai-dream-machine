@@ -50,7 +50,7 @@ def mock_ffmpeg(monkeypatch):
 # ---------- mock 客户端 ----------
 
 class _LLM:
-    def generate(self, system, user):
+    def generate(self, system, user, **kwargs):
         return "雨夜的街。一只猫躲在檐下。有人撑伞蹲下。"
 
 
@@ -62,7 +62,7 @@ class _Image:
 
 
 class _Video:
-    def image_to_video(self, image_path, prompt, out_path, mode="first_frame"):
+    def image_to_video(self, image_path, prompt, out_path, mode="first_frame", **kwargs):
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(b"fake-video")
         return out_path
@@ -98,11 +98,18 @@ def test_literary_video_full_text(data_dirs, mock_ffmpeg):
     assert len(result["sentences"]) == 3
 
 
-def test_motion_transfer(data_dirs, mock_ffmpeg):
+@pytest.mark.parametrize("legacy_video", [None, "/tmp/m.mp4"])
+def test_motion_transfer(data_dirs, mock_ffmpeg, monkeypatch, legacy_video):
+    async def unused_frame(*args):
+        raise AssertionError("动作描述生成不应提取未使用的视频首帧")
+    monkeypatch.setattr(ffmpeg_util, "extract_first_frame", unused_frame)
+    inputs = {"character_image": "/tmp/c.jpg", "prompt": "挥手"}
+    if legacy_video:
+        inputs["motion_video"] = legacy_video
     result = asyncio.run(_pipelines().run("t3", "motion_transfer",
-                                          {"character_image": "/tmp/c.jpg", "motion_video": "/tmp/m.mp4", "prompt": "挥手"}, _noop))
+                                          inputs, _noop))
     assert result["final_video"].endswith("final.mp4")
-    assert result["motion_frame"].endswith("motion_frame.jpg")
+    assert "motion_frame" not in result
 
 
 def test_talking_head(data_dirs, mock_ffmpeg):
@@ -110,6 +117,8 @@ def test_talking_head(data_dirs, mock_ffmpeg):
                                           {"person_image": "/tmp/p.jpg", "script": "大家好"}, _noop))
     assert result["final_video"].endswith("final.mp4")
     assert result["audio"].endswith("voice.mp3")
+    assert result["talking_mode"] == "static"
+    assert result["model_usage"]["models"] == {}
 
 
 def test_pipeline_validation():

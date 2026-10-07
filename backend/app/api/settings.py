@@ -4,14 +4,14 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Depends
 
-from app.api.deps import get_current_user
+from app.api.deps import get_admin_user
 from app.core import config
 
 router = APIRouter()
 
 
 @router.get("/settings")
-async def get_settings(user_id: str = Depends(get_current_user)) -> dict:
+async def get_settings(user_id: str = Depends(get_admin_user)) -> dict:
     s = config.settings
     return {
         "gateway": s.aihubmix_base,
@@ -25,3 +25,11 @@ async def get_settings(user_id: str = Depends(get_current_user)) -> dict:
         "content_review_enabled": s.content_review_enabled,
         "token_ttl_days": s.auth_token_ttl_days,
     }
+
+
+@router.get("/admin/sandbox")
+async def get_sandbox(user_id: str = Depends(get_admin_user)) -> dict:
+    """Protected sandbox summary, retaining the original own-work count scope."""
+    from app.services import session_store, task_store
+    return {"status": "ok", "session_count": len(session_store.list_sessions(user_id)),
+            "task_count": len(task_store.list_tasks(user_id))}

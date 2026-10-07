@@ -1,0 +1,4791 @@
+{
+  "schema_version": 1,
+  "run_id": "89372914fa01499b9ee723e4e60d8b53",
+  "started_at_utc": "2026-10-03T16:33:33.069577+00:00",
+  "mode": "full",
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "dependencies": {
+    "fastembed": "0.7.4",
+    "qdrant-client": "1.19.1",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3",
+    "huggingface-hub": "1.33.0",
+    "tokenizers": "0.23.2",
+    "pydantic": "2.13.5",
+    "pypdf": "6.19.0",
+    "python-docx": null
+  },
+  "score_diagnostics": true,
+  "scoring_protocol": "Deterministic gold ID/version/text assertions; no LLM judge; no synthetic scores",
+  "eval_version": "rag-creation-zh-v1",
+  "fixture_sha256": "24d7b18bbbda9e8dbc92bc528ce9a83d68e493eea43484bef15ff9846f555556",
+  "frozen_corpus_sha256": "352c17649338ff50683467111bdf8b3441cb97435238d3f9e568ec2e5f8332c7",
+  "frozen_configuration": {
+    "top_k": 5,
+    "repeats": 2,
+    "retry_count": 0,
+    "recall_pass_threshold": 0.85,
+    "constraint_pass_threshold": 1.0,
+    "critical_pass_threshold": 1.0
+  },
+  "selected_case_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+  ],
+  "model": {
+    "cache": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/knowledge/models",
+    "files": [
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/config.json",
+        "bytes": 739,
+        "sha256": "9088751d39abbf86ec3d19ffca92ad62ad19075f7e59712e6c71217fa125d1d3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/model_optimized.onnx",
+        "bytes": 94781076,
+        "sha256": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/special_tokens_map.json",
+        "bytes": 125,
+        "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer.json",
+        "bytes": 439125,
+        "sha256": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer_config.json",
+        "bytes": 367,
+        "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+      }
+    ],
+    "snapshot_revisions": [
+      "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59"
+    ],
+    "file_manifest_sha256": "1b0a4ee90886ab63ff7098435e2313915664f823b80308f4951cc4cf2b54f322"
+  },
+  "implementation": [
+    {
+      "path": "backend/app/services/knowledge_store.py",
+      "sha256": "53405d18c4421557cd7c3384aa38bca87fa0a75701bc17efbb8d4d9d0416f9e9"
+    },
+    {
+      "path": "backend/app/services/knowledge_retrieval.py",
+      "sha256": "d465c99e52dc5f59a624fc44e453c5b1d9dcdb42a683570a0fbe689324437a47"
+    },
+    {
+      "path": "backend/scripts/evaluate_rag.py",
+      "sha256": "d796c8bc79d494b482964a56b7a7d769bcb04048537e5d44630fe9782ddab9de"
+    }
+  ],
+  "retrieval_configuration": {
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "dimension": 512,
+    "score_threshold": 0.55,
+    "max_context_chars": 12000,
+    "top_k": 5,
+    "collection": "creative_knowledge_bge_zh_v1",
+    "chunk_probe": [
+      {
+        "start": null,
+        "length": 380
+      },
+      {
+        "start": null,
+        "length": 380
+      },
+      {
+        "start": null,
+        "length": 260
+      }
+    ],
+    "max_constraint_chars": 6000,
+    "generation_model": null,
+    "llm_judge": null,
+    "seed": "unsupported; deterministic local embedding"
+  },
+  "isolated_data": {
+    "temporary_directory": true,
+    "real_user_data_written": false
+  },
+  "model_initialization_ms": 362.56716700154357,
+  "initial_index_build_ms": 425.0675829971442,
+  "bindings": {
+    "libraries": {
+      "characters": "e8e29c8387a945f49feb6e0da57dbad7",
+      "world": "6bbfc3c035d94df2b332182d729f6306",
+      "plot": "44a5459315144f39adf2e82d7d473412",
+      "style": "70fcebe556974c00809e65ab8ec81f72",
+      "brand": "2ed863184ff74128ac547d766481d89e",
+      "private": "388a813332c049d2b08d4706d35df2fe"
+    },
+    "documents": {
+      "hero": "c42859511d644c6b8c6e3a8d8fda49a3",
+      "mentor": "27919019b08e44bbb9a77186ff5ab5d0",
+      "rival": "0553f844e8a3446bae8994ca36fdd2a8",
+      "city": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+      "mail": "1c85b43515614d35acdce5380aaf737c",
+      "lighthouse": "63a01ab2f31b41088ef5eab7192ad9ba",
+      "mission": "b58c06b131fa4edd98eed7e76b49b896",
+      "reveal": "254980649abb4e758e21757cf2f11287",
+      "red_herring": "983d3fadd467450fbfcf348b2ffab307",
+      "paper": "bd1399c78d374fd59bc0204771bcb207",
+      "palette": "7ab076bf2662431394a708e194d9031b",
+      "camera": "0b3ab2149cb74f419ddeda586a3cddbf",
+      "tone": "5a0153357ef64047aa460bd3280682e1",
+      "product": "508025a21c4a43c18cb25386d41ed309",
+      "private_code": "b177a12ccc344183b344e9be7b6c2575",
+      "constraint:characters": "1dcbd26ed8f1424bb73696a7e90b101a",
+      "constraint:world": "5628a65483a34d048efc76ee7c51b0bc",
+      "constraint:plot": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+      "constraint:style": "e62e36733e2b44a2a3106a79d88cbbce",
+      "constraint:brand": "31ba82883fff4f3185f96ee74f4421a4",
+      "constraint:private": "edf42694df5140edad4f09b84be64815"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "R01",
+      "category": "人物语义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "女主为什么不敢靠近水很深的地方？",
+      "latency_ms": 7.844958003261127,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.4979629223174299,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.32041498664989415,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.2966465880660975,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": 0.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "R01",
+      "category": "人物语义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "女主为什么不敢靠近水很深的地方？",
+      "latency_ms": 6.053000004612841,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.4979629223174299,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.32041498664989415,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.2966465880660975,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": 0.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "R02",
+      "category": "人物语义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "义肢坏了，阿澄应该找哪位戴眼镜的慢性子修理匠？",
+      "latency_ms": 5.323082994436845,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.6999404524205337,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.5535110537079017,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.4449086406400976,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+          "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+          "version_number": 1,
+          "title": "老舟人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+          "score": 0.6999404524205337,
+          "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+          "version_number": 1,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+          "score": 0.5535110537079017,
+          "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [
+        "mentor",
+        "hero"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R02",
+      "category": "人物语义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "义肢坏了，阿澄应该找哪位戴眼镜的慢性子修理匠？",
+      "latency_ms": 5.963083000096958,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.6999404524205337,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.5535110537079017,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.4449086406400976,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+          "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+          "version_number": 1,
+          "title": "老舟人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+          "score": 0.6999404524205337,
+          "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+          "version_number": 1,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+          "score": 0.5535110537079017,
+          "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [
+        "mentor",
+        "hero"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R03",
+      "category": "世界语义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "下午街巷进水时，夜市摊位怎样适应水位？",
+      "latency_ms": 3.596665999793913,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.6674840542792183,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.5158944089197971,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.4203206370499994,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+          "version_id": "ee333e73c04142139232d886cbcf89ec",
+          "version_number": 1,
+          "title": "潮汐城日常",
+          "category": "world",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+          "score": 0.6674840542792183,
+          "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "city"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R03",
+      "category": "世界语义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "下午街巷进水时，夜市摊位怎样适应水位？",
+      "latency_ms": 3.8020839929231443,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.6674840542792183,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.5158944089197971,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.4203206370499994,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+          "version_id": "ee333e73c04142139232d886cbcf89ec",
+          "version_number": 1,
+          "title": "潮汐城日常",
+          "category": "world",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+          "score": 0.6674840542792183,
+          "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "city"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R04",
+      "category": "剧情语义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "这段故事最重要的任务是什么，信件最终要送去哪里？",
+      "latency_ms": 3.2830419950187206,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.549782529174999,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.43820935718074766,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.41226324026902017,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": 0.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "R04",
+      "category": "剧情语义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "这段故事最重要的任务是什么，信件最终要送去哪里？",
+      "latency_ms": 2.9402080035652034,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.549782529174999,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.43820935718074766,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.41226324026902017,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": 0.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "R05",
+      "category": "风格同义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "style"
+      ],
+      "query": "我想要有画纸纤维和铅笔颗粒的二维画面，应该遵循什么风格？",
+      "latency_ms": 3.0614589995821007,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "70fcebe556974c00809e65ab8ec81f72": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "bd1399c78d374fd59bc0204771bcb207",
+            "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+            "version_number": 1,
+            "title": "纸感手绘视觉",
+            "category": "style",
+            "is_constraint": false,
+            "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+            "score": 0.7069273082457588,
+            "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "7ab076bf2662431394a708e194d9031b",
+            "version_id": "65b85b84ba2d440ea46c1f1099fe1073",
+            "version_number": 1,
+            "title": "色彩和灯光",
+            "category": "style",
+            "is_constraint": false,
+            "text": "主色为灰绿与低饱和靛蓝，少量铜色用于机械义肢和灯塔细节。夜景使用暖黄色小面积灯光，不铺满霓虹粉紫，不使用高饱和赛博城市配色。",
+            "score": 0.4596523809573998,
+            "chunk_id": "e3a3aacfd6024051b3f03de8880d769a"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "0b3ab2149cb74f419ddeda586a3cddbf",
+            "version_id": "4ae36372a3114b0fab21f5125cdb5c7b",
+            "version_number": 1,
+            "title": "镜头语言",
+            "category": "style",
+            "is_constraint": false,
+            "text": "日常段落偏用安静中景和缓慢横移。紧张时靠人物遮挡、环境声和细节特写表达，不连续使用夸张飞行穿梭镜头。",
+            "score": 0.45755939577523075,
+            "chunk_id": "2a82fb0480414983a2a63cb282bd221f"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "bd1399c78d374fd59bc0204771bcb207",
+          "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+          "version_number": 1,
+          "title": "纸感手绘视觉",
+          "category": "style",
+          "is_constraint": false,
+          "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+          "score": 0.7069273082457588,
+          "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "e62e36733e2b44a2a3106a79d88cbbce",
+          "version_id": "e93fb2b6b5794c70a0f7acab7857442c",
+          "version_number": 1,
+          "title": "视觉风格固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面必须采用纸感手绘，禁止塑料质感的三维卡通渲染。",
+          "score": null,
+          "chunk_id": "constraint:e93fb2b6b5794c70a0f7acab7857442c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "paper"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R05",
+      "category": "风格同义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "style"
+      ],
+      "query": "我想要有画纸纤维和铅笔颗粒的二维画面，应该遵循什么风格？",
+      "latency_ms": 3.421917004743591,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "70fcebe556974c00809e65ab8ec81f72": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "bd1399c78d374fd59bc0204771bcb207",
+            "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+            "version_number": 1,
+            "title": "纸感手绘视觉",
+            "category": "style",
+            "is_constraint": false,
+            "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+            "score": 0.7069273082457588,
+            "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "7ab076bf2662431394a708e194d9031b",
+            "version_id": "65b85b84ba2d440ea46c1f1099fe1073",
+            "version_number": 1,
+            "title": "色彩和灯光",
+            "category": "style",
+            "is_constraint": false,
+            "text": "主色为灰绿与低饱和靛蓝，少量铜色用于机械义肢和灯塔细节。夜景使用暖黄色小面积灯光，不铺满霓虹粉紫，不使用高饱和赛博城市配色。",
+            "score": 0.4596523809573998,
+            "chunk_id": "e3a3aacfd6024051b3f03de8880d769a"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "0b3ab2149cb74f419ddeda586a3cddbf",
+            "version_id": "4ae36372a3114b0fab21f5125cdb5c7b",
+            "version_number": 1,
+            "title": "镜头语言",
+            "category": "style",
+            "is_constraint": false,
+            "text": "日常段落偏用安静中景和缓慢横移。紧张时靠人物遮挡、环境声和细节特写表达，不连续使用夸张飞行穿梭镜头。",
+            "score": 0.45755939577523075,
+            "chunk_id": "2a82fb0480414983a2a63cb282bd221f"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "bd1399c78d374fd59bc0204771bcb207",
+          "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+          "version_number": 1,
+          "title": "纸感手绘视觉",
+          "category": "style",
+          "is_constraint": false,
+          "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+          "score": 0.7069273082457588,
+          "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "e62e36733e2b44a2a3106a79d88cbbce",
+          "version_id": "e93fb2b6b5794c70a0f7acab7857442c",
+          "version_number": 1,
+          "title": "视觉风格固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面必须采用纸感手绘，禁止塑料质感的三维卡通渲染。",
+          "score": null,
+          "chunk_id": "constraint:e93fb2b6b5794c70a0f7acab7857442c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "paper"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R06",
+      "category": "品牌语义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "给日记本写一段不过度煽动购买、语气平和的介绍",
+      "latency_ms": 3.728292002051603,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.5593016144125345,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.5333410400437814,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "5a0153357ef64047aa460bd3280682e1",
+          "version_id": "57f9850617ba4f209fbbb710295a063c",
+          "version_number": 1,
+          "title": "拾光品牌语气",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+          "score": 0.5593016144125345,
+          "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [
+        "tone"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R06",
+      "category": "品牌语义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "给日记本写一段不过度煽动购买、语气平和的介绍",
+      "latency_ms": 3.0583749976358376,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.5593016144125345,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.5333410400437814,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "5a0153357ef64047aa460bd3280682e1",
+          "version_id": "57f9850617ba4f209fbbb710295a063c",
+          "version_number": 1,
+          "title": "拾光品牌语气",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+          "score": 0.5593016144125345,
+          "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [
+        "tone"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R07",
+      "category": "跨库召回",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world"
+      ],
+      "query": "阿澄怕深水，但下午城里涨潮；她投递时要兼顾哪些人物和城市设定？",
+      "latency_ms": 3.6041659986949526,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5,
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.7091389145287529,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.5577731744885353,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K5",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.494517118604747,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K6",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.47804269387663956,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          },
+          {
+            "citation_id": "K7",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.43632931232504724,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K3",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+          "version_number": 1,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+          "score": 0.7091389145287529,
+          "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+          "version_id": "ee333e73c04142139232d886cbcf89ec",
+          "version_number": 1,
+          "title": "潮汐城日常",
+          "category": "world",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+          "score": 0.5577731744885353,
+          "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "hero",
+        "city"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 2,
+      "constraints_covered": 2,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R07",
+      "category": "跨库召回",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world"
+      ],
+      "query": "阿澄怕深水，但下午城里涨潮；她投递时要兼顾哪些人物和城市设定？",
+      "latency_ms": 7.827166002243757,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5,
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+            "version_number": 1,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+            "score": 0.7091389145287529,
+            "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.5577731744885353,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K5",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.494517118604747,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K6",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.47804269387663956,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          },
+          {
+            "citation_id": "K7",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.43632931232504724,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K3",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "4252556469a24aa0b9a1346d4646dbcb",
+          "version_number": 1,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。",
+          "score": 0.7091389145287529,
+          "chunk_id": "9d383d4bc39e40f19cf0dc9443a75ea4"
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+          "version_id": "ee333e73c04142139232d886cbcf89ec",
+          "version_number": 1,
+          "title": "潮汐城日常",
+          "category": "world",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+          "score": 0.5577731744885353,
+          "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "hero",
+        "city"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 2,
+      "constraints_covered": 2,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R08",
+      "category": "世界同义",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "邮差能不能私自看收信人的信？发现丢失邮件后该做什么？",
+      "latency_ms": 5.750333999458235,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.6563092287503416,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.3944924389229585,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.33831995708616014,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "1c85b43515614d35acdce5380aaf737c",
+          "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+          "version_number": 1,
+          "title": "潮汐城信件规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+          "score": 0.6563092287503416,
+          "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "mail"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R08",
+      "category": "世界同义",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "邮差能不能私自看收信人的信？发现丢失邮件后该做什么？",
+      "latency_ms": 6.018416999722831,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.6563092287503416,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.3944924389229585,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.33831995708616014,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "1c85b43515614d35acdce5380aaf737c",
+          "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+          "version_number": 1,
+          "title": "潮汐城信件规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+          "score": 0.6563092287503416,
+          "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [
+        "mail"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R09",
+      "category": "剧情约束",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "能不能在第一幕让观众知道修钟表的老人就是失踪船长？",
+      "latency_ms": 6.524417003674898,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.643625953302197,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.5072218566251281,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.39782201035139536,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "254980649abb4e758e21757cf2f11287",
+          "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+          "version_number": 1,
+          "title": "三幕身份揭晓",
+          "category": "plot",
+          "is_constraint": false,
+          "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+          "score": 0.643625953302197,
+          "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [
+        "reveal"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R09",
+      "category": "剧情约束",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "能不能在第一幕让观众知道修钟表的老人就是失踪船长？",
+      "latency_ms": 5.293041998811532,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.643625953302197,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.5072218566251281,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.39782201035139536,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "254980649abb4e758e21757cf2f11287",
+          "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+          "version_number": 1,
+          "title": "三幕身份揭晓",
+          "category": "plot",
+          "is_constraint": false,
+          "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+          "score": 0.643625953302197,
+          "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [
+        "reveal"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R10",
+      "category": "固定约束",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "写一场阿澄乘坐出租汽车穿城的动作戏",
+      "latency_ms": 5.949250000412576,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.4325935281519249,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.403601086853323,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.3766038208803384,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R10",
+      "category": "固定约束",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "写一场阿澄乘坐出租汽车穿城的动作戏",
+      "latency_ms": 5.136249994393438,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "6bbfc3c035d94df2b332182d729f6306": 5
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "0b75fbb79f4b4fcd8ef9a14238f37ab2",
+            "version_id": "ee333e73c04142139232d886cbcf89ec",
+            "version_number": 1,
+            "title": "潮汐城日常",
+            "category": "world",
+            "is_constraint": false,
+            "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。",
+            "score": 0.4325935281519249,
+            "chunk_id": "cc5c51ee028341a1bbedaf5ca2ab6fad"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.403601086853323,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "1c85b43515614d35acdce5380aaf737c",
+            "version_id": "f6aa73aded8b4eff9d8560f061e0cb89",
+            "version_number": 1,
+            "title": "潮汐城信件规则",
+            "category": "world",
+            "is_constraint": false,
+            "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。",
+            "score": 0.3766038208803384,
+            "chunk_id": "e3932db08a6541e0b0aabc5c3dbc0cea"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R11",
+      "category": "固定约束",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "写一句保证拾光能治好失眠的广告语",
+      "latency_ms": 4.4943750035599805,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.6601947099517669,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.6144397724658522,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "508025a21c4a43c18cb25386d41ed309",
+          "version_id": "6f7a544adc56472da4dcfcbd62871425",
+          "version_number": 1,
+          "title": "拾光产品事实",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+          "score": 0.6601947099517669,
+          "chunk_id": "018e91e613eb438dbada667f46278c19"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "5a0153357ef64047aa460bd3280682e1",
+          "version_id": "57f9850617ba4f209fbbb710295a063c",
+          "version_number": 1,
+          "title": "拾光品牌语气",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+          "score": 0.6144397724658522,
+          "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [
+        "product",
+        "tone"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R11",
+      "category": "固定约束",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "写一句保证拾光能治好失眠的广告语",
+      "latency_ms": 5.747082999732811,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.6601947099517669,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.6144397724658522,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "508025a21c4a43c18cb25386d41ed309",
+          "version_id": "6f7a544adc56472da4dcfcbd62871425",
+          "version_number": 1,
+          "title": "拾光产品事实",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+          "score": 0.6601947099517669,
+          "chunk_id": "018e91e613eb438dbada667f46278c19"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "5a0153357ef64047aa460bd3280682e1",
+          "version_id": "57f9850617ba4f209fbbb710295a063c",
+          "version_number": 1,
+          "title": "拾光品牌语气",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+          "score": 0.6144397724658522,
+          "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [
+        "product",
+        "tone"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R12",
+      "category": "无答案",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world",
+        "plot",
+        "style",
+        "brand"
+      ],
+      "query": "木星大红斑中心的精确气压是多少帕？",
+      "latency_ms": 4.2469580002943985,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5,
+        "6bbfc3c035d94df2b332182d729f6306": 5,
+        "44a5459315144f39adf2e82d7d473412": 5,
+        "70fcebe556974c00809e65ab8ec81f72": 5,
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K6",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.39060216192222075,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          },
+          {
+            "citation_id": "K7",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "7ab076bf2662431394a708e194d9031b",
+            "version_id": "65b85b84ba2d440ea46c1f1099fe1073",
+            "version_number": 1,
+            "title": "色彩和灯光",
+            "category": "style",
+            "is_constraint": false,
+            "text": "主色为灰绿与低饱和靛蓝，少量铜色用于机械义肢和灯塔细节。夜景使用暖黄色小面积灯光，不铺满霓虹粉紫，不使用高饱和赛博城市配色。",
+            "score": 0.38405441174270644,
+            "chunk_id": "e3a3aacfd6024051b3f03de8880d769a"
+          },
+          {
+            "citation_id": "K8",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.3477533780037533,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K9",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.34477587561367545,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K10",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "bd1399c78d374fd59bc0204771bcb207",
+            "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+            "version_number": 1,
+            "title": "纸感手绘视觉",
+            "category": "style",
+            "is_constraint": false,
+            "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+            "score": 0.33211814307104626,
+            "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "e62e36733e2b44a2a3106a79d88cbbce",
+          "version_id": "e93fb2b6b5794c70a0f7acab7857442c",
+          "version_number": 1,
+          "title": "视觉风格固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面必须采用纸感手绘，禁止塑料质感的三维卡通渲染。",
+          "score": null,
+          "chunk_id": "constraint:e93fb2b6b5794c70a0f7acab7857442c"
+        },
+        {
+          "citation_id": "K5",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 5,
+      "constraints_covered": 5,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R12",
+      "category": "无答案",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world",
+        "plot",
+        "style",
+        "brand"
+      ],
+      "query": "木星大红斑中心的精确气压是多少帕？",
+      "latency_ms": 4.3872499954886734,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 5,
+        "6bbfc3c035d94df2b332182d729f6306": 5,
+        "44a5459315144f39adf2e82d7d473412": 5,
+        "70fcebe556974c00809e65ab8ec81f72": 5,
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K6",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "983d3fadd467450fbfcf348b2ffab307",
+            "version_id": "56e19857800a4f4ea4a7f96c5e9e5c03",
+            "version_number": 1,
+            "title": "废弃支线",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。",
+            "score": 0.39060216192222075,
+            "chunk_id": "1282399f61b845758f725007e4878356"
+          },
+          {
+            "citation_id": "K7",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "7ab076bf2662431394a708e194d9031b",
+            "version_id": "65b85b84ba2d440ea46c1f1099fe1073",
+            "version_number": 1,
+            "title": "色彩和灯光",
+            "category": "style",
+            "is_constraint": false,
+            "text": "主色为灰绿与低饱和靛蓝，少量铜色用于机械义肢和灯塔细节。夜景使用暖黄色小面积灯光，不铺满霓虹粉紫，不使用高饱和赛博城市配色。",
+            "score": 0.38405441174270644,
+            "chunk_id": "e3a3aacfd6024051b3f03de8880d769a"
+          },
+          {
+            "citation_id": "K8",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.3477533780037533,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K9",
+            "library_id": "6bbfc3c035d94df2b332182d729f6306",
+            "document_id": "63a01ab2f31b41088ef5eab7192ad9ba",
+            "version_id": "07bbd001f8634ef3a254b3431ca8e522",
+            "version_number": 1,
+            "title": "灯塔的作用",
+            "category": "world",
+            "is_constraint": false,
+            "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。",
+            "score": 0.34477587561367545,
+            "chunk_id": "e995ba28bdc44f5d8c6259bf4deacf29"
+          },
+          {
+            "citation_id": "K10",
+            "library_id": "70fcebe556974c00809e65ab8ec81f72",
+            "document_id": "bd1399c78d374fd59bc0204771bcb207",
+            "version_id": "dd0ea927d69e4767bc3c383c66737b22",
+            "version_number": 1,
+            "title": "纸感手绘视觉",
+            "category": "style",
+            "is_constraint": false,
+            "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。",
+            "score": 0.33211814307104626,
+            "chunk_id": "f5f1dbc6627f425eb48ab4e7f448106b"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "6bbfc3c035d94df2b332182d729f6306",
+          "document_id": "5628a65483a34d048efc76ee7c51b0bc",
+          "version_id": "e00ce97b52744974ab417eb57b02b550",
+          "version_number": 1,
+          "title": "世界规则固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。",
+          "score": null,
+          "chunk_id": "constraint:e00ce97b52744974ab417eb57b02b550"
+        },
+        {
+          "citation_id": "K3",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "70fcebe556974c00809e65ab8ec81f72",
+          "document_id": "e62e36733e2b44a2a3106a79d88cbbce",
+          "version_id": "e93fb2b6b5794c70a0f7acab7857442c",
+          "version_number": 1,
+          "title": "视觉风格固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面必须采用纸感手绘，禁止塑料质感的三维卡通渲染。",
+          "score": null,
+          "chunk_id": "constraint:e93fb2b6b5794c70a0f7acab7857442c"
+        },
+        {
+          "citation_id": "K5",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 5,
+      "constraints_covered": 5,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R13",
+      "category": "空查询",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "",
+      "latency_ms": 0.43308400199748576,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_QUERY_INVALID",
+        "http_status": 422,
+        "message": "检索内容不能为空且不能超过 2 万字符"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "empty query must explicitly reject with no hits"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R13",
+      "category": "空查询",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "",
+      "latency_ms": 0.40733400237513706,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_QUERY_INVALID",
+        "http_status": 422,
+        "message": "检索内容不能为空且不能超过 2 万字符"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "empty query must explicitly reject with no hits"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R14",
+      "category": "空查询",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "   \n\t",
+      "latency_ms": 0.40470800013281405,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_QUERY_INVALID",
+        "http_status": 422,
+        "message": "检索内容不能为空且不能超过 2 万字符"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "empty query must explicitly reject with no hits"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R14",
+      "category": "空查询",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "   \n\t",
+      "latency_ms": 0.34874999983003363,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_QUERY_INVALID",
+        "http_status": 422,
+        "message": "检索内容不能为空且不能超过 2 万字符"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "empty query must explicitly reject with no hits"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": true,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R15",
+      "category": "库范围隔离",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "阿澄害怕深水时怎样送信？",
+      "latency_ms": 3.5533749978640117,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.3270012371970782,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.32426111394189583,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R15",
+      "category": "库范围隔离",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "阿澄害怕深水时怎样送信？",
+      "latency_ms": 4.795583001396153,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "2ed863184ff74128ac547d766481d89e": 4
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "5a0153357ef64047aa460bd3280682e1",
+            "version_id": "57f9850617ba4f209fbbb710295a063c",
+            "version_number": 1,
+            "title": "拾光品牌语气",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。",
+            "score": 0.3270012371970782,
+            "chunk_id": "933ca1035be340eb900a7f1cb220d203"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "2ed863184ff74128ac547d766481d89e",
+            "document_id": "508025a21c4a43c18cb25386d41ed309",
+            "version_id": "6f7a544adc56472da4dcfcbd62871425",
+            "version_number": 1,
+            "title": "拾光产品事实",
+            "category": "brand",
+            "is_constraint": false,
+            "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。",
+            "score": 0.32426111394189583,
+            "chunk_id": "018e91e613eb438dbada667f46278c19"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "2ed863184ff74128ac547d766481d89e",
+          "document_id": "31ba82883fff4f3185f96ee74f4421a4",
+          "version_id": "74bb38eca8d94f3a90b117c087f3cd41",
+          "version_number": 1,
+          "title": "品牌口吻固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。",
+          "score": null,
+          "chunk_id": "constraint:74bb38eca8d94f3a90b117c087f3cd41"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R16",
+      "category": "账号隔离",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "private"
+      ],
+      "query": "墨羽的身份和蓝鲸七号门禁短语是什么？",
+      "latency_ms": 0.9405840028193779,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_NOT_FOUND",
+        "http_status": 404,
+        "message": "知识库不存在或无权访问"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "foreign library must reject with no sources"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R16",
+      "category": "账号隔离",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "private"
+      ],
+      "query": "墨羽的身份和蓝鲸七号门禁短语是什么？",
+      "latency_ms": 1.4238750009099022,
+      "error": {
+        "type": "AppError",
+        "code": "KNOWLEDGE_NOT_FOUND",
+        "http_status": 404,
+        "message": "知识库不存在或无权访问"
+      },
+      "retrieval_status": null,
+      "warnings": [],
+      "library_versions": {},
+      "raw_score_diagnostic": null,
+      "hits": [],
+      "constraints": [],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 0,
+      "constraints_covered": 0,
+      "checks": [
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "foreign library must reject with no sources"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R17",
+      "category": "版本更新",
+      "phase": "updated",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "阿澄现在几岁，机械手臂是什么颜色？",
+      "latency_ms": 3.6889999973936938,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 6
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "eae6c0b2ed8a4478bf4ff676a309a249",
+            "version_number": 2,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十七岁，是潮汐城的信件投递员。她右手装有银色机械义肢，改穿灰绿色雨衣。她仍然害怕深水，也仍然会保护小孩。这是最新已确认的人物设定。",
+            "score": 0.6233964196084582,
+            "chunk_id": "3910929980e541078f2011746594de50"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.5447728959703654,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.40826095422886355,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "eae6c0b2ed8a4478bf4ff676a309a249",
+          "version_number": 2,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十七岁，是潮汐城的信件投递员。她右手装有银色机械义肢，改穿灰绿色雨衣。她仍然害怕深水，也仍然会保护小孩。这是最新已确认的人物设定。",
+          "score": 0.6233964196084582,
+          "chunk_id": "3910929980e541078f2011746594de50"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [
+        "hero"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "latest required fact: 二十七岁"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "latest required fact: 银色"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "superseded fact absent: 铜色机械义肢"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "hero must use version 2"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R17",
+      "category": "版本更新",
+      "phase": "updated",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "阿澄现在几岁，机械手臂是什么颜色？",
+      "latency_ms": 5.629666004097089,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e8e29c8387a945f49feb6e0da57dbad7": 6
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+            "version_id": "eae6c0b2ed8a4478bf4ff676a309a249",
+            "version_number": 2,
+            "title": "阿澄人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "阿澄二十七岁，是潮汐城的信件投递员。她右手装有银色机械义肢，改穿灰绿色雨衣。她仍然害怕深水，也仍然会保护小孩。这是最新已确认的人物设定。",
+            "score": 0.6233964196084582,
+            "chunk_id": "3910929980e541078f2011746594de50"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "27919019b08e44bbb9a77186ff5ab5d0",
+            "version_id": "5ae91c4c46ae4c2e9ac51756597ec1c5",
+            "version_number": 1,
+            "title": "老舟人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。",
+            "score": 0.5447728959703654,
+            "chunk_id": "f7b5e2ceeade446f95a53520fce9d17f"
+          },
+          {
+            "citation_id": "K4",
+            "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+            "document_id": "0553f844e8a3446bae8994ca36fdd2a8",
+            "version_id": "495fad55fa624f07b944999253cb17e1",
+            "version_number": 1,
+            "title": "程野人物档案",
+            "category": "character",
+            "is_constraint": false,
+            "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。",
+            "score": 0.40826095422886355,
+            "chunk_id": "960f0a7ede6f49c69ab8332dc9bfe34e"
+          }
+        ]
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "c42859511d644c6b8c6e3a8d8fda49a3",
+          "version_id": "eae6c0b2ed8a4478bf4ff676a309a249",
+          "version_number": 2,
+          "title": "阿澄人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "阿澄二十七岁，是潮汐城的信件投递员。她右手装有银色机械义肢，改穿灰绿色雨衣。她仍然害怕深水，也仍然会保护小孩。这是最新已确认的人物设定。",
+          "score": 0.6233964196084582,
+          "chunk_id": "3910929980e541078f2011746594de50"
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e8e29c8387a945f49feb6e0da57dbad7",
+          "document_id": "1dcbd26ed8f1424bb73696a7e90b101a",
+          "version_id": "6ffce25332854d42976f610bf3dac070",
+          "version_number": 1,
+          "title": "人物设定固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "阿澄始终是成年人；不能把右手机械义肢改成左手。",
+          "score": null,
+          "chunk_id": "constraint:6ffce25332854d42976f610bf3dac070"
+        }
+      ],
+      "retrieved_document_labels": [
+        "hero"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "latest required fact: 二十七岁"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "latest required fact: 银色"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "superseded fact absent: 铜色机械义肢"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "hero must use version 2"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R18",
+      "category": "删除失效",
+      "phase": "updated",
+      "repetition": 1,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "乌木钟楼密室入口暗号鹅卵石",
+      "latency_ms": 5.737624996982049,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 6
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.3339412582671488,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.31184896549330376,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "R18",
+      "category": "删除失效",
+      "phase": "updated",
+      "repetition": 2,
+      "owner_id": "eval-owner-a",
+      "selected_libraries": [
+        "plot"
+      ],
+      "query": "乌木钟楼密室入口暗号鹅卵石",
+      "latency_ms": 4.73187500028871,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "library_versions": {
+        "44a5459315144f39adf2e82d7d473412": 6
+      },
+      "raw_score_diagnostic": {
+        "diagnostic_only": true,
+        "score_threshold": -1.0,
+        "hits": [
+          {
+            "citation_id": "K2",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "b58c06b131fa4edd98eed7e76b49b896",
+            "version_id": "caef747999994007bfac393a42175fac",
+            "version_number": 1,
+            "title": "主线任务",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。",
+            "score": 0.3339412582671488,
+            "chunk_id": "46f5bbd7c0df4ef08de828c9afd0bfdd"
+          },
+          {
+            "citation_id": "K3",
+            "library_id": "44a5459315144f39adf2e82d7d473412",
+            "document_id": "254980649abb4e758e21757cf2f11287",
+            "version_id": "f77f3b7cd146484085c4e261b93e9a1e",
+            "version_number": 1,
+            "title": "三幕身份揭晓",
+            "category": "plot",
+            "is_constraint": false,
+            "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。",
+            "score": 0.31184896549330376,
+            "chunk_id": "0e44a4ed0c184a2da37465ba22daea00"
+          }
+        ]
+      },
+      "hits": [],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "44a5459315144f39adf2e82d7d473412",
+          "document_id": "62d6b3ada7744a9d8b6e93ffdc34f61c",
+          "version_id": "51096aca089c4fbfb448bfb53246507f",
+          "version_number": 1,
+          "title": "剧情圣经固定约束",
+          "category": "plot",
+          "is_constraint": true,
+          "text": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。",
+          "score": null,
+          "chunk_id": "constraint:51096aca089c4fbfb448bfb53246507f"
+        }
+      ],
+      "retrieved_document_labels": [],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from plot must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "update_and_delete_ms": 10.121084000275005,
+  "summary": {
+    "case_count": 18,
+    "query_runs": 36,
+    "expected_query_runs": 36,
+    "data_complete": true,
+    "recall_cases_per_repetition": 11,
+    "macro_recall_at_5": 0.8181818181818182,
+    "constraint_coverage": 1.0,
+    "critical_case_pass_rate": 1.0,
+    "failed_case_ids": [
+      "R01",
+      "R04"
+    ],
+    "noncompensable_failures": [],
+    "latency_ms": {
+      "p50": 4.2469580002943985,
+      "p95": 7.827166002243757
+    },
+    "decision": "LOCAL_ENGINEERING_FAIL",
+    "paid_model_calls": 0,
+    "generation_effect_accepted": false,
+    "limitations": [
+      "Synthetic small corpus only",
+      "No LLM answer/creation evaluation",
+      "No production-capacity evaluation",
+      "Two retrieval repeats do not evaluate generation stability",
+      "No human dual-rater aesthetic calibration"
+    ]
+  },
+  "finished_at_utc": "2026-10-03T16:33:34.331234+00:00",
+  "elapsed_ms": 1243.4632500007865
+}

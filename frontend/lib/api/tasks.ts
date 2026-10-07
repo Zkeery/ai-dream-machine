@@ -1,6 +1,7 @@
 import { api, authHeaders, ApiError } from "./client";
 import { streamSSE, type SSEEvent } from "../stream";
 import { API_BASE } from "../config";
+import type { ModelUsage } from "./models";
 
 export type TaskMeta = {
   task_id: string;
@@ -12,14 +13,17 @@ export type TaskMeta = {
   error: string | null;
   created_at: number;
   updated_at: number;
+  execution?: { execution_id?: string; status: string; last_event?: { message?: string; percent?: number } | null; error?: string | null; model_usage?: ModelUsage };
 };
 
 export function createTask(
   type: string,
   input: Record<string, unknown>,
+  idempotencyKey?: string,
 ): Promise<{ task_id: string }> {
   return api<{ task_id: string }>("/api/tasks", {
     method: "POST",
+    headers: idempotencyKey ? { "Idempotency-Key": idempotencyKey } : undefined,
     body: JSON.stringify({ type, input }),
   });
 }
@@ -28,8 +32,18 @@ export function listTasks(): Promise<TaskMeta[]> {
   return api<TaskMeta[]>("/api/tasks");
 }
 
-export function streamTask(taskId: string, onEvent: (ev: SSEEvent) => void): Promise<void> {
-  return streamSSE(`/api/tasks/${taskId}/stream`, { method: "GET" }, onEvent);
+export function getTask(taskId: string): Promise<TaskMeta> {
+  return api<TaskMeta>(`/api/tasks/${taskId}`);
+}
+
+export async function loadTaskVideo(taskId: string): Promise<string> {
+  const res = await fetch(`${API_BASE}/api/tasks/${taskId}/export`, { headers: authHeaders() });
+  if (!res.ok) throw new Error("成片预览加载失败，请重试");
+  return URL.createObjectURL(await res.blob());
+}
+
+export function streamTask(taskId: string, onEvent: (ev: SSEEvent) => void, signal?: AbortSignal): Promise<void> {
+  return streamSSE(`/api/tasks/${taskId}/stream`, { method: "GET", signal }, onEvent);
 }
 
 export async function uploadFile(file: File): Promise<string> {

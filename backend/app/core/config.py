@@ -25,6 +25,17 @@ UPLOAD_DIR = RESULT_DIR / "uploads"
 load_dotenv(PROJECT_ROOT / ".env")
 
 
+def _load_cost_rates() -> str:
+    override = os.getenv("MODEL_COST_RATES_JSON")
+    if override is not None:
+        return override
+    try:
+        return (BACKEND_DIR / "model-cost-rates.json").read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        # Empty catalogue makes every paid call fail PRICE_UNCONFIGURED; never free.
+        return "{}"
+
+
 class Settings:
     """集中读取配置；密钥只存内存，绝不写日志。
 
@@ -45,6 +56,15 @@ class Settings:
     video_first_frame_model: str = os.getenv("VIDEO_FIRST_FRAME_MODEL", "wan2.7-i2v")
     video_start_end_model: str = os.getenv("VIDEO_START_END_MODEL", "wan2.7-i2v")
     video_reference_model: str = os.getenv("VIDEO_REFERENCE_MODEL", "wan2.7-r2v")
+    video_speech_model: str = os.getenv("VIDEO_SPEECH_MODEL", "wan2.6-i2v")
+
+    # Administrator allowlists intersect the supported protocol catalog. Empty disables a group.
+    public_text_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_TEXT_MODELS", "qwen3.5-plus,qwen3.5-flash").split(",") if x.strip())
+    public_image_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_IMAGE_MODELS", "qwen-image-2.0,qwen-image-2.0-pro").split(",") if x.strip())
+    public_video_first_frame_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_VIDEO_FIRST_FRAME_MODELS", "wan2.7-i2v,wan2.6-i2v,doubao-seedance-2-5-260628,veo-3.1-generate-preview").split(",") if x.strip())
+    public_video_start_end_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_VIDEO_START_END_MODELS", "wan2.7-i2v,doubao-seedance-2-5-260628,veo-3.1-generate-preview").split(",") if x.strip())
+    public_video_reference_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_VIDEO_REFERENCE_MODELS", "wan2.7-r2v,doubao-seedance-2-5-260628,veo-3.1-generate-preview").split(",") if x.strip())
+    public_video_speech_models: frozenset[str] = frozenset(x.strip() for x in os.getenv("PUBLIC_VIDEO_SPEECH_MODELS", "wan2.6-i2v").split(",") if x.strip())
 
     # 运行环境：dev / prod（prod 仅作标识与未来强制项，鉴权本就用 get_current_user 统一校验）
     env: str = os.getenv("ENV", "dev")
@@ -61,8 +81,28 @@ class Settings:
     video_timeout: float = float(os.getenv("VIDEO_TIMEOUT", "900"))
     max_retries: int = int(os.getenv("MAX_RETRIES", "2"))
 
+    max_active_executions: int = int(os.getenv("MAX_ACTIVE_EXECUTIONS", "2"))
+    max_active_executions_per_user: int = int(os.getenv("MAX_ACTIVE_EXECUTIONS_PER_USER", "1"))
+    monthly_budget_cny: str = os.getenv("MONTHLY_BUDGET_CNY", "500")
+    monthly_user_budget_cny: str = os.getenv("MONTHLY_USER_BUDGET_CNY", "100")
+    model_cost_rates_json: str = _load_cost_rates()
+    llm_max_output_tokens: int = int(os.getenv("LLM_MAX_OUTPUT_TOKENS", "4096"))
+    vlm_max_input_tokens: int = int(os.getenv("VLM_MAX_INPUT_TOKENS", "32768"))
+    vlm_max_output_tokens: int = int(os.getenv("VLM_MAX_OUTPUT_TOKENS", "512"))
+
     # 登录令牌有效期（天）
     auth_token_ttl_days: float = float(os.getenv("AUTH_TOKEN_TTL_DAYS", "30"))
+    # Empty by default; registration never grants administrator access.
+    admin_user_ids: frozenset[str] = frozenset(value.strip() for value in os.getenv("ADMIN_USER_IDS", "").split(",") if value.strip())
+
+    # 创作知识库：答案充分性判定（拒答）与混合检索开关
+    # 判定失败/超时时按“资料未覆盖”降级，不可静默当作充分。
+    knowledge_adequacy_enabled: bool = os.getenv("KNOWLEDGE_ADEQUACY_ENABLED", "1") == "1"
+    knowledge_adequacy_max_retries: int = int(os.getenv("KNOWLEDGE_ADEQUACY_MAX_RETRIES", "1"))
+    # 混合检索默认关；拒答能兜住跨域无答案 R12 后再开。
+    knowledge_hybrid_retrieval_enabled: bool = os.getenv("KNOWLEDGE_HYBRID_RETRIEVAL_ENABLED", "0") == "1"
+    knowledge_hybrid_candidate_n: int = int(os.getenv("KNOWLEDGE_HYBRID_CANDIDATE_N", "20"))
+    knowledge_hybrid_rrf_k: int = int(os.getenv("KNOWLEDGE_HYBRID_RRF_K", "60"))
 
     # 上传限制（与 PRD 7.2 一致）
     max_image_bytes: int = 25 * 1024 * 1024

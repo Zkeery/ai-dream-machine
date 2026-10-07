@@ -10,11 +10,12 @@ from fastapi.responses import JSONResponse
 class AppError(Exception):
     """业务错误，携带 code 与用户可读 message。"""
 
-    def __init__(self, code: str, message: str, status_code: int = 400):
+    def __init__(self, code: str, message: str, status_code: int = 400, *, details: dict | None = None):
         super().__init__(message)
         self.code = code
         self.message = message
         self.status_code = status_code
+        self.details = details
 
 
 def error_body(code: str, message: str) -> dict:

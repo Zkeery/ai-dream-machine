@@ -7,3 +7,7 @@ python-dotenv>=1.0
 edge-tts>=6.1
 pytest>=8.0
 pytest-asyncio>=0.23
+fastembed>=0.7,<0.8
+qdrant-client>=1.15,<2
+pypdf>=6,<7
+pillow>=10.3,<12

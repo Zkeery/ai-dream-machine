@@ -1,0 +1,20 @@
+{
+  "shots": [
+    {
+      "shot_id": "s1",
+      "episode_number": 1,
+      "description": "近景，林舟身穿深蓝外套、系红围巾，在灯塔门前的湿石阶弯腰拾起一封白色信封。",
+      "prompt": "Cinematic realistic, medium close-up of Lin Zhou, the same young man in the character reference, dark blue coat and red scarf, bending down on wet stone steps at the base of the seaside lighthouse in the setting reference, picking up a single white envelope. Overcast post-rain evening, natural hands, continuous gentle action, one person only.",
+      "character_ids": ["c1"],
+      "setting_ids": ["l1"]
+    },
+    {
+      "shot_id": "s2",
+      "episode_number": 1,
+      "description": "中景，林舟手持信封站起身，抬头望向亮着灯的白色灯塔，红围巾随风轻动。",
+      "prompt": "Cinematic realistic, medium shot of Lin Zhou, the same young man in the character reference wearing a dark blue coat and red scarf, holding a white envelope and looking up toward the illuminated lighthouse in the setting reference. On wet coastal rocks, twilight, scarf moving gently in the breeze, calm hopeful expression, one person only.",
+      "character_ids": ["c1"],
+      "setting_ids": ["l1"]
+    }
+  ]
+}

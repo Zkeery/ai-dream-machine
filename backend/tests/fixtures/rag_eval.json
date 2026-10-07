@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "eval_version": "rag-creation-zh-v1",
+  "purpose": "本地创作知识库语义检索的工程验收；不评价 LLM 回答或图像、视频效果",
+  "configuration": {
+    "top_k": 5,
+    "repeats": 2,
+    "retry_count": 0,
+    "recall_pass_threshold": 0.85,
+    "constraint_pass_threshold": 1.0,
+    "critical_pass_threshold": 1.0
+  },
+  "owners": ["eval-owner-a", "eval-owner-b"],
+  "libraries": [
+    {"id": "characters", "owner": "eval-owner-a", "name": "人物设定", "kind": "character", "constraints": "阿澄始终是成年人；不能把右手机械义肢改成左手。"},
+    {"id": "world", "owner": "eval-owner-a", "name": "世界规则", "kind": "world", "constraints": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"},
+    {"id": "plot", "owner": "eval-owner-a", "name": "剧情圣经", "kind": "plot", "constraints": "不能提前揭示维修师傅就是失踪船长；只有第三幕才允许揭晓身份。"},
+    {"id": "style", "owner": "eval-owner-a", "name": "视觉风格", "kind": "style", "constraints": "画面必须采用纸感手绘，禁止塑料质感的三维卡通渲染。"},
+    {"id": "brand", "owner": "eval-owner-a", "name": "品牌口吻", "kind": "brand", "constraints": "不得出现疗效保证、投资回报承诺或夸大功效；品牌名始终写作“拾光”。"},
+    {"id": "private", "owner": "eval-owner-b", "name": "其他账号私密设定", "kind": "character", "constraints": "私密门禁短语是蓝鲸七号，不得进入其他账号上下文。"}
+  ],
+  "documents": [
+    {"id": "hero", "library": "characters", "title": "阿澄人物档案", "text": "阿澄二十六岁，是潮汐城的信件投递员。她右手装有铜色机械义肢，常穿深绿色雨衣。小时候落水的经历让她害怕深水；遇到积水码头会先找绕行路线。她嘴上冷淡，行动上总会保护小孩。"},
+    {"id": "mentor", "library": "characters", "title": "老舟人物档案", "text": "老舟是经营钟表维修铺的老人，走路微跛，戴圆形眼镜。他说话缓慢，习惯先听完别人的话再回答。阿澄遇到机械义肢故障时会向他求助。"},
+    {"id": "rival", "library": "characters", "title": "程野人物档案", "text": "程野是码头领航员，外表爽朗，讨厌失约。他穿靛蓝色短外套，擅长辨认风向和海流，做选择时重视承诺。"},
+    {"id": "city", "library": "world", "title": "潮汐城日常", "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"},
+    {"id": "mail", "library": "world", "title": "潮汐城信件规则", "text": "城里投递信件靠铜制编号筒。所有未拆封信件只能由收件人打开，投递员没有拆信权。遗失信件必须在涨潮前送到灯塔失物站登记。"},
+    {"id": "lighthouse", "library": "world", "title": "灯塔的作用", "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"},
+    {"id": "mission", "library": "plot", "title": "主线任务", "text": "阿澄必须在第三天退潮前把一封没有收件地址的信送到旧港灯塔。途中发现铜制编号筒里藏着航线图，因此被程野跟踪。主线目标是找到信的真正收件人，而不是寻宝致富。"},
+    {"id": "reveal", "library": "plot", "title": "三幕身份揭晓", "text": "第一幕以阿澄收到无地址信为起点。第二幕追踪航线图但不揭晓老舟身份。第三幕在灯塔停电后才揭示老舟就是十年前失踪的船长；这一揭晓不能提前到开场。"},
+    {"id": "red_herring", "library": "plot", "title": "废弃支线", "text": "旧稿有乌木钟楼密室，入口暗号是鹅卵石。这条支线已经删除，最新创作不应继续引用。"},
+    {"id": "paper", "library": "style", "title": "纸感手绘视觉", "text": "视觉以水彩铺色、石墨线条和粗纤维纸纹构成。保留轻微套色偏移和手绘边缘，不使用光滑塑料表面。背景留出呼吸感，人物轮廓有细密铅笔颗粒。"},
+    {"id": "palette", "library": "style", "title": "色彩和灯光", "text": "主色为灰绿与低饱和靛蓝，少量铜色用于机械义肢和灯塔细节。夜景使用暖黄色小面积灯光，不铺满霓虹粉紫，不使用高饱和赛博城市配色。"},
+    {"id": "camera", "library": "style", "title": "镜头语言", "text": "日常段落偏用安静中景和缓慢横移。紧张时靠人物遮挡、环境声和细节特写表达，不连续使用夸张飞行穿梭镜头。"},
+    {"id": "tone", "library": "brand", "title": "拾光品牌语气", "text": "拾光面向喜欢慢生活的成年用户。文案语气克制、具体、温和，少用感叹号。避免焦虑营销，不说错过就会落后，也不夸大产品能力。"},
+    {"id": "product", "library": "brand", "title": "拾光产品事实", "text": "拾光是一款纸质日记本，封面使用再生纸，内页是空白页。卖点是书写和记录生活；没有医疗功能，不能宣称能治疗失眠或焦虑。"},
+    {"id": "private_code", "library": "private", "title": "另一账号私密角色", "text": "其他账号的秘密角色叫墨羽，身份是地下守门人。私密门禁短语是蓝鲸七号。这个人物及短语不得被 eval-owner-a 检索到。"}
+  ],
+  "updates": [
+    {"id": "hero", "text": "阿澄二十七岁，是潮汐城的信件投递员。她右手装有银色机械义肢，改穿灰绿色雨衣。她仍然害怕深水，也仍然会保护小孩。这是最新已确认的人物设定。"}
+  ],
+  "deletions": ["red_herring"],
+  "cases": [
+    {"case_id": "R01", "category": "人物语义", "query": "女主为什么不敢靠近水很深的地方？", "owner": "eval-owner-a", "libraries": ["characters"], "expected_documents": ["hero"]},
+    {"case_id": "R02", "category": "人物语义", "query": "义肢坏了，阿澄应该找哪位戴眼镜的慢性子修理匠？", "owner": "eval-owner-a", "libraries": ["characters"], "expected_documents": ["mentor"]},
+    {"case_id": "R03", "category": "世界语义", "query": "下午街巷进水时，夜市摊位怎样适应水位？", "owner": "eval-owner-a", "libraries": ["world"], "expected_documents": ["city"]},
+    {"case_id": "R04", "category": "剧情语义", "query": "这段故事最重要的任务是什么，信件最终要送去哪里？", "owner": "eval-owner-a", "libraries": ["plot"], "expected_documents": ["mission"]},
+    {"case_id": "R05", "category": "风格同义", "query": "我想要有画纸纤维和铅笔颗粒的二维画面，应该遵循什么风格？", "owner": "eval-owner-a", "libraries": ["style"], "expected_documents": ["paper"]},
+    {"case_id": "R06", "category": "品牌语义", "query": "给日记本写一段不过度煽动购买、语气平和的介绍", "owner": "eval-owner-a", "libraries": ["brand"], "expected_documents": ["tone"]},
+    {"case_id": "R07", "category": "跨库召回", "query": "阿澄怕深水，但下午城里涨潮；她投递时要兼顾哪些人物和城市设定？", "owner": "eval-owner-a", "libraries": ["characters", "world"], "expected_documents": ["hero", "city"]},
+    {"case_id": "R08", "category": "世界同义", "query": "邮差能不能私自看收信人的信？发现丢失邮件后该做什么？", "owner": "eval-owner-a", "libraries": ["world"], "expected_documents": ["mail"]},
+    {"case_id": "R09", "category": "剧情约束", "query": "能不能在第一幕让观众知道修钟表的老人就是失踪船长？", "owner": "eval-owner-a", "libraries": ["plot"], "expected_documents": ["reveal"], "expected_constraints": ["plot"]},
+    {"case_id": "R10", "category": "固定约束", "query": "写一场阿澄乘坐出租汽车穿城的动作戏", "owner": "eval-owner-a", "libraries": ["world"], "expected_documents": [], "expected_constraints": ["world"], "critical": true},
+    {"case_id": "R11", "category": "固定约束", "query": "写一句保证拾光能治好失眠的广告语", "owner": "eval-owner-a", "libraries": ["brand"], "expected_documents": ["product"], "expected_constraints": ["brand"], "critical": true},
+    {"case_id": "R12", "category": "无答案", "query": "木星大红斑中心的精确气压是多少帕？", "owner": "eval-owner-a", "libraries": ["characters", "world", "plot", "style", "brand"], "expected_documents": [], "expect_empty_hits": true, "critical": true},
+    {"case_id": "R13", "category": "空查询", "query": "", "owner": "eval-owner-a", "libraries": ["characters"], "expected_documents": [], "expect_empty_hits": true, "expected_error": "KNOWLEDGE_QUERY_INVALID", "critical": true},
+    {"case_id": "R14", "category": "空查询", "query": "   \n\t", "owner": "eval-owner-a", "libraries": ["world"], "expected_documents": [], "expect_empty_hits": true, "expected_error": "KNOWLEDGE_QUERY_INVALID", "critical": true},
+    {"case_id": "R15", "category": "库范围隔离", "query": "阿澄害怕深水时怎样送信？", "owner": "eval-owner-a", "libraries": ["brand"], "expected_documents": [], "forbidden_documents": ["hero", "mentor", "city", "mail"], "critical": true},
+    {"case_id": "R16", "category": "账号隔离", "query": "墨羽的身份和蓝鲸七号门禁短语是什么？", "owner": "eval-owner-a", "libraries": ["private"], "expected_documents": [], "expect_permission_error": true, "forbidden_documents": ["private_code"], "critical": true},
+    {"case_id": "R17", "category": "版本更新", "phase": "updated", "query": "阿澄现在几岁，机械手臂是什么颜色？", "owner": "eval-owner-a", "libraries": ["characters"], "expected_documents": ["hero"], "expected_versions": {"hero": 2}, "required_text": ["二十七岁", "银色"], "forbidden_text": ["铜色机械义肢"], "critical": true},
+    {"case_id": "R18", "category": "删除失效", "phase": "updated", "query": "乌木钟楼密室入口暗号鹅卵石", "owner": "eval-owner-a", "libraries": ["plot"], "expected_documents": [], "forbidden_documents": ["red_herring"], "critical": true}
+  ]
+}

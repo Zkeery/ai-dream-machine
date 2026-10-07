@@ -1,0 +1,586 @@
+{
+  "schema_version": "rag-hybrid-rerank-master-v1",
+  "date": "20261006",
+  "finished_at_utc": "2026-10-06T04:49:03.288600+00:00",
+  "embedding_baseline": "BAAI/bge-small-zh-v1.5 threshold 0.48",
+  "bm25": "char n-gram 2-3 + CJK unigram, pure python",
+  "reranker_primary": "BAAI/bge-reranker-base ~1.06GB",
+  "reranker_secondary_minilm": "Xenova/ms-marco-MiniLM-L-6-v2 English-only; Chinese scores not separable for R12",
+  "param_policy": "All thresholds/grid tuned on DEV only; holdout measured once",
+  "schemes": {
+    "baseline": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 1.0,
+        "failed_case_ids": [],
+        "noncompensable_failures": [],
+        "latency_ms": {
+          "p50": 3.620165996835567,
+          "p95": 4.587457995512523
+        },
+        "decision": "LOCAL_ENGINEERING_PASS",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": true,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "holdout": {
+        "case_count": 8,
+        "query_runs": 16,
+        "expected_query_runs": 16,
+        "data_complete": true,
+        "recall_cases_per_repetition": 5,
+        "macro_recall_at_5": 0.8,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 0.3333333333333333,
+        "failed_case_ids": [
+          "H01",
+          "H07",
+          "H08"
+        ],
+        "noncompensable_failures": [
+          {
+            "case_id": "H07",
+            "repetition": 1,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "H07",
+            "repetition": 2,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "H08",
+            "repetition": 1,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "H08",
+            "repetition": 2,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          }
+        ],
+        "latency_ms": {
+          "p50": 3.4186670018243603,
+          "p95": 4.229500002111308
+        },
+        "decision": "LOCAL_ENGINEERING_FAIL",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "H01": false,
+          "H02": true,
+          "H03": true,
+          "H04": true,
+          "H05": true,
+          "H06": true,
+          "H07": false,
+          "H08": false
+        }
+      }
+    },
+    "hybrid": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 0.8888888888888888,
+        "failed_case_ids": [
+          "R12"
+        ],
+        "noncompensable_failures": [
+          {
+            "case_id": "R12",
+            "repetition": 1,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          },
+          {
+            "case_id": "R12",
+            "repetition": 2,
+            "rule": "EMP01",
+            "detail": "ordinary hit list must be empty; constraints are not answers"
+          }
+        ],
+        "latency_ms": {
+          "p50": 7.1163750035339035,
+          "p95": 10.57279100496089
+        },
+        "decision": "LOCAL_ENGINEERING_FAIL",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": false,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "params": {
+        "candidate_n": 20,
+        "rrf_k": 60,
+        "vector_threshold": -1.0,
+        "rerank_threshold": null
+      },
+      "selected_grid": {
+        "candidate_n": 20,
+        "rrf_k": 60
+      },
+      "holdout": {
+        "summary": {
+          "case_count": 8,
+          "query_runs": 16,
+          "expected_query_runs": 16,
+          "data_complete": true,
+          "recall_cases_per_repetition": 5,
+          "macro_recall_at_5": 1.0,
+          "constraint_coverage": 1.0,
+          "critical_case_pass_rate": 0.3333333333333333,
+          "failed_case_ids": [
+            "H07",
+            "H08"
+          ],
+          "noncompensable_failures": [
+            {
+              "case_id": "H07",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H07",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            }
+          ],
+          "latency_ms": {
+            "p50": 3.3931250000023283,
+            "p95": 4.306916998757515
+          },
+          "decision": "LOCAL_ENGINEERING_FAIL",
+          "paid_model_calls": 0,
+          "generation_effect_accepted": false,
+          "per_case_pass": {
+            "H01": true,
+            "H02": true,
+            "H03": true,
+            "H04": true,
+            "H05": true,
+            "H06": true,
+            "H07": false,
+            "H08": false
+          }
+        },
+        "flags": {
+          "H01": {
+            "case_id": "H01",
+            "passed": true,
+            "recall_at_5": 1.0,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 3.4333119983784854
+          },
+          "H07": {
+            "case_id": "H07",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "luyao",
+              "liuli"
+            ],
+            "n_hits_rep1": 2,
+            "latency_ms_mean": 3.257875501731178
+          },
+          "H08": {
+            "case_id": "H08",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "qinghe"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 3.2821669992699753
+          }
+        },
+        "params": {
+          "candidate_n": 20,
+          "rrf_k": 60,
+          "vector_threshold": -1.0,
+          "rerank_threshold": null
+        },
+        "run_id": "fbbcc589-4d7a-43f8-9ff7-558de0e4b076"
+      }
+    },
+    "rerank_bge": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 1.0,
+        "failed_case_ids": [],
+        "noncompensable_failures": [],
+        "latency_ms": {
+          "p50": 34.64858399820514,
+          "p95": 177.31070900481427
+        },
+        "decision": "LOCAL_ENGINEERING_PASS",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": true,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "params": {
+        "candidate_n": 20,
+        "rrf_k": 60,
+        "vector_threshold": -1.0,
+        "rerank_threshold": -5.0
+      },
+      "selected_threshold": -5.0,
+      "holdout": {
+        "summary": {
+          "case_count": 8,
+          "query_runs": 16,
+          "expected_query_runs": 16,
+          "data_complete": true,
+          "recall_cases_per_repetition": 5,
+          "macro_recall_at_5": 1.0,
+          "constraint_coverage": 1.0,
+          "critical_case_pass_rate": 0.3333333333333333,
+          "failed_case_ids": [
+            "H07",
+            "H08"
+          ],
+          "noncompensable_failures": [
+            {
+              "case_id": "H07",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H07",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            }
+          ],
+          "latency_ms": {
+            "p50": 109.44924999785144,
+            "p95": 153.56787500059
+          },
+          "decision": "LOCAL_ENGINEERING_FAIL",
+          "paid_model_calls": 0,
+          "generation_effect_accepted": false,
+          "per_case_pass": {
+            "H01": true,
+            "H02": true,
+            "H03": true,
+            "H04": true,
+            "H05": true,
+            "H06": true,
+            "H07": false,
+            "H08": false
+          }
+        },
+        "flags": {
+          "H01": {
+            "case_id": "H01",
+            "passed": true,
+            "recall_at_5": 1.0,
+            "hit_labels_rep1": [
+              "luyao"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 143.00814600210288
+          },
+          "H07": {
+            "case_id": "H07",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "luyao"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 73.86677099566441
+          },
+          "H08": {
+            "case_id": "H08",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "qinghe"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 65.95683350315085
+          }
+        },
+        "params": {
+          "candidate_n": 20,
+          "rrf_k": 60,
+          "vector_threshold": -1.0,
+          "rerank_threshold": -5.0
+        },
+        "run_id": "f29a7b93-64ca-4a0c-99f6-53a4842816e3"
+      }
+    },
+    "hybrid_rerank_bge": {
+      "dev": {
+        "case_count": 18,
+        "query_runs": 36,
+        "expected_query_runs": 36,
+        "data_complete": true,
+        "recall_cases_per_repetition": 11,
+        "macro_recall_at_5": 1.0,
+        "constraint_coverage": 1.0,
+        "critical_case_pass_rate": 1.0,
+        "failed_case_ids": [],
+        "noncompensable_failures": [],
+        "latency_ms": {
+          "p50": 38.31941699900199,
+          "p95": 194.68129099550424
+        },
+        "decision": "LOCAL_ENGINEERING_PASS",
+        "paid_model_calls": 0,
+        "generation_effect_accepted": false,
+        "per_case_pass": {
+          "R01": true,
+          "R02": true,
+          "R03": true,
+          "R04": true,
+          "R05": true,
+          "R06": true,
+          "R07": true,
+          "R08": true,
+          "R09": true,
+          "R10": true,
+          "R11": true,
+          "R12": true,
+          "R13": true,
+          "R14": true,
+          "R15": true,
+          "R16": true,
+          "R17": true,
+          "R18": true
+        }
+      },
+      "params": {
+        "candidate_n": 20,
+        "rrf_k": 60,
+        "vector_threshold": -1.0,
+        "rerank_threshold": -5.0
+      },
+      "selected_threshold": -5.0,
+      "holdout": {
+        "summary": {
+          "case_count": 8,
+          "query_runs": 16,
+          "expected_query_runs": 16,
+          "data_complete": true,
+          "recall_cases_per_repetition": 5,
+          "macro_recall_at_5": 1.0,
+          "constraint_coverage": 1.0,
+          "critical_case_pass_rate": 0.3333333333333333,
+          "failed_case_ids": [
+            "H07",
+            "H08"
+          ],
+          "noncompensable_failures": [
+            {
+              "case_id": "H07",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H07",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 1,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            },
+            {
+              "case_id": "H08",
+              "repetition": 2,
+              "rule": "EMP01",
+              "detail": "ordinary hit list must be empty; constraints are not answers"
+            }
+          ],
+          "latency_ms": {
+            "p50": 44.984334002947435,
+            "p95": 98.4624589982559
+          },
+          "decision": "LOCAL_ENGINEERING_FAIL",
+          "paid_model_calls": 0,
+          "generation_effect_accepted": false,
+          "per_case_pass": {
+            "H01": true,
+            "H02": true,
+            "H03": true,
+            "H04": true,
+            "H05": true,
+            "H06": true,
+            "H07": false,
+            "H08": false
+          }
+        },
+        "flags": {
+          "H01": {
+            "case_id": "H01",
+            "passed": true,
+            "recall_at_5": 1.0,
+            "hit_labels_rep1": [
+              "luyao"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 75.2995210023073
+          },
+          "H07": {
+            "case_id": "H07",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "luyao"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 59.25666650000494
+          },
+          "H08": {
+            "case_id": "H08",
+            "passed": false,
+            "recall_at_5": null,
+            "hit_labels_rep1": [
+              "qinghe"
+            ],
+            "n_hits_rep1": 1,
+            "latency_ms_mean": 22.439479500462767
+          }
+        },
+        "params": {
+          "candidate_n": 20,
+          "rrf_k": 60,
+          "vector_threshold": -1.0,
+          "rerank_threshold": -5.0
+        },
+        "run_id": "1fb21756-670d-4529-9b1a-cc2e8638515e"
+      }
+    }
+  },
+  "rerank_meta": {
+    "model": "BAAI/bge-reranker-base",
+    "cache": "/tmp/rag_hybrid_rerank_models",
+    "load_warmup_ms": 1075.5515829951037,
+    "cache_bytes": 1134633572,
+    "cache_gb": 1.057,
+    "note": "Primary Chinese reranker; threshold frozen from DEV sweep (thr=-5.0 cleared R12 with recall=1/critical=1)",
+    "chinese_quality_supported": true,
+    "frozen_threshold": -5.0,
+    "dev_tune_source": "partial sweep before disconnect; thr=-5.0 and thr=-5.2653 both perfect on DEV"
+  },
+  "conclusions": {
+    "H01": "Fixed by hybrid BM25+RRF and by vector+BGE-rerank (both Recall@5 1.0 on holdout). Baseline failed (score 0.4534 < 0.48).",
+    "H07_H08": "Still fail under all schemes. Same-domain no-answer docs score above BGE thr=-5 that clears out-of-domain R12. Need answer-sufficiency / abstention, not just ranking.",
+    "production_recommendation": "Hybrid retrieval (BM25+vector RRF) is low-cost and fixes H01; worth considering for production. BGE reranker (~1GB, +~30-110ms p50) clears DEV R12 and also fixes H01 but does NOT fix H07/H08; optional if willing to pay model size/latency for marginal ranking quality. Do NOT claim no-answer solved.",
+    "not_in_production": true
+  }
+}

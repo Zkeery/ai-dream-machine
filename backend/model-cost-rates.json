@@ -1,0 +1,114 @@
+{
+  "doubao-seedance-2-5-260628": {
+    "kind": "video",
+    "video_second_cny": {"720P": 1.88, "1080P": 4.224},
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/doubao-seedance-2-5-260628",
+    "as_of": "2026-10-05",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "仅图片/文本输入；官方按token计费并公布约$0.2344/s(720p)、$0.5273/s(1080p)，向上取$0.235/$0.528每秒做预算估算。未开放视频输入或自动时长。",
+    "notice": "固定预算换算系数，不是实时汇率。token计费对应的秒价为近似值，不是供应商实付或保证上限，须核对账单。"
+  },
+  "veo-3.1-generate-preview": {
+    "kind": "video",
+    "video_second_cny": {"720P": 3.2, "1080P": 3.2},
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/veo-3.1-generate-preview",
+    "as_of": "2026-10-05",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页720p/1080p为$0.4/秒；本项目每段固定请求8秒。",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen3.5-plus": {
+    "kind": "text",
+    "input_per_million_cny": 4.384,
+    "output_per_million_cny": 26.304,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen3.5-plus",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "最高输入阶梯单价；预算保守估算，不含缓存折扣",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen3.5-flash": {
+    "kind": "text",
+    "input_per_million_cny": 1.352,
+    "output_per_million_cny": 13.52,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen3.5-flash",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "最高输入阶梯单价；预算保守估算，不含缓存折扣",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen3-vl-flash": {
+    "kind": "text",
+    "input_per_million_cny": 0.6576,
+    "output_per_million_cny": 6.576,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen3-vl-flash",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "最高输入阶梯单价；预算保守估算，不含缓存折扣",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen-image-2.0": {
+    "kind": "image",
+    "image_cny": 0.2256,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen-image-2.0",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页标准规格/生成价格；预算估算",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen-image-2.0-pro": {
+    "kind": "image",
+    "image_cny": 0.5632,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen-image-2.0-pro",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页标准规格/生成价格；预算估算",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "wan2.7-i2v": {
+    "kind": "video",
+    "video_second_cny": {
+      "720P": 0.6768,
+      "1080P": 1.128
+    },
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/wan2.7-i2v",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页标准规格/生成价格；预算估算",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "wan2.7-r2v": {
+    "kind": "video",
+    "video_second_cny": {
+      "720P": 0.6768,
+      "1080P": 1.128
+    },
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/wan2.7-r2v",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页标准规格/生成价格；预算估算",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "wan2.6-i2v": {
+    "kind": "video",
+    "video_second_cny": {
+      "720P": 0.7232,
+      "1080P": 1.208
+    },
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/wan2.6-i2v",
+    "as_of": "2026-10-04",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "官方模型页标准规格/生成价格；预算估算",
+    "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  }
+}

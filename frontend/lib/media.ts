@@ -24,8 +24,9 @@ export async function loadMediaBlob(
 }
 
 /** 下载成片（带鉴权，blob → 触发保存）。 */
-export async function downloadMedia(sessionId: string, filename = "成片.mp4"): Promise<void> {
-  const res = await fetch(`${API_BASE}/api/sessions/${sessionId}/export`, { headers: authHeaders() });
+export async function downloadMedia(sessionId: string, filename = "成片.mp4", versionId?: string): Promise<void> {
+  const query = versionId ? `?version_id=${encodeURIComponent(versionId)}` : "";
+  const res = await fetch(`${API_BASE}/api/sessions/${sessionId}/export${query}`, { headers: authHeaders() });
   if (!res.ok) throw new Error("下载失败");
   const blob = await res.blob();
   const url = URL.createObjectURL(blob);

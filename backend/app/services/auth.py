@@ -58,6 +58,11 @@ def revoke_invite_code(code: str) -> None:
 
 # ---------- 用户与令牌 ----------
 
+def is_admin(user_id: str) -> bool:
+    """Roles come only from the server allowlist, never from request data."""
+    return bool(user_id) and user_id in config.settings.admin_user_ids
+
+
 def _bind_user(code: str) -> dict:
     """未使用码 → 创建账号并绑定；已使用码 → 返回原账号。作废码拒绝。"""
     with db.connect() as conn:
@@ -91,7 +96,7 @@ def issue_token(user_id: str) -> dict:
     with db.connect() as conn:
         conn.execute("INSERT INTO auth_tokens (token, user_id, created_at, expires_at) VALUES (?,?,?,?)",
                      (token, user_id, now, expires_at))
-    return {"token": token, "user_id": user_id, "expires_at": expires_at}
+    return {"token": token, "user_id": user_id, "expires_at": expires_at, "is_admin": is_admin(user_id)}
 
 
 def validate_token(token: str) -> str:
@@ -121,7 +126,7 @@ def get_user(user_id: str) -> dict:
         row = conn.execute("SELECT * FROM users WHERE user_id=?", (user_id,)).fetchone()
     if row is None:
         raise AppError("USER_NOT_FOUND", "用户不存在", 404)
-    return dict(row)
+    return {**dict(row), "is_admin": is_admin(user_id)}
 
 
 # ---------- 上传归属 ----------

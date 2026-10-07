@@ -1,0 +1,1810 @@
+{
+  "schema_version": "rag-hybrid-rerank-v1",
+  "run_id": "f29a7b93-64ca-4a0c-99f6-53a4842816e3",
+  "started_at_utc": "2026-10-06T04:48:44.319777+00:00",
+  "mode": "rerank",
+  "run_label": "bge-rerank-holdout",
+  "params": {
+    "candidate_n": 20,
+    "rrf_k": 60,
+    "vector_threshold": -1.0,
+    "rerank_threshold": -5.0
+  },
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "darwin",
+  "dependencies": {
+    "fastembed": "0.7.4",
+    "qdrant-client": "1.19.1",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3",
+    "huggingface-hub": "1.33.0",
+    "tokenizers": "0.23.2",
+    "pydantic": "2.13.5",
+    "pypdf": "6.19.0",
+    "python-docx": null
+  },
+  "score_diagnostics": false,
+  "eval_version": "rag-creation-zh-holdout-v1",
+  "fixture_sha256": "d8e38522e2ef27361e1741f216d1fa1f4e99b819e5c9d73d95ad0b405ff0c37e",
+  "selected_case_ids": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08"
+  ],
+  "embedding_model_binding": {
+    "cache": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/knowledge/models",
+    "files": [
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/config.json",
+        "bytes": 739,
+        "sha256": "9088751d39abbf86ec3d19ffca92ad62ad19075f7e59712e6c71217fa125d1d3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/model_optimized.onnx",
+        "bytes": 94781076,
+        "sha256": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/special_tokens_map.json",
+        "bytes": 125,
+        "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer.json",
+        "bytes": 439125,
+        "sha256": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer_config.json",
+        "bytes": 367,
+        "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+      }
+    ],
+    "snapshot_revisions": [
+      "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59"
+    ],
+    "file_manifest_sha256": "1b0a4ee90886ab63ff7098435e2313915664f823b80308f4951cc4cf2b54f322"
+  },
+  "retrieval_configuration": {
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "dimension": 512,
+    "baseline_score_threshold": 0.48,
+    "max_context_chars": 12000,
+    "top_k": 5,
+    "collection": "creative_knowledge_bge_zh_v1",
+    "experiment_mode": "rerank",
+    "experiment_params": {
+      "candidate_n": 20,
+      "rrf_k": 60,
+      "vector_threshold": -1.0,
+      "rerank_threshold": -5.0
+    },
+    "rerank_model": "BAAI/bge-reranker-base",
+    "bm25": null,
+    "fusion": null,
+    "generation_model": null,
+    "llm_judge": null
+  },
+  "isolated_data": {
+    "temporary_directory": true,
+    "real_user_data_written": false
+  },
+  "model_initialization_ms": 0.0004160028765909374,
+  "initial_index_build_ms": 165.27408300316893,
+  "bindings": {
+    "libraries": {
+      "characters": "e187e573390d4f0d853e8296254e1974",
+      "world": "020ca3c5330f46d7ac62824b50f5e9b1",
+      "style": "be672783bd31445a9b64ae1a3ab8175b",
+      "brand": "54abdf4a71e641049e51c7ceabb4a2db"
+    },
+    "documents": {
+      "luyao": "527e032b0b804506a540d6b5106bd748",
+      "liuli": "996e4f3aa5db40c2a5d4f44df808496e",
+      "redmoon": "5482cd759c784eb2a9e3166100817795",
+      "salt": "c937dc3f5f8f4164bc2c2f3c08a20430",
+      "woodcut": "cdb065d8e884465cadc027300d0d6ace",
+      "qinghe": "72fba99d99ad44ea98652c737648da0b",
+      "constraint:characters": "f94e44c0dad440b78d3f5feaaefee2b7",
+      "constraint:world": "a6f0639257914a9484448d65509e6767",
+      "constraint:style": "f16d1a54e04f485e81fbe53ca0ff8b06",
+      "constraint:brand": "3de362ae2d114853a6160e958937a97c"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "H01",
+      "category": "新人物意译",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "男主为什么会主动避开忽然很响的地方？",
+      "latency_ms": 132.44841700361576,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 2.356576442718506,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.45339177741128545,
+          "rerank_score": 2.356576442718506,
+          "pre_rerank_score": 0.45339177741128545
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H01",
+      "category": "新人物意译",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "男主为什么会主动避开忽然很响的地方？",
+      "latency_ms": 153.56787500059,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 2.356576442718506,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.45339177741128545,
+          "rerank_score": 2.356576442718506,
+          "pre_rerank_score": 0.45339177741128545
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H02",
+      "category": "新世界意译",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？",
+      "latency_ms": 147.96845900127664,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": 0.42190396785736084,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.6015521763246534,
+          "rerank_score": 0.42190396785736084,
+          "pre_rerank_score": 0.6015521763246534
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "redmoon"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H02",
+      "category": "新世界意译",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？",
+      "latency_ms": 109.44924999785144,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": 0.42190396785736084,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.6015521763246534,
+          "rerank_score": 0.42190396785736084,
+          "pre_rerank_score": 0.6015521763246534
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "redmoon"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H03",
+      "category": "新风格意译",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "style"
+      ],
+      "query": "想让画面像手工印出来的，有刻痕、两层油墨稍微对不齐，应采用什么方法？",
+      "latency_ms": 99.91437500139,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "be672783bd31445a9b64ae1a3ab8175b": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "be672783bd31445a9b64ae1a3ab8175b",
+          "document_id": "cdb065d8e884465cadc027300d0d6ace",
+          "version_id": "883d5c96eb7c41ce834f55a955e8f177",
+          "version_number": 1,
+          "title": "木刻版画方案",
+          "category": "style",
+          "is_constraint": false,
+          "text": "画面使用木刻版画的黑色刀痕和粗糙印版边缘，以土黄和深蓝两次套色。允许少量颜色错位，阴影通过密集排线表现。表面保留纸纤维与印墨不均，避免摄影级的光滑质感。",
+          "score": 2.5469045639038086,
+          "chunk_id": "eb99e4c7e1e4483aae26b80127b1b4b1",
+          "vector_score": 0.6841551091646688,
+          "rerank_score": 2.5469045639038086,
+          "pre_rerank_score": 0.6841551091646688
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "be672783bd31445a9b64ae1a3ab8175b",
+          "document_id": "f16d1a54e04f485e81fbe53ca0ff8b06",
+          "version_id": "3bc8fb9d47214f5493b0c835999ce8b1",
+          "version_number": 1,
+          "title": "木刻画面固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面采用木刻版画，禁止使用写实摄影外观。",
+          "score": null,
+          "chunk_id": "constraint:3bc8fb9d47214f5493b0c835999ce8b1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "woodcut"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H03",
+      "category": "新风格意译",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "style"
+      ],
+      "query": "想让画面像手工印出来的，有刻痕、两层油墨稍微对不齐，应采用什么方法？",
+      "latency_ms": 124.48412500089034,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "be672783bd31445a9b64ae1a3ab8175b": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "be672783bd31445a9b64ae1a3ab8175b",
+          "document_id": "cdb065d8e884465cadc027300d0d6ace",
+          "version_id": "883d5c96eb7c41ce834f55a955e8f177",
+          "version_number": 1,
+          "title": "木刻版画方案",
+          "category": "style",
+          "is_constraint": false,
+          "text": "画面使用木刻版画的黑色刀痕和粗糙印版边缘，以土黄和深蓝两次套色。允许少量颜色错位，阴影通过密集排线表现。表面保留纸纤维与印墨不均，避免摄影级的光滑质感。",
+          "score": 2.5469045639038086,
+          "chunk_id": "eb99e4c7e1e4483aae26b80127b1b4b1",
+          "vector_score": 0.6841551091646688,
+          "rerank_score": 2.5469045639038086,
+          "pre_rerank_score": 0.6841551091646688
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "be672783bd31445a9b64ae1a3ab8175b",
+          "document_id": "f16d1a54e04f485e81fbe53ca0ff8b06",
+          "version_id": "3bc8fb9d47214f5493b0c835999ce8b1",
+          "version_number": 1,
+          "title": "木刻画面固定约束",
+          "category": "style",
+          "is_constraint": true,
+          "text": "画面采用木刻版画，禁止使用写实摄影外观。",
+          "score": null,
+          "chunk_id": "constraint:3bc8fb9d47214f5493b0c835999ce8b1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "woodcut"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from style must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H04",
+      "category": "新品牌意译",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "介绍这款茶杯时，能写哪些有依据的材质和搭配部件？",
+      "latency_ms": 134.6835420044954,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "54abdf4a71e641049e51c7ceabb4a2db": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "72fba99d99ad44ea98652c737648da0b",
+          "version_id": "8a2adbb787c6492abc20ee3828016046",
+          "version_number": 1,
+          "title": "青禾杯产品说明",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "青禾杯采用耐热玻璃，容量为三百毫升，杯壁透明，适合观察茶汤颜色。产品附带可拆卸的软木杯垫。清洗推荐温水手洗，不放进洗碗机，不承诺长时间保温。",
+          "score": -1.1385170221328735,
+          "chunk_id": "35e0aab71def43ebb38ddf3d828a8376",
+          "vector_score": 0.5847925840654234,
+          "rerank_score": -1.1385170221328735,
+          "pre_rerank_score": 0.5847925840654234
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "3de362ae2d114853a6160e958937a97c",
+          "version_id": "913184401b104aeb8a53f143e4c01fd1",
+          "version_number": 1,
+          "title": "青禾杯品牌固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "青禾杯是玻璃杯，不得夸大成能够治疗疾病或全天保温的产品。",
+          "score": null,
+          "chunk_id": "constraint:913184401b104aeb8a53f143e4c01fd1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H04",
+      "category": "新品牌意译",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "介绍这款茶杯时，能写哪些有依据的材质和搭配部件？",
+      "latency_ms": 109.93362499721115,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "54abdf4a71e641049e51c7ceabb4a2db": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "72fba99d99ad44ea98652c737648da0b",
+          "version_id": "8a2adbb787c6492abc20ee3828016046",
+          "version_number": 1,
+          "title": "青禾杯产品说明",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "青禾杯采用耐热玻璃，容量为三百毫升，杯壁透明，适合观察茶汤颜色。产品附带可拆卸的软木杯垫。清洗推荐温水手洗，不放进洗碗机，不承诺长时间保温。",
+          "score": -1.1385170221328735,
+          "chunk_id": "35e0aab71def43ebb38ddf3d828a8376",
+          "vector_score": 0.5847925840654234,
+          "rerank_score": -1.1385170221328735,
+          "pre_rerank_score": 0.5847925840654234
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "3de362ae2d114853a6160e958937a97c",
+          "version_id": "913184401b104aeb8a53f143e4c01fd1",
+          "version_number": 1,
+          "title": "青禾杯品牌固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "青禾杯是玻璃杯，不得夸大成能够治疗疾病或全天保温的产品。",
+          "score": null,
+          "chunk_id": "constraint:913184401b104aeb8a53f143e4c01fd1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H05",
+      "category": "新资料跨库",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world"
+      ],
+      "query": "照相馆的陆遥遇到红月时，拍摄安排需要考虑哪些人物弱点和小镇规则？",
+      "latency_ms": 131.31854200037196,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null,
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K3",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 1.240107774734497,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.6567040771315145,
+          "rerank_score": 1.240107774734497,
+          "pre_rerank_score": 0.6567040771315145
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": -1.3496308326721191,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.5522336996531101,
+          "rerank_score": -1.3496308326721191,
+          "pre_rerank_score": 0.5522336996531101
+        },
+        {
+          "citation_id": "K5",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "c937dc3f5f8f4164bc2c2f3c08a20430",
+          "version_id": "aff48557c9a94346b055dfc8237e45ad",
+          "version_number": 1,
+          "title": "镜海盐池",
+          "category": "world",
+          "is_constraint": false,
+          "text": "盐池每周一开放采样，由检验员记录盐水浓度。工人使用木质栈道进出盐池，禁止穿越未标示深度的水面。小镇照相馆位于栈道入口的白墙屋内。",
+          "score": -3.425218343734741,
+          "chunk_id": "5254e948040c44e0a805efc5c18944a2",
+          "vector_score": 0.44958026920081423,
+          "rerank_score": -3.425218343734741,
+          "pre_rerank_score": 0.44958026920081423
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao",
+        "redmoon",
+        "salt"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 2,
+      "constraints_covered": 2,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H05",
+      "category": "新资料跨库",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters",
+        "world"
+      ],
+      "query": "照相馆的陆遥遇到红月时，拍摄安排需要考虑哪些人物弱点和小镇规则？",
+      "latency_ms": 111.29541700211121,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null,
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K3",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 1.240107774734497,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.6567040771315145,
+          "rerank_score": 1.240107774734497,
+          "pre_rerank_score": 0.6567040771315145
+        },
+        {
+          "citation_id": "K4",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": -1.3496308326721191,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.5522336996531101,
+          "rerank_score": -1.3496308326721191,
+          "pre_rerank_score": 0.5522336996531101
+        },
+        {
+          "citation_id": "K5",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "c937dc3f5f8f4164bc2c2f3c08a20430",
+          "version_id": "aff48557c9a94346b055dfc8237e45ad",
+          "version_number": 1,
+          "title": "镜海盐池",
+          "category": "world",
+          "is_constraint": false,
+          "text": "盐池每周一开放采样，由检验员记录盐水浓度。工人使用木质栈道进出盐池，禁止穿越未标示深度的水面。小镇照相馆位于栈道入口的白墙屋内。",
+          "score": -3.425218343734741,
+          "chunk_id": "5254e948040c44e0a805efc5c18944a2",
+          "vector_score": 0.44958026920081423,
+          "rerank_score": -3.425218343734741,
+          "pre_rerank_score": 0.44958026920081423
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        },
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao",
+        "redmoon",
+        "salt"
+      ],
+      "recall_at_5": 1.0,
+      "constraints_expected": 2,
+      "constraints_covered": 2,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "all labeled evidence documents retrieved in ordinary Top-5"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H06",
+      "category": "新固定约束",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "写一场红月夜大家在街上热闹游玩的场景",
+      "latency_ms": 56.24875000648899,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": -0.5412636995315552,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.537563787487362,
+          "rerank_score": -0.5412636995315552,
+          "pre_rerank_score": 0.537563787487362
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "redmoon"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H06",
+      "category": "新固定约束",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "world"
+      ],
+      "query": "写一场红月夜大家在街上热闹游玩的场景",
+      "latency_ms": 61.521625000750646,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "020ca3c5330f46d7ac62824b50f5e9b1": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "5482cd759c784eb2a9e3166100817795",
+          "version_id": "b3a6138fbbf44144b8e51015693310a8",
+          "version_number": 1,
+          "title": "镜海红月规则",
+          "category": "world",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。",
+          "score": -0.5412636995315552,
+          "chunk_id": "7c6902c03e1247f3820974f8b3d80c38",
+          "vector_score": 0.537563787487362,
+          "rerank_score": -0.5412636995315552,
+          "pre_rerank_score": 0.537563787487362
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "020ca3c5330f46d7ac62824b50f5e9b1",
+          "document_id": "a6f0639257914a9484448d65509e6767",
+          "version_id": "834b8e5f7687409aaad42161edcc4da0",
+          "version_number": 1,
+          "title": "镜海小镇固定约束",
+          "category": "world",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。",
+          "score": null,
+          "chunk_id": "constraint:834b8e5f7687409aaad42161edcc4da0"
+        }
+      ],
+      "retrieved_document_labels": [
+        "redmoon"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from world must be preserved verbatim"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "H07",
+      "category": "同域无答案",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "照相馆的陆遥，他母亲的姓名是什么？",
+      "latency_ms": 64.37379199633142,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 0.9794490337371826,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.6508361835529843,
+          "rerank_score": 0.9794490337371826,
+          "pre_rerank_score": 0.6508361835529843
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": false,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "H07",
+      "category": "同域无答案",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "characters"
+      ],
+      "query": "照相馆的陆遥，他母亲的姓名是什么？",
+      "latency_ms": 83.3597499949974,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "e187e573390d4f0d853e8296254e1974": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "527e032b0b804506a540d6b5106bd748",
+          "version_id": "95cc324d43f449d3a75e59b4bea7c955",
+          "version_number": 1,
+          "title": "陆遥人物档案",
+          "category": "character",
+          "is_constraint": false,
+          "text": "陆遥三十一岁，是在镜海镇经营照相馆的摄影师。他左眼视力较弱，拍照时喜欢用右眼看取景器。童年曾被雷声惊醒，因此他会躲避突然轰鸣的环境。他不喜欢争吵，遇到冲突常先保持沉默。",
+          "score": 0.9794490337371826,
+          "chunk_id": "df57bda91fef491d90f931b9ff4c048b",
+          "vector_score": 0.6508361835529843,
+          "rerank_score": 0.9794490337371826,
+          "pre_rerank_score": 0.6508361835529843
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "e187e573390d4f0d853e8296254e1974",
+          "document_id": "f94e44c0dad440b78d3f5feaaefee2b7",
+          "version_id": "5cc08e9574934b4394612395ed02740c",
+          "version_number": 1,
+          "title": "镜海人物固定约束",
+          "category": "character",
+          "is_constraint": true,
+          "text": "陆遥始终是三十一岁的成年人，不能改成未成年人。",
+          "score": null,
+          "chunk_id": "constraint:5cc08e9574934b4394612395ed02740c"
+        }
+      ],
+      "retrieved_document_labels": [
+        "luyao"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": false,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from characters must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "H08",
+      "category": "同域无答案",
+      "phase": "initial",
+      "repetition": 1,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+      "latency_ms": 70.15625000349246,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "54abdf4a71e641049e51c7ceabb4a2db": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "72fba99d99ad44ea98652c737648da0b",
+          "version_id": "8a2adbb787c6492abc20ee3828016046",
+          "version_number": 1,
+          "title": "青禾杯产品说明",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "青禾杯采用耐热玻璃，容量为三百毫升，杯壁透明，适合观察茶汤颜色。产品附带可拆卸的软木杯垫。清洗推荐温水手洗，不放进洗碗机，不承诺长时间保温。",
+          "score": -1.5636934041976929,
+          "chunk_id": "35e0aab71def43ebb38ddf3d828a8376",
+          "vector_score": 0.7551735047528685,
+          "rerank_score": -1.5636934041976929,
+          "pre_rerank_score": 0.7551735047528685
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "3de362ae2d114853a6160e958937a97c",
+          "version_id": "913184401b104aeb8a53f143e4c01fd1",
+          "version_number": 1,
+          "title": "青禾杯品牌固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "青禾杯是玻璃杯，不得夸大成能够治疗疾病或全天保温的产品。",
+          "score": null,
+          "chunk_id": "constraint:913184401b104aeb8a53f143e4c01fd1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": false,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case_id": "H08",
+      "category": "同域无答案",
+      "phase": "initial",
+      "repetition": 2,
+      "owner_id": "holdout-owner-a",
+      "selected_libraries": [
+        "brand"
+      ],
+      "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+      "latency_ms": 61.757417002809234,
+      "error": null,
+      "retrieval_status": "matched",
+      "warnings": [],
+      "library_versions": {
+        "54abdf4a71e641049e51c7ceabb4a2db": null
+      },
+      "hits": [
+        {
+          "citation_id": "K2",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "72fba99d99ad44ea98652c737648da0b",
+          "version_id": "8a2adbb787c6492abc20ee3828016046",
+          "version_number": 1,
+          "title": "青禾杯产品说明",
+          "category": "brand",
+          "is_constraint": false,
+          "text": "青禾杯采用耐热玻璃，容量为三百毫升，杯壁透明，适合观察茶汤颜色。产品附带可拆卸的软木杯垫。清洗推荐温水手洗，不放进洗碗机，不承诺长时间保温。",
+          "score": -1.5636934041976929,
+          "chunk_id": "35e0aab71def43ebb38ddf3d828a8376",
+          "vector_score": 0.7551735047528685,
+          "rerank_score": -1.5636934041976929,
+          "pre_rerank_score": 0.7551735047528685
+        }
+      ],
+      "constraints": [
+        {
+          "citation_id": "K1",
+          "library_id": "54abdf4a71e641049e51c7ceabb4a2db",
+          "document_id": "3de362ae2d114853a6160e958937a97c",
+          "version_id": "913184401b104aeb8a53f143e4c01fd1",
+          "version_number": 1,
+          "title": "青禾杯品牌固定约束",
+          "category": "brand",
+          "is_constraint": true,
+          "text": "青禾杯是玻璃杯，不得夸大成能够治疗疾病或全天保温的产品。",
+          "score": null,
+          "chunk_id": "constraint:913184401b104aeb8a53f143e4c01fd1"
+        }
+      ],
+      "retrieved_document_labels": [
+        "qinghe"
+      ],
+      "recall_at_5": null,
+      "constraints_expected": 1,
+      "constraints_covered": 1,
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "retrieval must finish without unexpected exception"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "all sources must belong to selected authorized libraries"
+        },
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "source provenance fields are complete"
+        },
+        {
+          "rule": "VER01",
+          "passed": true,
+          "detail": "all source versions must be active at query time"
+        },
+        {
+          "rule": "SEC01",
+          "passed": true,
+          "detail": "forbidden or deleted documents must not appear"
+        },
+        {
+          "rule": "EMP01",
+          "passed": false,
+          "detail": "ordinary hit list must be empty; constraints are not answers"
+        },
+        {
+          "rule": "CON01",
+          "passed": true,
+          "detail": "fixed constraint from brand must be preserved verbatim"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "update_and_delete_ms": 0.00016600097296759486,
+  "summary": {
+    "case_count": 8,
+    "query_runs": 16,
+    "expected_query_runs": 16,
+    "data_complete": true,
+    "recall_cases_per_repetition": 5,
+    "macro_recall_at_5": 1.0,
+    "constraint_coverage": 1.0,
+    "critical_case_pass_rate": 0.3333333333333333,
+    "failed_case_ids": [
+      "H07",
+      "H08"
+    ],
+    "noncompensable_failures": [
+      {
+        "case_id": "H07",
+        "repetition": 1,
+        "rule": "EMP01",
+        "detail": "ordinary hit list must be empty; constraints are not answers"
+      },
+      {
+        "case_id": "H07",
+        "repetition": 2,
+        "rule": "EMP01",
+        "detail": "ordinary hit list must be empty; constraints are not answers"
+      },
+      {
+        "case_id": "H08",
+        "repetition": 1,
+        "rule": "EMP01",
+        "detail": "ordinary hit list must be empty; constraints are not answers"
+      },
+      {
+        "case_id": "H08",
+        "repetition": 2,
+        "rule": "EMP01",
+        "detail": "ordinary hit list must be empty; constraints are not answers"
+      }
+    ],
+    "latency_ms": {
+      "p50": 109.44924999785144,
+      "p95": 153.56787500059
+    },
+    "decision": "LOCAL_ENGINEERING_FAIL",
+    "paid_model_calls": 0,
+    "generation_effect_accepted": false,
+    "per_case_pass": {
+      "H01": true,
+      "H02": true,
+      "H03": true,
+      "H04": true,
+      "H05": true,
+      "H06": true,
+      "H07": false,
+      "H08": false
+    }
+  },
+  "finished_at_utc": "2026-10-06T04:48:46.180753+00:00",
+  "rerank_meta": {
+    "model": "BAAI/bge-reranker-base",
+    "cache": "/tmp/rag_hybrid_rerank_models",
+    "load_warmup_ms": 1075.5515829951037,
+    "cache_bytes": 1134633572,
+    "cache_gb": 1.057,
+    "note": "Primary Chinese reranker; threshold frozen from DEV sweep (thr=-5.0 cleared R12 with recall=1/critical=1)",
+    "chinese_quality_supported": true,
+    "frozen_threshold": -5.0,
+    "dev_tune_source": "partial sweep before disconnect; thr=-5.0 and thr=-5.2653 both perfect on DEV"
+  },
+  "holdout_note": "Params frozen from DEV; holdout measured once; no retuning."
+}

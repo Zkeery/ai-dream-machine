@@ -37,8 +37,9 @@ CREATE TABLE IF NOT EXISTS sessions (
     session_id TEXT PRIMARY KEY,
     owner_id TEXT,
     idea TEXT NOT NULL,
+    project_type TEXT NOT NULL DEFAULT 'story',
     style TEXT NOT NULL DEFAULT 'realistic',
-    episodes INTEGER NOT NULL DEFAULT 4,
+    episodes INTEGER NOT NULL DEFAULT 1,
     video_ratio TEXT NOT NULL DEFAULT '16:9',
     resolution TEXT NOT NULL DEFAULT '720P',
     expand_idea INTEGER NOT NULL DEFAULT 0,
@@ -61,6 +62,57 @@ CREATE TABLE IF NOT EXISTS tasks (
     error TEXT,
     created_at REAL NOT NULL,
     updated_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS session_deletions (
+    session_id TEXT PRIMARY KEY,
+    owner_id TEXT NOT NULL,
+    deleted_at REAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS executions (
+    execution_id TEXT PRIMARY KEY,
+    entity_type TEXT NOT NULL,
+    entity_id TEXT NOT NULL,
+    owner_id TEXT,
+    stage TEXT,
+    operation TEXT NOT NULL,
+    request_key TEXT,
+    input_hash TEXT NOT NULL,
+    status TEXT NOT NULL,
+    error TEXT,
+    worker_pid INTEGER NOT NULL,
+    created_at REAL NOT NULL,
+    updated_at REAL NOT NULL
+);
+CREATE UNIQUE INDEX IF NOT EXISTS executions_one_active
+    ON executions(entity_type, entity_id) WHERE status IN ('pending', 'running');
+CREATE UNIQUE INDEX IF NOT EXISTS executions_request_key
+    ON executions(owner_id, request_key) WHERE entity_type='task' AND request_key IS NOT NULL;
+CREATE INDEX IF NOT EXISTS executions_entity
+    ON executions(entity_type, entity_id, created_at);
+CREATE TABLE IF NOT EXISTS execution_events (
+    event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    execution_id TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    created_at REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS execution_events_execution
+    ON execution_events(execution_id, event_id);
+CREATE TABLE IF NOT EXISTS task_requests (
+    owner_id TEXT NOT NULL,
+    request_key TEXT NOT NULL,
+    input_hash TEXT NOT NULL,
+    task_id TEXT NOT NULL,
+    execution_id TEXT NOT NULL,
+    created_at REAL NOT NULL,
+    PRIMARY KEY(owner_id, request_key)
+);
+CREATE TABLE IF NOT EXISTS session_requests (
+    session_id TEXT NOT NULL,
+    request_key TEXT NOT NULL,
+    input_hash TEXT NOT NULL,
+    execution_id TEXT NOT NULL,
+    created_at REAL NOT NULL,
+    PRIMARY KEY(session_id, request_key)
 );
 """
 
@@ -89,3 +141,13 @@ def init_db() -> None:
     with connect() as conn:
         conn.execute("PRAGMA journal_mode=WAL")
         conn.executescript(SCHEMA)
+        # Existing SQLite projects keep all rows/files. Add only the new metadata.
+        columns = {row[1] for row in conn.execute("PRAGMA table_info(sessions)")}
+        if "project_type" not in columns:
+            conn.execute("ALTER TABLE sessions ADD COLUMN project_type TEXT NOT NULL DEFAULT 'story'")
+        for name, default in (("stale_stages", "[]"), ("artifact_versions", "{}"),
+                              ("selected_versions", "{}"), ("execution_inputs", "[]"),
+                              ("knowledge_library_ids", "[]"), ("model_selection", "{}"),
+                              ("orchestration_mode", "workflow"), ("agent_runs", "{}")):
+            if name not in columns:
+                conn.execute(f"ALTER TABLE sessions ADD COLUMN {name} TEXT NOT NULL DEFAULT '{default}'")

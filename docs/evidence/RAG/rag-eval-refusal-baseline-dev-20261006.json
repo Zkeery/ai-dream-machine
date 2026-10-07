@@ -1,0 +1,715 @@
+{
+  "run_id": "37ee5644-d518-4dde-b028-5edc81e85b4a",
+  "suite": "dev-baseline-refusal",
+  "started_at_utc": "2026-10-06T05:20:14.018157+00:00",
+  "hybrid_enabled": false,
+  "adequacy_enabled": true,
+  "fixture_eval_version": "rag-creation-zh-v1",
+  "cases": [
+    {
+      "case_id": "R01",
+      "query": "女主为什么不敢靠近水很深的地方？",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": 0.0,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "recall=0.0 labels=[]"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": false,
+          "detail": "false refusal reason=None"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": false,
+      "latency_ms": null,
+      "wall_latency_ms": 6.690541005809791
+    },
+    {
+      "case_id": "R02",
+      "query": "义肢坏了，阿澄应该找哪位戴眼镜的慢性子修理匠？",
+      "status": "matched",
+      "hit_labels": [
+        "mentor",
+        "hero"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料 K2 明确记载了老舟的特征（戴圆形眼镜、说话缓慢即慢性子）以及阿澄在机械义肢故障时会向他求助的事实，完全覆盖了问题所需的具体人物身份。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 5383.788375002041,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['mentor', 'hero']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料 K2 明确记载了老舟的特征（戴圆形眼镜、说话缓慢即慢性子）以及阿澄在机械义肢故障时会向他求助的事实，完全覆盖了问题所需的具体人物身份。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 5383.788375002041,
+      "wall_latency_ms": 5396.44454199879
+    },
+    {
+      "case_id": "R03",
+      "query": "下午街巷进水时，夜市摊位怎样适应水位？",
+      "status": "matched",
+      "hit_labels": [
+        "city",
+        "lighthouse"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料明确说明夜市摊位搭建在升降木平台上，能够随潮位缓慢抬升，直接回答了摊位如何适应水位的问题。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 5148.498208000092,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['city', 'lighthouse']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料明确说明夜市摊位搭建在升降木平台上，能够随潮位缓慢抬升，直接回答了摊位如何适应水位的问题。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 5148.498208000092,
+      "wall_latency_ms": 5152.402584004449
+    },
+    {
+      "case_id": "R04",
+      "query": "这段故事最重要的任务是什么，信件最终要送去哪里？",
+      "status": "matched",
+      "hit_labels": [
+        "mission"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料明确指出主线任务是‘找到信的真正收件人’，并说明信件需要送到‘旧港灯塔’，虽无具体地址但目的地已明确，满足问题对任务和送达地点的询问。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 4948.191666000639,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['mission']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料明确指出主线任务是‘找到信的真正收件人’，并说明信件需要送到‘旧港灯塔’，虽无具体地址但目的地已明确，满足问题对任务和送达地点的询问。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 4948.191666000639,
+      "wall_latency_ms": 4952.7333340010955
+    },
+    {
+      "case_id": "R05",
+      "query": "我想要有画纸纤维和铅笔颗粒的二维画面，应该遵循什么风格？",
+      "status": "matched",
+      "hit_labels": [
+        "paper"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料明确描述了包含画纸纤维（粗纤维纸纹）和铅笔颗粒（石墨线条、细密铅笔颗粒）的视觉风格特征，并给出了具体的构成元素和避免事项，可直接作为该风格设定的参考依据。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 7089.3877080015955,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['paper']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料明确描述了包含画纸纤维（粗纤维纸纹）和铅笔颗粒（石墨线条、细密铅笔颗粒）的视觉风格特征，并给出了具体的构成元素和避免事项，可直接作为该风格设定的参考依据。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 7089.3877080015955,
+      "wall_latency_ms": 7098.984666001343
+    },
+    {
+      "case_id": "R06",
+      "query": "给日记本写一段不过度煽动购买、语气平和的介绍",
+      "status": "matched",
+      "hit_labels": [
+        "tone",
+        "product"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料提供了明确的品牌语气规范（克制、温和、避免焦虑营销）以及产品具体事实（纸质、再生纸封面、空白内页、无医疗功能），这些设定足以支撑创作一段语气平和且不过度煽动的介绍文案。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 6783.838583003671,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['tone', 'product']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料提供了明确的品牌语气规范（克制、温和、避免焦虑营销）以及产品具体事实（纸质、再生纸封面、空白内页、无医疗功能），这些设定足以支撑创作一段语气平和且不过度煽动的介绍文案。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 6783.838583003671,
+      "wall_latency_ms": 6796.6074159994605
+    },
+    {
+      "case_id": "R07",
+      "query": "阿澄怕深水，但下午城里涨潮；她投递时要兼顾哪些人物和城市设定？",
+      "status": "matched",
+      "hit_labels": [
+        "hero",
+        "city",
+        "lighthouse"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料已包含回答所需的具体事实：人物方面明确了阿澄的身份（信件投递员）、年龄（二十七岁）、特征（机械义肢、灰绿色雨衣）及核心冲突（怕深水但需工作）；城市设定方面明确了涨潮时间（每天下午四点）、后果（低处巷道被浅水覆盖）及交通方式（步行、渡船、有轨电车）。这些信息足以支撑对投递时需兼顾的人物状态和城市环境的描述。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 7454.5957910013385,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['hero', 'city', 'lighthouse']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料已包含回答所需的具体事实：人物方面明确了阿澄的身份（信件投递员）、年龄（二十七岁）、特征（机械义肢、灰绿色雨衣）及核心冲突（怕深水但需工作）；城市设定方面明确了涨潮时间（每天下午四点）、后果（低处巷道被浅水覆盖）及交通方式（步行、渡船、有轨电车）。这些信息足以支撑对投递时需兼顾的人物状态和城市环境的描述。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 7454.5957910013385,
+      "wall_latency_ms": 7469.969666999532
+    },
+    {
+      "case_id": "R08",
+      "query": "邮差能不能私自看收信人的信？发现丢失邮件后该做什么？",
+      "status": "matched",
+      "hit_labels": [
+        "mail"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料明确回答了邮差无权拆信（只能由收件人打开），并规定了发现遗失信件后的具体处理流程（涨潮前送到灯塔失物站登记），覆盖了用户查询的所有核心事实。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 6424.191582998901,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['mail']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料明确回答了邮差无权拆信（只能由收件人打开），并规定了发现遗失信件后的具体处理流程（涨潮前送到灯塔失物站登记），覆盖了用户查询的所有核心事实。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 6424.191582998901,
+      "wall_latency_ms": 6434.478791998117
+    },
+    {
+      "case_id": "R09",
+      "query": "能不能在第一幕让观众知道修钟表的老人就是失踪船长？",
+      "status": "matched",
+      "hit_labels": [
+        "reveal",
+        "mission"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料明确约束了身份揭晓的时机，指出老舟（修钟表老人）的身份必须在第三幕灯塔停电后才揭示，且明确规定‘这一揭晓不能提前到开场’。这直接回答了用户关于能否在第一幕让观众知道该身份的疑问（即不能），提供了充分的创作规则依据。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 8633.598291999078,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['reveal', 'mission']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料明确约束了身份揭晓的时机，指出老舟（修钟表老人）的身份必须在第三幕灯塔停电后才揭示，且明确规定‘这一揭晓不能提前到开场’。这直接回答了用户关于能否在第一幕让观众知道该身份的疑问（即不能），提供了充分的创作规则依据。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 8633.598291999078,
+      "wall_latency_ms": 8645.173207994958
+    },
+    {
+      "case_id": "R10",
+      "query": "写一场阿澄乘坐出租汽车穿城的动作戏",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "non-scored structural case"
+        }
+      ],
+      "passed": true,
+      "latency_ms": null,
+      "wall_latency_ms": 10.020708999945782
+    },
+    {
+      "case_id": "R11",
+      "query": "写一句保证拾光能治好失眠的广告语",
+      "status": "insufficient",
+      "hit_labels": [],
+      "rejected_labels": [
+        "product",
+        "tone"
+      ],
+      "recall_at_5": 0.0,
+      "adequacy": {
+        "sufficient": false,
+        "reason": "资料明确指出拾光是纸质日记本，没有医疗功能，且约束规定不能宣称能治疗失眠。用户要求的广告语核心事实（保证治好失眠）与资料中的事实相悖，资料无法支持该创作需求，反而提供了否定该事实的依据。",
+        "unsupported_facts": [
+          "拾光能治好失眠"
+        ],
+        "degraded": false,
+        "latency_ms": 7733.970291003061,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [
+        "资料未覆盖：拾光能治好失眠。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": false,
+          "detail": "recall=0.0 labels=[]"
+        },
+        {
+          "rule": "REF05",
+          "passed": false,
+          "detail": "answerable case status=insufficient"
+        },
+        {
+          "rule": "REF06",
+          "passed": false,
+          "detail": "false refusal reason=资料明确指出拾光是纸质日记本，没有医疗功能，且约束规定不能宣称能治疗失眠。用户要求的广告语核心事实（保证治好失眠）与资料中的事实相悖，资料无法支持该创作需求，反而提供了否定该事实的依据。"
+        },
+        {
+          "rule": "REF07",
+          "passed": false,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": false,
+      "latency_ms": 7733.970291003061,
+      "wall_latency_ms": 7740.286583000852
+    },
+    {
+      "case_id": "R12",
+      "query": "木星大红斑中心的精确气压是多少帕？",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": false,
+          "detail": "status=matched"
+        },
+        {
+          "rule": "REF04",
+          "passed": false,
+          "detail": "no-answer must refuse or have no retrieval"
+        }
+      ],
+      "passed": false,
+      "latency_ms": null,
+      "wall_latency_ms": 10.273583000525832
+    },
+    {
+      "case_id": "R15",
+      "query": "阿澄害怕深水时怎样送信？",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "non-scored structural case"
+        }
+      ],
+      "passed": true,
+      "latency_ms": null,
+      "wall_latency_ms": 5.844749997777399
+    },
+    {
+      "case_id": "R17",
+      "query": "阿澄现在几岁，机械手臂是什么颜色？",
+      "status": "matched",
+      "hit_labels": [
+        "hero",
+        "mentor"
+      ],
+      "rejected_labels": [],
+      "recall_at_5": 1.0,
+      "adequacy": {
+        "sufficient": true,
+        "reason": "资料片段 K2 明确记载了阿澄的年龄为二十七岁，以及其机械义肢（手臂）的颜色为银色，完全覆盖了用户查询所需的具体事实。",
+        "unsupported_facts": [],
+        "degraded": false,
+        "latency_ms": 6503.735999998753,
+        "model": "qwen3.5-plus"
+      },
+      "warnings": [],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "RET01",
+          "passed": true,
+          "detail": "recall=1.0 labels=['hero', 'mentor']"
+        },
+        {
+          "rule": "REF05",
+          "passed": true,
+          "detail": "answerable case status=matched"
+        },
+        {
+          "rule": "REF06",
+          "passed": true,
+          "detail": "false refusal reason=资料片段 K2 明确记载了阿澄的年龄为二十七岁，以及其机械义肢（手臂）的颜色为银色，完全覆盖了用户查询所需的具体事实。"
+        },
+        {
+          "rule": "REF07",
+          "passed": true,
+          "detail": "answerable case must not reject gold sources"
+        }
+      ],
+      "passed": true,
+      "latency_ms": 6503.735999998753,
+      "wall_latency_ms": 6509.448082993913
+    },
+    {
+      "case_id": "R18",
+      "query": "乌木钟楼密室入口暗号鹅卵石",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "DATA01",
+          "passed": true,
+          "detail": "non-scored structural case"
+        }
+      ],
+      "passed": true,
+      "latency_ms": null,
+      "wall_latency_ms": 9.907375002512708
+    }
+  ],
+  "paid_llm_calls": 20,
+  "summary": {
+    "case_count": 15,
+    "passed_count": 12,
+    "failed_case_ids": [
+      "R01",
+      "R11",
+      "R12"
+    ],
+    "answerable_count": 11,
+    "false_refusal_count": 2,
+    "false_refusal_rate": 0.18181818181818182,
+    "noanswer_count": 1,
+    "correct_refusal_count": 0,
+    "correct_refusal_rate": 0.0,
+    "flag_H07": null,
+    "flag_H08": null,
+    "flag_R12": {
+      "case_id": "R12",
+      "query": "木星大红斑中心的精确气压是多少帕？",
+      "status": "matched",
+      "hit_labels": [],
+      "rejected_labels": [],
+      "recall_at_5": null,
+      "adequacy": {},
+      "warnings": [
+        "本次仅载入固定约束，未命中其他相关资料"
+      ],
+      "retrieval_mode": "vector",
+      "checks": [
+        {
+          "rule": "REF01",
+          "passed": true,
+          "detail": "ordinary injectable hits must be empty for no-answer cases"
+        },
+        {
+          "rule": "REF02",
+          "passed": false,
+          "detail": "status=matched"
+        },
+        {
+          "rule": "REF04",
+          "passed": false,
+          "detail": "no-answer must refuse or have no retrieval"
+        }
+      ],
+      "passed": false,
+      "latency_ms": null,
+      "wall_latency_ms": 10.273583000525832
+    },
+    "adequacy_latency_ms": {
+      "p50": 6643.787291501212,
+      "mean": 6610.379649700917,
+      "count": 10
+    },
+    "paid_llm_calls": 20
+  },
+  "finished_at_utc": "2026-10-06T05:21:21.110965+00:00",
+  "model_binding": {
+    "cache": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/data/knowledge/models",
+    "files": [
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/config.json",
+        "bytes": 739,
+        "sha256": "9088751d39abbf86ec3d19ffca92ad62ad19075f7e59712e6c71217fa125d1d3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/model_optimized.onnx",
+        "bytes": 94781076,
+        "sha256": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/special_tokens_map.json",
+        "bytes": 125,
+        "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer.json",
+        "bytes": 439125,
+        "sha256": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26"
+      },
+      {
+        "path": "models--Qdrant--bge-small-zh-v1.5/snapshots/46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59/tokenizer_config.json",
+        "bytes": 367,
+        "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+      }
+    ],
+    "snapshot_revisions": [
+      "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59"
+    ],
+    "file_manifest_sha256": "1b0a4ee90886ab63ff7098435e2313915664f823b80308f4951cc4cf2b54f322"
+  },
+  "dependencies": {
+    "fastembed": "0.7.4",
+    "qdrant-client": "1.19.1",
+    "onnxruntime": "1.30.0",
+    "numpy": "2.5.3",
+    "huggingface-hub": "1.33.0",
+    "tokenizers": "0.23.2",
+    "pydantic": "2.13.5",
+    "pypdf": "6.19.0",
+    "python-docx": null
+  }
+}

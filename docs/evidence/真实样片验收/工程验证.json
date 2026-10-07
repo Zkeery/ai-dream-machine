@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-04",
+  "scope": "任务恢复、并发与费用控制、页面集成",
+  "backend": {"passed": 357, "failed": 0, "note": "最终包含明确拒绝续接、场景提示词分离及分镜约束修复的完整回归；生产文件哈希校验未放松。"},
+  "frontend": {"passed": 69, "failed": 0, "typecheck": "PASS", "lint": "PASS", "production_build": "PASS"},
+  "runtime": {"frontend": "http://127.0.0.1:3030", "backend": "http://127.0.0.1:8030", "switched_after_active_executions": 0},
+  "browser": {"account_usage_status": 200, "platform_usage_admin_status": 200, "account_monthly_limit_cny": 100, "platform_monthly_limit_cny": 500, "account_concurrency": 1, "global_concurrency": 2, "provider_reported_cny": null, "existing_sessions_count": 4, "screenshot": "usage-desktop.png"},
+  "boundaries": ["工程测试通过不等于真实成片质量通过。", "本地费用表从本次启用开始记录，不包含历史账单。", "没有将第三方账户余额当作本次样片实付费用。", "生产配置仍为本地单 worker。"]
+}

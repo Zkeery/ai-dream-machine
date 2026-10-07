@@ -25,7 +25,7 @@ export default function LoginPage() {
     setError("");
     try {
       await login(c);
-      router.replace("/");
+      router.replace(new URLSearchParams(window.location.search).get("next") === "/user" ? "/user" : "/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "登录失败");
     } finally {

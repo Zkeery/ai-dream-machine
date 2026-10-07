@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI造梦机 · 整体链路自查</title>
+<style>
+:root{--fact:#0f766e;--infer:#4f46e5;--unknown:#6b7280;--risk:#c2410c;--suggest:#b45309;--text:#111827;--muted:#4b5563;--line:#e5e7eb;--bg:#f8fafc;--card:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}nav{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 18px;border-right:1px solid var(--line);background:var(--card)}nav strong{display:block;margin-bottom:20px}nav a{display:block;color:var(--muted);text-decoration:none;padding:7px 8px;font-size:13px;border-radius:6px}nav a:hover,nav a:focus,nav a[aria-current="true"]{color:var(--fact);background:var(--bg)}main{padding:34px 32px 80px;max-width:1360px;min-width:0}h1,h2,h3{line-height:1.35}h1{font-size:32px;margin:0 0 12px}h2{font-size:24px;margin:44px 0 16px;padding-top:12px}h3{font-size:19px;margin:25px 0 8px}p{margin:12px 0}.lede,.footnote{color:var(--muted)}.summary,.legend,.card,.callout,.status{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}.summary{border-top:5px solid var(--fact)}.callout{border-left:5px solid var(--fact)}.status{border-left:4px solid var(--unknown);color:var(--unknown);font-size:14px}.legend{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px}.legend span{display:inline-flex;align-items:center;gap:6px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.fact{color:var(--fact)}.infer{color:var(--infer)}.unknown{color:var(--unknown)}.risk{color:var(--risk)}.suggest{color:var(--suggest)}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.metrics div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}.metrics b{display:block;font-size:27px;color:var(--fact)}.metrics span{font-size:13px;color:var(--muted)}.scroll{overflow-x:auto;max-width:100%;border-radius:8px}.scroll table{min-width:690px}table{width:100%;border-collapse:collapse;background:var(--card)}th,td{border:1px solid var(--line);padding:11px 12px;text-align:left;vertical-align:top;overflow-wrap:anywhere;font-size:14px}th{background:#f1f5f9;font-size:13px}#evidence-table{min-width:1050px}#evidence-table td:first-child{min-width:52px}#evidence-table td:nth-child(4){min-width:250px}.source{font-size:12px;min-width:190px}.filters{display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-size:14px;margin:14px 0}.filters label{display:flex;align-items:center;gap:7px}button,select{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:8px 10px;color:var(--text);font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--fact);outline-offset:3px}.eref{color:var(--fact);font-size:12px;white-space:nowrap;text-decoration:none;border-bottom:1px dotted currentColor}code{font-size:13px;overflow-wrap:anywhere}.readiness dl{display:grid;grid-template-columns:70px minmax(0,1fr);gap:7px 12px;font-size:14px;margin-bottom:0}.readiness dt{color:var(--muted)}.readiness dd{margin:0}.diagram{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:18px 0}.diagram svg{display:block;min-width:950px;width:100%;height:auto}.diagram text{font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:var(--text)}.diagram .small{font-size:12px;fill:var(--muted)}.node-fact{fill:#ccfbf1;stroke:var(--fact)}.node-infer{fill:#e0e7ff;stroke:var(--infer)}.node-unknown{fill:#f3f4f6;stroke:var(--unknown)}.node-risk{fill:#ffedd5;stroke:var(--risk)}.edge{fill:none;stroke:var(--muted);stroke-width:1.4;marker-end:url(#arrow)}.lane{stroke:var(--line);stroke-width:1.2;stroke-dasharray:5 4}section{scroll-margin-top:20px}tr:target{outline:2px solid var(--fact);outline-offset:-2px}[hidden]{display:none!important}.footnote{font-size:13px;border-top:1px solid var(--line);padding-top:20px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px}nav strong{margin-bottom:10px}nav .toc{display:grid;grid-template-columns:1fr 1fr}nav a{font-size:12px}main{padding:20px 15px 48px}h1{font-size:26px}h2{font-size:21px}.metrics{grid-template-columns:1fr}.metrics div{padding:12px 16px}.metrics b{font-size:24px}.summary,.card,.callout{padding:16px}.readiness dl{grid-template-columns:50px 1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{nav,.filters,.status{display:none}.layout,main{display:block;max-width:none;padding:0}body{font-size:11px;background:#fff}h1{font-size:23px}h2{font-size:19px;margin-top:26px}.summary,.card,.callout{padding:10px;break-inside:avoid}.scroll,.diagram{overflow:visible;border:0;padding:0}table,#evidence-table,.scroll table{min-width:0!important;table-layout:fixed}td,th{font-size:9px;padding:5px;min-width:0!important}.source{font-size:8px}.diagram svg{min-width:0;width:100%;max-width:100%}.metrics{grid-template-columns:repeat(3,1fr)}.metrics b{font-size:20px}tr[hidden]{display:table-row!important}a{color:inherit;text-decoration:none}svg{break-inside:avoid}h2,h3{break-after:avoid}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav aria-label="报告目录">
+<strong>AI造梦机 · 自查报告</strong>
+<div class="toc">
+<a href="#s1">1. 执行摘要</a>
+<a href="#s2">2. 产品类型判断卡</a>
+<a href="#s3">3. 查看范围与证据就绪度</a>
+<a href="#s4">4. 证据索引与缺口</a>
+<a href="#s5">5. 用户层</a>
+<a href="#s6">6. 技术层</a>
+<a href="#s7">7. 模型层</a>
+<a href="#s8">8. 数据层</a>
+<a href="#s9">9. 四层跨层流程</a>
+<a href="#s10">10. 数据生产者—消费者关系</a>
+<a href="#s11">11. 状态冲突与风险</a>
+<a href="#s12">12. 痛点、用户想法与产品机会</a>
+<a href="#s13">13. 事实 / 推断 / 未知 / 建议</a>
+<a href="#s14">14. 最值得继续验证的问题</a>
+</div>
+</nav>
+<main>
+<header class="summary">
+<h1>AI造梦机 · 整体链路自查</h1>
+<p class="lede">AIGC 创作工具 / 分阶段工作流 · 证据就绪度：局部就绪<br>范围：架构、技术、用户流程、模型与数据链路 · 2026-10-04</p>
+<p>关键结论：事实 5 · 推断 1 · 未知 4 · 建议 4<br>证据索引：26 项 · 状态冲突与风险：10 项</p>
+</header>
+<div class="legend" aria-label="证据等级图例">
+<span>
+<i class="dot" style="background:var(--fact)">
+</i>页面/代码事实</span>
+<span>
+<i class="dot" style="background:var(--infer)">
+</i>合理推断</span>
+<span>
+<i class="dot" style="background:var(--unknown)">
+</i>尚未确认</span>
+<span>
+<i class="dot" style="background:var(--risk)">
+</i>风险/冲突</span>
+<span>
+<i class="dot" style="background:var(--suggest)">
+</i>产品建议</span>
+</div>
+<section id="s1">
+<h2>1. 执行摘要</h2>
+<div class="callout">
+<strong>结论：工程主链具备闭环，但还不能认定真实生成和多人生产链路完善。</strong>
+<p>故事短视频与漫剧都有独立阶段、持久状态、版本和导出路径；本轮定位并修复了模型请求恢复、旧媒体错误残留及快捷合成兼容性问题。真实人物一致性、在线配音、RAG 无答案判断和生产级任务恢复仍有缺口。</p>
+</div>
+<div class="metrics">
+<div>
+<b>267 / 267</b>
+<span>后端修复后回归</span>
+</div>
+<div>
+<b>60 / 60</b>
+<span>前端修复后回归</span>
+</div>
+<div>
+<b>3 / 3</b>
+<span>类型 / lint / 生产构建通过</span>
+</div>
+</div>
+<p>
+<span class="fact">【页面/代码事实】</span>上述数字来自本轮运行结果。真实 FFmpeg 测试包含在后端回归中，不能把其余替身测试当作真实模型质量验收。 <a class="eref" href="#E13">E13</a> <a class="eref" href="#E18">E18</a> <a class="eref" href="#E19">E19</a>
+</p>
+<p>
+<span class="infer">【合理推断】</span>架构与当前单机 MVP 目标匹配；若作为多人持续使用的平台，执行队列、费用控制和供应商任务恢复需要下一步建设。 <a class="eref" href="#E25">E25</a>
+</p>
+<p>
+<span class="unknown">【尚未确认】</span>真实故事 AC07、漫剧 COMIC07、在线 TTS 与真实费用尚未完整验收。 <a class="eref" href="#E17">E17</a> <a class="eref" href="#E24">E24</a>
+</p>
+<div class="status" id="ui-review-status">新版 UI 复核已完成：首页双尺寸无溢出、图片无损坏；旧作品保留且抽验 1 个既有视频可实际播放。没有在本轮生成新视频，不能把旧片回放当成真实生成验收。</div>
+</section>
+<section id="s2">
+<h2>2. 产品类型判断卡</h2>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主类型</td>
+<td>AIGC 创作工具。</td>
+</tr>
+<tr>
+<td>次类型</td>
+<td>分阶段内容生产工作流。</td>
+</tr>
+<tr>
+<td>核心用户任务</td>
+<td>个人创作者从创意和已有资料出发，制作一集故事短视频或漫剧视频，能修改局部结果并导出成片。</td>
+</tr>
+<tr>
+<td>输入—处理—输出</td>
+<td>创意 / 资料 / 素材 → 剧本、角色、镜头、图像或视频、配音、合成 → 可预览下载的 MP4。</td>
+</tr>
+<tr>
+<td>决策权分配</td>
+<td>用户选择链路与模型、确认阶段、修改或重生成；系统执行生成、依赖检查、存储和合成。</td>
+</tr>
+<tr>
+<td>判断证据</td>
+<td>
+<a class="eref" href="#E03">E03</a> <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E06">E06</a>
+</td>
+</tr>
+<tr>
+<td>置信度</td>
+<td>工程类型：高；真实成片可用率：尚未确认。</td>
+</tr>
+<tr>
+<td>加重检查主题</td>
+<td>阶段关系、模型输入交接、素材血缘、异常恢复、费用重复提交、导出质量、界面能力边界。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s3">
+<h2>3. 查看范围与证据就绪度</h2>
+<p>对象为 <code>projects/AI造梦机</code> 当前本地项目。审计覆盖源代码、接口/数据结构、隔离自动化、真实本地媒体处理及只读页面检查。未执行付费生成、发布或真实用户数据清理。日期：2026-10-04（Asia/Shanghai）。</p>
+<p>
+<span class="fact">【页面/代码事实】</span>总体证据就绪度：仅可局部执行。可完整审计已提供工程范围；真实模型效果和多人生产可靠性缺证据。 <a class="eref" href="#E18">E18</a> <a class="eref" href="#E19">E19</a> <a class="eref" href="#E24">E24</a>
+</p>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>就绪度</th>
+<th>已有证据</th>
+<th>不可据此回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户层</td>
+<td>局部就绪</td>
+<td>源码、现有流程验收和本次只读页面</td>
+<td>普通用户完成真实付费项目的成功率</td>
+</tr>
+<tr>
+<td>技术层</td>
+<td>就绪（本地工程）</td>
+<td>服务/编排/存储源码、267+60回归、构建</td>
+<td>高并发与长时间服务稳定性</td>
+</tr>
+<tr>
+<td>模型层</td>
+<td>局部就绪</td>
+<td>客户端与参数、失败路径测试、历史 RAG 留出集</td>
+<td>模型质量、当前真实成本、人物一致性</td>
+</tr>
+<tr>
+<td>数据层</td>
+<td>就绪（当前结构）</td>
+<td>会话/执行/版本/资料库读写及权限规则</td>
+<td>长期增长、备份恢复和多进程竞争结果</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s4">
+<h2>4. 证据索引与缺口</h2>
+<p>以下是唯一证据索引。全文图表仅引用本表编号。代码来源使用项目内相对路径与实际行号；运行摘要直接嵌入本文件，报告阅读不依赖日志或外部资源。</p>
+<div class="filters">
+<label>证据等级 <select id="grade-filter">
+<option value="all">全部</option>
+<option value="fact">页面/代码事实</option>
+<option value="infer">合理推断</option>
+<option value="unknown">尚未确认</option>
+<option value="suggest">产品建议</option>
+</select>
+</label>
+<label>层级 <select id="layer-filter">
+<option value="all">全部</option>
+<option>用户层</option>
+<option>技术层</option>
+<option>模型层</option>
+<option>数据层</option>
+</select>
+</label>
+<span id="filter-count" aria-live="polite">26 条证据</span>
+<button type="button" id="reset-filter">重置筛选</button>
+</div>
+<div class="scroll">
+<table id="evidence-table">
+<thead>
+<tr>
+<th>编号</th>
+<th>层级</th>
+<th>等级</th>
+<th>内容 / 可见结果</th>
+<th>来源</th>
+<th>支持结论</th>
+<th>局限</th>
+</tr>
+</thead>
+<tbody>
+<tr id="E01" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E01</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>正式前端依赖 Next.js 16.3.6、React 19.2.8；界面按功能目录组织。</td>
+<td class="source">frontend/package.json:23</td>
+<td>确认前端框架，而非仅凭截图猜测。</td>
+<td>包声明不代表完整部署验收。</td>
+</tr>
+<tr id="E02" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E02</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>FastAPI / Uvicorn / Pydantic / HTTPX / edge-tts / qdrant-client；生命周期初始化并注册业务路由。</td>
+<td class="source">backend/requirements.txt:1；backend/app/main.py:25、44</td>
+<td>服务、数据校验、模型通信和合成链有真实实现。</td>
+<td>不证明供应商线上质量。</td>
+</tr>
+<tr id="E03" data-grade="fact" data-layer="用户层">
+<td>
+<strong>E03</strong>
+</td>
+<td>用户层</td>
+<td class="fact">页面/代码事实</td>
+<td>创作台分故事短视频与漫剧；video_generation 的 start_end 选项禁用并提示需要尾帧配置。</td>
+<td class="source">frontend/features/creation/CreationPanel.tsx:182；frontend/features/creation/ModelSelector.tsx:9</td>
+<td>用户可选模型；首尾帧能力尚未形成普通用户完整操作路径。</td>
+<td>需真实模型生成验证选择效果。</td>
+</tr>
+<tr id="E04" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E04</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>故事六阶段及上游输入检查；阶段执行、版本、下游失效均落在编排器。</td>
+<td class="source">backend/app/services/orchestrator.py:43、342、354、602</td>
+<td>故事创作并非只有界面，存在可执行状态链。</td>
+<td>本轮未重新付费生成整片。</td>
+</tr>
+<tr id="E05" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E05</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>漫剧独立六阶段，调用角色配音和本地合成；剧本限制单集。</td>
+<td class="source">backend/app/services/comic_workflow.py:17、205、296、323</td>
+<td>漫剧视频链与故事视频链相互独立。</td>
+<td>人物一致性与配音自然度未验。</td>
+</tr>
+<tr id="E06" data-grade="fact" data-layer="用户层">
+<td>
+<strong>E06</strong>
+</td>
+<td>用户层</td>
+<td class="fact">页面/代码事实</td>
+<td>三种快捷工具独立执行；动作工具取上传视频首帧，模型只接角色图与提示；口播用静态图和 TTS 合成。</td>
+<td class="source">backend/app/services/short_pipelines.py:55、96、116</td>
+<td>真实能力分别是文艺图文配音、角色视频、静态配音视频。</td>
+<td>不能据名称推断动作迁移或嘴型同步。</td>
+</tr>
+<tr id="E07" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E07</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>SQLite 事务 claim、内存工作协程、持久事件回放、启动恢复；重启后未完成付费任务标 interrupted。</td>
+<td class="source">backend/app/services/execution_store.py:56、113、212、232、296</td>
+<td>连接断开不拥有任务；可恢复状态和已保存完成结果。</td>
+<td>供应商 job ID 未持久化，不能自动续跑生成。</td>
+</tr>
+<tr id="E08" data-grade="fact" data-layer="数据层">
+<td>
+<strong>E08</strong>
+</td>
+<td>数据层</td>
+<td class="fact">页面/代码事实</td>
+<td>删除使用墓碑并检查 active execution；模型修改与执行 claim 共用 SQLite 写锁。</td>
+<td class="source">backend/app/services/session_store.py:82、104</td>
+<td>防止删除后复活、执行中切换模型。</td>
+<td>删除为软删除，文件与复用输入保留。</td>
+</tr>
+<tr id="E09" data-grade="fact" data-layer="数据层">
+<td>
+<strong>E09</strong>
+</td>
+<td>数据层</td>
+<td class="fact">页面/代码事实</td>
+<td>sessions、executions、execution_events 等对象持久化到 SQLite；会话复杂字段包含产物、版本与执行输入。</td>
+<td class="source">backend/app/services/db.py:36、71、92；backend/app/services/session_store.py:14</td>
+<td>项目、执行与事件存在明确数据归属。</td>
+<td>JSON 增长和长期归档策略未压测。</td>
+</tr>
+<tr id="E10" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E10</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>get_current_user 校验登录；get_admin_user 限定管理访问。资源接口继续检查所属账号。</td>
+<td class="source">backend/app/api/deps.py:19、27；backend/app/api/sessions.py:92；backend/app/api/tasks.py:53</td>
+<td>后台权限靠后端校验，不仅隐藏图标。</td>
+<td>本轮未做独立渗透测试。</td>
+</tr>
+<tr id="E11" data-grade="fact" data-layer="模型层">
+<td>
+<strong>E11</strong>
+</td>
+<td>模型层</td>
+<td class="fact">页面/代码事实</td>
+<td>public_catalog 发布允许模型；stage_usage/task_usage 按实际阶段取模型并写入执行。</td>
+<td class="source">backend/app/services/model_catalog.py:27、63、68；backend/app/services/orchestrator.py:615</td>
+<td>普通用户选择和管理员网关配置分离。</td>
+<td>选项存在不等于画质和价格已比较。</td>
+</tr>
+<tr id="E12" data-grade="fact" data-layer="模型层">
+<td>
+<strong>E12</strong>
+</td>
+<td>模型层</td>
+<td class="fact">页面/代码事实</td>
+<td>本轮已阻止图片/视频 POST 不确定结果自动重提；图片下载重试与生成提交分离；文本服务的 5xx 有有限重试；新增 21 项客户端恢复测试。</td>
+<td class="source">backend/app/models/video_client.py:98、107、114；backend/app/models/image_client.py:29、47；backend/app/models/llm_client.py:51；backend/tests/test_model_request_recovery.py</td>
+<td>修复同次请求可能重复提交付费视频的问题，保留安全轮询重试。</td>
+<td>未用真实收费接口制造响应丢失；结果不确定时仍需人工确认。</td>
+</tr>
+<tr id="E13" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E13</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>图片音频输出 H264/yuv420p/AAC、偶数补边、faststart；3类 FFmpeg 子进程有超时与取消回收。新增 6 项测试。</td>
+<td class="source">backend/app/services/ffmpeg_util.py:15、19、71；backend/tests/test_ffmpeg_util.py:36、64</td>
+<td>真实 500×700 / 501×701 小样、拼接、首帧和进程回收通过。</td>
+<td>素材内容与人声为本地测试输入，非模型效果验收。</td>
+</tr>
+<tr id="E14" data-grade="fact" data-layer="用户层">
+<td>
+<strong>E14</strong>
+</td>
+<td>用户层</td>
+<td class="fact">页面/代码事实</td>
+<td>媒体加载按 sessionId+path 隔离状态；切换来源清除旧错误并释放迟到的 Blob URL，新增 6 项前端测试。</td>
+<td class="source">frontend/features/creation/media.tsx:9、52；frontend/tests/media-recovery.test.mjs</td>
+<td>防止换了产物仍显示旧失败或旧视频。</td>
+<td>不代表所有终端解码兼容都已覆盖。</td>
+</tr>
+<tr id="E15" data-grade="fact" data-layer="数据层">
+<td>
+<strong>E15</strong>
+</td>
+<td>数据层</td>
+<td class="fact">页面/代码事实</td>
+<td>知识检索使用本地 QdrantClient(path=target)，由账号/资料库范围约束检索与上下文。</td>
+<td class="source">backend/app/services/knowledge_retrieval.py:50、51；backend/app/services/knowledge_store.py</td>
+<td>共享基础能力，项目通过选定资料库决定上下文。</td>
+<td>本地嵌入存储不等于已适配多个服务进程。</td>
+</tr>
+<tr id="E16" data-grade="fact" data-layer="模型层">
+<td>
+<strong>E16</strong>
+</td>
+<td>模型层</td>
+<td class="fact">页面/代码事实</td>
+<td>历史独立留出集：8题×2次，macro_recall_at_5=0.8；H01/H07/H08 未通过。</td>
+<td class="source">docs/evidence/RAG/rag-eval-holdout-v1-20261004.json：summary；docs/evidence/RAG/验收记录.md:24、30</td>
+<td>检索可用但存在漏召回、无答案资料被召回的问题。</td>
+<td>历史评测，不能替代本轮新资料和生成效果验证。</td>
+</tr>
+<tr id="E17" data-grade="unknown" data-layer="模型层">
+<td>
+<strong>E17</strong>
+</td>
+<td>模型层</td>
+<td class="unknown">尚未确认</td>
+<td>已有漫剧隔离工程链和真实本地 FFmpeg 证据；COMIC07、在线 TTS 自然度和真实人物一致性仍待验。</td>
+<td class="source">docs/evidence/漫剧/验收记录.md:3、10、13、21</td>
+<td>区分“工程跑通”与“真实生成通过”。</td>
+<td>不能给出真实成片质量合格结论。</td>
+</tr>
+<tr id="E18" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E18</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>本轮后端基线 240/240；修复后全量 267/267，通过且退出码为 0。</td>
+<td class="source">docs/evidence/整体链路自查/result.json：backend（本次隔离 pytest 汇总）</td>
+<td>新增 27 项后端回归纳入全套，未删除旧测试。</td>
+<td>包含替身与本地真实媒体测试，非全量线上模型调用。</td>
+</tr>
+<tr id="E19" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E19</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>前端基线 54/54；修复后 60/60；TypeScript、ESLint、生产 build 均退出码 0。</td>
+<td class="source">docs/evidence/整体链路自查/result.json：frontend、typecheck、lint、production_build</td>
+<td>新增 6 项前端回归，生产构建成功。</td>
+<td>构建不证明每个业务界面已付费生成。</td>
+</tr>
+<tr id="E20" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E20</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>本次 8030、3030 HTTP 健康检查均 200；匿名设置请求 401 AUTH_REQUIRED；确认无 pending/running 后重启服务加载修复。</td>
+<td class="source">docs/evidence/整体链路自查/result.json：runtime；验收记录.md</td>
+<td>修复已装载，当前本地进程可访问。</td>
+<td>时间点事实，不构成可用性 SLA。</td>
+</tr>
+<tr id="E21" data-grade="fact" data-layer="用户层">
+<td>
+<strong>E21</strong>
+</td>
+<td>用户层</td>
+<td class="fact">页面/代码事实</td>
+<td>1512px 桌面和 390px 手机无水平溢出；首页损坏图片 0。作品库 ?view=projects 保留现有作品。打开已有故事，验证 1 个旧视频：1280×720、5.038005 秒、readyState=4、error=null，实际播放到 0.153745 秒后暂停。</td>
+<td class="source">docs/evidence/整体链路自查/result.json：runtime；验收记录.md</td>
+<td>主要入口可达；作品库正确路由为 projects。</td>
+<td>20 个视频元素仅抽验 1 个既有片段；不是本轮新生成，不代表其余 19 个或真实整片质量通过。</td>
+</tr>
+<tr id="E22" data-grade="fact" data-layer="技术层">
+<td>
+<strong>E22</strong>
+</td>
+<td>技术层</td>
+<td class="fact">页面/代码事实</td>
+<td>start.sh 用 trap 中的 kill 0 停止进程；启动前未检查端口占用。</td>
+<td class="source">start.sh:25、27、28</td>
+<td>启动脚本可能影响同进程组任务，不能作为稳健进程管理器。</td>
+<td>当前服务按明确 PID 管理；脚本问题本轮暂未修。</td>
+</tr>
+<tr id="E23" data-grade="fact" data-layer="数据层">
+<td>
+<strong>E23</strong>
+</td>
+<td>数据层</td>
+<td class="fact">页面/代码事实</td>
+<td>continue 与知识库 PATCH 先读取/检查运行状态，再保存会话，未把检查和保存置于 claim 的同一事务。</td>
+<td class="source">backend/app/api/sessions.py:105、120；backend/app/services/session_store.py:37</td>
+<td>默认单进程同步区间无 await；多进程部署时存在竞态边界。</td>
+<td>未在真实多进程数据上复现，不能称当前单机已出故障。</td>
+</tr>
+<tr id="E24" data-grade="unknown" data-layer="模型层">
+<td>
+<strong>E24</strong>
+</td>
+<td>模型层</td>
+<td class="unknown">尚未确认</td>
+<td>本轮未执行真实模型从创意到整片的付费样例；故事 AC07、漫剧 COMIC07 和在线 TTS 仍缺完整验收。</td>
+<td class="source">本次审计范围；docs/evidence/漫剧/验收记录.md:13；历史项目验收边界</td>
+<td>不以自动化通过数替代真实模型质量结论。</td>
+<td>缺真实样片、镜头一致性评分与实际费用记录。</td>
+</tr>
+<tr id="E25" data-grade="infer" data-layer="技术层">
+<td>
+<strong>E25</strong>
+</td>
+<td>技术层</td>
+<td class="infer">合理推断</td>
+<td>单机 SQLite、本地 Qdrant、进程内任务与人工中断恢复适合当前本地 MVP，尚未达到多人生产可靠性。</td>
+<td class="source">综合 E02、E07、E09、E15、E22、E23</td>
+<td>当前应按本地试用状态评估，不能直接宣称成熟平台。</td>
+<td>需并发、进程恢复、备份与费用控制实测后复核。</td>
+</tr>
+<tr id="E26" data-grade="suggest" data-layer="用户层">
+<td>
+<strong>E26</strong>
+</td>
+<td>用户层</td>
+<td class="suggest">产品建议</td>
+<td>下一轮先跑一集 2–3 镜头真实样片，再补能力命名、首尾帧入口、检索拒答与并发费用控制。</td>
+<td class="source">由 E03、E06、E16、E24、E25 推导的产品建议</td>
+<td>把验收投入集中在真实成片与可持续使用上。</td>
+<td>建议尚未全部实施。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<strong>最小补证集合</strong>
+<p>一集 2–3 镜头真实模型样片、实际模型/费用/耗时记录、人物一致性与声音人工评分；一组未参与调整的新资料检索题；服务重启时供应商任务状态核对；有限并发下的限流与恢复结果。</p>
+</div>
+</section>
+<section id="s5">
+<h2>5. 用户层</h2>
+<div class="card readiness">
+<strong>证据就绪卡 · 局部就绪</strong>
+<dl>
+<dt>已有</dt>
+<dd>创作界面、两个阶段编排、快捷工具代码、历史工程验收。</dd>
+<dt>缺少</dt>
+<dd>真实生成完成率；首尾帧用户选图闭环；新生成整片的界面验收。</dd>
+<dt>可回答</dt>
+<dd>入口、流程、确认、修改和异常回退机制。</dd>
+<dt>不可回答</dt>
+<dd>真实成片是否好看、是否足够稳定交付。</dd>
+</dl>
+</div>
+<p>
+<span class="fact">【页面/代码事实】</span>主导航覆盖创作台、我的作品、短视频工具、知识库；管理入口由账号权限决定。作品库使用 <code>?view=projects</code>。 <a class="eref" href="#E03">E03</a> <a class="eref" href="#E10">E10</a> <a class="eref" href="#E21">E21</a>
+</p>
+<div class="diagram">
+<svg viewBox="0 0 1100 460" aria-label="用户、界面系统、结果三泳道；正常、修改和失败恢复路径" role="img">
+<defs>
+<marker id="arrow-1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8" fill="var(--muted)"/>
+</marker>
+</defs>
+<path d="M0,142H1100 M0,290H1100" class="lane"/>
+<text x="12" y="35">用户</text>
+<text x="12" y="184">界面 / 系统</text>
+<text x="12" y="332">结果</text>
+<rect class="node-fact" x="120" y="20" width="180" height="60" rx="8"/>
+<text x="210" y="44" text-anchor="middle">选链路、输入创意</text>
+<text class="small" x="210" y="65" text-anchor="middle">E03 / E11</text>
+<rect class="node-fact" x="360" y="20" width="180" height="60" rx="8"/>
+<text x="450" y="44" text-anchor="middle">选模型与创作资料</text>
+<text class="small" x="450" y="65" text-anchor="middle">E03 / E11 / E15</text>
+<rect class="node-fact" x="360" y="169" width="180" height="60" rx="8"/>
+<text x="450" y="193" text-anchor="middle">分阶段生成与保存</text>
+<text class="small" x="450" y="214" text-anchor="middle">E04 / E05 / E07</text>
+<rect class="node-fact" x="120" y="169" width="180" height="60" rx="8"/>
+<text x="210" y="193" text-anchor="middle">修改 / 重选版本</text>
+<text class="small" x="210" y="214" text-anchor="middle">E04 / E08</text>
+<rect class="node-fact" x="690" y="20" width="190" height="60" rx="8"/>
+<text x="785" y="44" text-anchor="middle">核对产物再继续</text>
+<text class="small" x="785" y="65" text-anchor="middle">E04 / E05</text>
+<rect class="node-fact" x="690" y="325" width="190" height="60" rx="8"/>
+<text x="785" y="349" text-anchor="middle">合成、预览、下载</text>
+<text class="small" x="785" y="370" text-anchor="middle">E05 / E13 / E14</text>
+<rect class="node-fact" x="360" y="325" width="180" height="60" rx="8"/>
+<text x="450" y="349" text-anchor="middle">保留输入与已存结果</text>
+<text class="small" x="450" y="370" text-anchor="middle">E07</text>
+<rect class="node-fact" x="120" y="325" width="180" height="60" rx="8"/>
+<text x="210" y="349" text-anchor="middle">用户核对后重试</text>
+<text class="small" x="210" y="370" text-anchor="middle">E07</text>
+<path d="M300,50 L360,50" class="edge" style="marker-end:url(#arrow-1)"/>
+<path d="M450,80 L450,169" class="edge" style="marker-end:url(#arrow-1)"/>
+<path d="M540,199 L620,199" class="edge" style="marker-end:url(#arrow-1)"/>
+<polygon class="node-unknown" points="620,199 660,162 700,199 660,236"/>
+<text x="660" y="204" text-anchor="middle">成功?</text>
+<path d="M700,199 L785,80" class="edge" style="marker-end:url(#arrow-1)"/>
+<text class="small" x="742.5" y="130.5" text-anchor="middle">是</text>
+<path d="M660,236 L540,355" class="edge" style="marker-end:url(#arrow-1)"/>
+<text class="small" x="600" y="286.5" text-anchor="middle">否 / 中断</text>
+<path d="M360,355 L300,355" class="edge" style="marker-end:url(#arrow-1)"/>
+<path d="M210,325 L210,229" class="edge" style="marker-end:url(#arrow-1)"/>
+<text class="small" x="210" y="268" text-anchor="middle">主动</text>
+<path d="M300,199 L360,199" class="edge" style="marker-end:url(#arrow-1)"/>
+<text class="small" x="330" y="190" text-anchor="middle">失效项重算</text>
+<path d="M690,50 L210,169" class="edge" style="marker-end:url(#arrow-1)"/>
+<text class="small" x="450" y="100.5" text-anchor="middle">需修改</text>
+<path d="M880,50 L1010,50" class="edge" style="marker-end:url(#arrow-1)"/>
+<path d="M1010,50V355H880" class="edge" style="marker-end:url(#arrow-1)"/>
+<text x="1022" y="195" class="small">全阶段确认</text>
+</svg>
+</div>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>用户动作与系统反馈</th>
+<th>成功标准 / 边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正常</td>
+<td>选择故事或漫剧，输入创意、选择模型和资料；逐阶段生成并确认，合成后预览与下载。 <a class="eref" href="#E03">E03</a> <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a>
+</td>
+<td>最终资产可解码、可下载，当前版本与导出一致；真实画质另验。</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>编辑或重选上游版本；系统标记依赖失效，要求重算相关下游。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E08">E08</a>
+</td>
+<td>不能把旧镜头或旧合成片当成最新结果。</td>
+</tr>
+<tr>
+<td>失败 / 中断</td>
+<td>显示明确错误、保留输入和已存结果；用户核对后重试。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E12">E12</a>
+</td>
+<td>不隐藏失败，不在提交结果不确定时自动再次付费。</td>
+</tr>
+<tr>
+<td>能力边界</td>
+<td>首尾帧 UI 暂禁用；动作工具没有真实动作迁移；口播无嘴型同步。 <a class="eref" href="#E03">E03</a> <a class="eref" href="#E06">E06</a>
+</td>
+<td>产品文案与实际能力保持一致，避免用户误预期。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<span class="infer">【合理推断】</span>创作者最担心的是“钱花了却不知道生成到哪一步”及“换版本后还在看旧结果”。持久事件和媒体状态修复降低了这类风险，但供应商任务对账仍未闭环。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E12">E12</a> <a class="eref" href="#E14">E14</a>
+</p>
+</section>
+<section id="s6">
+<h2>6. 技术层</h2>
+<div class="card readiness">
+<strong>证据就绪卡 · 就绪（本地工程）</strong>
+<dl>
+<dt>已有</dt>
+<dd>依赖声明、入口、路由、编排器、持久层、模型客户端、真实媒体和全套回归。</dd>
+<dt>缺少</dt>
+<dd>跨进程/多用户压测、长期运行、备份恢复、供应商任务断点续跑。</dd>
+<dt>可回答</dt>
+<dd>本地架构是否真实连接；正常与已覆盖异常分支是否有实现。</dd>
+<dt>不可回答</dt>
+<dd>生产容量、SLA 与云端可运维性。</dd>
+</dl>
+</div>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>现状事实</th>
+<th>完整性判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前端</td>
+<td>Next.js / React，按创作、作品、快捷工具和知识库组织；60项回归。 <a class="eref" href="#E01">E01</a> <a class="eref" href="#E19">E19</a>
+</td>
+<td>主要入口和生产构建可用；真实生成交互仍需样片。</td>
+</tr>
+<tr>
+<td>后端</td>
+<td>FastAPI 路由和 Pydantic 输入校验，双链路编排。 <a class="eref" href="#E02">E02</a> <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a>
+</td>
+<td>可执行工程闭环；不是纯原型。</td>
+</tr>
+<tr>
+<td>任务</td>
+<td>SQLite claim + durable events + 进程内 asyncio worker。 <a class="eref" href="#E07">E07</a>
+</td>
+<td>SSE 断开不取消工作；没有独立可靠队列/全局并发额度。</td>
+</tr>
+<tr>
+<td>媒体</td>
+<td>外部生成；本地 FFmpeg 合成和输出。 <a class="eref" href="#E13">E13</a>
+</td>
+<td>本轮已修格式与进程清理；正常拼接保留流复制。</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>后端登录、管理员与所属账号校验。 <a class="eref" href="#E10">E10</a>
+</td>
+<td>有实现和回归；不宣称完成安全渗透审计。</td>
+</tr>
+<tr>
+<td>启动与运行</td>
+<td>3030/8030 健康；start.sh 含 kill 0、无端口占用预检。 <a class="eref" href="#E20">E20</a> <a class="eref" href="#E22">E22</a>
+</td>
+<td>当前服务可用；一键脚本可靠性待修。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>状态与恢复</h3>
+<p>
+<span class="fact">【页面/代码事实】</span>会话从 idle → running → stage_completed，确认后进入下一阶段，最终 session_completed；错误会标记 failed，执行事件以 done/error 收尾。启动可恢复已保存完成结果，其他中断转 interrupted。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E07">E07</a>
+</p>
+<p>
+<span class="suggest">【产品建议】</span>保留当前单机实现，同时逐步补供应商 job ID、可核对状态、账号并发/费用上限；未来多进程前统一会话变更事务。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E23">E23</a> <a class="eref" href="#E25">E25</a>
+</p>
+</section>
+<section id="s7">
+<h2>7. 模型层</h2>
+<div class="card readiness">
+<strong>证据就绪卡 · 局部就绪</strong>
+<dl>
+<dt>已有</dt>
+<dd>公开模型目录、逐次传参、执行 model_usage、客户端失败回归、历史 RAG 评测。</dd>
+<dt>缺少</dt>
+<dd>真实样片、在线 TTS、费用与延迟分布、质量比较。</dd>
+<dt>可回答</dt>
+<dd>哪些阶段实际调用哪些模型；模型选择与失败处理是否落到代码。</dd>
+<dt>不可回答</dt>
+<dd>模型实际效果、当前最佳模型或性价比。</dd>
+</dl>
+</div>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>触发与输入</th>
+<th>输出 / 下一步</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本模型</td>
+<td>创意+项目资料；生成剧本、分镜或短文扩写</td>
+<td>结构化文本经校验进入后续资产生成</td>
+<td>
+<a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E06">E06</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>图片模型</td>
+<td>人物/场景设定、镜头提示及选定参考资产</td>
+<td>角色图、镜头参考或漫画镜头</td>
+<td>
+<a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>视频模型</td>
+<td>故事镜头参考 / 角色图+提示；按模式选兼容模型</td>
+<td>视频片段进入合成</td>
+<td>
+<a class="eref" href="#E03">E03</a> <a class="eref" href="#E04">E04</a> <a class="eref" href="#E06">E06</a> <a class="eref" href="#E12">E12</a>
+</td>
+</tr>
+<tr>
+<td>配音与本地渲染</td>
+<td>角色台词或口播文案、已选镜头图</td>
+<td>音频、基础运镜、字幕和 MP4</td>
+<td>
+<a class="eref" href="#E05">E05</a> <a class="eref" href="#E06">E06</a> <a class="eref" href="#E13">E13</a>
+</td>
+</tr>
+<tr>
+<td>检索</td>
+<td>选定资料库、当前创作查询</td>
+<td>相关片段/固定约束进入创作上下文</td>
+<td>
+<a class="eref" href="#E15">E15</a> <a class="eref" href="#E16">E16</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<span class="fact">【页面/代码事实】</span>公开模型可选，不允许用户自行改网关；选择用在后续生成，历史产物保留真实模型记录。视频提交遇不确定响应现已停止自动重复 POST。 <a class="eref" href="#E11">E11</a> <a class="eref" href="#E12">E12</a>
+</p>
+<p>
+<span class="fact">【页面/代码事实】</span>RAG 历史留出集 Recall@5 为 0.8，H01 为漏召回，H07/H08 为资料不能回答却召回相关片段。相关片段不能直接视作答案。 <a class="eref" href="#E16">E16</a>
+</p>
+<p>
+<span class="unknown">【尚未确认】</span>本轮没有真实生成新的整片，不能宣布人物一致性、声音自然度、叙事质量通过。模型客户端回归只证明指定故障路径和参数行为。 <a class="eref" href="#E12">E12</a> <a class="eref" href="#E17">E17</a> <a class="eref" href="#E24">E24</a>
+</p>
+</section>
+<section id="s8">
+<h2>8. 数据层</h2>
+<div class="card readiness">
+<strong>证据就绪卡 · 就绪（当前结构）</strong>
+<dl>
+<dt>已有</dt>
+<dd>SQLite 表、会话 JSON 字段、事件、版本与删除规则，资料库和本地文件。</dd>
+<dt>缺少</dt>
+<dd>容量增长、备份恢复、并发冲突和供应商账单对账样本。</dd>
+<dt>可回答</dt>
+<dd>对象关系、权限、写入/读取时机和修改失效。</dd>
+<dt>不可回答</dt>
+<dd>长期数据耐久性与多实例一致性。</dd>
+</dl>
+</div>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>生产者 / 写入时机</th>
+<th>消费者 / 使用边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账号与邀请登录</td>
+<td>认证服务；登录时形成身份</td>
+<td>API 依身份检查所属账号；管理员独立判断。 <a class="eref" href="#E10">E10</a>
+</td>
+</tr>
+<tr>
+<td>会话 / 模型偏好</td>
+<td>用户创作和后续偏好修改</td>
+<td>编排按链路、阶段和选择生成；运行中禁止改模型。 <a class="eref" href="#E08">E08</a> <a class="eref" href="#E09">E09</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>执行 / 事件</td>
+<td>claim 和 worker 在阶段运行时持续持久化</td>
+<td>SSE 与刷新后页面读取；重启可对账已有完成结果。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E09">E09</a>
+</td>
+</tr>
+<tr>
+<td>资产 / 版本 / 当前选择</td>
+<td>生成或人工编辑产生版本，选版改变当前引用</td>
+<td>下游消费有效上游；不匹配依赖必须重算。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E09">E09</a>
+</td>
+</tr>
+<tr>
+<td>知识文档 / 向量</td>
+<td>资料库管理与本地索引构建</td>
+<td>项目按选定资料库检索，共享技术能力不等于所有用户共享资料。 <a class="eref" href="#E15">E15</a>
+</td>
+</tr>
+<tr>
+<td>删除墓碑</td>
+<td>用户删除非运行作品</td>
+<td>列表与读取隐藏；旧保存不得复活；媒体保留。 <a class="eref" href="#E08">E08</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<span class="fact">【页面/代码事实】</span>模型偏好、输入资产与执行结果属于不同对象：改下一次模型不会自动重写过去产物。 <a class="eref" href="#E08">E08</a> <a class="eref" href="#E11">E11</a>
+</p>
+<p>
+<span class="infer">【合理推断】</span>历史版本与执行 JSON 会随使用增长，需建立容量观察与归档策略；目前不能凭结构断言已发生性能问题。 <a class="eref" href="#E09">E09</a> <a class="eref" href="#E25">E25</a>
+</p>
+</section>
+<section id="s9">
+<h2>9. 四层跨层流程</h2>
+<div class="diagram">
+<svg viewBox="0 0 1060 510" role="img" aria-label="四层跨层执行架构">
+<defs>
+<marker id="arrow-2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8" fill="var(--muted)"/>
+</marker>
+</defs>
+<text x="12" y="38">用户层</text>
+<text x="12" y="160">技术层</text>
+<text x="12" y="288">模型层</text>
+<text x="12" y="418">数据层</text>
+<path d="M0,112H1060 M0,244H1060 M0,374H1060" class="lane"/>
+<rect class="node-fact" x="145" y="14" width="250" height="60" rx="8"/>
+<text x="270" y="38" text-anchor="middle">创意 → 确认 → 修改 → 导出</text>
+<text class="small" x="270" y="59" text-anchor="middle">E03 / E04 / E05</text>
+<rect class="node-fact" x="145" y="137" width="250" height="60" rx="8"/>
+<text x="270" y="161" text-anchor="middle">Next.js → FastAPI 所有权校验</text>
+<text class="small" x="270" y="182" text-anchor="middle">E01 / E02 / E10</text>
+<rect class="node-fact" x="465" y="137" width="250" height="60" rx="8"/>
+<text x="590" y="161" text-anchor="middle">执行占用 → 独立双链路</text>
+<text class="small" x="590" y="182" text-anchor="middle">E04 / E05 / E07</text>
+<rect class="node-fact" x="765" y="137" width="240" height="60" rx="8"/>
+<text x="885" y="161" text-anchor="middle">SSE / 版本 / 失败反馈</text>
+<text class="small" x="885" y="182" text-anchor="middle">E07 / E08 / E14</text>
+<rect class="node-fact" x="145" y="265" width="250" height="60" rx="8"/>
+<text x="270" y="289" text-anchor="middle">文本 / 图片 / 视频模型</text>
+<text class="small" x="270" y="310" text-anchor="middle">E11 / E12</text>
+<rect class="node-fact" x="465" y="265" width="250" height="60" rx="8"/>
+<text x="590" y="289" text-anchor="middle">TTS 与 FFmpeg 合成</text>
+<text class="small" x="590" y="310" text-anchor="middle">E05 / E13</text>
+<rect class="node-unknown" x="765" y="265" width="240" height="60" rx="8"/>
+<text x="885" y="289" text-anchor="middle">真实质量仍待样片验证</text>
+<text class="small" x="885" y="310" text-anchor="middle">E17 / E24</text>
+<rect class="node-fact" x="145" y="402" width="250" height="60" rx="8"/>
+<text x="270" y="426" text-anchor="middle">SQLite 会话 / 执行 / 版本</text>
+<text class="small" x="270" y="447" text-anchor="middle">E08 / E09</text>
+<rect class="node-fact" x="465" y="402" width="250" height="60" rx="8"/>
+<text x="590" y="426" text-anchor="middle">本地素材、配音、MP4 文件</text>
+<text class="small" x="590" y="447" text-anchor="middle">E05 / E13</text>
+<rect class="node-fact" x="765" y="402" width="240" height="60" rx="8"/>
+<text x="885" y="426" text-anchor="middle">资料库 → 本地 Qdrant 检索</text>
+<text class="small" x="885" y="447" text-anchor="middle">E15 / E16</text>
+<path d="M270,74 L270,137" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M395,167 L465,167" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M715,167 L765,167" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M540,197 L270,265" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M590,197 L590,265" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M270,325 L270,402" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M590,325 L590,402" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M885,402 L885,325" class="edge" style="marker-end:url(#arrow-2)"/>
+<path d="M1005,167H1040V46H395" class="edge" style="marker-end:url(#arrow-2)"/>
+<text x="822" y="37" class="small">状态与产物返回界面 E07 / E14</text>
+</svg>
+</div>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>用户层</th>
+<th>技术层</th>
+<th>模型层</th>
+<th>数据层</th>
+<th>状态 / 证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>选链路、输入、模型、资料</td>
+<td>鉴权与创建会话</td>
+<td>尚未发起生成</td>
+<td>保存输入和偏好</td>
+<td>idle；<a class="eref" href="#E03">E03</a> <a class="eref" href="#E08">E08</a> <a class="eref" href="#E09">E09</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>生成</td>
+<td>点击当前阶段</td>
+<td>事务 claim、异步执行</td>
+<td>指定模型处理实际输入</td>
+<td>保存执行输入、进度和产物</td>
+<td>running；<a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E07">E07</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>确认 / 修改</td>
+<td>核对或编辑当前产物</td>
+<td>版本记录、依赖检查</td>
+<td>仅重生成时再次调用</td>
+<td>当前引用及失效标记更新</td>
+<td>stage_completed / idle；<a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E08">E08</a>
+</td>
+</tr>
+<tr>
+<td>失败 / 断连</td>
+<td>看错误或重连</td>
+<td>持久事件回放、有限重试</td>
+<td>不确定视频提交停止重提</td>
+<td>保留输入与已有结果</td>
+<td>failed / interrupted；<a class="eref" href="#E07">E07</a> <a class="eref" href="#E12">E12</a>
+</td>
+</tr>
+<tr>
+<td>出片</td>
+<td>预览、下载、我的作品</td>
+<td>本地合成与媒体加载</td>
+<td>当前有效镜头/音频</td>
+<td>最终文件与结果记录</td>
+<td>完成不等于质量合格；<a class="eref" href="#E13">E13</a> <a class="eref" href="#E14">E14</a> <a class="eref" href="#E17">E17</a> <a class="eref" href="#E21">E21</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s10">
+<h2>10. 数据生产者—消费者关系</h2>
+<div class="diagram">
+<svg viewBox="0 0 1080 400" role="img" aria-label="核心数据生产者消费者与依赖关系">
+<defs>
+<marker id="arrow-3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+<path d="M0,0 L8,4 L0,8" fill="var(--muted)"/>
+</marker>
+</defs>
+<rect class="node-fact" x="20" y="30" width="180" height="60" rx="8"/>
+<text x="110" y="54" text-anchor="middle">账号 / 选定资料库</text>
+<text class="small" x="110" y="75" text-anchor="middle">E10 / E15</text>
+<rect class="node-fact" x="270" y="30" width="220" height="60" rx="8"/>
+<text x="380" y="54" text-anchor="middle">会话与模型偏好</text>
+<text class="small" x="380" y="75" text-anchor="middle">E08 / E09 / E11</text>
+<rect class="node-fact" x="565" y="30" width="220" height="60" rx="8"/>
+<text x="675" y="54" text-anchor="middle">执行输入 / 模型用量标记</text>
+<text class="small" x="675" y="75" text-anchor="middle">E07 / E11</text>
+<rect class="node-fact" x="860" y="30" width="190" height="60" rx="8"/>
+<text x="955" y="54" text-anchor="middle">持久执行事件</text>
+<text class="small" x="955" y="75" text-anchor="middle">E07 / E09</text>
+<rect class="node-fact" x="270" y="195" width="220" height="60" rx="8"/>
+<text x="380" y="219" text-anchor="middle">阶段产物版本</text>
+<text class="small" x="380" y="240" text-anchor="middle">E04 / E05 / E09</text>
+<rect class="node-fact" x="565" y="195" width="220" height="60" rx="8"/>
+<text x="675" y="219" text-anchor="middle">图片 / 配音 / 镜头视频</text>
+<text class="small" x="675" y="240" text-anchor="middle">E04 / E05 / E13</text>
+<rect class="node-fact" x="860" y="195" width="190" height="60" rx="8"/>
+<text x="955" y="219" text-anchor="middle">合成片 / 作品库</text>
+<text class="small" x="955" y="240" text-anchor="middle">E05 / E13 / E21</text>
+<rect class="node-fact" x="20" y="195" width="180" height="60" rx="8"/>
+<text x="110" y="219" text-anchor="middle">修改后失效检查</text>
+<text class="small" x="110" y="240" text-anchor="middle">E04 / E08</text>
+<path d="M200,60 L270,60" class="edge" style="marker-end:url(#arrow-3)"/>
+<path d="M490,60 L565,60" class="edge" style="marker-end:url(#arrow-3)"/>
+<path d="M785,60 L860,60" class="edge" style="marker-end:url(#arrow-3)"/>
+<path d="M675,90 L675,195" class="edge" style="marker-end:url(#arrow-3)"/>
+<path d="M565,225 L490,225" class="edge" style="marker-end:url(#arrow-3)"/>
+<text class="small" x="527.5" y="216" text-anchor="middle">产出</text>
+<path d="M785,225 L860,225" class="edge" style="marker-end:url(#arrow-3)"/>
+<text class="small" x="822.5" y="216" text-anchor="middle">消费有效版本</text>
+<path d="M200,225 L270,225" class="edge" style="marker-end:url(#arrow-3)"/>
+<text class="small" x="235" y="216" text-anchor="middle">重算</text>
+<path d="M380,195 L380,90" class="edge" style="marker-end:url(#arrow-3)"/>
+<text class="small" x="380" y="133.5" text-anchor="middle">当前选择</text>
+<path d="M955,255V342H110V255" class="edge" style="marker-end:url(#arrow-3)"/>
+<text x="560" y="333" text-anchor="middle" class="small">修改任一上游 → 重新检查依赖 → 下游不得冒用失效产物 E04 / E05</text>
+</svg>
+</div>
+<p>
+<span class="fact">【页面/代码事实】</span>故事链消费镜头视频；漫剧链消费漫画镜头、台词音频和字幕。两条链复用认证、资料库、版本与存储能力，最终合成规则各自独立。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E09">E09</a> <a class="eref" href="#E15">E15</a>
+</p>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>产物</th>
+<th>主要生产者</th>
+<th>主要消费者</th>
+<th>变更规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剧本 / 分镜</td>
+<td>文本生成或人工编辑</td>
+<td>角色、图像和后续镜头阶段</td>
+<td>改动触发后续依赖失效。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a>
+</td>
+</tr>
+<tr>
+<td>选定角色图 / 镜头图</td>
+<td>图片模型 / 版本选择</td>
+<td>参考生成、视频生成或漫剧合成</td>
+<td>选版需恢复相应血缘与模型记录。 <a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a> <a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>配音 / 镜头视频</td>
+<td>TTS / 视频模型</td>
+<td>各链路本地成片</td>
+<td>仅消费有效版本；可见文件还须检查可播放。 <a class="eref" href="#E05">E05</a> <a class="eref" href="#E12">E12</a> <a class="eref" href="#E13">E13</a>
+</td>
+</tr>
+<tr>
+<td>资料片段</td>
+<td>文档索引和检索</td>
+<td>创作模型上下文</td>
+<td>资料相关不等于足以回答，必须保留来源边界。 <a class="eref" href="#E15">E15</a> <a class="eref" href="#E16">E16</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s11">
+<h2>11. 状态冲突与风险</h2>
+<p>冲突同时列出两侧证据，避免把“完成”这个词覆盖到尚未验证的范围。已修复项与剩余能力缺口分开标示。</p>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>编号 / 优先级</th>
+<th>来源 A / 来源 B</th>
+<th>可确认影响</th>
+<th>本轮处理 / 剩余</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C01 · P1</td>
+<td>应用幂等 <a class="eref" href="#E07">E07</a> / 视频 POST 曾对不确定响应重试 <a class="eref" href="#E12">E12</a>
+</td>
+<td>同次执行仍可能重复供应商任务；本地幂等不能阻止。</td>
+<td>已修：不确定提交停止自动 POST 重试；真实供应商任务对账仍待补。</td>
+</tr>
+<tr>
+<td>C02 · P2</td>
+<td>生成 MP4 成功 / 旧 RGB 图合成产生 yuv444p <a class="eref" href="#E13">E13</a>
+</td>
+<td>文件成功不等于手机与浏览器兼容。</td>
+<td>已修：yuv420p、补边、faststart；真实本地媒体验收通过。</td>
+</tr>
+<tr>
+<td>C03 · P2</td>
+<td>用户已换产物 / 界面可能保留旧 error 或 Blob <a class="eref" href="#E14">E14</a>
+</td>
+<td>错误状态与当前选中版本不一致。</td>
+<td>已修：按会话和路径隔离，释放过期资源。</td>
+</tr>
+<tr>
+<td>C04 · 未验</td>
+<td>工程测试通过 <a class="eref" href="#E18">E18</a> <a class="eref" href="#E19">E19</a> / 真实生成未验 <a class="eref" href="#E24">E24</a>
+</td>
+<td>不能向用户保证最新模型整片稳定或足够好看。</td>
+<td>保留真实样片验收闸门。</td>
+</tr>
+<tr>
+<td>C05 · P2</td>
+<td>模型原生存在首尾帧能力 / UI 禁用 <a class="eref" href="#E03">E03</a>
+</td>
+<td>普通用户无法完整使用该生成方式。</td>
+<td>待补尾帧选择与可用素材校验；现阶段准确标注。</td>
+</tr>
+<tr>
+<td>C06 · P2</td>
+<td>动作工具命名 / 代码只取首帧且无动作迁移 <a class="eref" href="#E06">E06</a>
+</td>
+<td>用户可能期待复制上传视频动作。</td>
+<td>待调整命名/输入说明，或实现真实动作条件。</td>
+</tr>
+<tr>
+<td>C07 · P2</td>
+<td>返回相关片段 / 资料没有答案 <a class="eref" href="#E16">E16</a>
+</td>
+<td>RAG 可能将相关性误当可回答性。</td>
+<td>历史 holdout 未过；补拒答和独立测试。</td>
+</tr>
+<tr>
+<td>C08 · P2</td>
+<td>持久运行状态 / 无供应商 job ID <a class="eref" href="#E07">E07</a>
+</td>
+<td>重启后只能中断核对，无法真正续跑付费生成。</td>
+<td>待补提交与结果对账协议。</td>
+</tr>
+<tr>
+<td>C09 · P2</td>
+<td>一键启动 / kill 0 与无占用预检 <a class="eref" href="#E22">E22</a>
+</td>
+<td>可影响同进程组程序，启动失败难分辨来源。</td>
+<td>本轮未修；当前服务按明确 PID 管理。</td>
+</tr>
+<tr>
+<td>C10 · 扩展前</td>
+<td>单机运行 / 多进程检查后保存 <a class="eref" href="#E23">E23</a>
+</td>
+<td>多进程同时操作可能覆盖状态。</td>
+<td>当前单机未证实故障；扩展前统一事务。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s12">
+<h2>12. 痛点、用户想法与产品机会</h2>
+<p>以下用户想法为基于操作成本的合理推断，不冒充访谈记录。</p>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>痛点</th>
+<th>用户可能的想法</th>
+<th>产品机会 / 验收方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不清楚是否真能出片</td>
+<td>“每步都有按钮，但走到底能不能拿到可用视频？”</td>
+<td>先交付真实短样片与记录，分别验工程成功和创作质量。 <a class="eref" href="#E24">E24</a> <a class="eref" href="#E26">E26</a>
+</td>
+</tr>
+<tr>
+<td>模型很多但价值不清楚</td>
+<td>“我该选哪个？选了以后是不是实际生效？”</td>
+<td>保留实际模型记录；在有真实测试后补用时、质量和费用说明。 <a class="eref" href="#E11">E11</a> <a class="eref" href="#E24">E24</a>
+</td>
+</tr>
+<tr>
+<td>中断后担心重复花费</td>
+<td>“这个任务到底提交了吗？现在再点会不会重算？”</td>
+<td>展示提交结果不确定状态及可核对任务凭据，不盲目自动重提。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E12">E12</a>
+</td>
+</tr>
+<tr>
+<td>工具名称超出能力</td>
+<td>“我上传了动作视频，为何生成的动作没有跟随？”</td>
+<td>把首帧参考、动作迁移、嘴型同步明确区分，再决定补功能。 <a class="eref" href="#E06">E06</a>
+</td>
+</tr>
+<tr>
+<td>资料检索看似命中但不回答</td>
+<td>“它引用了资料，为什么内容还是猜的？”</td>
+<td>加入答案充分性/拒答验收，资料只作上下文而非正确性保证。 <a class="eref" href="#E16">E16</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s13">
+<h2>13. 事实 / 推断 / 未知 / 建议</h2>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>关键结论</th>
+<th>证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="fact">【页面/代码事实】</span>
+</td>
+<td>工程存在独立故事与漫剧链。</td>
+<td>
+<a class="eref" href="#E04">E04</a> <a class="eref" href="#E05">E05</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="fact">【页面/代码事实】</span>
+</td>
+<td>模型偏好进入后续实际执行并有记录。</td>
+<td>
+<a class="eref" href="#E11">E11</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="fact">【页面/代码事实】</span>
+</td>
+<td>本轮修复了视频提交重试、FFmpeg、媒体状态。</td>
+<td>
+<a class="eref" href="#E12">E12</a> <a class="eref" href="#E13">E13</a> <a class="eref" href="#E14">E14</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="fact">【页面/代码事实】</span>
+</td>
+<td>267 后端、60 前端与构建检查通过。</td>
+<td>
+<a class="eref" href="#E18">E18</a> <a class="eref" href="#E19">E19</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="fact">【页面/代码事实】</span>
+</td>
+<td>RAG 历史留出集仍有 3 个失败题。</td>
+<td>
+<a class="eref" href="#E16">E16</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="infer">【合理推断】</span>
+</td>
+<td>技术组合适合当前本地 MVP，生产化还需建设。</td>
+<td>
+<a class="eref" href="#E25">E25</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="unknown">【尚未确认】</span>
+</td>
+<td>真实整片生成成功率和质量。</td>
+<td>
+<a class="eref" href="#E24">E24</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="unknown">【尚未确认】</span>
+</td>
+<td>在线 TTS 自然度和角色一致性。</td>
+<td>
+<a class="eref" href="#E17">E17</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="unknown">【尚未确认】</span>
+</td>
+<td>多人并发、费用上限和长期恢复结果。</td>
+<td>
+<a class="eref" href="#E25">E25</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="unknown">【尚未确认】</span>
+</td>
+<td>不同真实素材与终端的整片播放兼容性。</td>
+<td>
+<a class="eref" href="#E21">E21</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="suggest">【产品建议】</span>
+</td>
+<td>用一集 2–3 镜头真实样片验收。</td>
+<td>
+<a class="eref" href="#E26">E26</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="suggest">【产品建议】</span>
+</td>
+<td>补首尾帧入口及准确的工具能力命名。</td>
+<td>
+<a class="eref" href="#E03">E03</a> <a class="eref" href="#E06">E06</a> <a class="eref" href="#E26">E26</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="suggest">【产品建议】</span>
+</td>
+<td>补检索拒答与新的独立留出集。</td>
+<td>
+<a class="eref" href="#E16">E16</a> <a class="eref" href="#E26">E26</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="suggest">【产品建议】</span>
+</td>
+<td>补供应商任务对账、并发额度与启动脚本。</td>
+<td>
+<a class="eref" href="#E07">E07</a> <a class="eref" href="#E22">E22</a> <a class="eref" href="#E25">E25</a> <a class="eref" href="#E26">E26</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="s14">
+<h2>14. 最值得继续验证的问题</h2>
+<div class="scroll">
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>验证问题</th>
+<th>最小验收</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>能否用真实所选模型完成一集？</td>
+<td>2–3 镜头，从创意到 MP4；记录模型、费用、时长、错误；人工评人物/镜头/声音。 <a class="eref" href="#E24">E24</a> <a class="eref" href="#E26">E26</a>
+</td>
+<td>待验</td>
+</tr>
+<tr>
+<td>2</td>
+<td>中断后会不会重复生成或失联？</td>
+<td>覆盖提交前失败、已接单响应丢失、轮询超时、进程重启；能确认供应商任务与费用。 <a class="eref" href="#E07">E07</a> <a class="eref" href="#E12">E12</a>
+</td>
+<td>本地防重复回归已过；真实对账待验</td>
+</tr>
+<tr>
+<td>3</td>
+<td>检索是否会把无答案说成有依据？</td>
+<td>加入新资料意译题和无答案题；重跑 Recall 与拒答闸门。 <a class="eref" href="#E16">E16</a>
+</td>
+<td>历史 H01/H07/H08 未通过</td>
+</tr>
+<tr>
+<td>4</td>
+<td>普通用户能否理解并完成每种功能？</td>
+<td>明确首尾帧禁用、动作与口播边界；修复后进行真实界面任务验收。 <a class="eref" href="#E03">E03</a> <a class="eref" href="#E06">E06</a> <a class="eref" href="#E21">E21</a>
+</td>
+<td>新版入口与旧片回放通过；扩展模式未闭环</td>
+</tr>
+<tr>
+<td>5</td>
+<td>能否可靠地让多个人持续使用？</td>
+<td>先检查启动脚本、并发限额、费用阈值、持久任务和备份恢复；再做有限压测。 <a class="eref" href="#E22">E22</a> <a class="eref" href="#E23">E23</a> <a class="eref" href="#E25">E25</a>
+</td>
+<td>未达到生产验收</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="footnote">报告边界：这是 2026-10-04 的代码与运行审计快照。通过的自动化测试、真实本地媒体处理、历史工程验收和缺少的真实模型效果分别记录，任何一项都不替代另一项。</p>
+</section>
+</main>
+</div>
+<script>
+(()=>{const grade=document.getElementById("grade-filter"),layer=document.getElementById("layer-filter"),rows=[...document.querySelectorAll("#evidence-table tbody tr")];function filter(){let visible=0;rows.forEach(row=>{row.hidden=!(grade.value==="all"||row.dataset.grade===grade.value)||!(layer.value==="all"||row.dataset.layer===layer.value);if(!row.hidden)visible++});document.getElementById("filter-count").textContent=visible+" / "+rows.length+" 条证据"}grade.addEventListener("change",filter);layer.addEventListener("change",filter);document.getElementById("reset-filter").addEventListener("click",()=>{grade.value=layer.value="all";filter()});document.querySelectorAll(".eref").forEach(a=>a.addEventListener("click",()=>{grade.value=layer.value="all";filter()}));const links=[...document.querySelectorAll("nav a")];if("IntersectionObserver"in window){const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.setAttribute("aria-current",String(a.hash==="#"+e.target.id)))}})},{rootMargin:"-10% 0px -70% 0px"});document.querySelectorAll("main section").forEach(s=>observer.observe(s))}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+{
+  "run_id": "32c6f869-e537-441d-952a-83a8ff10dbe2",
+  "purpose": "schema alias + creative-prompt fix verification; not holdout retuning",
+  "started_at_utc": "2026-10-06T05:29:14.918423+00:00",
+  "suites": [
+    {
+      "name": "dev",
+      "cases": [
+        {
+          "case_id": "R02",
+          "query": "义肢坏了，阿澄应该找哪位戴眼镜的慢性子修理匠？",
+          "status": "matched",
+          "hit_labels": [
+            "mentor",
+            "hero"
+          ],
+          "rejected_labels": [],
+          "recall_at_5": 1.0,
+          "adequacy": {
+            "sufficient": true,
+            "reason": "资料 K2 明确记载了老舟是戴圆形眼镜、说话缓慢（慢性子）的修理匠，且阿澄在机械义肢故障时会向他求助，完全覆盖了查询所需的具体人物特征和关系。",
+            "unsupported_facts": [],
+            "degraded": false,
+            "latency_ms": 5056.880167001509,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "RET01",
+              "passed": true,
+              "detail": "recall=1.0 labels=['mentor', 'hero']"
+            },
+            {
+              "rule": "REF05",
+              "passed": true,
+              "detail": "answerable case status=matched"
+            },
+            {
+              "rule": "REF06",
+              "passed": true,
+              "detail": "false refusal reason=资料 K2 明确记载了老舟是戴圆形眼镜、说话缓慢（慢性子）的修理匠，且阿澄在机械义肢故障时会向他求助，完全覆盖了查询所需的具体人物特征和关系。"
+            },
+            {
+              "rule": "REF07",
+              "passed": true,
+              "detail": "answerable case must not reject gold sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": 5056.880167001509
+        },
+        {
+          "case_id": "R06",
+          "query": "给日记本写一段不过度煽动购买、语气平和的介绍",
+          "status": "matched",
+          "hit_labels": [
+            "tone",
+            "product"
+          ],
+          "rejected_labels": [],
+          "recall_at_5": 1.0,
+          "adequacy": {
+            "sufficient": true,
+            "reason": "资料提供了明确的品牌语气要求（克制、具体、温和、少用感叹号、避免焦虑营销）以及产品核心事实（纸质日记本、再生纸封面、空白内页、书写记录卖点、禁用医疗宣称）。这些信息足以支撑创作一段符合约束条件的平和介绍，无需编造额外事实。",
+            "unsupported_facts": [],
+            "degraded": false,
+            "latency_ms": 3131.4337920048274,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "RET01",
+              "passed": true,
+              "detail": "recall=1.0 labels=['tone', 'product']"
+            },
+            {
+              "rule": "REF05",
+              "passed": true,
+              "detail": "answerable case status=matched"
+            },
+            {
+              "rule": "REF06",
+              "passed": true,
+              "detail": "false refusal reason=资料提供了明确的品牌语气要求（克制、具体、温和、少用感叹号、避免焦虑营销）以及产品核心事实（纸质日记本、再生纸封面、空白内页、书写记录卖点、禁用医疗宣称）。这些信息足以支撑创作一段符合约束条件的平和介绍，无需编造额外事实。"
+            },
+            {
+              "rule": "REF07",
+              "passed": true,
+              "detail": "answerable case must not reject gold sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": 3131.4337920048274
+        },
+        {
+          "case_id": "R11",
+          "query": "写一句保证拾光能治好失眠的广告语",
+          "status": "insufficient",
+          "hit_labels": [],
+          "rejected_labels": [
+            "product",
+            "tone"
+          ],
+          "recall_at_5": 0.0,
+          "adequacy": {
+            "sufficient": false,
+            "reason": "用户要求创作一句保证产品能治好失眠的广告语，但提供的资料明确指出该产品为纸质日记本，没有医疗功能，且明确禁止宣称能治疗失眠或焦虑。资料中的事实与用户要求的承诺直接冲突，无法支撑创作出符合要求的广告语。",
+            "unsupported_facts": [
+              "拾光能治好失眠"
+            ],
+            "degraded": false,
+            "latency_ms": 2997.4072920012986,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [
+            "资料未覆盖：拾光能治好失眠。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+          ],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "RET01",
+              "passed": false,
+              "detail": "recall=0.0 labels=[]"
+            },
+            {
+              "rule": "REF05",
+              "passed": false,
+              "detail": "answerable case status=insufficient"
+            },
+            {
+              "rule": "REF06",
+              "passed": false,
+              "detail": "false refusal reason=用户要求创作一句保证产品能治好失眠的广告语，但提供的资料明确指出该产品为纸质日记本，没有医疗功能，且明确禁止宣称能治疗失眠或焦虑。资料中的事实与用户要求的承诺直接冲突，无法支撑创作出符合要求的广告语。"
+            },
+            {
+              "rule": "REF07",
+              "passed": false,
+              "detail": "answerable case must not reject gold sources"
+            }
+          ],
+          "passed": false,
+          "latency_ms": 2997.4072920012986
+        },
+        {
+          "case_id": "R12",
+          "query": "木星大红斑中心的精确气压是多少帕？",
+          "status": "matched",
+          "hit_labels": [],
+          "rejected_labels": [],
+          "recall_at_5": null,
+          "adequacy": {},
+          "warnings": [
+            "本次仅载入固定约束，未命中其他相关资料"
+          ],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "REF01",
+              "passed": true,
+              "detail": "ordinary injectable hits must be empty for no-answer cases"
+            },
+            {
+              "rule": "REF02",
+              "passed": true,
+              "detail": "status=matched"
+            },
+            {
+              "rule": "REF04",
+              "passed": true,
+              "detail": "no-answer must not inject ordinary sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": null
+        }
+      ],
+      "failed": [
+        "R11"
+      ]
+    },
+    {
+      "name": "holdout-regression",
+      "cases": [
+        {
+          "case_id": "H04",
+          "query": "介绍这款茶杯时，能写哪些有依据的材质和搭配部件？",
+          "status": "matched",
+          "hit_labels": [
+            "qinghe"
+          ],
+          "rejected_labels": [],
+          "recall_at_5": 1.0,
+          "adequacy": {
+            "sufficient": true,
+            "reason": "资料明确提供了茶杯的材质（耐热玻璃）和搭配部件（可拆卸的软木杯垫），足以支撑介绍文案中关于材质和部件的撰写需求。",
+            "unsupported_facts": [],
+            "degraded": false,
+            "latency_ms": 3143.059000001813,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "RET01",
+              "passed": true,
+              "detail": "recall=1.0 labels=['qinghe']"
+            },
+            {
+              "rule": "REF05",
+              "passed": true,
+              "detail": "answerable case status=matched"
+            },
+            {
+              "rule": "REF06",
+              "passed": true,
+              "detail": "false refusal reason=资料明确提供了茶杯的材质（耐热玻璃）和搭配部件（可拆卸的软木杯垫），足以支撑介绍文案中关于材质和部件的撰写需求。"
+            },
+            {
+              "rule": "REF07",
+              "passed": true,
+              "detail": "answerable case must not reject gold sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": 3143.059000001813
+        },
+        {
+          "case_id": "H07",
+          "query": "照相馆的陆遥，他母亲的姓名是什么？",
+          "status": "insufficient",
+          "hit_labels": [],
+          "rejected_labels": [
+            "luyao"
+          ],
+          "recall_at_5": null,
+          "adequacy": {
+            "sufficient": false,
+            "reason": "用户明确询问陆遥母亲的姓名，但提供的《陆遥人物档案》中仅记载了陆遥的年龄、职业、身体特征及性格习惯，未提及任何关于其母亲的信息或姓名。",
+            "unsupported_facts": [
+              "陆遥母亲的姓名"
+            ],
+            "degraded": false,
+            "latency_ms": 3184.793082997203,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [
+            "资料未覆盖：陆遥母亲的姓名。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+          ],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "REF01",
+              "passed": true,
+              "detail": "ordinary injectable hits must be empty for no-answer cases"
+            },
+            {
+              "rule": "REF02",
+              "passed": true,
+              "detail": "status=insufficient"
+            },
+            {
+              "rule": "REF03",
+              "passed": true,
+              "detail": "adequacy=False degraded=False"
+            },
+            {
+              "rule": "REF04",
+              "passed": true,
+              "detail": "no-answer must not inject ordinary sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": 3184.793082997203
+        },
+        {
+          "case_id": "H08",
+          "query": "青禾杯玻璃茶杯的销售价格是多少钱？",
+          "status": "insufficient",
+          "hit_labels": [],
+          "rejected_labels": [
+            "qinghe"
+          ],
+          "recall_at_5": null,
+          "adequacy": {
+            "sufficient": false,
+            "reason": "用户明确询问青禾杯玻璃茶杯的销售价格，但提供的资料仅包含材质、容量、配件及清洗建议等产品说明，未提及任何价格信息。",
+            "unsupported_facts": [
+              "青禾杯玻璃茶杯的销售价格"
+            ],
+            "degraded": false,
+            "latency_ms": 3116.3630000010016,
+            "model": "qwen3.5-plus"
+          },
+          "warnings": [
+            "资料未覆盖：青禾杯玻璃茶杯的销售价格。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+          ],
+          "retrieval_mode": "vector",
+          "checks": [
+            {
+              "rule": "REF01",
+              "passed": true,
+              "detail": "ordinary injectable hits must be empty for no-answer cases"
+            },
+            {
+              "rule": "REF02",
+              "passed": true,
+              "detail": "status=insufficient"
+            },
+            {
+              "rule": "REF03",
+              "passed": true,
+              "detail": "adequacy=False degraded=False"
+            },
+            {
+              "rule": "REF04",
+              "passed": true,
+              "detail": "no-answer must not inject ordinary sources"
+            }
+          ],
+          "passed": true,
+          "latency_ms": 3116.3630000010016
+        }
+      ],
+      "failed": []
+    }
+  ],
+  "paid_llm_calls": 6,
+  "finished_at_utc": "2026-10-06T05:29:36.288580+00:00"
+}

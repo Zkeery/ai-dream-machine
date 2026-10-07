@@ -61,7 +61,7 @@
       <label>视觉风格</label>
       <input id="style" value="realistic" placeholder="realistic / anime / ...">
       <label>剧集数</label>
-      <input id="episodes" type="number" value="4" min="1" max="20">
+      <input id="episodes" type="number" value="1" min="1" max="20">
       <label>视频比例</label>
       <select id="ratio"><option>16:9</option><option>9:16</option><option>1:1</option></select>
       <div class="row"><button id="start">开始创作</button></div>
@@ -220,7 +220,7 @@ function showMain(show){
 function resetWorkspace(){
   sessionId = null; currentStage = null;
   window.__done = []; window.__meta = null;
-  $("idea").value = ""; $("style").value = "realistic"; $("episodes").value = "4"; $("ratio").value = "16:9";
+  $("idea").value = ""; $("style").value = "realistic"; $("episodes").value = "1"; $("ratio").value = "16:9";
   $("lit_text").value = ""; $("lit_style").value = "realistic";
   $("motion_prompt").value = ""; $("talk_script").value = "";
   $("motion_char").value = ""; $("motion_vid").value = ""; $("talk_person").value = "";

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="650" viewBox="0 0 1440 650" role="img" aria-labelledby="title desc">
+  <title id="title">AI造梦机：故事短视频与漫剧视频双主链路</title>
+  <desc id="desc">两种项目各有六个阶段，共用账号、知识库、素材、任务版本和作品库。三种快捷工具保持独立。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#a4a7bb" stroke-width="1.5"/></marker>
+    <style>text{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;fill:#eef0f8}.label{font-size:21px;font-weight:600}.note{font-size:16px;fill:#afb4ca}.step{font-size:20px;font-weight:500;text-anchor:middle}.line{stroke:#a4a7bb;stroke-width:2;marker-end:url(#arrow)}.box{fill:#202438;stroke:#3e465f;rx:12}</style>
+  </defs>
+  <rect width="1440" height="650" rx="24" fill="#10131f"/>
+  <text x="56" y="64" font-size="30" font-weight="650">两条创作主链路 · 一个 AI造梦机</text>
+  <text x="56" y="97" class="note">创建时选择项目类型，阶段、进度、产物与失效规则各自管理</text>
+  <rect x="40" y="126" width="1360" height="146" rx="18" fill="#171e30"/>
+  <text x="62" y="159" class="label" style="fill:#8ac7ff">故事短视频</text>
+  <text x="244" y="158" class="note">保留现有工作流与历史作品</text>
+  <g class="box"><rect x="62" y="184" width="176" height="60"/><rect x="284" y="184" width="176" height="60"/><rect x="506" y="184" width="176" height="60"/><rect x="728" y="184" width="176" height="60"/><rect x="950" y="184" width="176" height="60"/><rect x="1172" y="184" width="202" height="60"/></g>
+  <g class="step"><text x="150" y="222">剧本</text><text x="372" y="222">角色 / 场景</text><text x="594" y="222">分镜</text><text x="816" y="222">参考图</text><text x="1038" y="222">镜头视频</text><text x="1273" y="222">短视频成片</text></g>
+  <g class="line"><path d="M245 214H272"/><path d="M467 214H494"/><path d="M689 214H716"/><path d="M911 214H938"/><path d="M1133 214H1160"/></g>
+  <rect x="40" y="292" width="1360" height="146" rx="18" fill="#251d34"/>
+  <text x="62" y="325" class="label" style="fill:#cfacff">漫剧创作</text>
+  <text x="244" y="324" class="note">带配音、基础运镜和中文字幕的视频</text>
+  <g class="box"><rect x="62" y="350" width="176" height="60"/><rect x="284" y="350" width="176" height="60"/><rect x="506" y="350" width="176" height="60"/><rect x="728" y="350" width="176" height="60"/><rect x="950" y="350" width="176" height="60"/><rect x="1172" y="350" width="202" height="60"/></g>
+  <g class="step"><text x="150" y="388">剧本</text><text x="372" y="388">角色 / 场景</text><text x="594" y="388">分镜对白</text><text x="816" y="388">漫画镜头图</text><text x="1038" y="388">角色配音</text><text x="1273" y="388">运镜字幕成片</text></g>
+  <g class="line"><path d="M245 380H272"/><path d="M467 380H494"/><path d="M689 380H716"/><path d="M911 380H938"/><path d="M1133 380H1160"/></g>
+  <rect x="40" y="466" width="1360" height="82" rx="16" fill="#1b2330" stroke="#3a4e60"/>
+  <text x="64" y="502" class="label">公共能力</text>
+  <text x="230" y="502" font-size="21">账号隔离　·　知识库　·　角色与素材　·　任务 / 版本　·　作品库</text>
+  <text x="230" y="530" class="note">共用基础设施；项目类型和各自的阶段产物保持清晰边界</text>
+  <text x="56" y="593" class="note">三种快捷短片工具独立保留　｜　漫剧首期：单集 MP4，基础运镜，无精准口型 / 自由时间线</text>
+  <text x="56" y="622" font-size="13" fill="#788299">PRD V1.3 · 2026-10-04 · 实现与验收状态以项目状态及漫剧验收记录为准</text>
+</svg>

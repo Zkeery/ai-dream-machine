@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">AI造梦机 V1.2 创作知识库架构</title><desc id="desc">资料入库在本地解析、向量化、存储。故事项目选择资料库，检索片段和固定约束输入剧本与分镜模型，来源快照和作品版本保留。</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#809acd"/></marker></defs>
+<rect width="1200" height="650" rx="22" fill="#10151f"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" fill="#eaf0fc">
+<text x="40" y="52" font-size="27" font-weight="700">创作知识库，连接故事与依据</text>
+<text x="40" y="84" fill="#aab7cc" font-size="15">V1.2 · 本地解析与语义检索 · 生成时按需发送资料 · 来源与版本可追溯</text>
+<g fill="#192332" stroke="#425573"><rect x="40" y="130" width="225" height="108" rx="12"/><rect x="330" y="130" width="225" height="108" rx="12"/><rect x="625" y="130" width="225" height="108" rx="12"/><rect x="915" y="130" width="245" height="108" rx="12"/></g>
+<text x="60" y="166" font-size="20">创作资料</text><text x="60" y="194" font-size="15" fill="#bac6d9">MD / TXT / 文字 PDF</text><text x="60" y="216" font-size="14" fill="#bac6d9">分类 · 固定约束 · 版本</text>
+<text x="350" y="166" font-size="20">解析与分段</text><text x="350" y="194" font-size="15" fill="#bac6d9">所有者校验 / 文件校验</text><text x="350" y="216" font-size="14" fill="#bac6d9">原文与版本 → SQLite</text>
+<text x="645" y="166" font-size="20">中文向量化</text><text x="645" y="194" font-size="15" fill="#bac6d9">BGE Small · FastEmbed</text><text x="645" y="216" font-size="14" fill="#bac6d9">本地 CPU / 512 维</text>
+<text x="935" y="166" font-size="20">本地知识索引</text><text x="935" y="194" font-size="15" fill="#bac6d9">Qdrant 磁盘模式</text><text x="935" y="216" font-size="14" fill="#bac6d9">账号 + 库 + 当前版本过滤</text>
+<g stroke="#809acd" stroke-width="2" fill="none" marker-end="url(#a)"><path d="M265 184H320"/><path d="M555 184H615"/><path d="M850 184H905"/><path d="M1037 238V283H442V325"/></g>
+<g fill="#192332" stroke="#425573"><rect x="40" y="335" width="225" height="120" rx="12"/><rect x="330" y="335" width="225" height="120" rx="12"/><rect x="625" y="335" width="225" height="120" rx="12"/><rect x="915" y="335" width="245" height="120" rx="12"/></g>
+<text x="60" y="371" font-size="20">故事项目</text><text x="60" y="399" font-size="15" fill="#bac6d9">主动选择最多 3 个库</text><text x="60" y="426" font-size="14" fill="#bac6d9">创意 / 剧本生成检索问题</text>
+<text x="350" y="371" font-size="20">上下文快照</text><text x="350" y="399" font-size="15" fill="#bac6d9">固定约束 + 相关片段</text><text x="350" y="426" font-size="14" fill="#bac6d9">保存来源、版本、实际输入</text>
+<text x="645" y="371" font-size="20">剧本 / 分镜</text><text x="645" y="399" font-size="15" fill="#bac6d9">已有 LLM + JSON 校验</text><text x="645" y="426" font-size="14" fill="#bac6d9">来源展开 / 人工编辑确认</text>
+<text x="935" y="371" font-size="20">已有创作闭环</text><text x="935" y="399" font-size="15" fill="#bac6d9">角色图 / 参考图 / 视频</text><text x="935" y="426" font-size="14" fill="#bac6d9">确认版本 → 成片与作品库</text>
+<g stroke="#809acd" stroke-width="2" fill="none" marker-end="url(#a)"><path d="M265 395H320"/><path d="M555 395H615"/><path d="M850 395H905"/></g>
+<rect x="40" y="503" width="1120" height="102" rx="12" fill="#202d34"/>
+<text x="62" y="536" font-size="17">资料更新 → 提醒已有作品引用旧版本 → 用户决定是否重新生成</text>
+<text x="62" y="565" font-size="15" fill="#bdcccd">旧产物保留来源快照；检索故障停止生成；无命中明确提示。来源面板不等于逐句引用已验证。</text>
+<text x="62" y="587" font-size="14" fill="#bdcccd">前端 3030 + 单进程后端 8030 · 无第三常驻服务 · 检索本地运行，生成时资料发送至既有模型网关</text>
+</g></svg>

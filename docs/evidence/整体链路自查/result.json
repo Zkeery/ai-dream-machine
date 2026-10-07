@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-04",
+  "scope": "Current local project architecture, workflow contracts, runtime and isolated regression",
+  "decision": "LOCAL_MVP_ENGINEERING_PASS_WITH_CAPABILITY_AND_QUALITY_GAPS",
+  "backend": { "passed": 267, "failed": 0, "warnings": 2 },
+  "frontend": { "passed": 60, "failed": 0 },
+  "typecheck": "passed",
+  "lint": "passed",
+  "production_build": "passed",
+  "pip_check": "passed",
+  "project_diff_check": "passed",
+  "paid_model_calls": 0,
+  "online_tts_synthesis_calls": 0,
+  "runtime": {
+    "active_executions_before_restart": 0,
+    "restarted_current_code": true,
+    "backend_health_status": 200,
+    "frontend_proxy_health_status": 200,
+    "anonymous_settings_status": 401,
+    "existing_projects_preserved_and_opened": true,
+    "desktop_home_width": 1512,
+    "desktop_home_scroll_width": 1512,
+    "desktop_broken_images": 0,
+    "mobile_home_width": 390,
+    "mobile_home_scroll_width": 390,
+    "existing_story_video_playback": {
+      "video_elements_present": 20,
+      "videos_playback_checked": 1,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 5.038005,
+      "ready_state": 4,
+      "error": null,
+      "observed_playback_seconds": 0.153745,
+      "newly_generated_in_this_audit": false
+    }
+  },
+  "fixed": [
+    "Ambiguous image/video submissions no longer automatically resubmit paid POSTs",
+    "Image download retries are separate from generation submission",
+    "Explicit LLM HTTP 5xx responses use bounded retry",
+    "Image/audio videos use H264 yuv420p AAC with even dimensions and faststart",
+    "FFmpeg subprocesses have deadlines and are reaped on timeout or cancellation",
+    "Media preview state isolates selected project/path and ignores stale requests",
+    "Offline comic acceptance LLM adapter accepts selected model"
+  ],
+  "remaining": [
+    "Current real-model story consistency and comic end-to-end quality acceptance",
+    "Online synthesized TTS quality",
+    "Historical independent RAG holdout recall 0.8 with H01/H07/H08 failed",
+    "Provider job IDs and result URLs are not persisted for restart recovery",
+    "No per-account/global concurrency or cost enforcement",
+    "Motion video is not actually transferred to the generated character",
+    "Talking portrait has no lip synchronization",
+    "Start/end-frame authoring is not fully available in normal UI",
+    "start.sh port preflight and process-group cleanup remain to be improved"
+  ],
+  "screenshots": ["desktop-home.png", "mobile-home.png"],
+  "report": "report.html"
+}

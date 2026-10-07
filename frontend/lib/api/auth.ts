@@ -4,12 +4,14 @@ export type LoginResult = {
   token: string;
   user_id: string;
   expires_at: number;
+  is_admin: boolean;
 };
 
 export type Me = {
   user_id: string;
   invite_code: string;
   created_at: number;
+  is_admin: boolean;
 };
 
 export function login(invite_code: string): Promise<LoginResult> {

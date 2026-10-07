@@ -1,0 +1,27 @@
+{
+  "finished_at_utc": "2026-10-06T04:17:59.548956+00:00",
+  "protocol": {
+    "chunk": "380/60",
+    "top_k": 5,
+    "max_context_chars": 12000,
+    "threshold_first_pass": 0.48,
+    "calibrate_on": "development only",
+    "holdout_not_used_for_tuning": true,
+    "paid_api": false,
+    "project_source_modified": false,
+    "wrapper": "/tmp/rag_embed_compare/run_compare.py"
+  },
+  "conclusion": "Keep BAAI/bge-small-zh-v1.5. jina matches holdout recall after calibration but is slower/heavier. bge-base-zh and bge-m3 unsupported by FastEmbed.",
+  "evidence_files": [
+    "rag-eval-model-bge-base-zh-v1.5-UNSUPPORTED-20261006.json",
+    "rag-eval-model-bge-m3-UNSUPPORTED-20261006.json",
+    "rag-eval-model-bge-small-zh-v1.5-dev-calibrated-t049-20261006.json",
+    "rag-eval-model-bge-small-zh-v1.5-dev-t048-20261006.json",
+    "rag-eval-model-bge-small-zh-v1.5-holdout-calibrated-t049-20261006.json",
+    "rag-eval-model-bge-small-zh-v1.5-holdout-t048-20261006.json",
+    "rag-eval-model-jina-embeddings-v2-base-zh-dev-calibrated-t038-20261006.json",
+    "rag-eval-model-jina-embeddings-v2-base-zh-dev-t048-20261006.json",
+    "rag-eval-model-jina-embeddings-v2-base-zh-holdout-calibrated-t038-20261006.json",
+    "rag-eval-model-jina-embeddings-v2-base-zh-holdout-t048-20261006.json"
+  ]
+}

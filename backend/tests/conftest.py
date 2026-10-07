@@ -15,6 +15,37 @@ if str(BACKEND) not in sys.path:
 from app.core import config  # noqa: E402
 
 
+@pytest.fixture(autouse=True)
+def isolated_client_budget(monkeypatch):
+    """Direct client contract tests have no account; only those calls use a stub.
+
+    Requests with an execution or explicit owner always exercise the real ledger.
+    Dedicated quota tests override these deliberately generous fixture limits.
+    """
+    from app.services import cost_control, execution_store
+    original_reserve, original_settle = cost_control.reserve, cost_control.settle
+    stub_calls = set()
+
+    def reserve(call_id, model, kind, units, **kwargs):
+        if not kwargs.get("owner_id") and not kwargs.get("execution_id") and not execution_store.current_execution_id():
+            stub_calls.add(call_id)
+            return {"call_id": call_id, "status": "isolated_test_stub"}
+        return original_reserve(call_id, model, kind, units, **kwargs)
+
+    def settle(call_id, *args, **kwargs):
+        if call_id in stub_calls:
+            return {"call_id": call_id, "status": "isolated_test_stub"}
+        return original_settle(call_id, *args, **kwargs)
+
+    monkeypatch.setattr(cost_control, "reserve", reserve)
+    monkeypatch.setattr(cost_control, "settle", settle)
+    monkeypatch.setattr(config.settings, "max_active_executions", 10000)
+    monkeypatch.setattr(config.settings, "max_active_executions_per_user", 10000)
+    monkeypatch.setenv("MAX_ACTIVE_EXECUTIONS", "10000")
+    monkeypatch.setenv("MAX_ACTIVE_EXECUTIONS_PER_USER", "10000")
+    return {"reserve": original_reserve, "settle": original_settle}
+
+
 class MockLLM:
     """返回固定结构化输出，不调用真实模型。"""
 
@@ -30,15 +61,17 @@ class MockLLM:
         }
         self.storyboard = storyboard or {
             "shots": [
-                {"shot_id": "s1", "episode_number": 1, "description": "雨夜街道", "prompt": "rainy street, cat"},
-                {"shot_id": "s2", "episode_number": 1, "description": "猫躲雨", "prompt": "cat hiding"},
+                {"shot_id": "s1", "episode_number": 1, "description": "雨夜街道", "prompt": "rainy street, cat",
+                 "character_ids": ["c1"], "setting_ids": ["l1"]},
+                {"shot_id": "s2", "episode_number": 1, "description": "猫躲雨", "prompt": "cat hiding",
+                 "character_ids": ["c1"], "setting_ids": ["l1"]},
             ]
         }
 
-    def generate(self, system: str, user: str) -> str:
+    def generate(self, system: str, user: str, **kwargs) -> str:
         return "扩写后的一句话梗概"
 
-    def generate_json(self, system: str, user: str, model_cls):
+    def generate_json(self, system: str, user: str, model_cls, **kwargs):
         from app.schemas.session import ScriptArtifact, StoryboardArtifact
 
         if model_cls is StoryboardArtifact:
@@ -49,17 +82,17 @@ class MockLLM:
 
 
 class MockImage:
-    def text_to_image(self, prompt: str, out_path: Path, model: str | None = None) -> Path:
+    def text_to_image(self, prompt: str, out_path: Path, model: str | None = None, **kwargs) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(b"fake-image")
         return out_path
 
-    def image_to_image(self, image_path, prompt, out_path, model=None):
+    def image_to_image(self, image_path, prompt, out_path, model=None, **kwargs):
         return self.text_to_image(prompt, out_path)
 
 
 class MockVideo:
-    def image_to_video(self, image_url: str, prompt: str, out_path: Path, mode: str = "first_frame") -> Path:
+    def image_to_video(self, image_url: str, prompt: str, out_path: Path, mode: str = "first_frame", **kwargs) -> Path:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(b"fake-video")
         return out_path

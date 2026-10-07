@@ -1,0 +1,162 @@
+{
+  "run_id": "e6677455-4693-4234-9778-405a266882af",
+  "started_at_utc": "2026-10-06T05:50:27.133297+00:00",
+  "finished_at_utc": "2026-10-06T05:51:59.677100+00:00",
+  "paid_llm_calls_total": 14,
+  "call_cap": 60,
+  "baseline": {
+    "dev": {
+      "case_count": 15,
+      "passed_count": 13,
+      "failed_case_ids": [
+        "R01",
+        "R09"
+      ],
+      "answerable_count": 11,
+      "adequacy_answerable_count": 10,
+      "retrieval_miss_answerable_ids": [
+        "R01"
+      ],
+      "false_refusal_count": 1,
+      "false_refusal_rate": 0.1,
+      "false_refusal_ids": [
+        "R09"
+      ],
+      "noanswer_count": 1,
+      "correct_refusal_count": 1,
+      "correct_refusal_rate": 1.0,
+      "flag_H07": null,
+      "flag_H08": null,
+      "flag_R12": {
+        "case_id": "R12",
+        "query": "木星大红斑中心的精确气压是多少帕？",
+        "status": "matched",
+        "hit_labels": [],
+        "rejected_labels": [],
+        "recall_at_5": null,
+        "adequacy": {},
+        "warnings": [
+          "本次仅载入固定约束，未命中其他相关资料"
+        ],
+        "retrieval_mode": "vector",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": true,
+            "detail": "status=matched"
+          },
+          {
+            "rule": "REF04",
+            "passed": true,
+            "detail": "no-answer must not inject ordinary sources"
+          }
+        ],
+        "passed": true,
+        "latency_ms": null,
+        "wall_latency_ms": 4.625082998245489
+      },
+      "adequacy_latency_ms": {
+        "p50": 7589.177583002311,
+        "p95": 25053.774500003783,
+        "mean": 9531.783483400068,
+        "count": 5
+      },
+      "paid_llm_calls": 5
+    },
+    "holdout": null
+  },
+  "hybrid": {
+    "dev": {
+      "case_count": 15,
+      "passed_count": 13,
+      "failed_case_ids": [
+        "R01",
+        "R09"
+      ],
+      "answerable_count": 11,
+      "adequacy_answerable_count": 11,
+      "retrieval_miss_answerable_ids": [],
+      "false_refusal_count": 2,
+      "false_refusal_rate": 0.18181818181818182,
+      "false_refusal_ids": [
+        "R01",
+        "R09"
+      ],
+      "noanswer_count": 1,
+      "correct_refusal_count": 1,
+      "correct_refusal_rate": 1.0,
+      "flag_H07": null,
+      "flag_H08": null,
+      "flag_R12": {
+        "case_id": "R12",
+        "query": "木星大红斑中心的精确气压是多少帕？",
+        "status": "insufficient",
+        "hit_labels": [],
+        "rejected_labels": [
+          "tone",
+          "palette",
+          "hero",
+          "camera",
+          "mentor"
+        ],
+        "recall_at_5": null,
+        "adequacy": {
+          "sufficient": false,
+          "reason": "用户询问的是关于天文学的具体事实（木星大红斑中心的气压数值），但提供的 sources 全部是关于虚构品牌“拾光”、人物设定（阿澄、老舟）及视觉风格的创作资料，完全未包含任何天文数据。",
+          "unsupported_facts": [
+            "木星大红斑中心的精确气压是多少帕"
+          ],
+          "degraded": false,
+          "latency_ms": 2982.780124999408,
+          "model": "qwen3.5-plus",
+          "question_kind": "fact",
+          "skipped_llm": false
+        },
+        "warnings": [
+          "资料未覆盖：木星大红斑中心的精确气压是多少帕。已阻止把未证实事实注入生成；请补充资料或改写问题。"
+        ],
+        "retrieval_mode": "hybrid_rrf",
+        "checks": [
+          {
+            "rule": "REF01",
+            "passed": true,
+            "detail": "ordinary injectable hits must be empty for no-answer cases"
+          },
+          {
+            "rule": "REF02",
+            "passed": true,
+            "detail": "status=insufficient"
+          },
+          {
+            "rule": "REF03",
+            "passed": true,
+            "detail": "adequacy=False degraded=False"
+          },
+          {
+            "rule": "REF04",
+            "passed": true,
+            "detail": "no-answer must not inject ordinary sources"
+          }
+        ],
+        "passed": true,
+        "latency_ms": 2982.780124999408,
+        "wall_latency_ms": 2990.3692090010736
+      },
+      "adequacy_latency_ms": {
+        "p50": 3251.727959002892,
+        "p95": 8242.948749997595,
+        "mean": 4849.869078890252,
+        "count": 9
+      },
+      "paid_llm_calls": 9
+    },
+    "r12_ok": true,
+    "enable_recommendation": false,
+    "skip_reason": "hybrid did not keep R12 refused with low false-refusal on DEV"
+  }
+}

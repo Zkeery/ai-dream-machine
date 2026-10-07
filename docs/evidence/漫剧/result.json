@@ -1,0 +1,166 @@
+{
+  "path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/漫剧/renderer-sample.mp4",
+  "duration": 3.52,
+  "width": 720,
+  "height": 1280,
+  "fps": 24,
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 1.5,
+      "text": "林澈：她说：“现在几点？” 钟楼亮起。",
+      "speaker": "林澈"
+    },
+    {
+      "start": 1.5,
+      "end": 3.5,
+      "text": "旁白：'安全测试'，中文标点也能正常显示\n。",
+      "speaker": ""
+    }
+  ],
+  "srt_path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/漫剧/renderer-sample.srt",
+  "shot_timings": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 1.5,
+      "path": "temporary generated test shot (cleaned)"
+    },
+    {
+      "index": 1,
+      "start": 1.5,
+      "end": 3.5,
+      "path": "temporary generated test shot (cleaned)"
+    }
+  ],
+  "probe": {
+    "duration": 3.52,
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "mime_codec_string": "avc1.64001f",
+        "width": 720,
+        "height": 1280,
+        "coded_width": 720,
+        "coded_height": 1280,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "9:16",
+        "pix_fmt": "yuv420p",
+        "level": 31,
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "time_base": "1/12288",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 43008,
+        "duration": "3.500000",
+        "bit_rate": "489602",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "84",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "encoder": "Lavc63.1.102 libx264"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "mime_codec_string": "mp4a.40.2",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 2,
+        "channel_layout": "stereo",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/48000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 168960,
+        "duration": "3.520000",
+        "bit_rate": "159379",
+        "nb_frames": "165",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "SoundHandler"
+        }
+      }
+    ]
+  },
+  "source": "人工绘制的几何测试图 + 本地正弦波合成音频；非 AI 模型生成的漫剧成品。",
+  "verified": [
+    "真实 FFmpeg/ffprobe",
+    "9:16 720P",
+    "推近与平移",
+    "中文引号/冒号/ASCII引号烧录",
+    "同步SRT",
+    "整集拼接"
+  ],
+  "paid_model_calls": 0,
+  "online_tts_calls": 0,
+  "frame_path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/漫剧/frame.png"
+}

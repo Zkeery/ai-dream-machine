@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-04",
+  "reviewer": "Codex：抽帧视觉检查、浏览器播放、媒体与字幕核对；未进行真人听审",
+  "engineering_verdict": "PASS_FOR_TWO_BOUNDED_CASES",
+  "content_verdict": "NEEDS_REVISION",
+  "formal_calibrated_review": false,
+  "cases": {
+    "story": {
+      "media_sha256": "51170b05a2755628079d1e18ab223e339952a1bc65c6aa961fa6a288815b5eac",
+      "rules": {"Q01": "PARTIAL：动作内容符合，原镜头数需要人工缩减", "Q02": "PARTIAL：衣着连贯，人物与灯塔尺度不够自然", "Q03": "NEEDS_REVISION：可见合成感、过强纹理", "Q04": "PARTIAL：抽帧可见拾信与抬头，未穷尽检查每一帧", "Q05": "NEED_REVIEW：有AAC音轨，未做真人听审"},
+      "browser": {"ended": true, "error": null, "duration": 10.099229, "width": 1280, "height": 720}
+    },
+    "comic": {
+      "media_sha256": "54f2cfa94846f5be04a3f302847c68dd41466fe4d9edf904fd40bfeff4ffb6c3",
+      "rules": {"Q01": "PARTIAL：两句对白符合，原镜头数需要人工缩减", "Q02": "PARTIAL：角色衣着连贯，信封色彩与细节存在变化", "Q03": "NEEDS_REVISION：摄影背景与线稿人物风格统一性不足", "Q04": "PASS_BASIC_MOTION：实现基础推进，非角色动画或口型同步", "Q05": "PARTIAL：两句字幕时轴有效、音轨非静音；自然度与情绪未听审"},
+      "browser": {"ended": true, "error": null, "duration": 3.754667, "width": 720, "height": 1280},
+      "audio": {"mean_volume_db": -30.2, "max_volume_db": -9.4}
+    }
+  },
+  "limitations": ["单例小样无法估算稳定通过率。", "没有人工制作基线，不能计算提效或降本百分比。", "提示词修复的自动化合同测试不等于真实模型效果复测。"]
+}
