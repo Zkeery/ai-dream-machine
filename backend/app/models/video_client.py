@@ -25,7 +25,7 @@ import httpx
 from app.core import config
 from app.core.errors import AppError
 from app.services import provider_jobs
-from app.models.video_contracts import VIDEO_MODE_MODELS, SEEDANCE, VEO, validate as validate_video
+from app.models.video_contracts import VIDEO_MODE_MODELS, SEEDANCE, VEO, KLING, validate as validate_video
 
 logger = logging.getLogger(__name__)
 
@@ -138,7 +138,7 @@ class VideoClient:
         selected_model = model or self._model_for(mode)
         if selected_model not in VIDEO_MODE_MODELS[mode]:
             raise AppError("VIDEO_MODEL_UNSUPPORTED", "所选视频模型不支持当前生成模式，请重新选择", 400)
-        if selected_model in {SEEDANCE, VEO}:
+        if selected_model in {SEEDANCE, VEO, KLING}:
             return self._native_story_video(image_path, prompt, out_path, mode, reference_paths or [],
                                             end_image_path, video_ratio or "16:9", resolution, model=selected_model)
         # New 2.6 selection always uses its reviewed native schema. Existing
@@ -310,6 +310,11 @@ class VideoClient:
         # No Wan-specific extra fields. Veo's native schema has no audio switch.
         if model == SEEDANCE:
             payload["generate_audio"] = True
+        if model == KLING:
+            # Kling's schema defaults extra.mode to pro (1080P); pin the tier to the
+            # requested resolution and keep native sound off (sound is priced separately).
+            payload["extra"] = {"mode": "pro" if resolution.upper() == "1080P" else "std"}
+            payload["generate_audio"] = False
         return self._create_or_resume("/ai/v1/videos", payload, out_path, native=True)
 
     def _native_video(self, image_path: str, prompt: str, out_path: Path, mode: str,

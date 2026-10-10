@@ -23,3 +23,6 @@ backups/
 .vefaas/
 *.pyc
 *.tsbuildinfo
+
+# D7 生成的视频与图片成果只留在本地，不入库
+docs/evidence/D7-角色一致性/output/
