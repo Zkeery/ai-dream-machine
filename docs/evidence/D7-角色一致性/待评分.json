@@ -2,15 +2,18 @@
   "round": "2026-10-10-character-lock",
   "generated": false,
   "scores_status": "空表。成片生成并经人工观看之前，不要填写分数。",
-  "dimensions": ["符合描述", "质量可用", "风格一致", "无违规内容"],
-  "pass_rule": "四项都填，平均不低于 2，且没有 1 分。无违规只能是 1 或 3。",
+  "standard": "five_dim_with_compliance_veto",
+  "standard_revised": "2026-10-11",
+  "dimensions": ["需求符合", "人物一致", "画面质量", "镜头运动", "配音字幕"],
+  "compliance": "合规红线",
+  "pass_rule": "合规红线只判通过或不通过，不通过直接不合格，不参与平均。五维每项 1 到 3 分；适用的维度都要填，平均不低于 2，且没有 1 分。没有配音字幕的样本，配音字幕记「不适用」，不参与平均；has_voice 为 true 的样本（漫剧或有配音）必须打分。",
   "reviewer_b": null,
   "agreement": null,
   "samples": [
-    {"id": "S1", "genre": "温情", "idea": "一只流浪猫在雨夜被好心人收留", "final": null, "scores": {"符合描述": null, "质量可用": null, "风格一致": null, "无违规内容": null}},
-    {"id": "S2", "genre": "科幻", "idea": "火星基地的清洁机器人第一次看到地球", "final": null, "scores": {"符合描述": null, "质量可用": null, "风格一致": null, "无违规内容": null}},
-    {"id": "S3", "genre": "悬疑", "idea": "深夜便利店的神秘顾客反复买同一把黑伞", "final": null, "scores": {"符合描述": null, "质量可用": null, "风格一致": null, "无违规内容": null}},
-    {"id": "S4", "genre": "古风", "idea": "竹林里会说话的狐狸守护茶亭", "final": null, "scores": {"符合描述": null, "质量可用": null, "风格一致": null, "无违规内容": null}},
-    {"id": "S5", "genre": "喜剧", "idea": "外卖小哥送餐路上遇到各种离谱事", "final": null, "scores": {"符合描述": null, "质量可用": null, "风格一致": null, "无违规内容": null}}
+    {"id": "S1", "genre": "温情", "idea": "一只流浪猫在雨夜被好心人收留", "final": "docs/evidence/D7-角色一致性/output/S1/final.mp4", "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
+    {"id": "S2", "genre": "科幻", "idea": "火星基地的清洁机器人第一次看到地球", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
+    {"id": "S3", "genre": "悬疑", "idea": "深夜便利店的神秘顾客反复买同一把黑伞", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
+    {"id": "S4", "genre": "古风", "idea": "竹林里会说话的狐狸守护茶亭", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
+    {"id": "S5", "genre": "喜剧", "idea": "外卖小哥送餐路上遇到各种离谱事", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null}
   ]
 }

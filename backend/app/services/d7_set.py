@@ -8,7 +8,14 @@ from pathlib import Path
 from app.services import prompts
 
 FIXTURE = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "d7_story_set.json"
-DIMENSIONS = ("符合描述", "质量可用", "风格一致", "无违规内容")
+# D7 评分标准（2026-10-11 修订）：五维各 1～3 分，加合规红线一票否决。
+DIMENSIONS = ("需求符合", "人物一致", "画面质量", "镜头运动", "配音字幕")
+VOICE_DIMENSION = "配音字幕"
+COMPLIANCE = "合规红线"
+COMPLIANCE_PASS, COMPLIANCE_FAIL = "通过", "不通过"
+NOT_APPLICABLE = "不适用"
+# 旧版四维（2026-09-23 至 2026-10-10），只用于复核历史记录，不用于新打分。
+LEGACY_DIMENSIONS = ("符合描述", "质量可用", "风格一致", "无违规内容")
 SAMPLE_IDS = ("S1", "S2", "S3", "S4", "S5")
 
 
@@ -84,11 +91,46 @@ def generation_plan(sample: dict) -> dict:
     }
 
 
-def item_passed(scores: dict | None) -> bool | None:
-    """四项都填、平均不低于 2、且没有 1 分。缺项返回 None，不记成通过或失败。"""
+def item_passed(scores: dict | None, *, has_voice: bool = False) -> bool | None:
+    """五维加合规红线。
+
+    - 合规红线为「不通过」时直接不合格（一票否决），不看其他格。
+    - 合规红线未填、适用维度缺格时返回 None，不记成通过或失败。
+    - 配音字幕在样本没有配音字幕时可记「不适用」，不参与平均；
+      has_voice=True（漫剧或有配音的样本）时必须打分，填「不适用」视为未填。
+    - 适用维度平均不低于 2 且没有 1 分才通过。
+    """
     if not isinstance(scores, dict):
         return None
-    values = [scores.get(name) for name in DIMENSIONS]
+    compliance = scores.get(COMPLIANCE)
+    if compliance == COMPLIANCE_FAIL:
+        return False
+    if compliance in (None, ""):
+        return None
+    if compliance != COMPLIANCE_PASS:
+        return False
+    values = []
+    for name in DIMENSIONS:
+        value = scores.get(name)
+        if value is None or value == "":
+            return None
+        if name == VOICE_DIMENSION and value == NOT_APPLICABLE:
+            if has_voice:
+                return None
+            continue
+        if type(value) is not int or value not in (1, 2, 3):
+            return False
+        values.append(value)
+    if 1 in values:
+        return False
+    return sum(values) / len(values) >= 2
+
+
+def legacy_item_passed(scores: dict | None) -> bool | None:
+    """旧版四维规则，只用于复核历史记录：四项都填、平均不低于 2、没有 1 分，无违规只能是 1 或 3。"""
+    if not isinstance(scores, dict):
+        return None
+    values = [scores.get(name) for name in LEGACY_DIMENSIONS]
     if any(value is None or value == "" for value in values):
         return None
     if any(type(value) is not int for value in values):

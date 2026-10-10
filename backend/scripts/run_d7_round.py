@@ -114,7 +114,7 @@ async def _main(only: str | None, force: bool) -> int:
     d7_runner.write_status({
         "generated": bool(generated) and all(item.get("final") for item in results),
         "scores": None,
-        "note": "有成片也不代表通过。四维分数仍为空，等待人工观看后填写待评分表。这里没有自动打分。",
+        "note": "有成片也不代表通过。五维和合规红线仍为空，等待人工观看后填写待评分表。这里没有自动打分。",
         "image_model": config.settings.image_t2i_model,
         "video_model": config.settings.video_reference_model,
         "video_mode": "reference",

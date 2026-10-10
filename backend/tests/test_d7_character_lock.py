@@ -108,21 +108,31 @@ async def test_pipeline_locks_sheets_and_appends_shot_negative(orch):
 
 
 def test_score_rule_and_recorded_review_do_not_invent_agreement():
+    ok = {"需求符合": 2, "人物一致": 2, "画面质量": 2, "镜头运动": 2, "配音字幕": "不适用", "合规红线": "通过"}
     assert d7_set.item_passed(None) is None
-    assert d7_set.item_passed({"符合描述": 3, "质量可用": 2, "风格一致": None, "无违规内容": 3}) is None
-    assert d7_set.item_passed({"符合描述": 3, "质量可用": 2, "风格一致": 1, "无违规内容": 3}) is False
-    assert d7_set.item_passed({"符合描述": 2, "质量可用": 2, "风格一致": 2, "无违规内容": 2}) is False
-    assert d7_set.item_passed({"符合描述": 2, "质量可用": 2, "风格一致": 2, "无违规内容": 3}) is True
+    assert d7_set.item_passed(ok) is True
+    assert d7_set.item_passed({**ok, "镜头运动": None}) is None
+    assert d7_set.item_passed({**ok, "合规红线": None}) is None
+    assert d7_set.item_passed({**ok, "人物一致": 1, "需求符合": 3}) is False
+    assert d7_set.item_passed({**ok, "画面质量": 3, "镜头运动": 3, "需求符合": 3, "人物一致": 3, "合规红线": "不通过"}) is False
+    assert d7_set.item_passed({"合规红线": "不通过"}) is False
+    # 配音字幕：无配音样本可记不适用且不参与平均；有配音样本必须打分
+    assert d7_set.item_passed(ok, has_voice=True) is None
+    assert d7_set.item_passed({**ok, "配音字幕": 2}, has_voice=True) is True
+    assert d7_set.item_passed({**ok, "配音字幕": 1}, has_voice=True) is False
+    assert d7_set.item_passed({**ok, "需求符合": 3, "配音字幕": 2}) is True
+    assert d7_set.item_passed({**ok, "合规红线": 3}) is False
     record_path = Path(__file__).resolve().parents[2] / "docs" / "evidence" / "阶段2" / "样例打分" / "A评审-2026-10-10.json"
     record = json.loads(record_path.read_text(encoding="utf-8"))
     assert record["reviewer_b"] is None and record["agreement"] is None and "kappa" not in record
+    assert record["standard"] == "legacy_4d" and record["dimensions"] == list(d7_set.LEGACY_DIMENSIONS)
     assert [item["passed"] for item in record["samples"]] == [False, False, False, True, True]
     for item in record["samples"]:
-        assert d7_set.item_passed(item["scores"]) is item["passed"]
+        assert d7_set.legacy_item_passed(item["scores"]) is item["passed"]
     pending = json.loads((Path(__file__).resolve().parents[2] / "docs" / "evidence" / "D7-角色一致性" / "待评分.json").read_text(encoding="utf-8"))
     assert pending["generated"] is False
-    assert all(d7_set.item_passed(item["scores"]) is None for item in pending["samples"])
-
+    assert pending["dimensions"] == list(d7_set.DIMENSIONS) and pending["compliance"] == d7_set.COMPLIANCE
+    assert all(d7_set.item_passed(item["scores"], has_voice=item["has_voice"]) is None for item in pending["samples"])
 
 def test_missing_key_blocks_without_fake_output(monkeypatch):
     monkeypatch.setattr(config.settings, "aihubmix_api_key", "")
