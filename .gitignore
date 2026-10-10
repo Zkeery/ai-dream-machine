@@ -14,6 +14,9 @@ logs/
 dist/
 .DS_Store
 
+# 第三方参考片与截帧只留在本地，不入库
+dream-refs/
+
 # 独立仓库发布时排除本地工作文件与缓存
 work/
 backups/

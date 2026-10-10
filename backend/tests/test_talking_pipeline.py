@@ -13,7 +13,7 @@ from app.core import config
 from app.core.errors import AppError, register_exception_handlers
 from app.models.video_client import VideoClient
 from app.schemas.task import talking_input
-from app.services import auth, db, ffmpeg_util, model_catalog, task_store
+from app.services import auth, db, ffmpeg_util, model_catalog, prompts, task_store
 from app.services.short_pipelines import ShortPipelines
 
 
@@ -179,7 +179,8 @@ async def test_motion_api_accepts_image_and_description_and_checks_legacy_video(
         assert created.status_code == 200
         tid = created.json()["task_id"]
         assert events(await client.get(f"/api/tasks/{tid}/stream"))[-1]["type"] == "done"
-        assert calls == [(str(source), "向镜头挥手", "reference")]
+        assert calls == [(str(source), prompts.compose_shot_prompt("向镜头挥手"), "reference")]
+        assert calls[0][1].startswith("向镜头挥手\n避免出现：")
         legacy = config.UPLOAD_DIR / "legacy.mp4"
         legacy.write_bytes(b"unused-video")
         auth.record_upload(legacy.name, "bob", "历史视频.mp4")
