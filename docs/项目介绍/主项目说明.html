@@ -136,7 +136,7 @@
         <h3 class="mini-heading">质量评价：三类证据分别看</h3>
         <div class="quality-grid">
           <article class="quality-card"><h3>工程行为</h3><p>验证输入与输出合同、权限隔离、阶段和版本状态、任务恢复、费用边界、媒体格式及已知失败场景。</p><span class="quality-tag">当前工程检查通过</span></article>
-          <article class="quality-card"><h3>真实 AIGC 内容</h3><p>按 D7 判断符合描述、质量可用、风格一致和内容边界。采用既有 1–3 分规则：平均不低于 2，且无 1 分项。本轮视觉仍有偏差，语音自然度未听审，不以历史评分代签。</p><span class="quality-tag pending">AC07 / COMIC07 需质量迭代；RAG08 待验</span></article>
+          <article class="quality-card"><h3>真实 AIGC 内容</h3><p>按 D7 五维判断需求符合、人物一致、画面质量、镜头运动和配音字幕，各 1–3 分；内容合规是红线，一票否决。平均不低于 2，且无 1 分项才算通过；无配音字幕的样本该项记不适用。本轮视觉仍有偏差，语音自然度未听审，不以历史评分代签。</p><span class="quality-tag pending">AC07 / COMIC07 需质量迭代；RAG08 待验</span></article>
           <article class="quality-card"><h3>检索泛化</h3><p>开发集用于校准，独立留出集判断泛化。当前独立集 Recall@5 = 0.80，H01、H07、H08 失败，不能因开发集通过而覆盖。</p><span class="quality-tag pending">独立集未达 0.85 门槛</span></article>
         </div>
         <div class="badcase-flow" aria-label="失败案例闭环"><span>保留原输入与产物</span><b aria-hidden="true">→</b><span>标注失败维度与版本</span><b aria-hidden="true">→</b><span>定位问题并修正</span><b aria-hidden="true">→</b><span>旧集回归 + 新样本验证</span></div>

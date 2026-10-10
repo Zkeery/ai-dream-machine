@@ -4,15 +4,17 @@ from __future__ import annotations
 from app.core import config
 from app.core.errors import AppError
 from app.schemas.models import ModelSelection
-from app.models.video_contracts import SEEDANCE, VEO, NAMES, capabilities
+from app.models.video_contracts import SEEDANCE, VEO, KLING, NAMES, capabilities
 
 PROVIDER = "AIHubMix"
 CATALOG = {
     "text": {"qwen3.5-plus": "通用创作与结构化剧本", "qwen3.5-flash": "轻量文本创作"},
-    "image": {"qwen-image-2.0": "漫画与故事画面，支持角色参考图", "qwen-image-2.0-pro": "精细画面，支持角色参考图"},
+    "image": {"qwen-image-2.0": "漫画与故事画面，支持角色参考图", "qwen-image-2.0-pro": "精细画面，支持角色参考图",
+              "doubao-seedream-5-0-pro-260628": "Seedream 5.0 Pro 文生图（定妆图），关闭水印。新接入，质量待实测。"},
     "video_first_frame": {"wan2.7-i2v": "由首帧生成视频", "wan2.6-i2v": "由首帧生成视频"},
     "video_start_end": {"wan2.7-i2v": "需要真实首帧与尾帧"},
-    "video_reference": {"wan2.7-r2v": "根据实际参考图生成视频"},
+    "video_reference": {"wan2.7-r2v": "根据实际参考图生成视频",
+                        KLING: "5秒/片段；720P(std)/1080P(pro)；多图参考最多4张；无声。新接入，成片质量待实测。"},
     "video_speech": {"wan2.6-i2v": "人物图片与台词生成 10 秒 720P 声画同步视频，音色由模型生成；按表约 ¥7.23/次（非实付账单）"},
 }
 for _group in ("video_first_frame", "video_start_end", "video_reference"):

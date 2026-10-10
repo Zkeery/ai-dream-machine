@@ -840,6 +840,8 @@ class Orchestrator:
                 override = request.get("prompts", {}).get(item_id, old.get("prompt_override", "") if valid_old else "")
                 template = prompts.CHARACTER_PROMPT if collection == "characters" else prompts.SETTING_PROMPT
                 prompt = override or template.format(name=item.get("name", ""), description=description, style=meta.style)
+                if not override and collection == "characters":
+                    prompt = prompts.compose_sheet_prompt(prompt, kind="character")
                 kind = "character" if collection == "characters" else "setting"
                 out = image_dir / f"{kind}_{i}_{uuid4().hex}.png"
                 await asyncio.to_thread(self.image.text_to_image, prompt, out, size=self._image_size(meta),
@@ -905,7 +907,8 @@ class Orchestrator:
             old = refs.get(shot_id, {})
             valid_old = self._media_item_matches(meta, "reference_generation", "shots", old, shot)
             override = request.get("prompts", {}).get(shot_id, old.get("prompt_override", "") if valid_old else "")
-            prompt = prompts.REFERENCE_PROMPT.format(description=shot.get("description", ""), prompt=override or shot.get("prompt", ""), style=meta.style)
+            prompt = prompts.compose_shot_prompt(prompts.REFERENCE_PROMPT.format(
+                description=shot.get("description", ""), prompt=override or shot.get("prompt", ""), style=meta.style))
             out = image_dir / f"ref_{i}_{uuid4().hex}.png"
             inputs = self._selected_design_paths(meta, shot)
             if len(inputs) > 3:
@@ -961,7 +964,8 @@ class Orchestrator:
             old = segments.get(shot_id, {})
             valid_old = self._media_item_matches(meta, "video_generation", "segments", old, shot)
             override = request.get("prompts", {}).get(shot_id, old.get("prompt_override", "") if valid_old else "")
-            prompt = prompts.VIDEO_PROMPT.format(description=shot.get("description", ""), prompt=override or shot.get("prompt", ""))
+            prompt = prompts.compose_shot_prompt(prompts.VIDEO_PROMPT.format(
+                description=shot.get("description", ""), prompt=override or shot.get("prompt", "")))
             prompt = f"片段时长：{duration}秒。\n" + prompt
             out = video_dir / f"seg_{i}_{uuid4().hex}.mp4"
             ref_path = str(self._safe_asset(meta, ref.get("selected") or ref.get("path", "")))
