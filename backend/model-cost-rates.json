@@ -1,7 +1,10 @@
 {
   "doubao-seedance-2-5-260628": {
     "kind": "video",
-    "video_second_cny": {"720P": 1.88, "1080P": 4.224},
+    "video_second_cny": {
+      "720P": 1.88,
+      "1080P": 4.224
+    },
     "currency": "CNY",
     "source": "https://aihubmix.com/model/doubao-seedance-2-5-260628",
     "as_of": "2026-10-05",
@@ -11,7 +14,10 @@
   },
   "veo-3.1-generate-preview": {
     "kind": "video",
-    "video_second_cny": {"720P": 3.2, "1080P": 3.2},
+    "video_second_cny": {
+      "720P": 3.2,
+      "1080P": 3.2
+    },
     "currency": "CNY",
     "source": "https://aihubmix.com/model/veo-3.1-generate-preview",
     "as_of": "2026-10-05",
@@ -110,5 +116,49 @@
     "budget_conversion_cny_per_usd": 8,
     "basis": "官方模型页标准规格/生成价格；预算估算",
     "notice": "固定预算换算系数，不是实时汇率或供应商实付。价格变化需更新和账单核对。"
+  },
+  "qwen3-vl-plus": {
+    "kind": "text",
+    "input_per_million_cny": 1.6432,
+    "output_per_million_cny": 16.432,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/qwen3-vl-plus",
+    "as_of": "2026-10-10",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "本地临时：官方32K-128K输入阶梯$0.2054/$2.054每百万token，预算估算",
+    "notice": "本地未提交改动，仅为D7 S1重跑。不是供应商实付。"
+  },
+  "kling-v3-omni": {
+    "kind": "video",
+    "video_second_cny": {
+      "720P": 0.676,
+      "1080P": 0.676
+    },
+    "currency": "CNY",
+    "source": "https://aihubmix.com/call/mdl_info (img_price_config generate std/pro) ; https://docs.aihubmix.com/cn/api/Video-Gen",
+    "as_of": "2026-10-10",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "按平台实际扣费校准：2026-10-10 平台任务记录显示 1080P(pro) 每 5 秒 $0.4225，即 $0.0845/秒，与 720P 相同；参考视频(ref)档未用",
+    "notice": "本地未提交改动，不是供应商实付。"
+  },
+  "doubao-seedream-5-0-pro-260628": {
+    "kind": "image",
+    "image_cny": 0.3768,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/doubao-seedream-5.0-pro",
+    "as_of": "2026-10-10",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "本地临时：≤2.36MP 输出 $0.0471/张",
+    "notice": "本地未提交改动，不是供应商实付。"
+  },
+  "doubao-seedream-5.0-pro": {
+    "kind": "image",
+    "image_cny": 0.3768,
+    "currency": "CNY",
+    "source": "https://aihubmix.com/model/doubao-seedream-5.0-pro",
+    "as_of": "2026-10-10",
+    "budget_conversion_cny_per_usd": 8,
+    "basis": "本地临时：≤2.36MP 输出 $0.0471/张",
+    "notice": "本地未提交改动，不是供应商实付。"
   }
 }

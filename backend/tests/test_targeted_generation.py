@@ -67,7 +67,7 @@ async def test_setting_description_changes_actual_prompt(orch, monkeypatch):
     assert len(calls) == 1 and "极简雪原与远山" in calls[0]
     assert "纯环境设定图" in calls[0]
     assert "角色名：" not in calls[0]
-    assert "正面全身/半身设定图" not in calls[0]
+    assert "角色定妆图" not in calls[0]
 
 
 @pytest.mark.asyncio
@@ -83,10 +83,11 @@ async def test_character_and_setting_use_distinct_generation_prompts(orch, monke
     monkeypatch.setattr(orch.image, "text_to_image", capture)
     meta = await orch.execute_stage(meta.session_id, "character_design", noop)
     assert len(calls) == 2
-    assert "角色名：" in calls[0] and "正面全身/半身设定图" in calls[0]
+    assert "角色名：" in calls[0] and "角色定妆图" in calls[0]
+    assert "避免出现：" in calls[0] and "三分屏" not in calls[0]
     assert "场景名：" in calls[1] and "纯环境设定图" in calls[1]
     assert "不添加人物" in calls[1] and "不额外添加人形雕塑" in calls[1]
-    assert "角色名：" not in calls[1] and "正面全身/半身设定图" not in calls[1]
+    assert "角色名：" not in calls[1] and "角色定妆图" not in calls[1]
     assert meta.artifacts["character_design"]["characters"][0]["prompt"] == calls[0]
     assert meta.artifacts["character_design"]["settings"][0]["prompt"] == calls[1]
 

@@ -8,11 +8,12 @@ from app.core.errors import AppError
 
 SEEDANCE = "doubao-seedance-2-5-260628"
 VEO = "veo-3.1-generate-preview"
-NAMES = {SEEDANCE: "Seedance 2.5", VEO: "Veo 3.1"}
+KLING = "kling-v3-omni"
+NAMES = {SEEDANCE: "Seedance 2.5", VEO: "Veo 3.1", KLING: "Kling 3.0 Omni"}
 VIDEO_MODE_MODELS = {
     "first_frame": frozenset({"wan2.7-i2v", "wan2.6-i2v", SEEDANCE, VEO}),
     "start_end": frozenset({"wan2.7-i2v", SEEDANCE, VEO}),
-    "reference": frozenset({"wan2.7-r2v", SEEDANCE, VEO}),
+    "reference": frozenset({"wan2.7-r2v", SEEDANCE, VEO, KLING}),
 }
 
 
@@ -20,7 +21,7 @@ def capabilities(model: str) -> dict:
     return {"duration_seconds": 8 if model == VEO else 5,
             "ratios": ["16:9", "9:16"] if model == VEO else ["16:9", "9:16", "1:1"],
             "resolutions": ["720P", "1080P"],
-            "max_reference_images": 3 if model == VEO else 30 if model == SEEDANCE else None}
+            "max_reference_images": 3 if model == VEO else 30 if model == SEEDANCE else 4 if model == KLING else None}
 
 
 def validate(model: str, mode: str, ratio: str, resolution: str, *, reference_count: int = 1) -> dict:

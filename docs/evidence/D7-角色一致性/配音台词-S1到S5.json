@@ -1,0 +1,263 @@
+{
+  "version": "2026-10-11",
+  "note": "用户已确认台词。每镜一句，从该镜起点开始播；start/end 为按 5.0417 秒/镜（121 帧 @24fps）计算的参考值，合成时以各镜实际帧数为准。tts_text 为送 TTS 的读法（数字/字母读音），字幕显示 text。 offset_s：该句在镜内的起点偏移（字幕同步从此刻显示）；rate：初始 TTS 语速。",
+  "fps": 24,
+  "duration_s": 25.208,
+  "samples": [
+    {
+      "id": "S1",
+      "lines": [
+        {
+          "shot_id": "s1",
+          "start_s": 0.0,
+          "end_s": 5.042,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "雨下了一整夜，它不知道该去哪儿。"
+        },
+        {
+          "shot_id": "s2",
+          "start_s": 5.042,
+          "end_s": 10.083,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "远处有一扇窗，亮着暖暖的光。"
+        },
+        {
+          "shot_id": "s3",
+          "start_s": 10.083,
+          "end_s": 15.125,
+          "role": "女孩",
+          "voice_name": "晓伊",
+          "voice": "zh-CN-XiaoyiNeural",
+          "text": "外面那只小猫……是不是冷了？"
+        },
+        {
+          "shot_id": "s4",
+          "start_s": 15.125,
+          "end_s": 20.167,
+          "role": "女孩",
+          "voice_name": "晓伊",
+          "voice": "zh-CN-XiaoyiNeural",
+          "text": "快进来吧，别怕。"
+        },
+        {
+          "shot_id": "s5",
+          "start_s": 20.167,
+          "end_s": 25.208,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "从那天起，它有了一个家。"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "lines": [
+        {
+          "shot_id": "s1",
+          "start_s": 0.0,
+          "end_s": 5.042,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "火星基地，清洁机器人 CL-01，独自工作了 3000 天。",
+          "tts_text": "火星基地，清洁机器人 C L 零一，独自工作了三千天。"
+        },
+        {
+          "shot_id": "s2",
+          "start_s": 5.042,
+          "end_s": 10.083,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "今天，它的扫描仪捕捉到一点异常。"
+        },
+        {
+          "shot_id": "s3",
+          "start_s": 10.083,
+          "end_s": 15.125,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "镜头对焦……"
+        },
+        {
+          "shot_id": "s4",
+          "start_s": 15.125,
+          "end_s": 20.167,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "锈铁旁边，长出了一株绿芽。"
+        },
+        {
+          "shot_id": "s5",
+          "start_s": 20.167,
+          "end_s": 25.208,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "而远方，那颗蓝色的星球，叫地球。"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "lines": [
+        {
+          "shot_id": "s1",
+          "start_s": 0.0,
+          "end_s": 5.042,
+          "role": "旁白",
+          "voice_name": "云健",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "凌晨两点，便利店，店员小林在值夜班。"
+        },
+        {
+          "shot_id": "s2",
+          "start_s": 5.042,
+          "end_s": 10.083,
+          "role": "旁白",
+          "voice_name": "云健",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "街对面，那个穿灰衣的女人又出门了。"
+        },
+        {
+          "shot_id": "s3",
+          "start_s": 10.083,
+          "end_s": 15.125,
+          "role": "店员",
+          "voice_name": "晓伊",
+          "voice": "zh-CN-XiaoyiNeural",
+          "text": "您已经……买了第四把了。"
+        },
+        {
+          "shot_id": "s4",
+          "start_s": 15.125,
+          "end_s": 20.167,
+          "role": "女人",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "明天……还会下雨的。",
+          "offset_s": 1.32,
+          "rate": "-10%",
+          "align_note": "第4镜嘴部动作（抬头后嘴角上扬成笑）约在镜内 1.5–3.4s；-10% 语速下有声段约 1.50–3.32s（镜内），对齐该段。"
+        },
+        {
+          "shot_id": "s5",
+          "start_s": 20.167,
+          "end_s": 25.208,
+          "role": "旁白",
+          "voice_name": "云健",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "第二天，店门口挂满了黑伞。"
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "lines": [
+        {
+          "shot_id": "s1",
+          "start_s": 0.0,
+          "end_s": 5.042,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "竹林深处，有一座没人找得到的茶亭。"
+        },
+        {
+          "shot_id": "s2",
+          "start_s": 5.042,
+          "end_s": 10.083,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "守亭的，是一只会说话的狐狸。"
+        },
+        {
+          "shot_id": "s3",
+          "start_s": 10.083,
+          "end_s": 15.125,
+          "role": "狐狸",
+          "voice_name": "云希",
+          "voice": "zh-CN-YunxiNeural",
+          "text": "又有客人迷路了？"
+        },
+        {
+          "shot_id": "s4",
+          "start_s": 15.125,
+          "end_s": 20.167,
+          "role": "狐狸",
+          "voice_name": "云希",
+          "voice": "zh-CN-YunxiNeural",
+          "text": "坐吧，茶刚好。"
+        },
+        {
+          "shot_id": "s5",
+          "start_s": 20.167,
+          "end_s": 25.208,
+          "role": "旁白",
+          "voice_name": "晓晓",
+          "voice": "zh-CN-XiaoxiaoNeural",
+          "text": "天黑了，灯笼一盏一盏亮了起来。"
+        }
+      ]
+    },
+    {
+      "id": "S5",
+      "lines": [
+        {
+          "shot_id": "s1",
+          "start_s": 0.0,
+          "end_s": 5.042,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "老王，送外卖第八年，今晚第三十单。"
+        },
+        {
+          "shot_id": "s2",
+          "start_s": 5.042,
+          "end_s": 10.083,
+          "role": "老王",
+          "voice_name": "云健",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "哎哎哎！那是 302 的烤鸭！",
+          "tts_text": "哎哎哎！那是三零二的烤鸭！"
+        },
+        {
+          "shot_id": "s3",
+          "start_s": 10.083,
+          "end_s": 15.125,
+          "role": "旁白",
+          "voice_name": "云扬",
+          "voice": "zh-CN-YunyangNeural",
+          "text": "那天晚上，整条街都知道了，鹅跑得比电驴快。"
+        },
+        {
+          "shot_id": "s4",
+          "start_s": 15.125,
+          "end_s": 20.167,
+          "role": "老王",
+          "voice_name": "云健",
+          "voice": "zh-CN-YunjianNeural",
+          "text": "没事，没事，干这行，啥都见过。"
+        },
+        {
+          "shot_id": "s5",
+          "start_s": 20.167,
+          "end_s": 25.208,
+          "role": "顾客",
+          "voice_name": "云希",
+          "voice": "zh-CN-YunxiNeural",
+          "text": "我点的是烤鸭……怎么是只活的？"
+        }
+      ]
+    }
+  ]
+}

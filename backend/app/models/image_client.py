@@ -16,6 +16,8 @@ from app.services import provider_jobs
 
 logger = logging.getLogger(__name__)
 
+SEEDREAM_MODELS = frozenset({"doubao-seedream-5-0-pro-260628", "doubao-seedream-5.0-pro"})
+
 
 class ImageClient:
     def __init__(self) -> None:
@@ -140,12 +142,22 @@ class ImageClient:
             "response_format": "url",
         }
         endpoint = "/v1/images/generations"
+        if payload["model"] in SEEDREAM_MODELS:
+            # Seedream adds an "AI generated" watermark by default; only the native
+            # /ai/v1 schema exposes extra.watermark (call/schema, 2026-10-10).
+            payload.update({"async": False, "extra": {"watermark": False}})
+            endpoint = "/ai/v1/images/generations"
         job = provider_jobs.begin("image", f"{self.base}{endpoint}", payload)
         if not job.new:
             return self._resume(job, out_path)
         data = self._submit(endpoint, payload, job)
         try:
-            url = data["data"][0]["url"]
+            if endpoint.startswith("/ai/"):
+                if data.get("status") not in (None, "completed"):
+                    raise ValueError
+                url = data["output"][0]["content_url"]
+            else:
+                url = data["data"][0]["url"]
             if not isinstance(url, str) or not url:
                 raise ValueError
         except (KeyError, IndexError, TypeError, ValueError):

@@ -51,7 +51,7 @@ class Settings:
 
     # 模型名（.env 可覆盖，默认按 AIHubMix 可用模型清单）
     llm_model: str = os.getenv("LLM_MODEL", "qwen3.5-plus")
-    vlm_model: str = os.getenv("VLM_MODEL", "qwen3-vl-flash")
+    vlm_model: str = os.getenv("VLM_MODEL", "qwen3-vl-plus")
     image_t2i_model: str = os.getenv("IMAGE_T2I_MODEL", "qwen-image-2.0")
     video_first_frame_model: str = os.getenv("VIDEO_FIRST_FRAME_MODEL", "wan2.7-i2v")
     video_start_end_model: str = os.getenv("VIDEO_START_END_MODEL", "wan2.7-i2v")

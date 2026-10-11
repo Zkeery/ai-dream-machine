@@ -1,0 +1,454 @@
+{
+  "version": "2026-10-10",
+  "purpose": "D7 故事成片主集的改写提示词。只含重写后的定妆、逐镜和负面提示词，不含第三方原片或截帧。",
+  "generation": {
+    "image_model": "doubao-seedream-5-0-pro-260628",
+    "video_model": "kling-v3-omni",
+    "video_mode": "reference",
+    "video_ratio": "16:9",
+    "resolution": "1080P",
+    "clip_seconds": 5,
+    "max_references_per_shot": 3,
+    "vlm_model": "qwen3-vl-plus",
+    "generate_audio": false,
+    "note": "2026-10-11：与 S1 实测一致。可灵 1080P=pro 档；Seedream 关水印；审查 qwen3-vl-plus。"
+  },
+  "samples": [
+    {
+      "id": "S1",
+      "genre": "温情",
+      "idea": "一只流浪猫在雨夜被好心人收留",
+      "style": "3D动画电影",
+      "negative_prompt_zh": "分屏，三分屏，多画面拼接，画中画，边框，拼贴，字幕，水印，文字，角色换装，服装变化，鞋袜变化，换脸，脸部变形，猫毛色变化，多只猫，多余的肢体，手指畸形，手部变形，肢体扭曲，画面闪烁，突然跳切，低清晰度，模糊，主体被裁切，出画，滑步，画面静止，动态模糊，失焦，盖住头部或脸，遮挡面部，眼睛颜色变化，绿色眼睛，蓝色眼睛，头部抽搐，头部抖动，动作重复，闪动",
+      "negative_prompt_en": "split screen, triptych, multi-panel, collage, picture-in-picture, border, subtitles, watermark, text, outfit change, costume change, shoe or sock change, face swap, face morphing, fur color change, multiple cats, extra limbs, deformed hands, morphing fingers, distorted body, flickering, sudden jump cut, low resolution, blurry, cropped subject, out of frame, foot sliding, static frame, motion blur, out of focus, covering head or face, face occluded, eye color change, green eyes, blue eyes, head twitching, jerky head motion, repeated motion, stutter",
+      "assets": [
+        {
+          "id": "cat",
+          "kind": "character",
+          "name": "橘色虎斑猫",
+          "prompt_zh": "角色设定图，三视图（正面、侧面、背面）加一张脸部特写，同一只橘色虎斑流浪猫，额头有清晰 M 形条纹，琥珀色大眼睛，白色胡须，体型偏瘦，尾巴有环纹，3D 动画电影风格，纯灰色背景，均匀柔光，同一角色保持一致。",
+          "prompt_en": "character turnaround sheet, front / side / back views plus face close-up, one orange tabby stray cat, clear M-shaped stripes on forehead, big amber eyes, white whiskers, slim build, ringed tail, 3D animated feature style, plain grey background, even soft lighting, consistent single character."
+        },
+        {
+          "id": "girl",
+          "kind": "character",
+          "name": "小女孩",
+          "prompt_zh": "角色设定图，三视图加表情（担心、微笑），8 岁左右小女孩，黑色长发低马尾，大眼睛，淡紫色针织开衫配浅色连衣裙、白色中筒袜、淡紫色搭扣圆头鞋，正面全身完整画出（包括鞋袜），3D 动画电影风格，纯灰色背景，服装固定不变。",
+          "prompt_en": "character sheet, turnaround plus expressions (worried, smiling), girl about 8 years old, long black hair in low ponytail, big eyes, lavender knit cardigan over a light dress, white mid-calf socks, lavender strap round-toe shoes, full body including shoes and socks, 3D animated feature style, plain grey background, fixed outfit."
+        },
+        {
+          "id": "street",
+          "kind": "setting",
+          "name": "雨夜街道",
+          "prompt_zh": "雨夜郊区住宅街道，木质独栋房子，窗户亮着暖光，路面积水反光，篱笆和粉色绣球花，无人物，3D 动画电影场景概念图，16:9。",
+          "prompt_en": "rainy suburban street at night, wooden houses with warm lit windows, reflective puddles, picket fence and pink hydrangeas, no characters, 3D animated film environment concept, 16:9."
+        },
+        {
+          "id": "room",
+          "kind": "setting",
+          "name": "温暖客厅",
+          "prompt_zh": "温馨客厅，木地板，白色绒毛毯，米色沙发，落地灯暖光，窗外下雨，无人物，3D 动画电影场景概念图。",
+          "prompt_en": "cozy living room, wooden floor, fluffy white blanket, beige sofa, warm floor lamp, rain outside the window, no characters, 3D animated film environment concept."
+        }
+      ],
+      "shots": [
+        {
+          "shot_id": "s1",
+          "description": "橘猫在雨夜街道上稳步小跑，侧面跟拍",
+          "prompt_zh": "景别：全景偏中景。构图：一只橘色虎斑猫（参考图：猫定妆图），额头 M 形条纹，琥珀色眼睛，白色胡须，环纹尾巴，全身完整入画并位于画面中央，头、尾巴和四只脚都在画面内，四周留出空间。动作：毛发被雨打湿的猫沿着湿漉漉的人行道从左往右稳步小跑，步幅适中，四条腿交替迈步，脚掌稳稳踩进浅浅的积水，前进速度和步频一致；猫的头部随步伐平稳前进，动作平稳、连续，没有抖动和抽搐；猫的琥珀色（橙黄色）眼睛全程保持不变。镜头：在猫的侧面与它同速平稳横移跟拍，猫始终在画面中央。对焦：猫的脸部和身体清晰对焦。环境：雨夜住宅街道，路面积水倒映路灯和窗户暖光，细雨落下。3D 动画电影质感，冷蓝夜色与暖黄窗光对比，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide-to-medium. Framing: an orange tabby cat (use cat reference image), M-shaped forehead stripes, amber eyes, white whiskers, ringed tail, whole body fully in frame and centered, head, tail and all four paws inside the frame with space around it. Action: the rain-soaked cat trots steadily from left to right along a wet sidewalk with moderate strides, legs alternating, paws landing firmly in shallow puddles, forward speed matching the stride; its head moves forward smoothly with each step, steady and continuous, with no jerking or twitching; the cat's amber (orange-yellow) eyes stay exactly the same throughout. Camera: smooth lateral tracking alongside the cat at the same speed, keeping it centered. Focus: the cat's face and body in sharp focus. Setting: rainy suburban street at night, puddles reflecting streetlights and warm window light, light drizzle. 3D animated feature film look, cool blue night vs warm window glow, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "cat",
+            "street"
+          ]
+        },
+        {
+          "shot_id": "s2",
+          "description": "猫头部到肩部近景，慢慢抬头、轻抖耳朵",
+          "prompt_zh": "景别：近景，取猫的头部到肩部。构图：从第一帧起，同一只橘色虎斑猫（参考图：猫定妆图），额头 M 形条纹，琥珀色眼睛，白色胡须，环纹尾巴的整个头部连同两只耳朵尖就完整入画并位于画面中央，头顶和两侧留出空间，肩部也在画面内。动作：猫保持抬头的姿势，慢慢把头再抬高一点，轻轻抖一下耳朵，然后缓缓转头望向画面右侧的暖光，眨一下眼；动作幅度适中、平稳；每个头部动作只做一次，平稳、连续，没有抖动和抽搐；猫的琥珀色（橙黄色）眼睛全程保持不变。镜头：固定机位，只做非常轻微的缓慢推近，始终不切到头部和耳朵。对焦：猫的眼睛和脸部清晰对焦，胡须上的雨珠清楚可见；背景雨夜街道虚化成暖色光斑。3D 动画电影质感，浅景深。",
+          "prompt_en": "Shot size: close shot from the cat's head to its shoulders. Framing: from the very first frame the same orange tabby cat (use cat reference image), M-shaped forehead stripes, amber eyes, white whiskers, ringed tail has its whole head, including both ear tips, fully inside the frame and centered, with space above and on both sides, shoulders visible. Action: the cat keeps its head up, slowly lifts it a little higher, gives a gentle ear flick, then slowly turns its head toward the warm light on the right and blinks; moderate, smooth motion; each head movement happens only once, steady and continuous, with no jerking or twitching; the cat's amber (orange-yellow) eyes stay exactly the same throughout. Camera: static with a very slight slow push-in, never cropping the head or ears. Focus: eyes and face in sharp focus, raindrops on whiskers clearly visible; rainy street background blurred into warm bokeh. 3D animated film look, shallow depth of field.",
+          "reference_ids": [
+            "cat"
+          ]
+        },
+        {
+          "shot_id": "s3",
+          "description": "女孩走到雨窗前向外看，中近景",
+          "prompt_zh": "景别：中近景，取女孩腰部以上。构图：同一个小女孩（参考图：女孩定妆图），黑色长发低马尾，淡紫色短袖针织开衫，白色小圆领，奶白色连衣裙，白色中筒袜，淡紫色搭扣圆头鞋，服装鞋袜与定妆图完全一致；她的头部完整入画、位于画面中央，头顶留出空间，不贴画面边缘。动作：女孩走近窗边停下，一只手轻轻扶在挂满雨痕的玻璃上，向外张望，表情从好奇慢慢变成担心；动作幅度适中、自然。镜头：机位在窗外，透过玻璃拍，固定后轻微缓慢推近。对焦：女孩的脸部清晰对焦，玻璃上的雨痕略虚。温暖的室内光。3D 动画电影质感。",
+          "prompt_en": "Shot size: medium close-up, the girl from the waist up. Framing: the same little girl (use girl reference image), long black hair in a low ponytail, short-sleeved lavender knit cardigan, small white round collar, cream-white dress, white mid-calf socks, lavender strap round-toe shoes, outfit and footwear exactly as in the reference sheet; her whole head fully in frame and centered, with headroom, not touching the edges. Action: she walks up to the window and stops, rests one hand gently on the rain-streaked glass and looks out, her expression slowly changing from curious to worried; moderate, natural motion. Camera: positioned outside, shooting through the glass, static then a slow slight push-in. Focus: the girl's face in sharp focus, rain streaks on the glass slightly soft. Warm interior light. 3D animated film look.",
+          "reference_ids": [
+            "girl"
+          ]
+        },
+        {
+          "shot_id": "s4",
+          "description": "女孩开门招呼，猫走进屋，全景",
+          "prompt_zh": "景别：全景。构图：同一个小女孩（参考图：女孩定妆图），黑色长发低马尾，淡紫色短袖针织开衫，白色小圆领，奶白色连衣裙，白色中筒袜，淡紫色搭扣圆头鞋，服装鞋袜与定妆图完全一致，从头顶到鞋子全身完整在画面内；同一只橘色虎斑猫（参考图：猫定妆图），额头 M 形条纹，琥珀色眼睛，白色胡须，环纹尾巴全身也完整在画面内；两者位于画面中部，四周留出空间，不贴画面边缘。动作：前门打开，暖黄的光洒到门廊上，女孩站在门内微微弯腰，轻轻招手；门口的猫抬头看她，停顿一下，然后以适中的步速稳稳走进门，脚掌踩实地面；猫抬头和走动时头部动作平稳、连续，没有抖动和抽搐；猫的琥珀色（橙黄色）眼睛全程保持不变。镜头：固定机位，随后轻微缓慢推近，始终保持两者完整入画。对焦：女孩和猫的脸部清晰对焦。3D 动画电影质感，室内暖光与门外冷蓝雨夜对比。",
+          "prompt_en": "Shot size: full shot. Framing: the same little girl (use girl reference image), long black hair in a low ponytail, short-sleeved lavender knit cardigan, small white round collar, cream-white dress, white mid-calf socks, lavender strap round-toe shoes, outfit and footwear exactly as in the reference sheet, whole body from the top of her head to her shoes inside the frame; the same orange tabby cat (use cat reference image), M-shaped forehead stripes, amber eyes, white whiskers, ringed tail also fully in frame; both near the center with space around them, not touching the edges. Action: the front door opens and warm yellow light spills onto the porch; the girl stands inside, bends slightly and waves gently; the cat at the doorway looks up at her, pauses, then walks in at a moderate, steady pace, paws planted firmly; its head moves steadily and continuously as it looks up and walks, with no jerking or twitching; the cat's amber (orange-yellow) eyes stay exactly the same throughout. Camera: static, then a slow slight push-in, keeping both fully in frame. Focus: the girl's and the cat's faces in sharp focus. 3D animated film look, warm interior light against the cool blue rainy night outside.",
+          "reference_ids": [
+            "girl",
+            "cat"
+          ]
+        },
+        {
+          "shot_id": "s5",
+          "description": "猫睡在白毯上，女孩走进来给它盖小毯子，全景",
+          "prompt_zh": "景别：全景。构图：温馨客厅，同一只橘色虎斑猫（参考图：猫定妆图），额头 M 形条纹，琥珀色眼睛，白色胡须，环纹尾巴蜷缩睡在地上的白色绒毛毯上，猫的全身和毛毯边缘完整在画面内；同一个小女孩（参考图：女孩定妆图），黑色长发低马尾，淡紫色短袖针织开衫，白色小圆领，奶白色连衣裙，白色中筒袜，淡紫色搭扣圆头鞋，服装鞋袜与定妆图完全一致，进入画面后从头顶到鞋子全身完整在画面内，头顶上方留出空间，绝不切到头部；画面主体位于中部。动作：猫闭眼熟睡，腹部随呼吸轻轻起伏，头部安稳不动，没有抖动和抽搐；猫的眼睛是琥珀色（橙黄色），全程保持不变；女孩从画面右侧以适中的步速走进来，在猫旁边跪坐下来，双手把一条淡紫色小毯子轻轻盖在猫身上，小毯子只盖到猫的脖子以下，猫的头和脸始终完整露在毯子外面，女孩的手不碰猫的头，然后温柔地看着猫；动作平稳自然。镜头：固定机位，略高于猫的视线，轻微缓慢推近，始终保持女孩和猫完整入画。对焦：猫和女孩的脸部清晰对焦。落地灯暖光。3D 动画电影质感，治愈氛围。",
+          "prompt_en": "Shot size: full shot. Framing: cozy living room, the same orange tabby cat (use cat reference image), M-shaped forehead stripes, amber eyes, white whiskers, ringed tail curled up asleep on a fluffy white blanket on the floor, the cat's whole body and the blanket edges fully in frame; the same little girl (use girl reference image), long black hair in a low ponytail, short-sleeved lavender knit cardigan, small white round collar, cream-white dress, white mid-calf socks, lavender strap round-toe shoes, outfit and footwear exactly as in the reference sheet, once she enters is fully in frame from the top of her head to her shoes, with headroom above, her head never cropped; subjects near the center. Action: the cat sleeps with eyes closed, belly gently rising and falling, its head resting still with no jerking or twitching; its eyes are amber (orange-yellow) and stay exactly the same throughout; the girl walks in from the right at a moderate pace, kneels beside the cat and gently lays a small lavender blanket over it with both hands, the small blanket covering the cat only from the neck down, the cat's head and face always fully visible outside the blanket, the girl's hands never touching the cat's head, then looks at it tenderly; smooth, natural motion. Camera: static, slightly above the cat's eye level, slow slight push-in, keeping the girl and the cat fully in frame. Focus: the cat's and the girl's faces in sharp focus. Warm floor-lamp light. 3D animated film look, heartwarming mood.",
+          "reference_ids": [
+            "cat",
+            "girl",
+            "room"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "genre": "科幻",
+      "idea": "火星基地的清洁机器人第一次看到地球",
+      "style": "电影级写实",
+      "adaptation": "定妆使用清洁机器人 CL-01。五镜的景别和动作保持同一条改写结构，主体改成这台 CL-01，避免定妆图和镜头提示不是同一个角色。",
+      "negative_prompt_zh": "分屏，三分屏，多画面拼接，画中画，边框，拼贴，机器人造型变化，机身颜色变化，编号变化，变成人形，多台机器人，多余肢体，机械结构扭曲，无关人物，错误文字，拼写错误，字幕，水印，画面闪烁，突然跳切，低清晰度，摄像头颜色变化，头部抽搐，头部抖动，动作重复，闪动，镜头晃动，尺寸比例失调，主体被裁切，出画，滑步，画面静止，动态模糊，失焦",
+      "negative_prompt_en": "split screen, triptych, multi-panel, collage, picture-in-picture, border, robot design change, body color change, label change, turning humanoid, multiple robots, extra limbs, distorted mechanics, unrelated people, wrong text, misspelled text, subtitles, watermark, flickering, sudden jump cut, low resolution, camera eye color change, head twitching, jerky head motion, repeated motion, stutter, camera shake, wrong scale, cropped subject, out of frame, foot sliding, static frame, motion blur, out of focus",
+      "assets": [
+        {
+          "id": "robot",
+          "kind": "character",
+          "name": "CL-01 清洁机器人",
+          "prompt_zh": "机器人设定图，三视图，同一台火星基地清洁机器人，圆柱形白色机身，正面印「CL-01」，底部履带，一只机械臂末端装圆形刷子，头部是单个圆形蓝色摄像头，橙色警示条纹，写实，纯灰色背景。",
+          "prompt_en": "robot design sheet, turnaround, one Mars-base cleaning robot, white cylindrical body with \"CL-01\" printed on the front, tracked base, one mechanical arm ending in a round brush, single round blue camera eye head, orange hazard stripes, realistic, plain grey background."
+        },
+        {
+          "id": "mars",
+          "kind": "setting",
+          "name": "火星沙丘",
+          "prompt_zh": "火星沙丘与陨石坑，橙红色沙地，薄雾，低角度阳光，无机器人，电影级写实场景图，16:9。",
+          "prompt_en": "Martian dunes and crater, orange-red sand, thin haze, low-angle sunlight, no robot, cinematic photorealistic environment, 16:9."
+        },
+        {
+          "id": "sprout",
+          "kind": "prop",
+          "name": "火星嫩芽",
+          "prompt_zh": "红色火星沙地上的一株嫩绿小芽，旁边生锈金属碎片，微距写实。",
+          "prompt_en": "tiny green sprout on red Martian soil next to a rusty metal fragment, macro photorealistic."
+        }
+      ],
+      "shots": [
+        {
+          "shot_id": "s1",
+          "description": "火星表面，远处的清洁机器人",
+          "prompt_zh": "景别：超大远景。构图：火星表面橙红色沙丘绵延到地平线（参考图：火星场景图），同一台很小的清洁机器人（参考图：机器人定妆图），白色圆柱形机身，橙色警示条纹，底部履带，单个圆形蓝色摄像头，停在画面中央偏下的沙丘之间，整台机器人从摄像头到履带完整入画，不被沙丘遮挡，四周留出大片空间。动作：机器人静止停着，只有薄雾和细沙被风缓慢吹过沙丘表面，平稳、连续。镜头：航拍视角，平稳缓慢地向前推进一次，不晃动。对焦：深景深，机器人和沙丘都清晰。光线：低角度暖橙色阳光，薄雾和尘埃。电影级写实，暖橙色调，广角，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: extreme wide shot. Framing: orange-red Martian dunes stretching to the horizon (use Mars setting image); the same tiny cleaning robot (use robot reference image), white cylindrical body, orange hazard stripes, tracked base, a single round blue camera eye, parked among the dunes slightly below the center of the frame, the whole robot from camera eye to tracks fully in frame and not hidden by dunes, with plenty of space around it. Action: the robot stays still; only thin haze and fine sand drift slowly across the dunes, smooth and continuous. Camera: aerial view, one smooth, slow push forward, no shaking. Focus: deep focus, the robot and the dunes both sharp. Light: low-angle warm orange sunlight, thin haze and dust. Cinematic photorealism, warm orange palette, wide angle, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "robot",
+            "mars"
+          ]
+        },
+        {
+          "shot_id": "s2",
+          "description": "清洁机器人正面，转动摄像头",
+          "prompt_zh": "景别：中景，低机位正面。构图：同一台老旧的火星基地清洁机器人（参考图：机器人定妆图），白色圆柱形机身正面印着黑色「CL-01」，底部履带，一只机械臂末端是圆形刷子，头部是单个圆形蓝色摄像头，橙色警示条纹，表面落着红色沙尘；机器人从摄像头顶部到履带完整入画并位于画面中央，上方留出空间。动作：机器人停在火星沙地上，头部的摄像头平稳、缓慢地向左转动一次，幅度适中，没有抖动和抽搐，摄像头始终是蓝色。镜头：固定机位后缓慢轻微推近，始终不切到机身。对焦：机器人正面和「CL-01」字样清晰对焦。光线：侧逆光，漂浮的尘埃。电影级写实，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot, low-angle frontal. Framing: the same old Mars-base cleaning robot (use robot reference image), white cylindrical body with black \"CL-01\" printed on the front, tracked base, one arm ending in a round brush, a single round blue camera eye as its head, orange hazard stripes, red dust on the surface; the robot fully in frame from the top of the camera eye to the tracks, centered, with space above. Action: the robot sits on the Martian sand and its camera head turns slowly and smoothly to the left once, moderate amplitude, with no jerking or twitching, the camera eye staying blue throughout. Camera: static, then a slow slight push-in, never cropping the body. Focus: the robot's front and the \"CL-01\" lettering in sharp focus. Light: side backlight, floating dust. Cinematic photorealism, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "robot"
+          ]
+        },
+        {
+          "shot_id": "s3",
+          "description": "蓝色摄像头大特写，光圈收缩一次",
+          "prompt_zh": "景别：大特写。构图：同一台 CL-01 清洁机器人（参考图：机器人定妆图）头部的单个圆形蓝色摄像头，整圈镜头外框完整入画并位于画面中央，边缘露出一小段白色机身和橙色警示条纹。动作：摄像头的光圈平稳、缓慢地收缩对焦一次，像眨了一下眼，不反复闪动，镜头始终是蓝色。镜头：固定机位。对焦：摄像头镜片清晰对焦，背景虚化。光线：背后夕阳逆光勾出机身轮廓。电影级写实，浅景深，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: extreme close-up. Framing: the single round blue camera eye on the head of the same CL-01 cleaning robot (use robot reference image), the whole ring of the lens housing fully in frame and centered, a small strip of white body and orange hazard stripes visible at the edge. Action: the camera aperture contracts slowly and smoothly to focus once, like a single blink, no repeated flickering, the lens staying blue throughout. Camera: static. Focus: the camera lens in sharp focus, background blurred. Light: sunset backlight rimming the body. Cinematic photorealism, shallow depth of field, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "robot"
+          ]
+        },
+        {
+          "shot_id": "s4",
+          "description": "金属碎片下的嫩绿小芽",
+          "prompt_zh": "景别：微距特写。构图：红色火星沙地上一株嫩绿的小芽（参考图：小芽道具图）从生锈的金属碎片下长出来，小芽从顶端叶片到根部的沙地完整入画并位于画面中央，四周留出空间。动作：两片小叶子随微风平稳、轻轻地摆动一下，细沙被风缓慢吹过，幅度适中。镜头：固定机位。对焦：小芽的叶片清晰对焦，背景以极浅景深虚化。光线：柔和侧光。电影级写实，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: macro close-up. Framing: a tiny green sprout (use sprout prop image) growing out from under a rusty metal fragment on red Martian soil, the sprout fully in frame from its top leaves to the soil at its base, centered, with space around it. Action: its two small leaves sway gently and smoothly once in the breeze while fine sand drifts slowly past, moderate amplitude. Camera: static. Focus: the sprout's leaves in sharp focus, background blurred with very shallow depth of field. Light: soft side light. Cinematic photorealism, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "sprout"
+          ]
+        },
+        {
+          "shot_id": "s5",
+          "description": "日落后机器人抬头，天空亮起地球",
+          "prompt_zh": "景别：中景。构图：火星日落后，同一台 CL-01 清洁机器人（参考图：机器人定妆图），白色圆柱形机身，橙色警示条纹，底部履带，单个圆形蓝色摄像头，停在沙丘顶上，逆光半剪影但白色机身和橙色条纹仍隐约可见；机器人从摄像头到履带完整入画，位于画面中央偏下，上方留出大片天空。动作：机器人把圆形蓝色摄像头平稳、缓慢地抬起一次，望向天空，没有抖动；暗蓝色天幕中一颗明亮的蓝色小星点（地球）慢慢亮起。镜头：固定机位，轻微缓慢推近。对焦：机器人轮廓清晰对焦，天空中的蓝色小星点清楚可见。光线：冷蓝与暖橙渐变的天空。电影级写实，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot. Framing: after sunset on Mars, the same CL-01 cleaning robot (use robot reference image), white cylindrical body, orange hazard stripes, tracked base, a single round blue camera eye, stands on a dune crest in backlit half-silhouette with its white body and orange stripes still faintly visible; the robot fully in frame from camera eye to tracks, slightly below center, with a wide stretch of sky above. Action: the robot raises its round blue camera eye slowly and smoothly once to look at the sky, without jitter; in the deep blue sky a small bright blue dot (Earth) slowly brightens. Camera: static, slow slight push-in. Focus: the robot's outline in sharp focus, the small blue dot in the sky clearly visible. Light: sky gradient from cool blue to warm orange. Cinematic photorealism, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "robot",
+            "mars"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "genre": "悬疑",
+      "idea": "深夜便利店的神秘顾客反复买同一把黑伞",
+      "style": "写实电影",
+      "rewrite_notes": "按黑伞情节改写。不包含肢体冲突或威胁动作。",
+      "negative_prompt_zh": "分屏，三分屏，多画面拼接，画中画，监控多格画面，边框，拼贴，换脸，人物年龄变化，发型变化，服装变化，手部变形，多余手指，肢体扭曲，血腥，暴力，字幕，水印，画面闪烁，突然跳切，低清晰度，遮挡面部，头部抽搐，头部抖动，动作重复，人物闪动，真实品牌标志，镜头晃动，主体被裁切，出画，滑步，画面静止，动态模糊，失焦",
+      "negative_prompt_en": "split screen, triptych, multi-panel, CCTV grid, collage, picture-in-picture, border, face swap, age change, hairstyle change, outfit change, deformed hands, extra fingers, distorted limbs, gore, violence, subtitles, watermark, flickering, sudden jump cut, low resolution, face occluded, head twitching, jerky head motion, repeated motion, character flickering, real brand logos, camera shake, cropped subject, out of frame, foot sliding, static frame, motion blur, out of focus",
+      "assets": [
+        {
+          "id": "clerk",
+          "kind": "character",
+          "name": "女店员",
+          "prompt_zh": "角色设定图，正面、侧面、背面三视图加脸部特写，同一位 20 多岁亚洲女店员，黑色低马尾，白色衬衫，墨绿色便利店马甲，黑色长裤，写实摄影风格，纯灰色背景，服装与脸部保持一致。",
+          "prompt_en": "character sheet, front / side / back plus face close-up, same Asian female convenience-store clerk in her 20s, black low ponytail, white shirt, dark green store vest, black trousers, photorealistic, plain grey background, consistent outfit and face."
+        },
+        {
+          "id": "customer",
+          "kind": "character",
+          "name": "神秘顾客",
+          "prompt_zh": "角色设定图，三视图加面部特写，同一位 30 岁左右女子，黑色及肩长发，面色苍白，灰色长外套，黑色上衣和长裤，白色鞋子，手持一把收起的黑色长柄伞，写实摄影风格，纯灰色背景。",
+          "prompt_en": "character sheet, turnaround plus face close-up, same woman around 30, shoulder-length black hair, pale skin, long grey coat, black top and trousers, white shoes, holding a closed black long-handled umbrella, photorealistic, plain grey background."
+        },
+        {
+          "id": "umbrella",
+          "kind": "prop",
+          "name": "黑伞",
+          "prompt_zh": "一把黑色长柄直杆雨伞，木质弯钩手柄，收起状态，产品摄影，纯灰背景，多角度。",
+          "prompt_en": "a black long straight umbrella with a curved wooden handle, closed, product photo, plain grey background, multiple angles."
+        },
+        {
+          "id": "store",
+          "kind": "setting",
+          "name": "深夜便利店",
+          "prompt_zh": "深夜便利店内景，冷白日光灯，整齐货架，收银台，玻璃自动门外是雨夜街道，无人物，写实场景图，16:9。",
+          "prompt_en": "late-night convenience store interior, cold fluorescent lights, neat shelves, checkout counter, automatic glass doors with a rainy street outside, no people, photorealistic environment, 16:9."
+        }
+      ],
+      "shots": [
+        {
+          "shot_id": "s1",
+          "description": "凌晨店员在收银台后伸懒腰",
+          "prompt_zh": "景别：全景。构图：凌晨的便利店内景（参考图：便利店场景图），冷白色日光灯，货架整齐；同一个年轻女店员（参考图：店员定妆图），黑色低马尾，白色衬衫，墨绿色店员马甲，黑色长裤，独自站在收银台后，从头顶到收银台台面以上的身体完整入画（下半身被收银台挡住），位于画面中央，头顶留出空间。动作：她疲惫地伸一次懒腰，双臂缓慢上举再放下，幅度适中、平稳。镜头：固定机位。对焦：店员的脸部清晰对焦。光线：冷青色调，安静氛围。货架商品包装没有真实品牌标志。写实电影感，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide shot. Framing: convenience store interior before dawn (use store setting image), cold white fluorescent lights, neat shelves; the same young female clerk (use clerk reference image), black low ponytail, white shirt, dark green staff vest, black trousers, alone behind the counter, fully in frame from the top of her head down to the countertop (her lower body hidden by the counter), centered, with headroom. Action: she stretches tiredly once, arms rising slowly and coming back down, moderate and smooth. Camera: static. Focus: the clerk's face in sharp focus. Light: cold teal grade, quiet mood. Product packaging on the shelves shows no real brand logos. Realistic cinematic, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "clerk",
+            "store"
+          ]
+        },
+        {
+          "shot_id": "s2",
+          "description": "雨夜灰衣女人握黑伞走进店",
+          "prompt_zh": "景别：全景。构图：从店内朝门口拍，雨夜，自动玻璃门；同一个女人（参考图：神秘顾客定妆图），黑色及肩长发，面色苍白，灰色长外套，黑色上衣和长裤，白色鞋子，右手握着一把收起的黑色长柄伞（参考图：黑伞道具图），木质弯钩手柄，伞尖朝下；进门后从头顶到鞋子全身完整入画，位于画面中央，头顶留出空间，伞不遮挡她的脸。动作：玻璃门缓缓打开，她以适中、平稳的步速走进来，停在门内。镜头：固定机位。对焦：女人的脸部和全身清晰对焦。环境：湿漉漉的地面反着光。写实电影感，冷色调，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide shot. Framing: shot from inside toward the entrance, rainy night, automatic glass doors; the same woman (use customer reference image), black shoulder-length hair, pale face, grey long coat, black top and trousers, white shoes, holding a closed black long-handled umbrella (use umbrella prop image) in her right hand, wooden crook handle, tip pointing down; once inside she is fully in frame from the top of her head to her shoes, centered, with headroom, the umbrella never blocking her face. Action: the glass doors slide open slowly and she walks in at a moderate, steady pace, stopping just inside. Camera: static. Focus: the woman's face and whole body in sharp focus. Setting: the wet floor reflecting light. Realistic cinematic, cold tones, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "customer",
+            "umbrella"
+          ]
+        },
+        {
+          "shot_id": "s3",
+          "description": "柜台上三把同样的黑伞，店员抬头不安",
+          "prompt_zh": "景别：过肩近景。构图：同一个女店员（参考图：店员定妆图），黑色低马尾，白色衬衫，墨绿色店员马甲，站在收银台后，头部和肩膀完整入画并位于画面中央；前景是同一个女人（参考图：神秘顾客定妆图）灰色长外套的肩膀和黑色头发的背影，只占画面一侧边缘，不遮挡店员的脸；柜台上并排放着三把一模一样的收起的黑色长柄伞（参考图：黑伞道具图）。动作：店员先低头看柜台上的伞，再缓缓抬头看向灰衣女人，表情从礼貌慢慢变成不安，动作平稳、只做一次。镜头：缓慢推近店员的脸。对焦：店员的脸部清晰对焦，前景肩膀虚化。写实电影感，浅景深，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: over-the-shoulder close shot. Framing: the same female clerk (use clerk reference image), black low ponytail, white shirt, dark green staff vest, behind the counter, her head and shoulders fully in frame and centered; in the foreground the shoulder of the same woman's grey long coat and the back of her black hair (use customer reference image), only at one edge of the frame, never blocking the clerk's face; three identical closed black long-handled umbrellas lie side by side on the counter (use umbrella prop image). Action: the clerk first looks down at the umbrellas on the counter, then slowly looks up at the woman in grey, her expression shifting from polite to uneasy, smooth and only once. Camera: slow push-in on the clerk's face. Focus: the clerk's face in sharp focus, the foreground shoulder soft. Realistic cinematic, shallow depth of field, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "clerk",
+            "customer",
+            "umbrella"
+          ]
+        },
+        {
+          "shot_id": "s4",
+          "description": "灰衣女人抬头僵硬微笑",
+          "prompt_zh": "景别：特写，取头部到肩部。构图：同一个女人（参考图：神秘顾客定妆图），黑色及肩长发，面色苍白，灰色长外套；她的整个头部和肩部完整入画并位于画面中央，头顶留出空间，头发不遮挡脸。动作：她平稳、缓慢地抬起头一次，嘴角露出一个僵硬的微笑，眼神直视镜头，没有抖动和抽搐。镜头：极慢推近。对焦：她的眼睛和脸部清晰对焦。光线：背后日光灯轻微闪烁，只有背景灯光闪烁，人物本身不闪动。写实电影感，冷色调，悬疑氛围，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: close-up from head to shoulders. Framing: the same woman (use customer reference image), black shoulder-length hair, pale face, grey long coat; her whole head and shoulders fully in frame and centered, with headroom, her hair never covering her face. Action: she lifts her head slowly and smoothly once, a stiff smile forming at the corners of her mouth, staring straight into the lens, with no jerking or twitching. Camera: very slow push-in. Focus: her eyes and face in sharp focus. Light: the fluorescent light behind her flickers slightly; only the background light flickers, the woman herself does not flicker. Realistic cinematic, cold grade, suspense mood, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "customer"
+          ]
+        },
+        {
+          "shot_id": "s5",
+          "description": "打烊后门口伞架插满黑伞",
+          "prompt_zh": "景别：中景。构图：便利店门外夜景（参考图：便利店场景图），卷帘门已经拉下，门口的伞架里插满几十把一模一样的收起的黑色长柄伞（参考图：黑伞道具图），伞架完整入画，位于画面中下部；上方是旧招牌，招牌上只有斑驳的通用字样「便利店」，没有真实品牌标志。动作：雨水从屋檐平稳地滴落。镜头：从伞架开始，缓慢、平稳地上摇一次到招牌，招牌最后完整入画。对焦：伞架和招牌清晰对焦。光线：暗调，路灯冷光。写实电影感，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot. Framing: exterior of the convenience store at night (use store setting image), the rolling shutter is down, the umbrella stand by the door is packed with dozens of identical closed black long-handled umbrellas (use umbrella prop image), the stand fully in frame in the lower middle of the frame; above it an old sign showing only weathered generic characters meaning \"convenience store\", with no real brand logo. Action: rain drips steadily from the eaves. Camera: starting on the umbrella stand, one slow, smooth tilt up to the sign, ending with the sign fully in frame. Focus: the umbrella stand and the sign in sharp focus. Light: low-key, cold streetlight. Realistic cinematic, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "store",
+            "umbrella"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "genre": "古风",
+      "idea": "竹林里会说话的狐狸守护茶亭",
+      "style": "日式动画电影",
+      "negative_prompt_zh": "分屏，三分屏，多画面拼接，画中画，边框，拼贴，现代服装，现代人物，衬衫，换装，角色变化，多只狐狸，多条尾巴，脸部变形，手部变形，爪子畸形，多余肢体，字幕，水印，画面闪烁，突然跳切，低清晰度，眼睛颜色变化，蓝色眼睛，绿色眼睛，皮毛颜色变化，斗篷颜色变化，遮挡面部，头部抽搐，头部抖动，动作重复，闪动，镜头晃动，突然拉远，突然推近，主体被裁切，出画，滑步，画面静止，动态模糊，失焦",
+      "negative_prompt_en": "split screen, triptych, multi-panel, collage, picture-in-picture, border, modern clothing, modern people, shirt, outfit change, character change, multiple foxes, multiple tails, face morphing, deformed hands, malformed paws, extra limbs, subtitles, watermark, flickering, sudden jump cut, low resolution, eye color change, blue eyes, green eyes, fur color change, cape color change, face occluded, head twitching, jerky head motion, repeated motion, stutter, camera shake, sudden zoom out, sudden zoom in, cropped subject, out of frame, foot sliding, static frame, motion blur, out of focus",
+      "assets": [
+        {
+          "id": "fox",
+          "kind": "character",
+          "name": "红狐狸",
+          "prompt_zh": "角色设定图，三视图加表情（说话、微笑、警惕），同一只红狐狸，橙红色皮毛，白色胸毛和尾尖，黑色四爪，金色眼睛，披深红色小斗篷，脖子系金色铃铛，日式动画电影风格，纯灰色背景。",
+          "prompt_en": "character sheet, turnaround plus expressions (talking, smiling, alert), same red fox, orange-red fur, white chest and tail tip, black paws, golden eyes, small deep-red cape, golden bell on its neck, Japanese anime film style, plain grey background."
+        },
+        {
+          "id": "bamboo",
+          "kind": "setting",
+          "name": "黄昏竹林",
+          "prompt_zh": "黄昏竹林小径，金色夕阳穿过竹竿，萤火虫，无角色，日式动画电影场景概念图，16:9。",
+          "prompt_en": "bamboo forest path at dusk, golden sunset through stalks, fireflies, no characters, Japanese anime film environment concept, 16:9."
+        },
+        {
+          "id": "pavilion",
+          "kind": "setting",
+          "name": "茶亭",
+          "prompt_zh": "竹林深处的中式木质茶亭，飞檐，竹帘，石灯笼覆盖青苔，桌上茶具，黄昏暖光，无角色，日式动画电影场景概念图。",
+          "prompt_en": "Chinese wooden tea pavilion deep in a bamboo forest, upturned eaves, bamboo curtains, moss-covered stone lanterns, tea set on the table, warm dusk light, no characters, anime film environment concept."
+        }
+      ],
+      "shots": [
+        {
+          "shot_id": "s1",
+          "description": "黄昏竹林小径，远处茶亭",
+          "prompt_zh": "景别：远景。构图：黄昏时分的竹林小径（参考图：竹林场景图）从画面下方延伸到远处，小径位于画面中央，远处隐约可见一座木质茶亭的屋檐，画面中没有角色。动作：萤火虫和光尘在空气中平稳、缓慢地飘动，竹叶轻轻摇曳。镜头：平稳缓慢地向前推进一次。对焦：小径和近处竹竿清晰对焦，远处茶亭略虚。光线：夕阳金光从密集的竹竿间斜射进来，柔和体积光。日式动画电影风格，暖橙与墨绿对比，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide shot. Framing: a bamboo forest path at dusk (use bamboo setting image) running from the bottom of the frame into the distance, the path centered, the eaves of a wooden tea pavilion faintly visible far away, no characters in frame. Action: fireflies and light dust float slowly and smoothly in the air, bamboo leaves swaying gently. Camera: one smooth, slow push forward. Focus: the path and the nearby bamboo stalks in sharp focus, the distant pavilion slightly soft. Light: golden sunset light slanting through dense bamboo stalks, soft volumetric light. Japanese anime film style, warm orange vs deep green, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "bamboo"
+          ]
+        },
+        {
+          "shot_id": "s2",
+          "description": "红狐狸沿小径走来回头",
+          "prompt_zh": "景别：中全景。构图：同一只红狐狸（参考图：狐狸定妆图），橙红色皮毛，白色胸毛和尾尖，黑色四爪，金色眼睛，披深红色小斗篷，脖子系金色铃铛；狐狸从耳朵尖到四爪和尾尖全身完整入画并位于画面中央，四周留出空间。动作：狐狸沿竹林小径（参考图：竹林场景图）以适中的步速平稳走来，停下后平稳地回头看向镜头一次，头部动作连续，没有抖动和抽搐。镜头：在侧前方与狐狸同速平行跟拍，狐狸停下后镜头也停下。对焦：狐狸的脸部和金色眼睛清晰对焦。光线：黄昏逆光勾边。日式动画电影风格，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium-wide shot. Framing: the same red fox (use fox reference image), orange-red fur, white chest fur and tail tip, black paws, golden eyes, wearing a small deep-red cape and a golden bell on its neck; the fox fully in frame from ear tips to paws and tail tip, centered, with space around it. Action: the fox walks along the bamboo path (use bamboo setting image) at a moderate, steady pace, stops, then turns its head back toward the camera smoothly once, head motion continuous with no jerking or twitching. Camera: tracking alongside from the front side at the fox's speed, stopping when the fox stops. Focus: the fox's face and golden eyes in sharp focus. Light: dusk rim backlight. Japanese anime film style, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "fox",
+            "bamboo"
+          ]
+        },
+        {
+          "shot_id": "s3",
+          "description": "狐狸端坐茶亭门口守门",
+          "prompt_zh": "景别：全景。构图：竹林深处一座小小的木质茶亭（参考图：茶亭场景图），青苔覆盖的石灯笼和竹编门帘，桌上摆着茶壶和茶杯；同一只红狐狸（参考图：狐狸定妆图），橙红色皮毛，白色胸毛和尾尖，金色眼睛，深红色小斗篷，金色铃铛，端坐在茶亭门口，全身从耳朵尖到尾巴完整入画，位于画面中部，四周留出空间。动作：狐狸像守门人一样端坐不动，只有尾巴尖平稳地轻轻摆动一次。镜头：缓慢、平稳地横移一小段。对焦：狐狸和茶亭门口清晰对焦。光线：黄昏暖光。日式动画电影风格，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide shot. Framing: a small wooden tea pavilion deep in the bamboo forest (use pavilion setting image), moss-covered stone lanterns and a bamboo door curtain, a teapot and cups on the table; the same red fox (use fox reference image), orange-red fur, white chest fur and tail tip, golden eyes, small deep-red cape, golden bell, sitting upright at the pavilion entrance, fully in frame from ear tips to tail, near the center with space around it. Action: the fox sits still like a guardian; only the tip of its tail sways gently and smoothly once. Camera: one slow, smooth short lateral move. Focus: the fox and the pavilion entrance in sharp focus. Light: warm dusk light. Japanese anime film style, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "fox",
+            "pavilion"
+          ]
+        },
+        {
+          "shot_id": "s4",
+          "description": "狐狸前爪搭着茶壶盖开口说话",
+          "prompt_zh": "景别：中近景，取狐狸头部到前爪。构图：同一只红狐狸（参考图：狐狸定妆图），橙红色皮毛，白色胸毛，金色眼睛，深红色小斗篷，金色铃铛，坐在茶亭（参考图：茶亭场景图）的茶桌旁；狐狸的整个头部、两只耳朵尖和前爪完整入画并位于画面中央，头顶留出空间；一只前爪已经轻轻搭在茶壶盖上并保持不动，爪子和茶壶不遮挡狐狸的脸。动作：狐狸张嘴开口说话，口型自然连续，头部平稳，没有抖动和抽搐；茶壶平稳地冒出带金色光点的热气。镜头：固定机位后轻微缓慢推近。对焦：狐狸的脸部和金色眼睛清晰对焦。光线：黄昏暖光。日式动画电影风格，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium close-up from the fox's head to its front paws. Framing: the same red fox (use fox reference image), orange-red fur, white chest fur, golden eyes, small deep-red cape, golden bell, sitting by the tea table in the pavilion (use pavilion setting image); the fox's whole head, both ear tips and front paws fully in frame and centered, with headroom; one front paw already resting lightly on the teapot lid and staying still, the paw and teapot never blocking the fox's face. Action: the fox opens its mouth and speaks, natural and continuous mouth movement, head steady with no jerking or twitching; steam with golden sparkles rises steadily from the teapot. Camera: static, then a slight slow push-in. Focus: the fox's face and golden eyes in sharp focus. Light: warm dusk light. Japanese anime film style, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "fox",
+            "pavilion"
+          ]
+        },
+        {
+          "shot_id": "s5",
+          "description": "夜幕降临，狐狸守着茶亭，灯笼一盏盏亮起",
+          "prompt_zh": "景别：中景。构图：夜幕降临的竹林里，同一只红狐狸（参考图：狐狸定妆图），橙红色皮毛，白色胸毛和尾尖，金色眼睛，深红色小斗篷，金色铃铛，端坐在茶亭（参考图：茶亭场景图）门口，狐狸全身和整座茶亭正面完整入画，狐狸位于画面中央偏下，上方留出空间。动作：茶亭周围的灯笼从近到远一盏盏平稳地亮起，金色光带缓慢环绕茶亭；狐狸端坐不动，金色眼睛被灯光映得柔和发亮，眼睛始终是金色。镜头：固定机位，只做轻微缓慢的拉远，始终保持狐狸和茶亭完整入画，不跳切。对焦：狐狸和茶亭清晰对焦。光线：暖金色灯光与深蓝色夜空对比。日式动画电影风格，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot. Framing: night falling over the bamboo forest, the same red fox (use fox reference image), orange-red fur, white chest fur and tail tip, golden eyes, small deep-red cape, golden bell, sitting upright at the entrance of the tea pavilion (use pavilion setting image), the fox's whole body and the entire front of the pavilion fully in frame, the fox slightly below center with space above. Action: the lanterns around the pavilion light up smoothly one by one from near to far, golden ribbons of light slowly circling the pavilion; the fox sits still, its golden eyes softly lit by the lanterns, staying golden throughout. Camera: static, only a slight slow pull-back, keeping the fox and the pavilion fully in frame, no jump cut. Focus: the fox and the pavilion in sharp focus. Light: warm golden lantern light against a deep blue night sky. Japanese anime film style, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "fox",
+            "pavilion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S5",
+      "genre": "喜剧",
+      "idea": "外卖小哥送餐路上遇到各种离谱事",
+      "style": "写实电影",
+      "rewrite_notes": "改成追鹅的送餐乌龙。不包含橱窗或暴露服装。",
+      "negative_prompt_zh": "分屏，三分屏，多画面拼接，画中画，边框，拼贴，服装颜色变化，换装，头盔变化，车辆型号变化，换脸，手部变形，多余手指，肢体扭曲，物体穿模，违反物理，暴露服装，字幕，水印，画面闪烁，突然跳切，低清晰度，鹅的外形或颜色变化，多只鹅，遮挡面部，头盔遮住脸，头部抽搐，头部抖动，动作重复，闪动，整只鹅钻进箱子，鹅坐在盒子里，尺寸比例失调，镜头晃动，主体被裁切，出画，滑步，画面静止，动态模糊，失焦，品牌标志，商标，logo，美团，饿了么，外卖平台标识，服装上的文字，印刷文字",
+      "negative_prompt_en": "split screen, triptych, multi-panel, collage, picture-in-picture, border, uniform color change, outfit change, helmet change, vehicle model change, face swap, deformed hands, extra fingers, distorted limbs, object clipping, physics violation, revealing clothing, subtitles, watermark, flickering, sudden jump cut, low resolution, goose appearance or color change, multiple geese, face occluded, helmet covering face, head twitching, jerky head motion, repeated motion, stutter, whole goose climbing into the box, goose sitting in the food box, wrong scale, camera shake, cropped subject, out of frame, foot sliding, static frame, motion blur, out of focus, brand logo, trademark, logo, Meituan, Ele.me, delivery platform branding, text on clothing, printed lettering",
+      "assets": [
+        {
+          "id": "rider",
+          "kind": "character",
+          "name": "外卖骑手",
+          "prompt_zh": "角色设定图，正面、侧面、背面三视图加两张表情（疲惫、憨笑），同一位 40 多岁亚洲男性外卖骑手，虚构角色，写实风格但不像任何真实名人，短黑发，银色半盔头盔，深蓝色外卖夹克带银色反光条，黑色手套，深色长裤，棕色斜挎包；外卖夹克、头盔、斜挎包上没有任何标志、品牌、文字或数字，纯色无印花；写实摄影风格，纯灰色背景，服装完全一致。",
+          "prompt_en": "character sheet, front / side / back plus two expressions (tired, goofy grin), same Asian male delivery rider in his 40s, a fictional character, photorealistic but not resembling any real celebrity, short black hair, silver half helmet, dark navy delivery jacket with silver reflective stripes, black gloves, dark trousers, brown crossbody bag; no logos, brands, text or numbers anywhere on the jacket, helmet or bag, plain solid colors with no prints; photorealistic, plain grey background, identical outfit."
+        },
+        {
+          "id": "scooter",
+          "kind": "prop",
+          "name": "电动车和外卖箱",
+          "prompt_zh": "一辆黑色电动踏板车，后座固定黑色方形外卖箱，箱盖可打开；车身和外卖箱上没有任何标志、品牌、文字或数字，纯色无印花；多角度产品图，写实，纯灰背景。",
+          "prompt_en": "a black electric scooter with a black square delivery box mounted on the back, openable lid; no logos, brands, text or numbers anywhere on the scooter or the box, plain solid colors with no prints; multi-angle product shots, photorealistic, plain grey background."
+        },
+        {
+          "id": "street",
+          "kind": "setting",
+          "name": "雨夜城市街道",
+          "prompt_zh": "雨夜城市街道，湿漉漉的柏油路反射霓虹与街灯，路边小店，店招只有模糊的通用色块，没有任何标志、品牌或可读文字，无人物，写实电影场景图，16:9。",
+          "prompt_en": "rainy city street at night, wet asphalt reflecting neon and streetlights, small shops on the side, shop signs only blurry generic color blocks with no logos, brands or readable text, no people, photorealistic cinematic environment, 16:9."
+        },
+        {
+          "id": "goose",
+          "kind": "character",
+          "name": "白色大鹅",
+          "prompt_zh": "角色设定图，三视图（正面、侧面、背面），同一只白色大鹅，全身完整入画，白色羽毛，橙色喙和脚，体型正常，写实摄影风格，纯灰色背景，同一角色保持一致。",
+          "prompt_en": "character turnaround sheet, front / side / back views, the same large white goose, full body in frame, white feathers, orange beak and feet, normal proportions, photorealistic, plain grey background, consistent character."
+        }
+      ],
+      "shots": [
+        {
+          "shot_id": "s1",
+          "description": "骑手雨夜骑车前行",
+          "prompt_zh": "景别：中景。构图：雨夜城市街道（参考图：街道场景图），同一个外卖骑手（参考图：骑手定妆图），短黑发，银色半盔，深蓝色外卖夹克带银色反光条（夹克和头盔无标志无文字），黑色手套，深色长裤，棕色斜挎包，骑着同一辆黑色电动踏板车（参考图：电动车道具图），后座固定黑色方形外卖箱，外卖箱无标志无文字；骑手和电动车从头盔到车轮完整入画并位于画面中央，上方留出空间。动作：骑手以适中、平稳的速度向前骑行，尾灯在湿漉漉的路面上映出红色倒影。镜头：在骑手身后以相同速度平稳跟拍。对焦：骑手和电动车清晰对焦。光线：霓虹夜色，街边店招只有模糊的通用字样，没有真实品牌。写实电影感，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot. Framing: rainy city street at night (use street setting image), the same delivery rider (use rider reference image), short black hair, silver half helmet, dark navy delivery jacket with silver reflective stripes (no logos or text on the jacket or helmet), black gloves, dark trousers, brown crossbody bag, riding the same black e-scooter (use scooter prop image) with a black square delivery box fixed on the back, no logos or text on the delivery box; the rider and scooter fully in frame from helmet to wheels, centered, with space above. Action: the rider rides forward at a moderate, steady speed, the taillight casting a red reflection on the wet road. Camera: following behind the rider at the same speed, smooth. Focus: the rider and the scooter in sharp focus. Light: neon night; shop signs show only blurry generic characters, no real brands. Realistic cinematic, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "rider",
+            "scooter",
+            "street"
+          ]
+        },
+        {
+          "shot_id": "s2",
+          "description": "红灯前白鹅把头伸进外卖箱叼走小餐盒",
+          "prompt_zh": "景别：中景。构图：同一个骑手（参考图：骑手定妆图），银色半盔，深蓝色外卖夹克带银色反光条（夹克和头盔无标志无文字），黑色手套，停在红绿灯前，跨坐在同一辆黑色电动踏板车（参考图：电动车道具图）上，后座黑色方形外卖箱（无标志无文字）的盖子开着；一只白色大鹅（参考图：白鹅定妆图），橙色喙和脚，站在车旁的路边台阶上，正好够到外卖箱；骑手、电动车和白鹅都完整入画，位于画面中部。动作：白鹅把头和脖子平稳地伸进打开的外卖箱，用喙叼出一个小餐盒，身体始终留在箱外，不钻进箱子；骑手回头看见，睁大眼睛，回头只做一次，平稳，没有抖动和抽搐。镜头：固定机位。对焦：白鹅、外卖箱和骑手的脸清晰对焦。写实电影感，喜剧节奏，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium shot. Framing: the same rider (use rider reference image), silver half helmet, dark navy delivery jacket with silver reflective stripes (no logos or text on the jacket or helmet), black gloves, stopped at a red light, straddling the same black e-scooter (use scooter prop image), the lid of the black square delivery box (no logos or text) on the back open; a large white goose (use goose reference image), orange beak and feet, standing on the curb step beside the scooter, just tall enough to reach the box; the rider, scooter and goose all fully in frame near the center. Action: the goose smoothly stretches its head and neck into the open delivery box and pulls out a small food box with its beak, its body staying outside the box the whole time, never climbing in; the rider turns back once, smoothly, wide-eyed, with no jerking or twitching. Camera: static. Focus: the goose, the delivery box and the rider's face in sharp focus. Realistic cinematic, comedic timing, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "rider",
+            "scooter",
+            "goose"
+          ]
+        },
+        {
+          "shot_id": "s3",
+          "description": "小巷里骑手骑车追叼着餐盒的白鹅",
+          "prompt_zh": "景别：全景。构图：狭窄的小巷，同一个骑手（参考图：骑手定妆图），银色半盔，深蓝色外卖夹克带银色反光条（夹克和头盔无标志无文字），骑着同一辆黑色电动踏板车（参考图：电动车道具图），后座黑色方形外卖箱（无标志无文字）；前方是同一只白色大鹅（参考图：白鹅定妆图），橙色喙和脚，嘴里叼着一个小餐盒；骑手、电动车和白鹅从头顶到车轮、到鹅的脚都完整入画，位于画面中部，四周留出空间。动作：白鹅叼着小餐盒以适中的步速摇摆着向前跑，骑手骑车以同样适中、平稳的速度跟在后面追。镜头：在侧面与他们同速平稳平行跟拍。对焦：骑手和白鹅清晰对焦。写实电影感，轻快喜剧氛围，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: wide shot. Framing: a narrow alley, the same rider (use rider reference image), silver half helmet, dark navy delivery jacket with silver reflective stripes (no logos or text on the jacket or helmet), riding the same black e-scooter (use scooter prop image) with the black square delivery box (no logos or text) on the back; ahead of him the same large white goose (use goose reference image), orange beak and feet, holding a small food box in its beak; the rider, scooter and goose fully in frame from the top of the helmet to the wheels and the goose's feet, near the center with space around them. Action: the goose waddles forward at a moderate pace with the small food box in its beak, and the rider follows on the scooter at the same moderate, steady speed. Camera: side tracking at their speed, smooth and parallel. Focus: the rider and the goose in sharp focus. Realistic cinematic, light comedic mood, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "rider",
+            "scooter",
+            "goose"
+          ]
+        },
+        {
+          "shot_id": "s4",
+          "description": "骑手满头大汗憨笑",
+          "prompt_zh": "景别：特写，取头部到肩部。构图：同一个骑手（参考图：骑手定妆图），短黑发，银色半盔，深蓝色外卖夹克带银色反光条（夹克和头盔无标志无文字）；整个头部和头盔完整入画并位于画面中央，头顶留出空间，半盔不遮挡脸，整张脸完整露出。动作：他满头大汗，呼吸平稳起伏，慢慢露出一个憨厚又无奈的笑，只做一次，头部没有抖动和抽搐。镜头：固定机位。对焦：骑手的眼睛和脸部清晰对焦。光线：街灯暖光。写实电影感，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: close-up from head to shoulders. Framing: the same rider (use rider reference image), short black hair, silver half helmet, dark navy delivery jacket with silver reflective stripes (no logos or text on the jacket or helmet); his whole head and helmet fully in frame and centered, with headroom, the half helmet never covering his face, the whole face visible. Action: drenched in sweat, breathing steadily, he slowly breaks into an honest, helpless grin, only once, with no head jerking or twitching. Camera: static. Focus: the rider's eyes and face in sharp focus. Light: warm streetlight. Realistic cinematic, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "rider"
+          ]
+        },
+        {
+          "shot_id": "s5",
+          "description": "顾客打开外卖盒只剩一根鹅毛，白鹅从一侧探头",
+          "prompt_zh": "景别：中景双人镜头，侧面平视。构图：写字楼门口，同一个骑手（参考图：骑手定妆图），银色半盔，深蓝色外卖夹克带银色反光条（夹克和头盔无标志无文字），站在画面左侧；一位穿灰色西装的年轻顾客站在画面右侧，双手捧着刚接过的外卖盒；两人从头顶到腰部完整入画，两张脸都完整露出，头顶留出空间，写字楼招牌没有真实品牌。动作：顾客平稳地掀开外卖盒盖，盒里是空的，只有一根白色鹅毛；同时，同一只白色大鹅（参考图：白鹅定妆图），橙色喙和脚，从画面右下角边缘平稳地探出头和脖子；骑手和顾客愣住，面面相觑。镜头：固定机位。对焦：两人的脸和盒里的白色鹅毛清晰对焦。写实电影感，喜剧收尾，单一画面，镜头连贯。",
+          "prompt_en": "Shot size: medium two-shot, side view at eye level. Framing: at an office building entrance, the same rider (use rider reference image), silver half helmet, dark navy delivery jacket with silver reflective stripes (no logos or text on the jacket or helmet), stands on the left of the frame; a young customer in a grey suit stands on the right holding the food box he has just received with both hands; both fully in frame from the top of the head to the waist, both faces fully visible, with headroom; the building sign shows no real brand. Action: the customer smoothly lifts the lid of the food box; it is empty except for a single white goose feather; at the same moment the same large white goose (use goose reference image), orange beak and feet, smoothly pokes its head and neck in from the lower right edge of the frame; the rider and the customer freeze and stare at each other. Camera: static. Focus: both faces and the white feather in the box in sharp focus. Realistic cinematic, comedic ending, single full-frame shot, continuous camera.",
+          "reference_ids": [
+            "rider",
+            "goose"
+          ]
+        }
+      ]
+    }
+  ]
+}

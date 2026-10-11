@@ -16,7 +16,7 @@ from app.models.llm_client import LLMClient
 from app.models.tts_client import TTSClient
 from app.models.video_client import VideoClient
 from app.schemas.task import talking_input
-from app.services import ffmpeg_util, model_catalog, task_store
+from app.services import ffmpeg_util, model_catalog, prompts, task_store
 
 ProgressCb = Callable[[str, str, int], Awaitable[None]]
 
@@ -108,6 +108,7 @@ class ShortPipelines:
             raise AppError("VALIDATION_ERROR", "角色图与动作描述缺一不可")
 
         await progress("video", "生成动作视频", 30)
+        prompt = prompts.compose_shot_prompt(prompt)
         final = await asyncio.to_thread(self.video.image_to_video, character, prompt, config.VIDEO_DIR / task_id / "final.mp4", "reference",
                                        model=model_catalog.resolve(inputs.get("model_selection"), ["video_reference"])["video_reference"])
         await progress("done", "完成", 100)

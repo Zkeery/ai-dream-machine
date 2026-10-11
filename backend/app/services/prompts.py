@@ -39,21 +39,67 @@ STORYBOARD_SYSTEM = f"""你是分镜师。根据剧本把每集拆成分镜镜�
 2. prompt 用英文，用于图像/视频生成，不写"不要文字/水印"等已在系统外追加的约束。
 3. 每个镜头对应一个约5秒的连续拍摄片段，只安排一个主要动作和一种景别，不在单个 prompt 内写切镜、蒙太奇或完整故事。
 4. 相邻镜头承接动作进度，不重复表演已经完成的动作；同一场景的时间、光线、人物服饰、发型、眼镜和道具保持一致，除非剧本明确要求改变。只用已确认角色与场景设定，不自行改年龄或添加人物。
-5. 只用 JSON，禁止围栏和解释文字。"""
+5. 只用 JSON，禁止围栏和解释文字。
+6. 镜头里出现的角色必须写入 character_ids。prompt 重复该角色 3 到 4 个固定特征（服装、发型、脸或标志物），并与角色描述一致。全画幅单镜头，不写分屏、三分屏或画中画。除非剧本明确要求，否则不换装、不改五官、不改年龄。"""
 
 
-CHARACTER_PROMPT = "角色名：{name}；描述：{description}；风格：{style}。正面全身/半身设定图，保持身份一致，干净背景。"
+CHARACTER_PROMPT = (
+    "角色名：{name}；固定外貌与服装：{description}；风格：{style}。"
+    "角色定妆图：同一角色的正面、侧面和脸部放在同一张纯色背景图里，"
+    "各视图的服装、发型、脸和标志性特征完全一致，不换装，不改变年龄，不添加其他角色。"
+)
 
 SETTING_PROMPT = "场景名：{name}；环境描述：{description}；风格：{style}。纯环境设定图，展示建筑、地形、空间布局、光线和描述中的物件；环境镜头构图，空间关系清晰。不添加人物、角色或肖像，不将场景拟人化，不额外添加人形雕塑或人形装饰。"
 
-REFERENCE_PROMPT = "分镜镜头：{description}；提示词：{prompt}；风格：{style}。电影级构图。"
+REFERENCE_PROMPT = (
+    "分镜镜头：{description}；提示词：{prompt}；风格：{style}。"
+    "必须与所附角色参考图是同一个角色：脸、年龄、发型、服装、体型和标志物不得改变。"
+    "单一全画幅画面。电影级构图。"
+)
 
 VIDEO_PROMPT = """生成一个连续单镜头片段，仅表现以下当前分镜，不重演全片故事。
 当前分镜：{description}
 画面与动作：{prompt}
 全程保持当前景别与机位，主体动作自然、幅度克制；不切镜、不插入特写、不蒙太奇、不切换场景或跳跃时间，不额外演出后续情节。
 保持参考图中人物的面容、年龄、发型、眼镜、服饰、道具与场景布局和光线一致。角色和场景设定图仅用于身份与环境约束，不将它们分别演成新镜头。
+单一全画幅，不要分屏、三分屏、画中画或拼贴。不要换装、换脸。手和肢体结构完整。
 One continuous uncut take. No cuts, no montage, no shot changes. Perform only this shot's action."""
+
+# 镜头负面约束走提示词正文。已核对的图片/视频请求体没有单独的 negative_prompt 字段，
+# 分屏禁令不能加在定妆三视图上，否则会和「同一张图里的正面/侧面/脸」冲突。
+SHOT_NEGATIVE_PROMPT = (
+    "分屏，三分屏，多画面拼接，画中画，边框，拼贴，字幕，水印，文字，"
+    "角色换装，服装变化，换脸，脸部变形，多余肢体，手指畸形，手部变形，肢体扭曲，"
+    "画面闪烁，突然跳切，低清晰度，模糊"
+)
+
+SHEET_NEGATIVE_PROMPT = (
+    "第二个角色，不同的脸，换装，服装不一致，年龄变化，畸形手，多余手指，多余肢体，字幕，水印，低清晰度"
+)
+
+SETTING_ASSET_NEGATIVE = "人物，角色，肖像，字幕，水印，分屏，三分屏，低清晰度"
+
+PROP_ASSET_NEGATIVE = "多余主体，错误文字，字幕，水印，分屏，三分屏，畸形结构，低清晰度"
+
+
+def compose_media_prompt(positive: str, negative: str) -> str:
+    """把负面约束附在模型实际收到的提示词末尾。已有「避免出现」时不重复追加。"""
+    text = positive.strip()
+    avoided = negative.strip().strip("，")
+    if not avoided or "避免出现：" in text:
+        return text
+    return f"{text}\n避免出现：{avoided}"
+
+
+def compose_shot_prompt(positive: str, negative: str | None = None) -> str:
+    return compose_media_prompt(positive, negative or SHOT_NEGATIVE_PROMPT)
+
+
+def compose_sheet_prompt(positive: str, *, kind: str = "character") -> str:
+    negative = {"character": SHEET_NEGATIVE_PROMPT, "setting": SETTING_ASSET_NEGATIVE,
+                "prop": PROP_ASSET_NEGATIVE}.get(kind, SHEET_NEGATIVE_PROMPT)
+    return compose_media_prompt(positive, negative)
+
 
 TITLE_SYSTEM = "你是短片导演。根据剧本正文，生成一个 15 字以内的片名。只输出片名本身，不要引号。"
 
