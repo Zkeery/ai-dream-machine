@@ -15,8 +15,9 @@ STATUS_PATH = EVIDENCE / "run-status.json"
 HOW_TO_RUN = [
     "在仓库根目录把 .env.example 复制为 .env，填入 AIHUBMIX_API_KEY。",
     "安装后端依赖：python3 -m venv backend/.venv && backend/.venv/bin/pip install -r backend/requirements.txt。",
-    "确认本机有 ffmpeg。图片默认 qwen-image-2.0，视频默认 wan2.7-r2v，参考图模式，16:9，720P，每镜 5 秒。",
-    "在 backend 目录执行：.venv/bin/python scripts/run_d7_round.py。可用 --only S1 只跑一条。",
+    "确认本机有 ffmpeg。D7 默认：图片 Seedream 5.0 Pro、视频可灵 3.0 Omni 1080P（pro）、审查 qwen3-vl-plus，参考图模式，16:9，每镜 5 秒。",
+    "先零费用预检：在 backend 目录执行 .venv/bin/python scripts/run_d7_round.py --dry-run --only S2。",
+    "正式生成：.venv/bin/python scripts/run_d7_round.py --only S2。可用 --budget-usd 设硬上限。",
     "成片写到 docs/evidence/D7-角色一致性/output/<样本ID>/final.mp4。分数留在待评分表，由人工填写。",
 ]
 
@@ -39,8 +40,12 @@ def write_status(payload: dict, path: Path = STATUS_PATH) -> Path:
 
 
 def render_sample(sample: dict, image, video, out_dir: Path, *, image_model: str, video_model: str,
-                  review_image=None) -> dict:
-    """先生成全部定妆图，再把同一张图传给该角色出现的每个镜头。"""
+                  review_image=None, resolution: str = "1080P", video_ratio: str = "16:9",
+                  image_size: str = "1280x720") -> dict:
+    """先生成全部定妆图，再把同一张图传给该角色出现的每个镜头。
+
+    默认分辨率 1080P，与 S1 可灵实测及 fixture.generation 一致。
+    """
     plan = d7_set.generation_plan(sample)
     sheet_dir = out_dir / "sheets"
     shot_dir = out_dir / "shots"
@@ -49,7 +54,7 @@ def render_sample(sample: dict, image, video, out_dir: Path, *, image_model: str
     sheets: dict[str, Path] = {}
     for asset in plan["assets"]:
         path = sheet_dir / f"{asset['id']}.png"
-        image.text_to_image(asset["prompt"], path, model=image_model, size="1280x720")
+        image.text_to_image(asset["prompt"], path, model=image_model, size=image_size)
         if review_image is not None:
             review_image(path)
         sheets[asset["id"]] = path
@@ -61,10 +66,11 @@ def render_sample(sample: dict, image, video, out_dir: Path, *, image_model: str
         clip = shot_dir / f"{shot['shot_id']}.mp4"
         video.image_to_video(
             str(primary), shot["prompt"], clip, "reference",
-            reference_paths=extra, video_ratio="16:9", resolution="720P", model=video_model,
+            reference_paths=extra, video_ratio=video_ratio, resolution=resolution, model=video_model,
         )
         clips.append(clip)
-        calls.append({"shot_id": shot["shot_id"], "image": str(primary), "reference_paths": extra})
+        calls.append({"shot_id": shot["shot_id"], "image": str(primary), "reference_paths": extra,
+                      "reference_ids": list(shot["reference_ids"])})
     return {
         "id": sample["id"],
         "sheets": {key: str(path) for key, path in sheets.items()},
@@ -73,4 +79,6 @@ def render_sample(sample: dict, image, video, out_dir: Path, *, image_model: str
         "image_model": image_model,
         "video_model": video_model,
         "video_mode": "reference",
+        "resolution": resolution,
+        "video_ratio": video_ratio,
     }
