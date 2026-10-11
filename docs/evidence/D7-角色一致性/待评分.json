@@ -1,19 +1,115 @@
 {
   "round": "2026-10-10-character-lock",
-  "generated": false,
-  "scores_status": "空表。成片生成并经人工观看之前，不要填写分数。",
+  "generated": true,
+  "scores_status": "已评（2026-10-11，评审人 二 科），3/5 通过。数据以 D7-评分工作簿-五维.xlsx 为准。",
   "standard": "five_dim_with_compliance_veto",
   "standard_revised": "2026-10-11",
-  "dimensions": ["需求符合", "人物一致", "画面质量", "镜头运动", "配音字幕"],
+  "dimensions": [
+    "需求符合",
+    "人物一致",
+    "画面质量",
+    "镜头运动",
+    "配音字幕"
+  ],
   "compliance": "合规红线",
   "pass_rule": "合规红线只判通过或不通过，不通过直接不合格，不参与平均。五维每项 1 到 3 分；适用的维度都要填，平均不低于 2，且没有 1 分。没有配音字幕的样本，配音字幕记「不适用」，不参与平均；has_voice 为 true 的样本（漫剧或有配音）必须打分。",
   "reviewer_b": null,
   "agreement": null,
   "samples": [
-    {"id": "S1", "genre": "温情", "idea": "一只流浪猫在雨夜被好心人收留", "final": "docs/evidence/D7-角色一致性/output/S1/final.mp4", "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
-    {"id": "S2", "genre": "科幻", "idea": "火星基地的清洁机器人第一次看到地球", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
-    {"id": "S3", "genre": "悬疑", "idea": "深夜便利店的神秘顾客反复买同一把黑伞", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
-    {"id": "S4", "genre": "古风", "idea": "竹林里会说话的狐狸守护茶亭", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null},
-    {"id": "S5", "genre": "喜剧", "idea": "外卖小哥送餐路上遇到各种离谱事", "final": null, "has_voice": false, "scores": {"需求符合": null, "人物一致": null, "画面质量": null, "镜头运动": null, "配音字幕": "不适用", "合规红线": null}, "passed": null}
-  ]
+    {
+      "id": "S1",
+      "genre": "温情",
+      "idea": "一只流浪猫在雨夜被好心人收留",
+      "final": "docs/evidence/D7-角色一致性/output/S1/final-vo.mp4",
+      "has_voice": true,
+      "scores": {
+        "需求符合": 3,
+        "人物一致": 2,
+        "画面质量": 2,
+        "镜头运动": 2,
+        "配音字幕": 2,
+        "合规红线": "不通过"
+      },
+      "passed": false,
+      "final_silent": "docs/evidence/D7-角色一致性/output/S1/final.mp4",
+      "note": "第5镜毯子盖住猫头（合规否决）；第4镜猫眼变绿、猫头抽动"
+    },
+    {
+      "id": "S2",
+      "genre": "科幻",
+      "idea": "火星基地的清洁机器人第一次看到地球",
+      "final": "docs/evidence/D7-角色一致性/output/S2/final-vo.mp4",
+      "has_voice": true,
+      "scores": {
+        "需求符合": 2,
+        "人物一致": 3,
+        "画面质量": 2,
+        "镜头运动": 2,
+        "配音字幕": 2,
+        "合规红线": "通过"
+      },
+      "passed": true,
+      "final_silent": "docs/evidence/D7-角色一致性/output/S2/final.mp4",
+      "note": "均分 2.2"
+    },
+    {
+      "id": "S3",
+      "genre": "悬疑",
+      "idea": "深夜便利店的神秘顾客反复买同一把黑伞",
+      "final": "docs/evidence/D7-角色一致性/output/S3/final-vo.mp4",
+      "has_voice": true,
+      "scores": {
+        "需求符合": 2,
+        "人物一致": 3,
+        "画面质量": 2,
+        "镜头运动": 2,
+        "配音字幕": 2,
+        "合规红线": "通过"
+      },
+      "passed": true,
+      "final_silent": "docs/evidence/D7-角色一致性/output/S3/final.mp4",
+      "note": "均分 2.2"
+    },
+    {
+      "id": "S4",
+      "genre": "古风",
+      "idea": "竹林里会说话的狐狸守护茶亭",
+      "final": "docs/evidence/D7-角色一致性/output/S4/final-vo.mp4",
+      "has_voice": true,
+      "scores": {
+        "需求符合": 2,
+        "人物一致": 3,
+        "画面质量": 2,
+        "镜头运动": 2,
+        "配音字幕": 2,
+        "合规红线": "通过"
+      },
+      "passed": true,
+      "final_silent": "docs/evidence/D7-角色一致性/output/S4/final.mp4",
+      "note": "均分 2.2"
+    },
+    {
+      "id": "S5",
+      "genre": "喜剧",
+      "idea": "外卖小哥送餐路上遇到各种离谱事",
+      "final": "docs/evidence/D7-角色一致性/output/S5/final-vo.mp4",
+      "has_voice": true,
+      "scores": {
+        "需求符合": 1,
+        "人物一致": 2,
+        "画面质量": 2,
+        "镜头运动": 2,
+        "配音字幕": 2,
+        "合规红线": "通过"
+      },
+      "passed": false,
+      "final_silent": "docs/evidence/D7-角色一致性/output/S5/final.mp4",
+      "note": "需求符合 1 分：剧情不清、两只鹅、头盔变色"
+    }
+  ],
+  "reviewer": "二 科",
+  "review_date": "2026-10-11",
+  "report": "docs/evidence/D7-角色一致性/D7-评测报告-2026-10-11.md",
+  "voiceover_lines": "docs/evidence/D7-角色一致性/配音台词-S1到S5.json",
+  "passed_count": 3
 }

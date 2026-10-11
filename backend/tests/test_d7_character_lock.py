@@ -130,9 +130,13 @@ def test_score_rule_and_recorded_review_do_not_invent_agreement():
     for item in record["samples"]:
         assert d7_set.legacy_item_passed(item["scores"]) is item["passed"]
     pending = json.loads((Path(__file__).resolve().parents[2] / "docs" / "evidence" / "D7-角色一致性" / "待评分.json").read_text(encoding="utf-8"))
-    assert pending["generated"] is False
+    # 2026-10-11 已评：记录的「是否通过」必须与判定规则一致，且不凭空生成 B 评审 / 一致率
+    assert pending["generated"] is True
     assert pending["dimensions"] == list(d7_set.DIMENSIONS) and pending["compliance"] == d7_set.COMPLIANCE
-    assert all(d7_set.item_passed(item["scores"], has_voice=item["has_voice"]) is None for item in pending["samples"])
+    assert pending["reviewer_b"] is None and pending["agreement"] is None
+    for item in pending["samples"]:
+        assert d7_set.item_passed(item["scores"], has_voice=item["has_voice"]) is item["passed"]
+    assert sum(item["passed"] for item in pending["samples"]) == pending["passed_count"] == 3
 
 def test_missing_key_blocks_without_fake_output(monkeypatch):
     monkeypatch.setattr(config.settings, "aihubmix_api_key", "")
