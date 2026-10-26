@@ -146,7 +146,7 @@ export function CreationForm({
         <ModelSelector {...models} keys={modelKeys} selected={selection} compact disabled={submitting} onChange={setModels} onRetry={models.retry} />
         <ContentBoundary />
         {realTrial && <p className="text-xs text-muted">固定规格：720P，3个镜头，每镜5秒，参考图视频。</p>}
-        <p ref={estimateRef} className="text-xs text-muted">{estimateText} 内测每码只能生成 1 次；单次预估超过 ¥{trial.status?.max_estimate_cny ?? 12} 将被拒绝。</p>
+        <p ref={estimateRef} data-demo-development-hint className="text-xs text-muted">{estimateText} 内测每码只能生成 1 次；单次预估超过 ¥{trial.status?.max_estimate_cny ?? 12} 将被拒绝。</p>
         {quotaBlocked && <p className="composer-error" role="status">{trial.status?.blocked_message || TRIAL_BLOCK_MESSAGE}<button className="text-link ml-3" type="button" onClick={trial.openSurvey}>填写问卷</button></p>}
         <div className="composer-bottom">
           <details ref={settings} className="creation-settings">
@@ -240,7 +240,7 @@ export function CreationForm({
       <KnowledgeLibraryPicker selected={knowledgeIds} onChange={setKnowledgeIds} disabled={submitting} onManage={onKnowledge} />
       <ModelSelector {...models} keys={modelKeys} selected={selection} disabled={submitting} onChange={setModels} onRetry={models.retry} />
       <ContentBoundary />
-      <p ref={estimateRef} className="text-xs text-muted">{estimateText} 内测每码只能生成 1 次；单次预估超过 ¥{trial.status?.max_estimate_cny ?? 12} 将被拒绝。</p>
+      <p ref={estimateRef} data-demo-development-hint className="text-xs text-muted">{estimateText} 内测每码只能生成 1 次；单次预估超过 ¥{trial.status?.max_estimate_cny ?? 12} 将被拒绝。</p>
       {realTrial && <p className="text-xs text-muted">固定规格：720P，3个镜头，每镜5秒，参考图视频。</p>}
       {quotaBlocked && <p className="text-sm text-danger" role="status">{trial.status?.blocked_message || TRIAL_BLOCK_MESSAGE}<button className="text-link ml-3" type="button" onClick={trial.openSurvey}>填写问卷</button></p>}
       {(error || modelError) && <p className="text-sm text-danger" role="alert">{error || modelError}</p>}

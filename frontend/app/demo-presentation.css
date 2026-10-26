@@ -1,0 +1,7 @@
+/* Recording-only presentation. No generation, fee or recovery policy changes. */
+[data-recording-demo="true"] .trial-banner,
+[data-recording-demo="true"] .trial-overlay:has(#trial-paywall-title),
+[data-recording-demo="true"] [data-demo-development-hint],
+[data-recording-demo="true"] .model-picker-hint {
+  display: none;
+}

@@ -39,7 +39,7 @@ export function CreationChecks({ session, stage, busy, onUpdated }: {
   return <section aria-label="内容检查" className="rounded-xl border border-border bg-surface-2 p-4 space-y-3 text-sm">
     <div className="flex items-center justify-between gap-3"><h3 className="font-semibold">内容检查</h3>
       <Button variant="secondary" disabled={busy || checking} onClick={() => void check()}>{checking ? "正在检查…" : "重新检查"}</Button></div>
-    <p className="text-xs text-muted">离线演示 · 自动核对部分因果、条件和保证表述。检查提示供你修改参考，不能代替完整人工验收，也未检查视频画面或声音。</p>
+    <p className="text-xs text-muted"><span data-demo-development-hint>离线演示 · </span>自动核对部分因果、条件和保证表述。检查提示供你修改参考，不能代替完整人工验收，也未检查视频画面或声音。</p>
     {current ? <Findings report={current} /> : <p>当前内容还没有检查记录，点击“重新检查”即可核对。</p>}
     {error && <p role="alert" className="text-danger">{error}</p>}
     {reports.length > 0 && <details><summary>查看检查历史（{reports.length} 次）</summary>

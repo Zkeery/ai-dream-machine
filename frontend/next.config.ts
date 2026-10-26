@@ -7,6 +7,7 @@ if (BASE_PATH && !/^\/[a-z0-9-]+$/.test(BASE_PATH)) {
 }
 
 const nextConfig: NextConfig = {
+  distDir: process.env.RECORDING_DEMO_DIST === "1" ? ".next-recording" : ".next",
   turbopack: { root: process.cwd() },
   output: "standalone",
   basePath: BASE_PATH,
