@@ -32,3 +32,43 @@ test("ordinary application builds retain their existing write behavior", () => {
   assert.equal(demo.READ_ONLY_DEMO, false);
   assert.doesNotThrow(() => demo.guardDemoWrite("POST"));
 });
+
+function loader(api, timers = {}) {
+  return compile("features/demo/loadSessions.ts", { "@/lib/api/client": { api } }, {
+    AbortController, setTimeout: (fn, ms) => setTimeout(fn, ms === 8000 ? 40 : 1), clearTimeout, ...timers,
+  }).loadDemoSessions;
+}
+
+test("showcase recovers from the first failed request without refreshing", async () => {
+  const expected = [{ session_id: "approved" }], calls = [];
+  const load = loader(async (path, options) => {
+    calls.push({ path, options });
+    if (calls.length === 1) throw new Error("temporary network failure");
+    return expected;
+  });
+  assert.equal(await load(new AbortController().signal), expected);
+  assert.equal(calls.length, 2);
+  assert.ok(calls.every(call => call.path === "/api/sessions" && call.options.cache === "no-store"));
+});
+
+test("showcase retries are bounded and cancel with the page", async () => {
+  let calls = 0;
+  await assert.rejects(loader(async () => { calls++; throw new Error("offline"); })(new AbortController().signal), /offline/);
+  assert.equal(calls, 3);
+  const controller = new AbortController();
+  calls = 0;
+  await assert.rejects(loader(async () => { calls++; controller.abort(); throw new Error("aborted"); })(controller.signal), /aborted/);
+  assert.equal(calls, 1);
+});
+
+test("showcase times out a hung request then loads on its next attempt", async () => {
+  let calls = 0;
+  const expected = [];
+  const load = loader(async (_, { signal }) => {
+    calls++;
+    if (calls === 1) return new Promise((_, reject) => signal.addEventListener("abort", () => reject(new Error("timeout")), { once: true }));
+    return expected;
+  });
+  assert.equal(await load(new AbortController().signal), expected);
+  assert.equal(calls, 2);
+});

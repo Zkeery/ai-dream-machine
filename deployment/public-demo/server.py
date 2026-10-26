@@ -3,6 +3,7 @@ import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import mimetypes
+import re
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
@@ -46,11 +47,14 @@ def handler_for(root):
             start, end, status = 0, size - 1, 200
             requested = self.headers.get("Range")
             if requested:
-                import re
-                match = re.fullmatch(r"bytes=(\d+)-(\d*)", requested)
-                if not match: return self.json({"message": "暂不支持此播放范围"}, 416)
-                start = int(match[1]); end = min(int(match[2]) if match[2] else end, end)
-                if start > end: return self.json({"message": "暂不支持此播放范围"}, 416)
+                match = re.fullmatch(r"bytes=(\d*)-(\d*)", requested.strip())
+                if not match or not any(match.groups()): return self.invalid_range(size)
+                if match[1]:
+                    start = int(match[1])
+                    end = min(int(match[2]) if match[2] else end, end)
+                else:
+                    start = max(0, size - int(match[2]))
+                if start > end: return self.invalid_range(size)
                 status = 206
             self.send_response(status)
             self.send_header("Content-Type", mimetypes.guess_type(path)[0] or "application/octet-stream")
@@ -66,13 +70,23 @@ def handler_for(root):
                 while remaining:
                     chunk = source.read(min(65536, remaining))
                     if not chunk: break
-                    self.wfile.write(chunk); remaining -= len(chunk)
+                    try: self.wfile.write(chunk)
+                    except (BrokenPipeError, ConnectionResetError): return
+                    remaining -= len(chunk)
+
+        def invalid_range(self, size):
+            self.send_response(416)
+            self.send_header("Content-Range", f"bytes */{size}")
+            self.send_header("Accept-Ranges", "bytes")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
 
         def missing(self): self.json({"error": {"code": "NOT_FOUND", "message": "该示例暂未开放"}}, 404)
 
         def do_GET(self):
             parsed = urlsplit(self.path)
             path = unquote(parsed.path).rstrip("/")
+            if path.startswith("/media/"): return self.send_media(path.removeprefix("/media/"))
             if path == "/api/health": return self.json({"status": "ok", "read_only": True})
             if path == "/api/sessions": return self.json(sessions)
             if path == "/api/tasks": return self.json([])

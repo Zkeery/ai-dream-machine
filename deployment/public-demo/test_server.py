@@ -76,5 +76,27 @@ class ReadOnlyServerTest(unittest.TestCase):
         finally:
             second.shutdown(); second.server_close(); worker.join()
 
+    def test_public_media_routes_ranges_and_export_match(self):
+        public = "/media/video/approved/final.mp4"
+        self.assertEqual(self.request(public)[1], self.request("/api/sessions/approved/export")[1])
+        for value, expected, bounds in (("bytes=0-", b"0123456789", "0-9"), ("bytes=7-99", b"789", "7-9"), ("bytes=-3", b"789", "7-9"), ("bytes=2-5", b"2345", "2-5")):
+            with self.subTest(value=value):
+                status, data, headers = self.request(public, headers={"Range": value})
+                self.assertEqual((status, data), (206, expected))
+                self.assertEqual(headers["Content-Range"], f"bytes {bounds}/10")
+                self.assertEqual(int(headers["Content-Length"]), len(expected))
+                self.assertEqual(headers["Accept-Ranges"], "bytes")
+                self.assertEqual(headers["Content-Type"], "video/mp4")
+        for value in ("bytes=10-", "bytes=6-2", "bytes=-0", "bytes=-", "bytes=0-1,3-4", "invalid"):
+            with self.subTest(value=value):
+                status, _, headers = self.request(public, headers={"Range": value})
+                self.assertEqual(status, 416)
+                self.assertEqual(headers["Content-Range"], "bytes */10")
+        status, data, headers = self.request(public, "HEAD", {"Range": "bytes=2-5"})
+        self.assertEqual((status, data, headers["Content-Length"]), (206, b"", "4"))
+        for path in ("/media/video/approved/unlisted.mp4", "/media/video/approved/%2e%2e%2fprivate.txt", "/media/../private.txt", "/media/video/private/final.mp4"):
+            self.assertEqual(self.request(path)[0], 404)
+        self.assertEqual(self.request(public, "POST")[0], 403)
+
 
 if __name__ == "__main__": unittest.main()

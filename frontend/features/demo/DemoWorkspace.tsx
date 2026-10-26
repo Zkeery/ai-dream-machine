@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CreationPanel } from "@/features/creation/CreationPanel";
 import { SessionLibrary } from "@/features/cinema/SessionLibrary";
-import { listSessions, type SessionMeta } from "@/lib/api/sessions";
+import { type SessionMeta } from "@/lib/api/sessions";
+import { loadDemoSessions } from "./loadSessions";
 import { DEMO_MESSAGE, showDemoNotice } from "@/lib/demo";
 import { MediaImage } from "@/features/creation/media";
 
@@ -16,6 +17,7 @@ export function DemoWorkspace() {
   const router = useRouter(), params = useSearchParams();
   const [sessions, setSessions] = useState<SessionMeta[] | null>(null);
   const [failed, setFailed] = useState(false), [notice, setNotice] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const sid = params.get("session");
   const selected = sessions?.find(s => s.session_id === sid);
@@ -23,10 +25,12 @@ export function DemoWorkspace() {
   const cover = (complete?.artifacts.reference_generation as {shots?: {selected?: string; path?: string}[]})?.shots?.[0];
   const open = (id: string) => router.push(`/?session=${encodeURIComponent(id)}`);
   useEffect(() => {
-    let active = true;
-    listSessions().then(value => { if (active) setSessions(value); }).catch(() => { if (active) setFailed(true); });
-    return () => { active = false; };
-  }, []);
+    const controller = new AbortController();
+    loadDemoSessions(controller.signal)
+      .then(value => { if (!controller.signal.aborted) setSessions(value); })
+      .catch(() => { if (!controller.signal.aborted) setFailed(true); });
+    return () => controller.abort();
+  }, [loadAttempt]);
   useEffect(() => {
     const show = () => setNotice(true);
     const capture = (event: Event) => {
@@ -46,7 +50,7 @@ export function DemoWorkspace() {
     };
   }, []);
   useEffect(() => { if (notice) dialog.current?.showModal(); else dialog.current?.close(); }, [notice]);
-  const library = <SessionLibrary sessions={sessions} error={failed ? "示例暂时未能加载，请刷新页面再试。" : ""} onReload={() => window.location.reload()} onSelect={open} selectedId={sid ?? undefined} />;
+  const library = <SessionLibrary sessions={sessions} error={failed ? "连接暂未恢复，请稍后重试。" : ""} onReload={() => { setFailed(false); setLoadAttempt(value => value + 1); }} onSelect={open} selectedId={sid ?? undefined} />;
   return <div className="night-studio public-demo"><div className="shell">
     <header className="header">
       <button className="brand" onClick={() => router.push("/")} aria-label="AI造梦机首页"><span className="brand-name">AI造梦机</span><span className="brand-en">DREAM MACHINE</span></button>
