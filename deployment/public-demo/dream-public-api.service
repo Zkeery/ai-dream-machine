@@ -1,0 +1,26 @@
+[Unit]
+Description=Dream public read-only examples
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=/opt/dream-public/current
+ExecStart=/usr/bin/python3 -B /opt/dream-public/current/deployment/server.py /opt/dream-public/current/snapshot --port 8130
+Restart=on-failure
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=localhost
+InaccessiblePaths=-/etc/dream -/var/lib/dream -/opt/dream -/opt/wanwu-partner
+MemoryMax=256M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

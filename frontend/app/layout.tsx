@@ -4,6 +4,7 @@ import { TrialProvider } from "@/features/trial/TrialProvider";
 import "./globals.css";
 import "./cinema.css";
 import "./demo-presentation.css";
+import "./public-demo.css";
 
 export const metadata: Metadata = {
   title: "AI造梦机",

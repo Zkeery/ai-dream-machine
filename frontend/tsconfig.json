@@ -36,7 +36,9 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     ".next-recording/types/**/*.ts",
-    ".next-recording/dev/types/**/*.ts"
+    ".next-recording/dev/types/**/*.ts",
+    ".next-public-demo/types/**/*.ts",
+    ".next-public-demo/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

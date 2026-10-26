@@ -24,6 +24,7 @@ import { MediaImage } from "./media";
 import { useTrial } from "@/features/trial/TrialProvider";
 import { ReviewConfirmation } from "./ReviewConfirmation";
 import { CreationChecks } from "./CreationChecks";
+import { READ_ONLY_DEMO, showDemoNotice } from "@/lib/demo";
 
 export function CreationPanel({ sessionId, userId, onCreated, onChanged }: { sessionId: string | null; userId: string; onCreated: (s: SessionMeta) => void; onChanged: () => void }) {
   const { generationCompleted } = useTrial();
@@ -56,7 +57,7 @@ export function CreationPanel({ sessionId, userId, onCreated, onChanged }: { ses
   useEffect(() => {
     mounted.current = true;
     let timer: ReturnType<typeof setTimeout>;
-    const poll = async () => { await refresh(); if (mounted.current) timer = setTimeout(poll, 1800); };
+    const poll = async () => { await refresh(); if (mounted.current && !READ_ONLY_DEMO) timer = setTimeout(poll, 1800); };
     void poll();
     return () => { mounted.current = false; clearTimeout(timer); streamController.current?.abort(); };
   }, [refresh]);
@@ -158,6 +159,7 @@ export function CreationPanel({ sessionId, userId, onCreated, onChanged }: { ses
   }
 
   async function modify(modifications: Record<string, unknown>): Promise<boolean> {
+    if (READ_ONLY_DEMO) { showDemoNotice(); return false; }
     if (!sessionId || interactionBlocked || requestInFlight.current) return false;
     if (modifications.operation !== "save" && modifications.operation !== "select" && generationBlocked) return false;
     requestInFlight.current = true;
@@ -247,10 +249,10 @@ export function CreationPanel({ sessionId, userId, onCreated, onChanged }: { ses
       {referenceShots.length > 0 && <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">{referenceShots.map((shot, index) => <div key={shot.shot_id} className="space-y-1"><MediaImage sessionId={sessionId} path={shot.selected || shot.path} alt={`镜头 ${index + 1} 的视频参考图`} /><p className="text-xs text-muted">镜头 {index + 1} → 片段 {index + 1}</p></div>)}</div>}
       <Button disabled={running || generationBlocked} onClick={() => void generate()}>{hasVideoOutput ? "使用参考图重新生成全部视频" : `使用 ${referenceShots.length} 张参考图生成视频`}</Button>
     </section>}
-    <ModelSelector {...models} keys={modelKeys} selected={selection} disabled={interactionBlocked} onChange={value => void saveModels(value)} onRetry={models.retry} />
+    {!READ_ONLY_DEMO && <ModelSelector {...models} keys={modelKeys} selected={selection} disabled={interactionBlocked} onChange={value => void saveModels(value)} onRetry={models.retry} />}
     <CreationChecks key={`${sessionId}:${stage}`} session={session} stage={stage} busy={Boolean(interactionBlocked)} onUpdated={value => { sessionRevision.current++; setSession(value); onChanged(); }} />
-    {formatError && <p className="model-picker-error" role="alert">{formatError}</p>}
-    <SessionKnowledge key={`${sessionId}:${(session.knowledge_library_ids ?? []).join(",")}`} libraryIds={session.knowledge_library_ids ?? []} disabled={interactionBlocked} onSave={saveKnowledge} />
+    {!READ_ONLY_DEMO && formatError && <p className="model-picker-error" role="alert">{formatError}</p>}
+    {!READ_ONLY_DEMO && <SessionKnowledge key={`${sessionId}:${(session.knowledge_library_ids ?? []).join(",")}`} libraryIds={session.knowledge_library_ids ?? []} disabled={interactionBlocked} onSave={saveKnowledge} />}
     {session.knowledge_status?.changed && <div className="knowledge-change-note" role="status"><strong>创作资料已发生变化</strong><p>现有产物保留原资料版本。需要使用最新设定时，请主动重新生成剧本或分镜。</p>{session.knowledge_status.warnings?.map((warning, index) => <p key={index}>{warning}</p>)}</div>}
     {!session.knowledge_status?.changed && session.knowledge_status?.warnings?.map((warning, index) => <p className="knowledge-warning" key={index}>{warning}</p>)}
     {modelSaving ? <p className="model-saving-note" role="status">正在保存模型选择，保存成功后才能生成…</p> : running && <div className="space-y-2"><div className="h-1.5 rounded-full bg-surface-2 overflow-hidden"><div className="h-full bg-primary transition-all" style={{ width: `${Math.max(0, Math.min(100, percent))}%` }} /></div><p className="text-sm text-muted" role="status">{message}（{percent}%）{waitingVideo && stepWaitSeconds >= 12 && !message.includes("已等待") ? ` · 此步骤已等待 ${stepWaitSeconds} 秒` : ""}</p>{waitingVideo && <p className="text-xs text-muted">已完成 {savedSegments}/{referenceShots.length} 个片段</p>}</div>}

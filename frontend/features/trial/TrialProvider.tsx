@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useAuth } from "@/features/auth/AuthProvider";
+import { READ_ONLY_DEMO } from "@/lib/demo";
 import { acceptTrialConsent, getTrialStatus, recordTrialEvent, requestTrialDeletion, submitTrialSurvey, TRIAL_BLOCK_MESSAGE, type SurveyFields, type TrialStatus } from "@/lib/api/trial";
 
 type TrialContextValue = {
@@ -21,6 +22,11 @@ export function useTrial() {
 }
 
 export function TrialProvider({ children }: { children: React.ReactNode }) {
+  if (READ_ONLY_DEMO) return <TrialContext.Provider value={{ status: null, refresh: async () => {}, generationCompleted: () => {}, openSurvey: () => {} }}>{children}</TrialContext.Provider>;
+  return <AuthenticatedTrialProvider>{children}</AuthenticatedTrialProvider>;
+}
+
+function AuthenticatedTrialProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
   return <AccountTrialProvider key={user?.user_id ?? "signed-out"}>{children}</AccountTrialProvider>;
 }

@@ -1,5 +1,6 @@
 import { api, ApiError, authHeaders } from "./client";
 import { API_BASE } from "../config";
+import { guardDemoWrite } from "../demo";
 import { streamSSE, type SSEEvent } from "../stream";
 import type { KnowledgeContext } from "./knowledge";
 import type { ProjectType } from "../workflow";
@@ -129,6 +130,7 @@ export function confirmSessionReview(
 
 /** DELETE returns no body on 204; keep the shared JSON client unchanged. */
 export async function deleteSession(sessionId: string): Promise<void> {
+  guardDemoWrite("DELETE");
   const response = await fetch(`${API_BASE}/api/sessions/${encodeURIComponent(sessionId)}`, { method: "DELETE", headers: authHeaders() });
   if (response.ok) return;
   let code = "DELETE_FAILED", message = "作品删除失败，请重试";

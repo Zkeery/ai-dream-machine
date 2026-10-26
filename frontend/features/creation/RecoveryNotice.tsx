@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { READ_ONLY_DEMO, showDemoNotice } from "@/lib/demo";
 import { getRecovery, recoveryExecutionId, recoveryNeedsCheck, type RecoveryKind, type RecoveryStatus } from "@/lib/api/recovery";
 
 export function RecoveryNotice({ kind, entityId, status, revision, busy, onResume }: {
@@ -17,6 +18,7 @@ export function RecoveryNotice({ kind, entityId, status, revision, busy, onResum
   const eligible = status === "failed" || status === "interrupted";
 
   useEffect(() => {
+    if (READ_ONLY_DEMO) return;
     if (!eligible) return;
     let active = true;
     getRecovery(kind, entityId).then(value => {
@@ -35,6 +37,7 @@ export function RecoveryNotice({ kind, entityId, status, revision, busy, onResum
   }
 
   if (!eligible) return null;
+  if (READ_ONLY_DEMO) return <section className="recovery-notice" aria-label="未完成生成的恢复"><div className="recovery-heading"><strong>继续这次生成</strong><span>已保存中断位置</span></div><p>第二个镜头制作中断。剧本、角色场景、分镜与参考图均已保留，可以从未完成的阶段继续。</p><p>此处展示封版时的恢复状态，示例作品保持只读。</p><Button variant="secondary" onClick={showDemoNotice}>继续未完成阶段</Button><details><summary>查看恢复流程</summary><ol><li>定位中断的第二个视频镜头。</li><li>沿用已保存的输入和前置素材。</li><li>继续未完成片段，再进入成片阶段。</li></ol></details></section>;
   const check = result && recoveryNeedsCheck(result);
   const executionId = result && recoveryExecutionId(result);
   const invalidOutput = result?.reason_code === "AGENT_OUTPUT_INVALID";

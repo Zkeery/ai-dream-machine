@@ -1,5 +1,6 @@
 import { ApiError, authHeaders } from "./api/client";
 import { API_BASE } from "./config";
+import { guardDemoWrite } from "./demo";
 import type { PendingReview } from "./api/sessions";
 
 export type SSEEvent =
@@ -14,6 +15,7 @@ export async function streamSSE(
   options: RequestInit,
   onEvent: (ev: SSEEvent) => void,
 ): Promise<void> {
+  guardDemoWrite(options.method);
   const headers = new Headers(options.headers);
   for (const [k, v] of Object.entries(authHeaders())) headers.set(k, v);
   if (options.body != null && !headers.has("Content-Type")) {

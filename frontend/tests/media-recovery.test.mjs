@@ -10,7 +10,7 @@ const source = ts.transpileModule(fs.readFileSync(new URL("../features/creation/
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 },
 }).outputText;
 
-function harness(component) {
+function harness(component, publicDemo = false) {
   const states = [], effects = [], requests = [], revoked = [];
   let stateIndex = 0, effectIndex = 0;
   const exports = {};
@@ -31,7 +31,8 @@ function harness(component) {
   vm.runInNewContext(source, {
     exports,
     URL: { revokeObjectURL: url => revoked.push(url) },
-    require: id => id === "react" ? react : id === "react/jsx-runtime" ? require(id) : {
+    require: id => id === "react" ? react : id === "react/jsx-runtime" ? require(id) : id === "@/lib/demo" ? { READ_ONLY_DEMO: publicDemo } : id === "@/lib/config" ? { API_BASE: "/dream" } : {
+      mediaInfo: path => ({ kind: "video", filename: path.split("/").at(-1) }),
       loadMediaBlob: (sessionId, path) => new Promise((resolve, reject) => requests.push({ sessionId, path, resolve, reject })),
     },
   });
@@ -48,6 +49,14 @@ function harness(component) {
 
 const settle = () => new Promise(resolve => setImmediate(resolve));
 const variants = [["MediaImage", "img", "图片加载失败"], ["MediaVideo", "video", "视频加载失败"], ["MediaAudio", "audio", "配音加载失败"]];
+
+test("public video streams from its same-origin URL without waiting for an authenticated full-file blob", () => {
+  const view = harness("MediaVideo", true);
+  const video = view.render("/media/video/example/final film.mp4", "example");
+  assert.equal(video.type, "video");
+  assert.equal(video.props.src, "/dream/api/sessions/example/media/video/final%20film.mp4");
+  assert.equal(view.requests.length, 0);
+});
 
 for (const [component, tag, errorText] of variants) {
   test(`${component} clears a previous failure when the path changes and still reports a new failure`, async () => {

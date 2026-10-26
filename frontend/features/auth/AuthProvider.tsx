@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { clearToken, getToken, setToken } from "@/lib/api/client";
+import { READ_ONLY_DEMO, showDemoNotice } from "@/lib/demo";
 import {
   login as apiLogin,
   logout as apiLogout,
@@ -25,6 +26,11 @@ type AuthState = {
 const AuthContext = createContext<AuthState | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  if (READ_ONLY_DEMO) return <AuthContext.Provider value={{ user: { user_id: "public-demo", invite_code: "", created_at: 0, is_admin: false }, loading: false, login: async () => showDemoNotice(), logout: async () => showDemoNotice() }}>{children}</AuthContext.Provider>;
+  return <AuthenticatedProvider>{children}</AuthenticatedProvider>;
+}
+
+function AuthenticatedProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<Me | null>(null);
   const [loading, setLoading] = useState(true);
 

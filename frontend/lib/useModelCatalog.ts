@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { getModelCatalog, type ModelCatalog } from "./api/models";
+import { READ_ONLY_DEMO } from "./demo";
 
 export function useModelCatalog() {
   const [catalog, setCatalog] = useState<ModelCatalog | null>(null);
@@ -10,6 +11,7 @@ export function useModelCatalog() {
   const [revision, setRevision] = useState(0);
   const retry = useCallback(() => { setLoading(true); setError(""); setRevision(value => value + 1); }, []);
   useEffect(() => {
+    if (READ_ONLY_DEMO) return;
     let cancelled = false;
     void getModelCatalog().then(value => {
       if (!cancelled) setCatalog(value);

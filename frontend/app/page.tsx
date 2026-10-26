@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { Workspace } from "@/features/workspace/Workspace";
+import { DemoWorkspace } from "@/features/demo/DemoWorkspace";
+import { READ_ONLY_DEMO } from "@/lib/demo";
 
 export default function HomePage() {
   return (
@@ -10,7 +12,7 @@ export default function HomePage() {
         </main>
       }
     >
-      <Workspace />
+      {READ_ONLY_DEMO ? <DemoWorkspace /> : <Workspace />}
     </Suspense>
   );
 }

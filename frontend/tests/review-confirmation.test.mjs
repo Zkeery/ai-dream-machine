@@ -4,6 +4,7 @@ import fs from "node:fs";
 import vm from "node:vm";
 import { createRequire } from "node:module";
 import * as workflow from "../lib/workflow.ts";
+import * as demo from "../lib/demo.ts";
 
 const require = createRequire(import.meta.url), ts = require("typescript");
 const Empty = () => null, Button = () => null, ReviewCard = () => null, Image = () => null;
@@ -15,7 +16,7 @@ function nodes(tree, predicate) { const found = []; function walk(node) { if (Ar
 function compile(file, modules = {}, globals = {}) {
   const source = ts.transpileModule(fs.readFileSync(new URL(`../${file}`, import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
   const exports = {};
-  vm.runInNewContext(source, { exports, Error, AbortController, Headers, TextDecoder, ...globals, require: id => modules[id] ?? { CreationForm: Empty, ScriptView: Empty, StageView: Empty, ArtifactEditor: Empty, ComicStageView: Empty, ComicStoryboardEditor: Empty, RecoveryNotice: Empty } });
+  vm.runInNewContext(source, { exports, Error, AbortController, Headers, TextDecoder, ...globals, require: id => modules[id] ?? (["./demo", "../demo", "@/lib/demo"].includes(id) ? demo : { CreationForm: Empty, ScriptView: Empty, StageView: Empty, ArtifactEditor: Empty, ComicStageView: Empty, ComicStoryboardEditor: Empty, RecoveryNotice: Empty }) });
   return exports;
 }
 function view(file, name, props, { states = [], modules = {}, runEffects = false } = {}) {

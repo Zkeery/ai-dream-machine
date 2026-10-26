@@ -12,6 +12,7 @@ data/
 logs/
 .next/
 .next-recording/
+.next-public-demo/
 dist/
 .DS_Store
 

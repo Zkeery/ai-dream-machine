@@ -4,6 +4,7 @@ import fs from "node:fs";
 import vm from "node:vm";
 import { createRequire } from "node:module";
 import * as workflow from "../lib/workflow.ts";
+import * as demo from "../lib/demo.ts";
 
 const require = createRequire(import.meta.url), ts = require("typescript");
 const transpile = path => ts.transpileModule(fs.readFileSync(new URL(path, import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
@@ -18,6 +19,7 @@ function harness({ confirmed = true, outcome = async () => {}, sessions = [story
   const modules = {
     react: { useState: initial => { const i = index++; if (!(i in states)) states[i] = typeof initial === "function" ? initial() : initial; return [states[i], value => { states[i] = typeof value === "function" ? value(states[i]) : value; }]; }, useEffect: () => {}, useRef: initial => { const i = refIndex++; return refs[i] ??= { current: initial }; } },
     "react/jsx-runtime": require("react/jsx-runtime"),
+    "@/lib/demo": demo,
     "lucide-react": { ArrowUpRight: Empty, Clapperboard: Empty, RefreshCw: Empty, Trash2: Empty },
     "@/lib/api/sessions": { deleteSession: async id => { requests.push(id); await outcome(id); } },
     "@/lib/api/tasks": {}, "@/lib/workflow": workflow, "@/lib/media": {}, "@/features/creation/media": { MediaVideo: Empty },
@@ -83,7 +85,7 @@ test("a server busy rejection leaves the project and active reference intact, wi
 function deletionApi(response, calls) {
   class ApiError extends Error { constructor(code, message, status) { super(message); this.code = code; this.status = status; } }
   const exports = {};
-  vm.runInNewContext(apiSource, { exports, Error, fetch: async (url, options) => { calls.push({ url, options }); return response; }, require: id => id === "./client" ? { ApiError, authHeaders: () => ({ Authorization: "Bearer test-account" }) } : id === "../config" ? { API_BASE: "" } : {} });
+  vm.runInNewContext(apiSource, { exports, Error, fetch: async (url, options) => { calls.push({ url, options }); return response; }, require: id => id === "./client" ? { ApiError, authHeaders: () => ({ Authorization: "Bearer test-account" }) } : id === "../config" ? { API_BASE: "" } : id === "../demo" ? demo : {} });
   return exports.deleteSession;
 }
 test("session DELETE uses same-origin auth and accepts both no-content and JSON success responses", async () => {

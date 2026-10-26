@@ -2,11 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { loadMediaBlob } from "@/lib/media";
+import { mediaInfo } from "@/lib/media";
+import { API_BASE } from "@/lib/config";
+import { READ_ONLY_DEMO } from "@/lib/demo";
 
 function useMediaSrc(sessionId: string, path: string) {
   const [result, setResult] = useState<{ sessionId: string; path: string; src: string | null; error: boolean } | null>(null);
 
   useEffect(() => {
+    if (READ_ONLY_DEMO) return;
     let cancelled = false;
     let url: string | null = null;
     loadMediaBlob(sessionId, path)
@@ -26,6 +30,12 @@ function useMediaSrc(sessionId: string, path: string) {
     };
   }, [sessionId, path]);
 
+  // Public media can stream immediately with native range requests. Private
+  // works retain their authenticated blob loading and lifecycle behavior.
+  if (READ_ONLY_DEMO) {
+    const { kind, filename } = mediaInfo(path);
+    return { src: `${API_BASE}/api/sessions/${encodeURIComponent(sessionId)}/media/${kind}/${encodeURIComponent(filename)}`, error: false };
+  }
   // A new selection starts loading immediately; prior media and errors belong to their own path.
   return result?.sessionId === sessionId && result.path === path
     ? { src: result.src, error: result.error }

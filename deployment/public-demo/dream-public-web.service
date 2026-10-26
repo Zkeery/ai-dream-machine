@@ -1,0 +1,30 @@
+[Unit]
+Description=Dream public showcase frontend
+After=network.target dream-public-api.service
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=/opt/dream-public/current/frontend
+Environment=NODE_ENV=production
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3130
+Environment=NEXT_TELEMETRY_DISABLED=1
+ExecStart=/opt/dream/node/bin/node /opt/dream-public/current/frontend/server.js
+Restart=on-failure
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=localhost
+InaccessiblePaths=-/etc/dream -/var/lib/dream -/opt/dream/backend -/opt/wanwu-partner
+MemoryMax=512M
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target

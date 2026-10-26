@@ -7,6 +7,7 @@ import { downloadTask, loadTaskVideo, type TaskMeta } from "@/lib/api/tasks";
 import { finalStageOf, finalVideoOf, libraryItems, libraryMatchesFilter, STATUS_LABELS, taskCanPreview, taskResultError, titleOfSession, type LibraryItem } from "@/lib/workflow";
 import { downloadMedia } from "@/lib/media";
 import { MediaVideo } from "@/features/creation/media";
+import { READ_ONLY_DEMO } from "@/lib/demo";
 
 export const STAGE_CN: Record<string, string> = {
   script_generation: "剧本", character_design: "角色场景", storyboard: "分镜", reference_generation: "参考", video_generation: "视频", post_production: "成片",
@@ -51,6 +52,7 @@ export function SessionLibrary({ sessions, tasks, error, onReload, onSelect, onS
   if (error) return <div className="library-state" role="alert"><p>{error}</p><button className="text-link" onClick={onReload}><RefreshCw size={13} />重新加载</button></div>;
   if (!sessions || tasks === null) return <div className="library-state" role="status">正在加载你的作品…</div>;
   const allItems = libraryItems(sessions.filter(session => !deletedIds.has(session.session_id)), tasks ?? []);
+  if (READ_ONLY_DEMO) allItems.sort((a, b) => Number(b.status === "session_completed") - Number(a.status === "session_completed"));
   const filtered = allItems.filter(item => libraryMatchesFilter(item, filter));
   const items = compact ? filtered.slice(0, 3) : filtered;
   async function download(item: LibraryItem) {
@@ -86,7 +88,7 @@ export function SessionLibrary({ sessions, tasks, error, onReload, onSelect, onS
         const canPreview = item.kind === "task" ? Boolean(item.task && taskCanPreview(item.task)) : Boolean(s && finalVideoOf(s)) && !s?.stale_stages?.length;
         return <article key={item.key} className={"work-card" + (s?.session_id === selectedId ? " active" : "")}>
           <button className="work-open" disabled={deletingId === item.id && item.kind === "session"} onClick={() => s ? onSelect(s.session_id) : item.task && onSelectTask?.(item.task)} aria-label={`打开${item.title}`}>
-            <div className="work-card-top"><span className="work-number">{String(i + 1).padStart(2, "0")}</span><span className={"work-status" + (item.status === "failed" ? " error" : "")}>{STATUS_LABELS[item.status] ?? item.status}</span><ArrowUpRight size={14} /></div>
+            <div className="work-card-top"><span className="work-number">{String(i + 1).padStart(2, "0")}</span><span className={"work-status" + (item.status === "failed" ? " error" : "")}>{READ_ONLY_DEMO && item.status === "failed" ? "中断待续" : STATUS_LABELS[item.status] ?? item.status}</span><ArrowUpRight size={14} /></div>
             <h3>{item.title}</h3><p>{item.description}</p>
             <div className="work-card-bottom"><span>{item.source}{s ? ` · ${STAGE_CN[s.current_stage ?? finalStageOf(s)] ?? "成片"} · ${s.video_ratio}` : ""}</span><span>{new Date(item.updatedAt * 1000).toLocaleDateString("zh-CN", { month: "2-digit", day: "2-digit" })}</span></div>
           </button>
