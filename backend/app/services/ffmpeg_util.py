@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path
 
 from app.core.errors import AppError
+from app.core.offline import safe_media_command, safe_media_environment
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +23,8 @@ _VIDEO_OUTPUT = ["-vf", "pad=ceil(iw/2)*2:ceil(ih/2)*2,setsar=1",
 async def _run_ffmpeg(command: list[str], label: str, *, timeout: float) -> bytes:
     try:
         proc = await asyncio.create_subprocess_exec(
-            *command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+            *safe_media_command(command), stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
+            env=safe_media_environment(),
         )
     except FileNotFoundError:
         raise AppError("FFMPEG_UNAVAILABLE", "本地视频处理需要安装 FFmpeg", 503) from None
@@ -41,7 +43,7 @@ async def _run_ffmpeg(command: list[str], label: str, *, timeout: float) -> byte
             raise
         raise AppError("FFMPEG_TIMEOUT", f"{label}超时，请缩短素材后重试", 504) from None
     if proc.returncode != 0:
-        logger.warning("%s: %s", label, (stderr or b"").decode("utf-8", "ignore")[-500:])
+        logger.warning("%s: local media process exit=%s", label, proc.returncode)
         raise AppError("FFMPEG_FAILED", f"{label}失败，请检查输入媒体是否完整", 422)
     return stderr or b""
 
@@ -118,9 +120,11 @@ async def extract_first_frame(video_path: Path, out_path: Path) -> Path:
 async def probe_media(path: Path) -> dict:
     """Inspect streams with a bounded process; no provider response is trusted as media."""
     try:
-        proc = await asyncio.create_subprocess_exec(
+        command = safe_media_command([
             "ffprobe", "-v", "error", "-show_entries", "format=duration:stream=codec_type,duration,width,height",
-            "-of", "json", str(path), stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
+            "-of", "json", str(path)])
+        proc = await asyncio.create_subprocess_exec(
+            *command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE, env=safe_media_environment(),
         )
     except FileNotFoundError:
         raise AppError("FFMPEG_UNAVAILABLE", "视频与声音检查需要安装 FFmpeg", 503) from None

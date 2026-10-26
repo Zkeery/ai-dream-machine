@@ -66,6 +66,7 @@ def is_admin(user_id: str) -> bool:
 def _bind_user(code: str) -> dict:
     """未使用码 → 创建账号并绑定；已使用码 → 返回原账号。作废码拒绝。"""
     with db.connect() as conn:
+        conn.execute("BEGIN IMMEDIATE")
         row = conn.execute("SELECT * FROM invite_codes WHERE code=?", (code,)).fetchone()
         if row is None or row["status"] == "revoked":
             raise AppError("INVITE_INVALID", "邀请码无效", 403)

@@ -1,0 +1,327 @@
+{
+  "schema": "release-review-links-20261026",
+  "status": "PASS",
+  "linked_count": 3,
+  "checker_replay": { "total": 52, "identical": 52, "statuses": { "NOT_CHECKED": 44, "TEXT_EVIDENCE_FOUND": 3, "NEED_REVIEW": 5 } },
+  "snapshots": {
+    "docs/evidence/local-free-acceptance-20261025/rag-human-adjudication-20261025/新增人工复核记录.json": "6bd9b8da73d25da5340af4dd1139386363b117f01219c748755bdfc9dbdae60b",
+    "docs/evidence/local-free-acceptance-20261025/rag-causal-scope-v6/result.json": "9bbd5eadd394e2975998910233901f9f83d72697528407e314b9b09952abda5e",
+    "docs/evidence/local-free-acceptance-20261025/rag-implicit-relations-v13-20261026/replay-run-01.json": "1239688791bfe988c4b2de5edc88b6ee0999a325fe682b23d3d0c3c9d8886698"
+  },
+  "h05_machine_status": "NEED_REVIEW",
+  "new_scores": 0,
+  "old_records_modified": false,
+  "links": [
+    {
+      "status": "HUMAN_ACCEPTED_THIS_VERSION",
+      "rescored": false,
+      "machine_check_unchanged": true,
+      "original_scores_changed": false,
+      "reason": "same_original_inputs_new_checker_annotation_only",
+      "item": "R07-with_rag",
+      "query": "阿澄怕深水，但下午城里涨潮；她投递时要兼顾哪些人物和城市设定？",
+      "answer": "阿澄投递时需兼顾自身怕深水（遇积水码头绕行）的设定，以及潮汐城下午四点涨潮导致低处巷道被浅水覆盖、且无私人机动车（仅能步行、乘渡船或有轨电车）的城市规则。",
+      "binding": {
+        "payload_file": "docs/evidence/第二批收尾-20261011/B1/payloads/R07-with_rag.json",
+        "payload_file_sha256": "0c74e866bde879605d6931e60e397f6d08dfce8aa83d0e14519d26c3d49ce1b7",
+        "response_file": "docs/evidence/第二批收尾-20261011/B1/R07-with_rag-response.json",
+        "response_sha256": "13ef390ad7937e9ea007714baba7c62a9467dfca01ebbb0d430355fd3fb87946",
+        "answer_sha256": "82d52555a0f5bdfc984a08af311325984dd28c6abdcabc8b41d79be2fe15fdcb",
+        "provided_sources_sha256": "f12c6c32ee42f5bd891465c03aee821b45e83cbc21a0c2f4f1ebfa4ad42981b5",
+        "completion_version": {
+          "id": "chatcmpl-906c16e1-fcb2-9de9-8ff4-b8966e3994fd",
+          "model": "qwen3.5-plus",
+          "created": 1791722523
+        }
+      },
+      "source_versions": [
+        {
+          "citation_id": "K1",
+          "title": "人物设定固定约束",
+          "fixture_document": "constraint:characters",
+          "version_number": 1,
+          "document_id": "2335b9b64881488ab18db33208dbe400",
+          "version_id": "51ea21bc1a9541e9b5f3cc2c9cd46c9d",
+          "chunk_id": "constraint:51ea21bc1a9541e9b5f3cc2c9cd46c9d",
+          "is_constraint": true,
+          "text_sha256": "9f5b38956759f7757737b80a8c2d829fb73b436b3cb6bd2119699099ddbdaba9"
+        },
+        {
+          "citation_id": "K2",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text_sha256": "65c8e8bf49e1a0a053d31680f98c810fb2962a1aaf643fbf370235301bfffce0"
+        },
+        {
+          "citation_id": "K3",
+          "title": "阿澄人物档案",
+          "fixture_document": "hero",
+          "version_number": 1,
+          "document_id": "74fea7e2c1ff48568e397d36525c5e03",
+          "version_id": "e97e1b121eb64ca38d6712ffb04c241f",
+          "chunk_id": "381a51f8aae94118afc7968c6648e57e",
+          "is_constraint": false,
+          "text_sha256": "eae60351234f0b6db4602f28927f2e5304303282c2ae054940f670b77e9eb304"
+        },
+        {
+          "citation_id": "K4",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text_sha256": "932b59c9b443f0e84992a0d92a381cd90879cb6fd52c6fb854ec9c4997dab926"
+        },
+        {
+          "citation_id": "K5",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text_sha256": "fe149f75386d78e12a8036426d5c7f2a84c26854a62c263c76481e643600024f"
+        }
+      ],
+      "judgments": [
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R07-01:1",
+          "question_id": "R07-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": null,
+          "user_message": "原文明示",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_6dccce2a2aff49c69b57321b62cbd5ff\",0]",
+          "recorded_at_utc": "2026-10-25T05:43:51Z",
+          "reviewer": "session_user",
+          "scope": "source support only; rewrite acceptance and overall judgment remain pending",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R07-02:1",
+          "question_id": "R07-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": null,
+          "user_message": "接受",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_cc3b95015f6e4f688468813a30b374d5\",0]",
+          "recorded_at_utc": "2026-10-25T05:45:50Z",
+          "reviewer": "session_user",
+          "scope": "rewrite acceptance only; overall judgment remains pending",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R07-03:1",
+          "question_id": "R07-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "整条回答基本符合原文设定。",
+          "user_message": "可接受，整条回答基本符合原文设定。先单独记录这个判断，汇总 R07 的复核结果，再继续 H01；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": null,
+          "input_kind": "direct_user_message",
+          "recorded_at_utc": "2026-10-25T05:48:46Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment only; original labels and checker unchanged",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "current_checker_version": "answer-grounding-v13-bounded-implicit-relations",
+      "current_record_sha256": "014f494a75443a3a6c82123a8aa5bdd299c446f33dfac3f1e6bd9b0e6cdffca2",
+      "scope": "仅限该问题、回答、完整资料和完成版本；不迁移至新的生成内容，也不改变机器结论。"
+    },
+    {
+      "status": "HUMAN_ACCEPTED_THIS_VERSION",
+      "rescored": false,
+      "machine_check_unchanged": true,
+      "original_scores_changed": false,
+      "reason": "same_original_inputs_new_checker_annotation_only",
+      "item": "H01-with_rag",
+      "query": "男主为什么会主动避开忽然很响的地方？",
+      "answer": "陆遥小时候曾被雷声惊醒，这段受惊经历使他害怕突发的巨大声响，因此遇到轰鸣、雷鸣等声音时会主动远离声源。",
+      "binding": {
+        "payload_file": "docs/evidence/第二批收尾-20261011/B1/payloads/H01-with_rag.json",
+        "payload_file_sha256": "9c31892867539ad547ad25512bf2f058259bffa6655b25b86cd1be75ae0ca195",
+        "response_file": "docs/evidence/第二批收尾-20261011/B1/H01-with_rag-response.json",
+        "response_sha256": "5c6d5947d311af0674e7fae2a9ed8375dba391f7f433d84e5c74eabbcf4d3b97",
+        "answer_sha256": "daa2f8d048782690606a0c181dbaa12018c1a1def5788bd8c5c27d3c0b8d74b2",
+        "provided_sources_sha256": "1f1eadc645dc4e0f2f79cd4241fc9b352b1442044fb8b3c6da26288ab85819bf",
+        "completion_version": {
+          "id": "chatcmpl-e0374adc-4dac-9f88-9a4a-f9e922fa9ffc",
+          "model": "qwen3.5-plus",
+          "created": 1791722581
+        }
+      },
+      "source_versions": [
+        {
+          "citation_id": "K1",
+          "title": "镜海人物固定约束",
+          "fixture_document": "constraint:characters",
+          "version_number": 1,
+          "document_id": "89f3bc8ca8564b4face42e84a29a9773",
+          "version_id": "2d97f8b8a4bc4412b31e7a5e68098d98",
+          "chunk_id": "constraint:2d97f8b8a4bc4412b31e7a5e68098d98",
+          "is_constraint": true,
+          "text_sha256": "efbdb021880061607dd23c86909f4f50ebd461ebd13d5226fd66488471322026"
+        },
+        {
+          "citation_id": "K2",
+          "title": "陆遥人物档案",
+          "fixture_document": "luyao",
+          "version_number": 1,
+          "document_id": "ab2a7a20ba374656a77dc54151e021cf",
+          "version_id": "a7a9431852ae42359b620de237311d1b",
+          "chunk_id": "e7dfe476129043d5a4293dfce5a226c0",
+          "is_constraint": false,
+          "text_sha256": "e9d076dc2aca11ba85758b147af83072da2a88e00658c7958c358069263e6b43"
+        }
+      ],
+      "judgments": [
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:H01-01:1",
+          "question_id": "H01-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": null,
+          "user_message": "原文明示。先单独记录这个判断，继续确认 H01 的改写接受度；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_f83318b64ed648b0b2e6f1cac38e4e6d\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T05:53:41Z",
+          "reviewer": "session_user",
+          "scope": "new source support judgment only; no inference of rewrite acceptance, overall acceptance or original labels",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:H01-02:1",
+          "question_id": "H01-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "用“因此”连接害怕巨响与远离声源的行为基本符合原文。",
+          "user_message": "接受，用“因此”连接害怕巨响与远离声源的行为基本符合原文。先单独记录这个判断，继续确认 H01 整条回答是否可接受；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_22e20d37efcb4f99959a529ceee3d673\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T05:55:08Z",
+          "reviewer": "session_user",
+          "scope": "new rewrite acceptance judgment only; no inference of overall acceptance or original labels",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:H01-03:1",
+          "question_id": "H01-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "整条回答基本符合原文，省略“躲到安静处”不影响主要含义。",
+          "user_message": "可接受，整条回答基本符合原文，省略“躲到安静处”不影响主要含义。先单独记录这个判断，汇总 H01 的复核结果，再继续 R10；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": null,
+          "input_kind": "direct_user_message",
+          "recorded_at_utc": "2026-10-25T05:56:31Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment only; original labels and checker unchanged",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "current_checker_version": "answer-grounding-v13-bounded-implicit-relations",
+      "current_record_sha256": "df1bce9a35b34b0ce311c6403b7a760786434728cbb1a8f7f2b86dd80f9fe244",
+      "scope": "仅限该问题、回答、完整资料和完成版本；不迁移至新的生成内容，也不改变机器结论。"
+    },
+    {
+      "status": "HUMAN_ACCEPTED_THIS_VERSION",
+      "rescored": false,
+      "machine_check_unchanged": true,
+      "original_scores_changed": false,
+      "reason": "same_original_inputs_new_checker_annotation_only",
+      "item": "R10-with_rag",
+      "query": "写一场阿澄乘坐出租汽车穿城的动作戏",
+      "answer": "无法撰写该动作戏，因为资料规定潮汐城没有私人机动车，交通画面只能出现步行、渡船或有轨电车，不存在出租汽车。",
+      "binding": {
+        "payload_file": "docs/evidence/第二批收尾-20261011/B1/payloads/R10-with_rag.json",
+        "payload_file_sha256": "ab0dd0694ca67a3712e8fc0dbaad66b75156a3323e9f64409daf652e01399972",
+        "response_file": "docs/evidence/第二批收尾-20261011/B1/R10-with_rag-response.json",
+        "response_sha256": "2006d906b1747e2d09786137267138c778001c27d399732335d508fba1a6f415",
+        "answer_sha256": "1edcc266eb2b93974f54c71ecc05e703f0c0f96a432c1b27aa802b61a8ae5511",
+        "provided_sources_sha256": "7f69b1a3044f313366924ac843594992dfb75d1ae2d50d23c6e2a368c279fe11",
+        "completion_version": {
+          "id": "chatcmpl-5d6f354f-75ec-9190-abd6-f2da00a20fd5",
+          "model": "qwen3.5-plus",
+          "created": 1791722541
+        }
+      },
+      "source_versions": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text_sha256": "65c8e8bf49e1a0a053d31680f98c810fb2962a1aaf643fbf370235301bfffce0"
+        }
+      ],
+      "judgments": [
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R10-01:1",
+          "question_id": "R10-01",
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonably_inferred",
+          "reason": "原文限定交通画面只能出现步行、渡船或有轨电车，出租汽车不在允许范围内。",
+          "user_message": "可合理推断，原文限定交通画面只能出现步行、渡船或有轨电车，出租汽车不在允许范围内。先单独记录这个判断，继续确认 R10 的改写接受度；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": null,
+          "input_kind": "direct_user_message",
+          "recorded_at_utc": "2026-10-25T05:58:43Z",
+          "reviewer": "session_user",
+          "scope": "new source support judgment only; no inference of rewrite acceptance, overall acceptance or original labels",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R10-02:1",
+          "question_id": "R10-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "在本题创作请求中，用“不存在出租汽车”表达交通画面的限制基本可接受。",
+          "user_message": "接受，在本题创作请求中，用“不存在出租汽车”表达交通画面的限制基本可接受。先单独记录这个判断，继续确认 R10 整条回答是否可接受；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": null,
+          "input_kind": "direct_user_message",
+          "recorded_at_utc": "2026-10-25T05:59:41Z",
+          "reviewer": "session_user",
+          "scope": "new rewrite acceptance judgment limited to this creative request; no inference of overall acceptance, general world existence rules or original labels",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-adjudication-20261025-r1:R10-03:1",
+          "question_id": "R10-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "整条回答基本符合原文的交通限制，拒绝撰写出租汽车动作戏合理。",
+          "user_message": "可接受，整条回答基本符合原文的交通限制，拒绝撰写出租汽车动作戏合理。先单独记录这个判断，汇总 R10 和这组三条的复核结果，再说明下一步；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": null,
+          "input_kind": "direct_user_message",
+          "recorded_at_utc": "2026-10-25T06:48:19Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment of this original answer only; original labels and checker unchanged",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "current_checker_version": "answer-grounding-v13-bounded-implicit-relations",
+      "current_record_sha256": "768477572452101504d1117e79d3148322d06a9570ed8a2d678db47d72960748",
+      "scope": "仅限该问题、回答、完整资料和完成版本；不迁移至新的生成内容，也不改变机器结论。出租汽车判断仅限本次交通画面创作请求，不是普遍世界存在性规则。"
+    }
+  ]
+}

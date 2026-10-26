@@ -14,7 +14,7 @@ from app.api.deps import get_current_user
 from app.core import config
 from app.core.errors import AppError
 from app.core.path_security import IMAGE_EXTS, VIDEO_EXTS, check_ext, safe_filename
-from app.services import asset_library, auth
+from app.services import asset_library, auth, trial_events
 
 router = APIRouter()
 
@@ -39,6 +39,8 @@ async def upload_media(file: UploadFile, user_id: str = Depends(get_current_user
     config.UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(data)
     auth.record_upload(dest_name, user_id, name)
+    if ext in IMAGE_EXTS:
+        trial_events.register_original(dest_name, user_id)
     return {"filename": name, "file_path": str(dest)}
 
 
@@ -69,6 +71,7 @@ async def reuse_asset(body: AssetReuse, user_id: str = Depends(get_current_user)
     try:
         await asyncio.to_thread(shutil.copyfile, source, dest)
         auth.record_upload(dest_name, user_id, item["name"])
+        trial_events.register_original(dest_name, user_id)
     except Exception:
         dest.unlink(missing_ok=True)
         raise

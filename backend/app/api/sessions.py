@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from pydantic import BaseModel, StrictBool
 
 from fastapi import APIRouter, Depends, Header
 from fastapi.responses import FileResponse, Response, StreamingResponse
@@ -15,16 +16,22 @@ from app.core.errors import AppError
 from app.core.path_security import safe_filename, ensure_inside
 from app.schemas.session import SessionCreate, SessionMeta, SessionKnowledgeUpdate
 from app.schemas.models import SessionModelsUpdate
-from app.services import execution_store, recovery, provider_jobs
+from app.services import execution_store, recovery, provider_jobs, trial_controls, trial_events, review_store
 from app.services.orchestrator import Orchestrator
 
 router = APIRouter()
+
+
+class ReviewConfirmation(BaseModel):
+    accepted: StrictBool
 
 
 def _public_session_dump(meta: SessionMeta) -> dict:
     """对外会话快照：只有完整生成成功才算版本。"""
     from app.services.orchestrator import Orchestrator
     data = meta.model_dump()
+    from app.services.creation_checks import public_checks
+    data["creation_checks"] = public_checks(meta)
     data["agent_runs"] = {
         stage: [{**{key: run[key] for key in ("execution_id", "status", "started_at", "decisions", "plan", "events", "reviews") if key in run},
                  "tasks": {task_id: {key: task[key] for key in ("status", "handoff") if key in task}
@@ -33,6 +40,7 @@ def _public_session_dump(meta: SessionMeta) -> dict:
         for stage, runs in meta.agent_runs.items()
     }
     data["model_selection"] = meta.model_selection.model_dump(exclude_none=True)
+    data["pending_review"] = review_store.pending(meta.session_id, meta.owner_id) if meta.status == "awaiting_review" else None
     data["stage_order"] = Orchestrator.stage_order(meta)
     public = Orchestrator.public_versions(meta)
     data["artifact_versions"] = public
@@ -54,9 +62,16 @@ def _session_json(meta: SessionMeta) -> dict:
             warnings.extend(context_changes(meta.owner_id, context))
         if artifact and set((context or {}).get("library_ids", [])) != set(meta.knowledge_library_ids):
             warnings.append("当前知识库选择与已有产物不同，重新生成后才会使用新选择。")
-    return {**_public_session_dump(meta), "stage_order": Orchestrator.stage_order(meta),
+    value = {**_public_session_dump(meta), "stage_order": Orchestrator.stage_order(meta),
             "execution": execution_store.snapshot("session", meta.session_id),
             "knowledge_status": {"changed": bool(warnings), "warnings": list(dict.fromkeys(warnings))}}
+    if trial_controls.enabled():
+        generation = trial_controls.generation(meta.session_id, meta.owner_id)
+        value["trial_generation"] = generation
+        if generation and generation["status"] == "pending_reconciliation" and not (
+                meta.status == "failed" and review_store.manually_rejected(meta.session_id, meta.owner_id)):
+            value.update(status="pending_reconciliation", error=trial_controls.PENDING_MESSAGE)
+    return value
 
 
 def _not_running(session_id: str) -> None:
@@ -80,7 +95,16 @@ def _own_session(orch: Orchestrator, session_id: str, user_id: str) -> SessionMe
 @router.post("/sessions")
 async def create_session(req: SessionCreate, user_id: str = Depends(get_current_user),
                          orch: Orchestrator = Depends(get_orchestrator)):
+    if trial_controls.enabled():
+        trial_controls.require_consent(user_id)
+        if req.episodes != 1:
+            raise AppError("TRIAL_SCOPE_DISABLED", "本轮内测只支持单集漫剧或 3 镜短视频", 403)
+    from app.services import f1_controls
+    if f1_controls.enabled():
+        f1_controls.validate_scope(req, owner_id=user_id)
     meta = orch.create(req, owner_id=user_id)
+    if trial_controls.enabled():
+        trial_events.record_event(user_id, "prompt_submit", {"character_count": len(req.idea), "has_reference_image": False})
     return _session_json(meta)
 
 
@@ -100,6 +124,71 @@ async def list_sessions(user_id: str = Depends(get_current_user),
 async def get_session(session_id: str, user_id: str = Depends(get_current_user),
                       orch: Orchestrator = Depends(get_orchestrator)):
     return _session_json(_own_session(orch, session_id, user_id))
+
+
+@router.post("/sessions/{session_id}/checks/{stage}")
+async def recheck_content(session_id: str, stage: str, user_id: str = Depends(get_current_user),
+                          orch: Orchestrator = Depends(get_orchestrator)):
+    from app.services.creation_checks import record_check, TEXT_STAGES
+    from app.services import session_store
+    _not_running(session_id)
+    meta = _own_session(orch, session_id, user_id)
+    if not config.settings.mode_mock:
+        raise AppError("MOCK_ONLY", "当前检查仅支持离线演示模式", 409)
+    if meta.status == "awaiting_review":
+        raise AppError("REVIEW_PENDING", "请先处理当前素材确认", 409)
+    if stage not in TEXT_STAGES or not meta.artifacts.get(stage):
+        raise AppError("CHECK_NOT_READY", "请先生成剧本或分镜", 409)
+    record_check(meta, stage, force=True)
+    session_store.touch(meta)
+    return _session_json(meta)
+
+
+@router.get("/sessions/{session_id}/reviews")
+async def session_reviews(session_id: str, user_id: str = Depends(get_current_user),
+                          orch: Orchestrator = Depends(get_orchestrator)):
+    _own_session(orch, session_id, user_id)
+    return {"session_id": session_id, "reviews": review_store.records(session_id, user_id)}
+
+
+@router.post("/sessions/{session_id}/reviews/{review_id}/confirm")
+async def confirm_review(session_id: str, review_id: str, body: ReviewConfirmation,
+                         user_id: str = Depends(get_current_user),
+                         orch: Orchestrator = Depends(get_orchestrator)):
+    meta = _own_session(orch, session_id, user_id)
+    trace = next((r for r in review_store.records(session_id, user_id) if r["review_id"] == review_id), None)
+    if trace is None:
+        raise AppError("REVIEW_NOT_FOUND", "审查记录不存在", 404)
+    source = recovery.execution(trace["execution_id"], user_id, "session", session_id)
+    request = execution_store.request_payload(source["execution_id"])
+    # Idempotent confirms after completion just replay stored events; they do
+    # not validate current UI settings or request a new model result.
+    prior = trace["evidence"].get("manual_decision")
+    value = None
+    if body.accepted and not (prior and source["status"] != "awaiting_review"):
+        value = recovery.session_input(meta, source["stage"], request)
+        recovery.verify(source["execution_id"], value)
+    input_hash = execution_store.fingerprint(value) if value is not None else trace["input_hash"]
+    execution_id, claimed, cursor = review_store.confirm(session_id, user_id, review_id, body.accepted, input_hash)
+    if not body.accepted:
+        if claimed:
+            execution_store.fail(execution_id, "REVIEW_REJECTED", "你已确认图片不符合，流程已停止，费用待核账")
+        return _session_json(orch.get(session_id))
+    if claimed:
+        await execution_store.wait_paused_worker(execution_id)
+        async def run() -> dict:
+            recovery.verify(execution_id, recovery.session_input(orch.get(session_id), source["stage"], request))
+            result = await orch.execute_stage(session_id, source["stage"], execution_store.progress(execution_id),
+                                              generation_request=request)
+            if trial_controls.enabled() and source["stage"] == Orchestrator.completion_stage(result):
+                trial_controls.mark_completed(session_id)
+                completed = trial_controls.generation(session_id, user_id)
+                trial_events.record_event(user_id, "gen_done", {"task_id": session_id,
+                    "elapsed_seconds": trial_controls.elapsed_seconds(session_id), "actual_cny": completed["actual_cny"],
+                    "mode": "mock" if completed["mock"] else "real"})
+            return {"type": "done", "session": _session_json(result)}
+        execution_store.launch(execution_id, run)
+    return StreamingResponse(execution_store.stream(execution_id, cursor), media_type="text/event-stream")
 
 
 @router.delete("/sessions/{session_id}", status_code=204)
@@ -145,13 +234,24 @@ async def execute_stage(session_id: str, stage: str, user_id: str = Depends(get_
     meta = _own_session(orch, session_id, user_id)
     if stage not in Orchestrator.stage_order(meta):
         raise AppError("UNKNOWN_STAGE", "未知阶段", 404)
+    from app.services import f1_controls
+    f1_controls.validate_scope(meta, stage)
     _validate_request_key(idempotency_key)
     execution_id, created = execution_store.claim_session(session_id, stage, "generate", {}, idempotency_key)
     if created:
         async def run() -> dict:
             recovery.capture(execution_id, recovery.session_input(orch.get(session_id), stage, {}))
             result = await orch.execute_stage(session_id, stage, execution_store.progress(execution_id))
-            return {"type": "done", "session": _public_session_dump(result)}
+            if stage == "script_generation":
+                f1_controls.validate_scope(result, "character_design")
+            elif stage == "storyboard":
+                f1_controls.validate_scope(result, "reference_generation")
+            if trial_controls.enabled() and stage == Orchestrator.completion_stage(result):
+                trial_controls.mark_completed(session_id)
+                completed = trial_controls.generation(session_id, user_id)
+                trial_events.record_event(user_id, "gen_done", {"task_id": session_id,
+                    "elapsed_seconds": trial_controls.elapsed_seconds(session_id), "actual_cny": completed["actual_cny"], "mode": "mock" if completed["mock"] else "real"})
+            return {"type": "done", "session": _session_json(result)}
         execution_store.launch(execution_id, run)
     return StreamingResponse(execution_store.stream(execution_id), media_type="text/event-stream")
 
@@ -194,6 +294,7 @@ async def resume_session(session_id: str, body: recovery.ResumeRequest,
                          orch: Orchestrator = Depends(get_orchestrator),
                          idempotency_key: str | None = Header(None)):
     meta = _own_session(orch, session_id, user_id)
+    trial_controls.require_no_retry(session_id)
     _validate_request_key(idempotency_key)
     source, request = recovery.prepare(meta, "session", body.execution_id)
     if source["operation"] not in {"generate", "regenerate"}:

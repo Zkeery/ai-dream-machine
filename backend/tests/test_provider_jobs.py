@@ -22,12 +22,26 @@ from app.services import db, execution_store, provider_jobs
 
 @pytest.fixture
 def media(data_dirs, monkeypatch):
+    # Exercise the durable provider protocol against MockTransport, rather than
+    # short-circuiting to placeholder media when the server default is Mock.
+    # This is scoped to the test; never enable network access or load real keys.
+    from app.core.offline import install_network_guard
+    install_network_guard()
+
+    def deny_real_transport(*args, **kwargs):
+        raise AssertionError("PROVIDER_TEST_REAL_TRANSPORT_FORBIDDEN")
+
+    monkeypatch.setattr(httpx.HTTPTransport, "handle_request", deny_real_transport)
+    monkeypatch.setattr(config.settings, "mode_mock", False)
+    monkeypatch.setattr(config.settings, "disable_outbound_network", True)
     rates = {
         "qwen-image-2.0": {"kind": "image", "image_cny": 0.1, "source": "test fixture"},
         "qwen-image-2.0-pro": {"kind": "image", "image_cny": 0.2, "source": "test fixture"},
         "wan2.7-i2v": {"kind": "video", "video_second_cny": 0.1, "source": "test fixture"},
         "wan2.7-r2v": {"kind": "video", "video_second_cny": 0.1, "source": "test fixture"},
     }
+    for rate in rates.values():
+        rate["settlement_basis"] = "verified_flat_unit_price"
     monkeypatch.setattr(config.settings, "model_cost_rates_json", json.dumps(rates))
     monkeypatch.setattr(config.settings, "aihubmix_api_key", "offline-test")
     monkeypatch.setattr(config.settings, "aihubmix_base", "https://gateway.example.test")
@@ -42,7 +56,17 @@ def media(data_dirs, monkeypatch):
     def install(handler):
         def record(request):
             calls.append((request.method, str(request.url)))
-            return handler(request)
+            response = handler(request)
+            # Successful synthetic video responses explicitly report observed
+            # duration; production must not substitute the request's duration.
+            if "/videos" in str(request.url):
+                try:
+                    body = response.json()
+                    if isinstance(body, dict) and body.get("status") == "completed" and "duration" not in body:
+                        return httpx.Response(response.status_code, json={**body, "duration": 5})
+                except ValueError:
+                    pass
+            return response
         client = httpx.Client(transport=httpx.MockTransport(record))
         clients.append(client)
         for method in ("request", "post", "get"):
@@ -51,6 +75,13 @@ def media(data_dirs, monkeypatch):
     yield install
     for client in clients:
         client.close()
+
+
+def test_provider_contract_fixture_blocks_real_transport(media):
+    # A missing HTTP stub must fail locally, never fall back to a provider.
+    with httpx.Client(transport=httpx.HTTPTransport()) as client:
+        with pytest.raises(AssertionError, match="PROVIDER_TEST_REAL_TRANSPORT_FORBIDDEN"):
+            client.get("https://gateway.example.test/no-network")
 
 
 def execution(owner="alice", entity="story1", stage="video_generation", status="running"):
@@ -332,14 +363,14 @@ import httpx
 from app.core import config
 from app.services import execution_store,provider_jobs
 from app.models.video_client import VideoClient
-args=json.loads(sys.argv[1]);config.DATA_DIR=Path(args['data']);config.settings.aihubmix_api_key='offline-test';config.settings.aihubmix_base='https://gateway.example.test';config.settings.max_retries=0;config.settings.model_cost_rates_json=args['rates']
+args=json.loads(sys.argv[1]);config.DATA_DIR=Path(args['data']);config.settings.mode_mock=False;config.settings.aihubmix_api_key='offline-test';config.settings.aihubmix_base='https://gateway.example.test';config.settings.max_retries=0;config.settings.model_cost_rates_json=args['rates']
 seen=[]
 def handler(req):
  seen.append(req.method)
  if req.method=='POST':
   assert args['append'] and json.loads(req.content)['prompt']=='second shot'
-  return httpx.Response(200,json={'id':'new-job-2','status':'completed','output':[{'content_url':'/second.mp4'}]})
- if req.url.path.endswith('remote-job-1'):return httpx.Response(200,json={'status':'completed','output':[{'content_url':'/asset.mp4'}]})
+  return httpx.Response(200,json={'id':'new-job-2','status':'completed','duration':5,'output':[{'content_url':'/second.mp4'}]})
+ if req.url.path.endswith('remote-job-1'):return httpx.Response(200,json={'status':'completed','duration':5,'output':[{'content_url':'/asset.mp4'}]})
  return httpx.Response(200,content=b'resumed-video')
 with httpx.Client(transport=httpx.MockTransport(handler)) as http:
  httpx.request=http.request;httpx.get=http.get

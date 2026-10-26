@@ -1,0 +1,462 @@
+{
+  "schema": "rag-batch-reference-engineering-calibration-v10",
+  "version": "v10-batch-reference-20261026",
+  "frozen_before_execution": true,
+  "source_bindings": {
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-batch-reference-review-20261026/samples.json": "0c86029b664e0f9e0d4bb4cab095296574c7d32169191fd992c2e0233adbd3af",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-batch-reference-review-20261026/新增人工复核记录.json": "1f339474de4e4176b1ecc3ab80972ddd1aa9dd3db885e202b40e4e9703389a4e",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-batch-reference-review-20261026/原文件保全.json": "9861f6c7a962d7154a5411029d044d0ac27cf6c40b27eacfa24274cb44dcd4a7",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-batch-reference-review-20261026/本组批次与指代-复核汇总.json": "fd956e38c9a11222d1a1e3e55b5e52361c25bc267e8295848d83642231ee3ebe"
+  },
+  "origin": "assistant-authored, single-user reviewed, seen calibration material; not blind holdout",
+  "human_labels_input_to_checker": false,
+  "original_score_writeback": false,
+  "new_fabrication_or_used_label_inferred": false,
+  "cases": [
+    {
+      "case_id": "BREF01",
+      "query": "晴汀图书站的霜叶批图册为什么延后两天入库？",
+      "answer": "封箱纸板受潮导致霜叶批图册延后两天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "晴汀图书站霜叶批入库记录",
+          "document_id": "synthetic-r5-bref01",
+          "version_id": "synthetic-r5-v1-bref01",
+          "version_number": 1,
+          "text": "霜叶批图册的封箱纸板受潮，使这批图册需要重新包装。重新包装使霜叶批图册的入库时间延后两天。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "422121d69e24a74823d477651c8012e5517fe798757189c026aea149b5407bd6",
+        "query_sha256": "4b768ea14228124bf2ed3702b398661aecf10411c9bf42c7cacc0e9c4f545e6d",
+        "answer_sha256": "565aaeef40f2352367d11619f97ec8021a48454c06921bebf6590da516f1dc59",
+        "sources_sha256": "3ad4d8d71de67b0e443f636aa3b415dfb1091e74147e88c885372bb3b72bb669",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonable_inference",
+          "reason": "原文中的“这批图册”指向霜叶批，并给出了“封箱纸板受潮→重新包装→延后两天入库”的完整因果链。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF01-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了霜叶批和延后两天的结果，将完整因果链概括为一句，省略“重新包装”不影响本题主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF01-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了霜叶批和延后两天的结果，概括了完整因果链，省略“重新包装”不影响主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF01-03:1"
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF02",
+      "query": "港青批图册的外箱受潮，对这批图册的入库时间有什么影响？",
+      "answer": "外箱受潮导致港青批图册延后两天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "砾湾分拣站批次记录",
+          "document_id": "synthetic-r5-bref02",
+          "version_id": "synthetic-r5-v1-bref02",
+          "version_number": 1,
+          "text": "港青批图册的外箱受潮，使这批图册需要重新包装。随后到货的岩蓝批图册标签缺失，登记员安排这批图册重新贴签。重新贴签使岩蓝批图册的入库时间延后两天。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "bf9eaaead2371a6118df43e79925470cd2964aa1f49571d8449edf518c285684",
+        "query_sha256": "11f3cf2089080cece02ed80dd38e8eac03ae321b844d3db58c345bea03aa9c0e",
+        "answer_sha256": "2263eb196142e148f17258416483e8745877a77a7bb9005d5e1f382ce0f9fb51",
+        "sources_sha256": "d5e3c0e0a35d3a529fe9b73ceba1f7ae2a0ff62478b6ecdef1c318dacf52e70d",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文中延后两天入库对应岩蓝批重新贴签，不能套到港青批外箱受潮、重新包装的情况。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF02-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文中延后两天对应岩蓝批重新贴签，不能改写成港青批因外箱受潮延后两天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF02-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把岩蓝批重新贴签后延后两天入库的结果，套到了港青批外箱受潮、重新包装的情况。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF02-03:1"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF03",
+      "query": "霁蓝批玻璃杯为什么延后一天入库？",
+      "answer": "缓冲纸受潮导致霁蓝批玻璃杯延后一天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "棠溪仓库到货记录",
+          "document_id": "synthetic-r5-bref03",
+          "version_id": "synthetic-r5-v1-bref03",
+          "version_number": 1,
+          "text": "霁蓝批玻璃杯的缓冲纸受潮，使这批玻璃杯需要重新包装。另一批绛红批玻璃杯已按原计划入库。重新包装使霁蓝批玻璃杯的入库时间延后一天。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "d426f70f6a678e334a5c27ed475c1ac6b3f85966ba9ef28a98cd3c07b445137a",
+        "query_sha256": "b5af72bf0517a31a126055a80f52396af0df776e2fb0e48ad7c3433fe87f97c7",
+        "answer_sha256": "8b51805a7e097e32179ddbb8f72d877e49138904eb1305041bd58905eb79d44a",
+        "sources_sha256": "f718f0b4365bdd668375e3e3585d54afad3509908a31fe6b6564039c45001589",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonable_inference",
+          "reason": "原文明确将重新包装和延后一天都对应到霁蓝批，插入的绛红批记录不影响这条因果链。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF03-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了霁蓝批和延后一天的结果，省略“重新包装”和绛红批记录不影响本题主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF03-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了霁蓝批和延后一天的结果，概括了完整因果链，省略“重新包装”和绛红批记录不影响主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF03-03:1"
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF04",
+      "query": "晨汐批陶杯为什么延后三天入库？",
+      "answer": "包装纸受潮导致晨汐批陶杯延后三天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "榆桥仓库陶杯到货记录",
+          "document_id": "synthetic-r5-bref04",
+          "version_id": "synthetic-r5-v1-bref04",
+          "version_number": 1,
+          "text": "晨汐批和暮汐批陶杯同时送到仓库。其中一批陶杯的包装纸受潮，需要重新包装。这批陶杯因重新包装延后三天入库，记录没有注明具体是哪一批。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "f3e231126ce649522e38a0654efd3a7d51aeb1d8d1596741cbe4692c870f8f8c",
+        "query_sha256": "642b97e6265dce7f5b9dce29746b9200e8e3b152adb18cfd27ae3263678cf9b5",
+        "answer_sha256": "b960588b32c06cb5138dc6f90ed903cf68c236c593e736331a907443f88a95cd",
+        "sources_sha256": "b98a8d1bc1d71a76f1598cd8154169c922c8c24b64ba13cfa834f3e10276fe48",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只说其中一批陶杯因包装纸受潮、重新包装而延后三天入库，没有注明是晨汐批，不能直接对应到晨汐批。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF04-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文没有注明是哪一批陶杯，不能把“其中一批”改写成晨汐批延后三天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF04-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "原文没有注明具体是哪一批陶杯，回答却直接断言晨汐批因包装纸受潮而延后三天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF04-03:1"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF05",
+      "query": "岚白批画册的封膜破损，对该批画册的入库时间有什么影响？",
+      "answer": "封膜破损导致岚白批画册延后一天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "栖桥印务岚白批记录",
+          "document_id": "synthetic-r5-bref05",
+          "version_id": "synthetic-r5-v1-bref05",
+          "version_number": 1,
+          "text": "岚白批画册的封膜破损，工人因此为该批画册重新覆膜。这项返工使该批画册的入库时间延后一天。蓝砂批画册按原计划入库。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "5e274d50251126d0a61c665a61d9cbfbdf5db8901d0be98b0a1e978b85b03650",
+        "query_sha256": "d3cdb83c557a41a4dae9342ffe04730e0069056803720a4bd9f18d506760521f",
+        "answer_sha256": "5228956b8a699e4832f8df09519291db8de3d851566a8b71b0e77feabd4104f7",
+        "sources_sha256": "a76334cbb9fad5ebc6c0ed2b82a7239564bb8635e02c1722057d169abb0f18b2",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonable_inference",
+          "reason": "原文中的“该批画册”指向岚白批，“这项返工”指向重新覆膜，给出了封膜破损到延后一天入库的完整因果链。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF05-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了岚白批和延后一天的结果，省略重新覆膜过程和蓝砂批记录不影响本题主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF05-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了岚白批和延后一天的结果，概括了完整因果链，省略重新覆膜过程和蓝砂批记录不影响主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF05-03:1"
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF06",
+      "query": "清梧批画册是否因重新包装延后一天入库？",
+      "answer": "清梧批画册因重新包装延后一天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "石羽库房返工登记",
+          "document_id": "synthetic-r5-bref06",
+          "version_id": "synthetic-r5-v1-bref06",
+          "version_number": 1,
+          "text": "清梧批画册和松影批画册都因外箱破损需要重新包装。登记页随后只写着“这批画册因重新包装延后一天入库”，没有标明这句话对应的批次。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "8dda1968354a2cc89ffaa7ba888522860ae1a6a319c04eea702e3e3dfd6e88c1",
+        "query_sha256": "641f0a35339f4b67793197b61f7bf71ce401d15b918d974b081f15680e1745a0",
+        "answer_sha256": "988804dd99bebb85313b4a1bb96599d1d8d28787f006b258f84c0d1621e4c0a9",
+        "sources_sha256": "1b58de74e74e03503533f8a612f2608b8fcc0a3f63a9778122b0fb50785e7007",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只说清梧批和松影批都需要重新包装，没有说明延后一天的“这批画册”具体指哪一批，不能直接断言是清梧批。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF06-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文没有标明延后一天的“这批画册”对应清梧批还是松影批，不能直接改写为清梧批延后一天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF06-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "原文没有标明延后一天的“这批画册”具体对应哪一批，回答却直接断言是清梧批。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF06-03:1"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF07",
+      "query": "周一到货的星苇批茶盒，是否因外箱破损延后两天入库？",
+      "answer": "周一到货的星苇批茶盒因外箱破损延后两天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "青穗库房本周星苇批记录",
+          "document_id": "synthetic-r5-bref07",
+          "version_id": "synthetic-r5-v1-bref07",
+          "version_number": 1,
+          "text": "周一到货的星苇批茶盒外箱破损，使这批茶盒需要重新包装；该批茶盒当天完成包装并按原计划入库。周三到货的另一批茶盒也使用星苇批这一名称，这批茶盒因重新包装延后两天入库。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "66061dc21ae1fe0c34df8b607433a13917161e55042f0d260fc31c08ae47b06b",
+        "query_sha256": "f483c1ad1519c7dc7e8c2bf5552b411d3680339c010549013fd5d2fe1910d739",
+        "answer_sha256": "c203fbb15c5322489cd5f76d8d8395067d5d135d49c70c4c79bad3a3b9cd981b",
+        "sources_sha256": "0e28f9d4f22764d390d71988fde70af0643c8d4c89a141e4553aab5a1e28339d",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文中周一到货的星苇批按原计划入库，延后两天对应周三同名批次，不能套到周一批次。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF07-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文中周一批次按原计划入库，延后两天对应周三同名批次，不能改写为周一批次延后两天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF07-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把周三同名批次延后两天入库的结果套到了周一批次，原文明确周一批次按原计划入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF07-03:1"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    },
+    {
+      "case_id": "BREF08",
+      "query": "苇白批茶盒为什么延后一天入库？",
+      "answer": "外箱受潮导致苇白批茶盒延后一天入库。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "竹原货栈茶盒批次记录",
+          "document_id": "synthetic-r5-bref08",
+          "version_id": "synthetic-r5-v1-bref08",
+          "version_number": 1,
+          "text": "苇白批和竹青批茶盒的外箱均受潮，使这两批茶盒都需要重新包装。重新包装使这两批茶盒的入库时间均延后一天。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "23db2ef3c2fc7d7498292e84ea804773e02b07b3138fc569df3f9ea48ba4e642",
+        "query_sha256": "9c7470a2af821e92fde0b4eacfa1a06a79c810ea48ff588794f66ae2bf09c948",
+        "answer_sha256": "777c1e6bf8a7db5be08ad0151ad358cea0bd10bcb08e2f21b60c0aea042ad3c1",
+        "sources_sha256": "22d400ff3d987b726aa24ab9b03d5725da96b1b23c9125be80381d79a1b111aa",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_fields": {
+        "source_support": {
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonable_inference",
+          "reason": "原文中的“这两批”包括苇白批，且明确两批均因外箱受潮、重新包装而延后一天入库。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF08-01:1"
+        },
+        "rewrite_acceptance": {
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了苇白批和延后一天的结果，省略“重新包装”和竹青批记录不影响本题主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF08-02:1"
+        },
+        "overall_acceptability": {
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了苇白批和延后一天的结果，概括了完整因果链，省略“重新包装”和竹青批记录不影响主要含义。",
+          "judgment_id": "rag-batch-reference-review-20261026-r5:BREF08-03:1"
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "is_human_label": false
+      },
+      "real_model_response": false
+    }
+  ],
+  "additional_seen_contract": {
+    "case_id": "BND06",
+    "machine_expectation": "TEXT_EVIDENCE_FOUND",
+    "scope": "same complete single-batch grammar; old original explicit/accepted/acceptable judgments remain bound to their own material, no new human label"
+  }
+}

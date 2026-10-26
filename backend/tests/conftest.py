@@ -110,7 +110,11 @@ class MockReviewer:
 
     enabled = False
 
-    def review_image(self, path: str) -> dict:
+    def review_image(self, path: str, *, expected_person_count=None) -> dict:
+        if expected_person_count is not None:
+            return {"safe": True, "accepted": True, "review_valid": True,
+                    "expected_person_count": expected_person_count, "person_count": expected_person_count,
+                    "reason": "mock严格审查通过"}
         return {"safe": True, "reason": ""}
 
 

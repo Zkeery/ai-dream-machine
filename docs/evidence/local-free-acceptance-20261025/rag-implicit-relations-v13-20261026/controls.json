@@ -1,0 +1,1645 @@
+{
+  "schema": "v13-implicit-engineering-controls",
+  "date": "2026-10-26",
+  "anchors": [
+    {
+      "item": "R03-with_rag",
+      "query": "下午街巷进水时，夜市摊位怎样适应水位？",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "record_binding": {
+        "item": "R03-with_rag",
+        "case_id": "R03",
+        "group": "with_rag",
+        "query": "下午街巷进水时，夜市摊位怎样适应水位？",
+        "query_input_empty": false,
+        "case_scope": "other_answerable_or_constraint_case",
+        "payload_file": "docs/evidence/第二批收尾-20261011/B1/payloads/R03-with_rag.json",
+        "payload_file_sha256": "a81d95bc2adaef95453a343ad62a14d2b43f5ebf21b5708f77390e52f6fddb76",
+        "frozen_payload_sha256": "3aae2028a3043b89aa3641fe415f3b494ac82dec5b1af5272afa9d99e9eb4559",
+        "response_file": "docs/evidence/第二批收尾-20261011/B1/R03-with_rag-response.json",
+        "response_sha256": "6d6e31c67d61ea294719fe5a023fef7e1036b30dd4cd95f962cf798324340878",
+        "completion_version": {
+          "id": "chatcmpl-18d7fd13-2a71-9418-a313-fe8e7814b687",
+          "model": "qwen3.5-plus",
+          "created": 1791722502
+        },
+        "raw_content_sha256": "3c238d3ddf9343c63ec4b20f078a5c8af8eb93778358b643a5c0a67e4f665a36",
+        "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+        "answer_sha256": "c82664657627637a360ec0e1e65d81343e708802062db820aa29842e8459ca32",
+        "abstained": false,
+        "citations": [
+          "K2"
+        ],
+        "provided_sources_sha256": "6ac5717a7c80dab66d8c54181443c63ea675dd360d9603e9d4fa2fa4943fdcdd",
+        "source_count": 3,
+        "sources": [
+          {
+            "citation_id": "K1",
+            "title": "世界规则固定约束",
+            "fixture_document": "constraint:world",
+            "version_number": 1,
+            "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+            "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+            "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+            "is_constraint": true,
+            "text_sha256": "65c8e8bf49e1a0a053d31680f98c810fb2962a1aaf643fbf370235301bfffce0"
+          },
+          {
+            "citation_id": "K2",
+            "title": "潮汐城日常",
+            "fixture_document": "city",
+            "version_number": 1,
+            "document_id": "780de257acb04e56bbf17755c22cf716",
+            "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+            "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+            "is_constraint": false,
+            "text_sha256": "932b59c9b443f0e84992a0d92a381cd90879cb6fd52c6fb854ec9c4997dab926"
+          },
+          {
+            "citation_id": "K3",
+            "title": "灯塔的作用",
+            "fixture_document": "lighthouse",
+            "version_number": 1,
+            "document_id": "a178efdfb1f541d388666659d046ed62",
+            "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+            "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+            "is_constraint": false,
+            "text_sha256": "fe149f75386d78e12a8036426d5c7f2a84c26854a62c263c76481e643600024f"
+          }
+        ],
+        "retrieval_status": "matched",
+        "human_comparison": {
+          "key": "rag-R03-with_rag",
+          "version": "human-review-20261023-v1",
+          "record_sha256": "3d6630b7f90b5eaa789c34bcdb8315ad5d116bb6b45b42631ac5acf80ab3e307",
+          "labels": {
+            "fabrication": "否",
+            "used": "是",
+            "refusal": "不适用",
+            "read": true
+          },
+          "binding": "exact historical response SHA256; read-only comparison"
+        }
+      },
+      "original_human_labels_reference_only": {
+        "key": "rag-R03-with_rag",
+        "version": "human-review-20261023-v1",
+        "record_sha256": "3d6630b7f90b5eaa789c34bcdb8315ad5d116bb6b45b42631ac5acf80ab3e307",
+        "labels": {
+          "fabrication": "否",
+          "used": "是",
+          "refusal": "不适用",
+          "read": true
+        },
+        "binding": "exact historical response SHA256; read-only comparison"
+      },
+      "new_human_judgment": null
+    },
+    {
+      "item": "H02-with_rag",
+      "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "record_binding": {
+        "item": "H02-with_rag",
+        "case_id": "H02",
+        "group": "with_rag",
+        "query": "镇民在特殊月色出现时躲在家里，是担心外面的什么现象？",
+        "query_input_empty": false,
+        "case_scope": "other_answerable_or_constraint_case",
+        "payload_file": "docs/evidence/第二批收尾-20261011/B1/payloads/H02-with_rag.json",
+        "payload_file_sha256": "99031ba2c3a8678dfe1742ec4cac4c429b3f233470e8fa29ebdaf68d33fed9fa",
+        "frozen_payload_sha256": "4072f88f2a6eda83eec1d3247a023670495a4a5ee9e042a35695f0097f598fdf",
+        "response_file": "docs/evidence/第二批收尾-20261011/B1/H02-with_rag-response.json",
+        "response_sha256": "acd237fcd2f6d024caf26638ffb1a247ed893d6fcf44198ef90d3903c9e99704",
+        "completion_version": {
+          "id": "chatcmpl-0f2fc5b6-be5d-93d1-887c-077c325f2989",
+          "model": "qwen3.5-plus",
+          "created": 1791722585
+        },
+        "raw_content_sha256": "131b942e179005b97eeebf1900845b716988cecf67f26d8765c02f99a8688792",
+        "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+        "answer_sha256": "87a1fdc11cb2d7cb1f4f59aee87836ca38927d7233d184bf94663d28b9829fd5",
+        "abstained": false,
+        "citations": [
+          "K2"
+        ],
+        "provided_sources_sha256": "781f8abdf41b52a29204c1ac81a9ac2bbdf7ce45390edcdf1bd0aaef6c84453e",
+        "source_count": 2,
+        "sources": [
+          {
+            "citation_id": "K1",
+            "title": "镜海小镇固定约束",
+            "fixture_document": "constraint:world",
+            "version_number": 1,
+            "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+            "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+            "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+            "is_constraint": true,
+            "text_sha256": "404eb328b4f5a7b20b086b286efba07c536214b3106dce416023f4119ca13466"
+          },
+          {
+            "citation_id": "K2",
+            "title": "镜海红月规则",
+            "fixture_document": "redmoon",
+            "version_number": 1,
+            "document_id": "4a149f05a3d14670807a2a73083c76c0",
+            "version_id": "ff95a1384be544739bc6508eafa577de",
+            "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+            "is_constraint": false,
+            "text_sha256": "24227b16beb663c691dcd99eafc65bfe6e6b75f74ffec4f55b49de2bc2a23c2d"
+          }
+        ],
+        "retrieval_status": "matched",
+        "human_comparison": {
+          "key": "rag-H02-with_rag",
+          "version": "human-review-20261023-v1",
+          "record_sha256": "c1d377199471bbd84169f126ea304043626ae47c1c251de21b0a067fce89fce0",
+          "labels": {
+            "fabrication": "否",
+            "used": "是",
+            "refusal": "不适用",
+            "read": true
+          },
+          "binding": "exact historical response SHA256; read-only comparison"
+        }
+      },
+      "original_human_labels_reference_only": {
+        "key": "rag-H02-with_rag",
+        "version": "human-review-20261023-v1",
+        "record_sha256": "c1d377199471bbd84169f126ea304043626ae47c1c251de21b0a067fce89fce0",
+        "labels": {
+          "fabrication": "否",
+          "used": "是",
+          "refusal": "不适用",
+          "read": true
+        },
+        "binding": "exact historical response SHA256; read-only comparison"
+      },
+      "new_human_judgment": null
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "IR01",
+      "anchor": "R03-with_rag",
+      "role": "partial_original_anchor",
+      "reason": "动作有原文依据；以适应水位目的未明示，分列保留复核",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR02",
+      "anchor": "R03-with_rag",
+      "role": "positive_action_only",
+      "reason": "去掉未确认目的，仅核对完整动作与平台",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR03",
+      "anchor": "R03-with_rag",
+      "role": "positive_explicit_purpose",
+      "reason": "新来源明确给出同一目的才允许目的关系支持",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升以适应水位。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR04",
+      "anchor": "R03-with_rag",
+      "role": "positive_literal_renaming",
+      "reason": "更换单一场景名称，动作对应不变",
+      "answer": "早市摊位搭在升降木平台上，随潮位缓慢抬升。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。早市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR05",
+      "anchor": "R03-with_rag",
+      "role": "negative_direction",
+      "reason": "把抬升改成下降",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢下降以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR06",
+      "anchor": "R03-with_rag",
+      "role": "negative_trigger",
+      "reason": "把潮位改成风速",
+      "answer": "夜市摊位搭在升降木平台上，随风速缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR07",
+      "anchor": "R03-with_rag",
+      "role": "unresolved_cooccurrence",
+      "reason": "同一时刻两件事不等于随潮位变化",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "夜市搭在升降木平台上。下午四点潮位上升，摊位也在同一时刻抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR08",
+      "anchor": "R03-with_rag",
+      "role": "negative_new_cause",
+      "reason": "动作描述不能推出平台电机由涨潮启动",
+      "answer": "涨潮导致平台电机启动，夜市摊位随潮位缓慢抬升。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR09",
+      "anchor": "R03-with_rag",
+      "role": "negative_new_goal",
+      "reason": "原文未说明适应风向",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应风向。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR10",
+      "anchor": "R03-with_rag",
+      "role": "negative_quoted_source",
+      "reason": "完整来源只是未经核实引述",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "有人称：“潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。”尚未核实。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR11",
+      "anchor": "R03-with_rag",
+      "role": "negative_retraction",
+      "reason": "后文撤回动作说明，不裁切",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。复核撤回上述抬升记录。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR12",
+      "anchor": "R03-with_rag",
+      "role": "unresolved_multiple_subjects",
+      "reason": "并列多个摊位主体，不自动消解",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位和船只随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR13",
+      "anchor": "R03-with_rag",
+      "role": "negative_scope_tail",
+      "reason": "还有风速必要条件，不忽略",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。只有风速低于四级时才会抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR14",
+      "anchor": "R03-with_rag",
+      "role": "negative_independent_guarantee",
+      "reason": "新增绝对安全不能被动作证据覆盖",
+      "answer": "夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位。而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR15",
+      "anchor": "R03-with_rag",
+      "role": "nonasserted_question",
+      "reason": "疑问不构成新的肯定关系",
+      "answer": "能否夜市摊位搭在升降木平台上，随潮位缓慢抬升以适应水位？",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NOT_CHECKED",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR16",
+      "anchor": "R03-with_rag",
+      "role": "negative_location_or_object",
+      "reason": "把木平台改成金属平台",
+      "answer": "夜市摊位搭在金属平台上，随潮位缓慢抬升以适应水位。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "世界规则固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "6ad4c2aeb1854c94884a9a1c221c8649",
+          "version_id": "bdfd480552e449ef8cf83c3e4f84a99a",
+          "chunk_id": "constraint:bdfd480552e449ef8cf83c3e4f84a99a",
+          "is_constraint": true,
+          "text": "潮汐城没有私人机动车；任何交通画面只能出现步行、渡船或有轨电车。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "潮汐城日常",
+          "fixture_document": "city",
+          "version_number": 1,
+          "document_id": "780de257acb04e56bbf17755c22cf716",
+          "version_id": "0a247627b32d4edc85e1af9ec96d6acf",
+          "chunk_id": "8d8a4dd36dd34ccca138d32497ff0671",
+          "is_constraint": false,
+          "text": "潮汐城每天下午四点涨潮，低处巷道会被浅水覆盖。市民靠步行、渡船和有轨电车出行，不存在私人机动车。夜市搭在升降木平台上，摊位随潮位缓慢抬升。"
+        },
+        {
+          "citation_id": "K3",
+          "title": "灯塔的作用",
+          "fixture_document": "lighthouse",
+          "version_number": 1,
+          "document_id": "a178efdfb1f541d388666659d046ed62",
+          "version_id": "5bf0dab6d61947ce966d875ddb44551a",
+          "chunk_id": "aa200fc4b2ba4015a363aa159e758210",
+          "is_constraint": false,
+          "text": "灯塔位于旧港北端，每逢暴雨便发出三次低鸣，提醒渡船停止靠岸。灯塔下设有失物站，守塔人每天记录海面反光和潮位。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR17",
+      "anchor": "H02-with_rag",
+      "role": "positive_original_world_effect",
+      "reason": "原文直接包含让人迷失方向的光影，只支持该世界效应不自动确认担心心理",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR18",
+      "anchor": "H02-with_rag",
+      "role": "positive_literal_renaming",
+      "reason": "光影字面更名且来源同步，不借别名",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的幻影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的幻影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR19",
+      "anchor": "H02-with_rag",
+      "role": "positive_direct_effect_restatement",
+      "reason": "在同一红月条件和海面下重述光影让人迷失方向",
+      "answer": "红月升起后，海面投出的光影让人迷失方向。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR20",
+      "anchor": "H02-with_rag",
+      "role": "negative_changed_effect",
+      "reason": "把方向迷失改成失去记忆",
+      "answer": "镇民担心红月升起后，海面投出的让人失去记忆的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR21",
+      "anchor": "H02-with_rag",
+      "role": "negative_reversed_direction",
+      "reason": "把人迷失方向写成光影出现原因",
+      "answer": "人迷失方向让光影出现。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR22",
+      "anchor": "H02-with_rag",
+      "role": "negative_condition",
+      "reason": "把红月条件替换成蓝月",
+      "answer": "镇民担心蓝月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR23",
+      "anchor": "H02-with_rag",
+      "role": "negative_place",
+      "reason": "海面来源不能支持陆地投出相同效应",
+      "answer": "镇民担心红月升起后，陆地投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR24",
+      "anchor": "H02-with_rag",
+      "role": "unresolved_simultaneity",
+      "reason": "只有同时发生，没有让人效应依据",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "红月升起后，海面出现光影，有人在同一时刻迷失方向。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR25",
+      "anchor": "H02-with_rag",
+      "role": "negative_unverified_report",
+      "reason": "未经核实访客引述不能提升成效应依据",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "访客说：“镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。”尚未核实。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR26",
+      "anchor": "H02-with_rag",
+      "role": "negative_retraction",
+      "reason": "完整来源后文撤回效应判断",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。复核撤回光影致人迷失方向的判断。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR27",
+      "anchor": "H02-with_rag",
+      "role": "negative_guarantee",
+      "reason": "有伤害效应不等于保证安全",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR28",
+      "anchor": "H02-with_rag",
+      "role": "negative_h05_protection",
+      "reason": "有光影效应不支持关窗帘能防护",
+      "answer": "关好窗帘以防海面光影让人迷失方向。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR29",
+      "anchor": "H02-with_rag",
+      "role": "unresolved_omitted_condition",
+      "reason": "省略红月条件的概括不在有限支持契约内",
+      "answer": "镇民担心海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR30",
+      "anchor": "H02-with_rag",
+      "role": "negative_source_entity_binding",
+      "reason": "来源前后月名不一致，不跨主体拼接",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的蓝月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR31",
+      "anchor": "H02-with_rag",
+      "role": "negative_unparsed_tail",
+      "reason": "后文增加未解析限定，不能截取中间句放行",
+      "answer": "镇民担心红月升起后，海面投出的让人迷失方向的光影。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。此外还有未记录的适用条件。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    },
+    {
+      "case_id": "IR32",
+      "anchor": "H02-with_rag",
+      "role": "nonasserted_question",
+      "reason": "疑问不作新的肯定效应",
+      "answer": "是否镇民担心红月升起后，海面投出的让人迷失方向的光影？",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K2"
+      ],
+      "expected_status": "NOT_CHECKED",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "assistant_authored_engineering_control_not_human_judgment"
+    }
+  ],
+  "independent_holdout": false,
+  "new_human_judgments": 0,
+  "baseline_file": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-condition-rule-v12-20261026/replay-run-01.json",
+  "baseline_sha256": "06de14ea195198de8ae302f5fed4cd0dd8b38c11b68156aa2963c096ea778fcb",
+  "purpose_scope": "R03 original purpose is unconfirmed, not re-labelled as fabricated; original broad human labels remain readonly"
+}

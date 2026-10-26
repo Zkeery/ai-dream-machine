@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { publicPath } from "@/lib/config";
 import { useRef, useState } from "react";
 import { ArrowUpRight, Film, Mic, PersonStanding } from "lucide-react";
 import { CreationForm } from "@/features/creation/CreationForm";
@@ -18,9 +19,9 @@ const STORIES = [
   { title: "命运交锋", art: "dialogue", src: "/cinema/references/dune-dialogue.jpg", alt: "《沙丘2》保罗与契妮的双人剧照", tag: "DRAMA / DIALOGUE", kind: "人物对手戏", credit: "《沙丘2》官方剧照", source: "https://www.dunepartedos.plataformasdigitaleswb.com/#gallery", width: 1280, height: 640, position: "center center", idea: "久别重逢的两位旧友在日落前交换一个秘密，却发现彼此正站在同一个抉择的两端。" },
 ];
 const TOOLS = [
-  { tab: "literary" as const, title: "文艺短视频", copy: "让文字、音乐与画面一起表达", icon: Film },
+  { tab: "literary" as const, title: "文艺短视频", copy: "让文字、配音与画面一起表达", icon: Film },
   { tab: "motion" as const, title: "角色动作短片", copy: "角色图与动作描述生成 · 当前非动作迁移", icon: PersonStanding },
-  { tab: "talking" as const, title: "图片配音口播", copy: "人物图随配音说话 · 静态模式可选", icon: Mic },
+  { tab: "talking" as const, title: "图片配音口播", copy: "仅支持单人口播 · 静态模式可选", icon: Mic },
 ];
 
 export function CinemaHome({ onCreated, onPipeline, onSelectSession, onSelectTask, sessions, tasks, sessionsError, onReload, onProjects, focusOnMount, draft, onDraftChange, onKnowledge, projectType, onProjectTypeChange }: {
@@ -74,11 +75,11 @@ export function CinemaHome({ onCreated, onPipeline, onSelectSession, onSelectTas
       </div>
       <div className="floating-assets" aria-label="人物与场景创作灵感">
         <button className="portrait" onClick={() => chooseIdea(characterIdea)} aria-label="以雨夜女孩为创作灵感">
-          <Image src="/cinema/character.png" alt="雨夜城市中的女孩人物概念图" width={1086} height={1448} unoptimized />
+          <Image src={publicPath("/cinema/character.png")} alt="雨夜城市中的女孩人物概念图" width={1086} height={1448} unoptimized />
           <span className="asset-label">雨夜女孩 / 人物灵感</span>
         </button>
         <button className="film-card" onClick={() => chooseIdea(worldIdea)} aria-label="以云上城市为创作灵感">
-          <Image src="/cinema/world.png" alt="云海与群山之上的未来城市概念图" width={1672} height={941} style={{ objectPosition: "center 35%" }} unoptimized />
+          <Image src={publicPath("/cinema/world.png")} alt="云海与群山之上的未来城市概念图" width={1672} height={941} style={{ objectPosition: "center 35%" }} unoptimized />
           <span className="film-caption"><span>云上城市 / 场景灵感</span><small>从一个世界开始 ↗</small></span>
         </button>
       </div>
@@ -97,7 +98,7 @@ export function CinemaHome({ onCreated, onPipeline, onSelectSession, onSelectTas
       <div className="section-heading"><h2 id="inspiration-title">电影灵感参考</h2></div>
       <div className="projects">{STORIES.map((story, i) => <article key={story.art} className="inspiration-card"><button className="project" onClick={() => chooseStory(i)}>
         <div className={`project-picture reference-${story.art}`}>
-          <Image src={story.src} alt={story.alt} width={story.width} height={story.height} unoptimized /><span className="tag">{story.tag}</span>
+          <Image src={publicPath(story.src)} alt={story.alt} width={story.width} height={story.height} unoptimized /><span className="tag">{story.tag}</span>
         </div>
         <div className="project-info"><div><h3>{story.title}</h3><p>{story.kind}</p></div><ArrowUpRight size={14} /></div>
       </button></article>)}</div>

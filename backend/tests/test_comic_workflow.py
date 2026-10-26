@@ -1,5 +1,6 @@
 """独立漫剧主链路：模型/TTS/渲染替身，真实临时SQLite与文件归属。"""
 from copy import deepcopy
+import json
 from pathlib import Path
 
 import pytest
@@ -113,6 +114,120 @@ async def test_panels_use_actual_character_images(comic, monkeypatch):
     assert str(calls[0][0][0]) == selected and Path(selected).exists()
     assert "不要在画面中绘制字幕" in calls[0][1]
     assert meta.artifacts["comic_panels"]["shots"][0]["input_paths"][0] == selected
+
+
+def _capture_review_calls(orch, monkeypatch):
+    calls = []
+    def review(path, *, expected_person_count=None):
+        calls.append({"path": path, "expected_person_count": expected_person_count})
+        return {"safe": True, "accepted": True, "review_valid": True,
+                "person_count": expected_person_count, "reason": "mock通过", "raw_response": "mock-evidence"}
+    monkeypatch.setattr(orch.reviewer, "enabled", True)
+    monkeypatch.setattr(orch.reviewer, "review_image", review)
+    return calls
+
+
+@pytest.mark.asyncio
+async def test_comic_character_strict_review_excludes_setting_and_persists(comic, monkeypatch):
+    orch, _ = comic
+    orch.llm.script["characters"][0]["description"] = "纯黄色雨衣、纯黑靴"
+    def forbidden_sheet_prompt(*args, **kwargs):
+        pytest.fail("comic默认角色图不能调用多视图compose_sheet_prompt")
+    monkeypatch.setattr("app.services.prompts.compose_sheet_prompt", forbidden_sheet_prompt)
+    calls = _capture_review_calls(orch, monkeypatch)
+    meta = await run_to(comic, "character_design")
+    prompt = meta.artifacts["character_design"]["characters"][0]["prompt"]
+    assert "纯黄色雨衣、纯黑靴" in prompt and "单一视角，全身正面" in prompt
+    assert "正面、侧面和脸部放在同一张" not in prompt
+    assert [call["expected_person_count"] for call in calls] == [1, None]
+    record = session_store.load_session(meta.session_id).execution_inputs[-1]
+    assert record["stage"] == "character_design"
+    # Both the character strict review and ordinary setting review are retained.
+    assert [review["item_id"] for review in record["content_reviews"]] == ["c1", "l1"]
+    assert record["content_reviews"][0]["item_id"] == "c1"
+    assert record["content_reviews"][0]["result"]["raw_response"] == "mock-evidence"
+
+
+@pytest.mark.asyncio
+async def test_comic_panel_review_counts_unique_characters_per_shot(comic, monkeypatch):
+    orch, _ = comic
+    orch.llm.script["characters"].extend([
+        {"name": "狗", "description": "小狗", "role": "伙伴"},
+        {"name": "兔", "description": "小兔", "role": "伙伴"},
+    ])
+    meta = await run_to(comic, "comic_storyboard")
+    board = deepcopy(meta.artifacts["comic_storyboard"])
+    board["shots"][0]["character_ids"] = ["c1", "c1"]
+    board["shots"][1]["character_ids"] = ["c1", "c2"]
+    board["shots"].append({"shot_id": "s3", "description": "空街道", "prompt": "empty street",
+                           "character_ids": [], "setting_ids": ["l1"], "dialogues": []})
+    meta = await orch.intervene(meta.session_id, "comic_storyboard", {"operation": "save", "artifact": board}, noop)
+    calls = _capture_review_calls(orch, monkeypatch)
+    meta = await orch.execute_stage(meta.session_id, "comic_panels", noop)
+    assert [call["expected_person_count"] for call in calls] == [1, 2, 0]
+    reviews = session_store.load_session(meta.session_id).execution_inputs[-1]["content_reviews"]
+    assert [review["item_id"] for review in reviews] == ["s1", "s2", "s3"]
+    assert [review["result"]["person_count"] for review in reviews] == [1, 2, 0]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("stage", ["character_design", "comic_panels"])
+async def test_comic_rejected_image_stops_generation_and_persists_raw_review(comic, monkeypatch, stage):
+    from app.services.content_review import ContentReviewer
+    orch, _ = comic
+    meta = await run_to(comic, "script_generation" if stage == "character_design" else "comic_storyboard")
+    raw = json.dumps({"safe": True, "person_count": 3, "multi_view_layout": True,
+                      "floating_head": True, "detached_limbs": False, "text_or_signage": False,
+                      "reason": "两个侧身加一个独立头像"}, ensure_ascii=False)
+    class FakeVLM:
+        def review(self, path, instruction):
+            return raw
+    orch.reviewer = ContentReviewer(vlm=FakeVLM())
+    orch.reviewer.enabled = False  # A disabled general safety switch must not bypass this gate.
+    generated = []
+    for method_name in ("text_to_image", "image_to_image"):
+        original = getattr(orch.image, method_name)
+        def generate(*args, _original=original, **kwargs):
+            result = _original(*args, **kwargs)
+            generated.append(str(result))
+            return result
+        monkeypatch.setattr(orch.image, method_name, generate)
+    with pytest.raises(AppError, match="图片结构审查拦截") as error:
+        await orch.execute_stage(meta.session_id, stage, noop)
+    assert error.value.code == "CONTENT_REVIEW_FAILED"
+    assert len(set(generated)) == 1
+    saved = session_store.load_session(meta.session_id)
+    assert saved.status == "failed" and stage not in saved.stages_completed
+    reviews = [review for review in saved.content_reviews if review["stage"] == stage]
+    assert len(reviews) == 1
+    assert reviews[0]["result"]["raw_response"] == raw
+    assert reviews[0]["result"]["accepted"] is False
+    assert reviews[0]["result"]["人物数量"] == 3
+
+
+@pytest.mark.asyncio
+async def test_story_character_design_retains_legacy_review_boundary(comic, monkeypatch):
+    orch, _ = comic
+    calls = _capture_review_calls(orch, monkeypatch)
+    meta = orch.create(SessionCreate(project_type="story", idea="故事角色"), owner_id="owner")
+    await orch.execute_stage(meta.session_id, "script_generation", noop)
+    meta = await orch.execute_stage(meta.session_id, "character_design", noop)
+    assert [call["expected_person_count"] for call in calls] == [None, None]
+    assert "正面、侧面和脸部放在同一张" in meta.artifacts["character_design"]["characters"][0]["prompt"]
+
+
+def test_review_log_migration_preserves_legacy_session(data_dirs):
+    from app.services import db
+    session_store.create_session(SessionMeta(session_id="legacy-review-log", idea="保留旧会话"))
+    with db.connect() as connection:
+        connection.execute("ALTER TABLE sessions DROP COLUMN content_reviews")
+    db.init_db()
+    legacy = session_store.load_session("legacy-review-log")
+    assert legacy.idea == "保留旧会话" and legacy.content_reviews == []
+    legacy.content_reviews.append({"stage": "comic_panels", "result": {"accepted": False}})
+    session_store.touch(legacy)
+    db.init_db()  # Repeated startup must not clear the audit log.
+    assert session_store.load_session(legacy.session_id).content_reviews == legacy.content_reviews
 
 
 @pytest.mark.asyncio

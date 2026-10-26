@@ -1,0 +1,1263 @@
+{
+  "schema": "v12-condition-rule-engineering-controls",
+  "date": "2026-10-26",
+  "anchors": [
+    {
+      "case_id": "J05",
+      "material": {
+        "case_id": "J05",
+        "group": "因果改写",
+        "query": "枝灯实验舱怎样通过启动键开启试验？",
+        "sources": [
+          {
+            "citation_id": "S1",
+            "title": "枝灯实验舱操作规程",
+            "document_id": "synthetic-r2-j05",
+            "version_id": "synthetic-r2-v1-j05",
+            "version_number": 1,
+            "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+            "origin": "new_hand_authored_synthetic_material"
+          }
+        ],
+        "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+        "citations": [
+          "S1"
+        ],
+        "dispute": "原文与回答均涉及舱门状态和启动键，需要确认条件、动作与结果的范围是否保持一致。",
+        "support_focus": "“舱门锁紧时按启动键开启试验，未锁紧时启动键无效”这项条件关系",
+        "rewrite_focus": "回答对两种舱门状态及启动结果的表述",
+        "material_origin": "current_assistant_authored_synthetic_pair",
+        "real_model_response": false,
+        "prior_checker_execution": false
+      },
+      "material_binding": {
+        "case_material_sha256": "2c1d67e7d260cd8cab122d13d95851da5d5cda3a0998f9ff63f68fd312650123",
+        "query_sha256": "61f6cd9a3652173946cab380f17349c8dbbdbdec535fbbf730cc489a89793103",
+        "answer_sha256": "8669eea70355950c783fe24d98cdbcdac131276738e6ef0b3ac4ae6dcfe39d6d",
+        "sources_sha256": "e320fa7837d3a6c3636fe932e4e08d556a0bf6a5e976682d6933014ba0be5380",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "new_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-01:1",
+          "question_id": "J05-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文明确说明舱门锁紧时按启动键开启试验，未锁紧时启动键无效。",
+          "user_message": "原文明示，原文明确说明舱门锁紧时按启动键开启试验，未锁紧时启动键无效。先单独记录这个判断，继续确认 J05 的改写接受度；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_11f175cf48b443ce9169ef8a27f5440b\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:03:27Z",
+          "reviewer": "session_user",
+          "scope": "new source support judgment only; no rewrite, overall or generic conditional rule inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-02:1",
+          "question_id": "J05-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+          "user_message": "接受，回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。先单独记录这个判断，继续确认 J05 整条回答是否可接受；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_fd04a8d58b21443484e5ce30f49cde0b\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:05:10Z",
+          "reviewer": "session_user",
+          "scope": "new rewrite acceptance judgment in this question only; no overall or generic conditional rule inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-03:1",
+          "question_id": "J05-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+          "user_message": "可接受，回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。先单独记录这个判断，汇总 J05 的复核结果，再继续 J06；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_b7695aa4465d44848b3397b5c5d9ddac\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:10:01Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment in this question only; no extra labels or generic conditional rule inferred",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "review_summary": {
+        "kind": "summary_of_explicit_user_judgments",
+        "source_support": "原文明示",
+        "source_reason": "原文明确说明舱门锁紧时按启动键开启试验，未锁紧时启动键无效。",
+        "rewrite_acceptance": "接受",
+        "rewrite_reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+        "overall_acceptability": "可接受",
+        "overall_reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+        "completed_at_utc": "2026-10-25T08:10:01Z",
+        "question_ids": [
+          "J05-01",
+          "J05-02",
+          "J05-03"
+        ],
+        "original_score_writeback": false,
+        "new_fabrication_or_used_labels_inferred": false,
+        "checker_updated": false
+      }
+    },
+    {
+      "case_id": "J07",
+      "material": {
+        "case_id": "J07",
+        "group": "规则范围",
+        "query": "给陶穹影棚的这部短片写一段骑摩托车送货的交通镜头。",
+        "sources": [
+          {
+            "citation_id": "S1",
+            "title": "陶穹影棚当前短片要求",
+            "document_id": "synthetic-r2-j07",
+            "version_id": "synthetic-r2-v1-j07",
+            "version_number": 1,
+            "text": "本片所有交通画面只允许出现手推车和缆车。",
+            "origin": "new_hand_authored_synthetic_material"
+          }
+        ],
+        "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+        "citations": [
+          "S1"
+        ],
+        "dispute": "原文限定本片交通画面，回答对本次创作请求作处理并给出替换方式，需要分别核对规则与处理范围。",
+        "support_focus": "“本次骑摩托车送货的镜头不符合本片要求”这项判断",
+        "rewrite_focus": "用“不符合本片要求，并改为手推车”回应本次创作请求",
+        "material_origin": "current_assistant_authored_synthetic_pair",
+        "real_model_response": false,
+        "prior_checker_execution": false
+      },
+      "material_binding": {
+        "case_material_sha256": "bd64b888da01a550c0e59e548d44c500ce9d03dfbfa566551f95f69e9986b865",
+        "query_sha256": "b2dac50c408d2feecee4516f55dd38b8fe6286dc67baec09245b218f351fbabb",
+        "answer_sha256": "832da52f665b1fb1644ceeb04995214b5371ad866f4d07c17e70fabefee1efa7",
+        "sources_sha256": "eea39a6aa770e04c0a2561e2ffbecf9f395740d863ea9fdbbf0d432355e42f35",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "new_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-01:1",
+          "question_id": "J07-01",
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonably_inferred",
+          "reason": "原文规定本片交通画面只允许出现手推车和缆车，摩托车不在允许范围内。",
+          "user_message": "可合理推断，原文规定本片交通画面只允许出现手推车和缆车，摩托车不在允许范围内。先单独记录这个判断，继续确认 J07 的改写接受度；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_f58c3609e98a462e80ede7a56f93c1d2\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:24:14Z",
+          "reviewer": "session_user",
+          "scope": "new source support judgment for this film's depiction restriction only; no rewrite, overall or world-existence rule inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-02:1",
+          "question_id": "J07-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+          "user_message": "接受，回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。先单独记录这个判断，继续确认 J07 整条回答是否可接受；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_59daa21c32344dc0854bdc22afed73d0\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:30:21Z",
+          "reviewer": "session_user",
+          "scope": "new rewrite and creative-handling acceptance within this film only; no overall or world-existence rule inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-03:1",
+          "question_id": "J07-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+          "user_message": "可接受，回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。先单独记录这个判断，汇总 J07 的复核结果，再继续 J08；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_a75d47c653e44b8dabbbe49122b0bbbc\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:32:10Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment for this film's creative request only; no extra labels or world-existence rule inferred",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "review_summary": {
+        "kind": "summary_of_explicit_user_judgments",
+        "source_support": "可合理推断",
+        "source_reason": "原文规定本片交通画面只允许出现手推车和缆车，摩托车不在允许范围内。",
+        "rewrite_acceptance": "接受",
+        "rewrite_reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+        "overall_acceptability": "可接受",
+        "overall_reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+        "scope": "this film's depiction restriction and original creative request only; no world-existence rule inferred",
+        "completed_at_utc": "2026-10-25T08:32:10Z",
+        "question_ids": [
+          "J07-01",
+          "J07-02",
+          "J07-03"
+        ],
+        "original_score_writeback": false,
+        "new_fabrication_or_used_labels_inferred": false,
+        "checker_updated": false
+      }
+    },
+    {
+      "case_id": "J10",
+      "material": {
+        "case_id": "J10",
+        "group": "规则范围",
+        "query": "进入星棱分拣站可以使用什么凭证，工作证可以吗？",
+        "sources": [
+          {
+            "citation_id": "S1",
+            "title": "星棱分拣站入场规则",
+            "document_id": "synthetic-r2-j10",
+            "version_id": "synthetic-r2-v1-j10",
+            "version_number": 1,
+            "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+            "origin": "new_hand_authored_synthetic_material"
+          }
+        ],
+        "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+        "citations": [
+          "S1"
+        ],
+        "dispute": "原文使用“只接受”列出凭证，回答重述选项与工作证限制，需要确认枚举和替代关系的范围。",
+        "support_focus": "“两种列出的凭证可用，工作证不能替代”这项规则",
+        "rewrite_focus": "回答对允许凭证及工作证限制的重述",
+        "material_origin": "current_assistant_authored_synthetic_pair",
+        "real_model_response": false,
+        "prior_checker_execution": false
+      },
+      "material_binding": {
+        "case_material_sha256": "8ed079e5f4cbd5468be4acc85fb8d452f248ff3a6355b264589171266dcda1df",
+        "query_sha256": "7d3a34bd56c683b2cdc315e3d4522232e3e504a4fd6f000f045d7cddcf2d263f",
+        "answer_sha256": "466d8b98c3ac49a0919fdc2f2792d50edbc3c09ada58e25562e9ba54f5f7e980",
+        "sources_sha256": "1d719ff054aebc9f6990d37b994c9577c00d5f0e16410ff4a1f6db4b71669931",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "new_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-01:1",
+          "question_id": "J10-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文明确说明只接受当日纸质通行票或电子二维码，工作证不能替代入场凭证。",
+          "user_message": "原文明示，原文明确说明只接受当日纸质通行票或电子二维码，工作证不能替代入场凭证。先单独记录这个判断，继续确认 J10 的改写接受度；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_04fcd020d23145eebe2e9bdc661a968a\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T08:59:22Z",
+          "reviewer": "session_user",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-02:1",
+          "question_id": "J10-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+          "user_message": "接受，回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。先单独记录这个判断，继续确认 J10 整条回答是否可接受；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_ef9f1dd75b7244a28d276370209a0648\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T09:04:01Z",
+          "reviewer": "session_user",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-03:1",
+          "question_id": "J10-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+          "user_message": "可接受，回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。先单独记录这个判断，汇总 J10 的复核结果，再继续 J11；不覆盖原人工评分，保留 H05 检查，继续保持 Mock，不调用真实模型、不产生费用。",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_258586f6f1754f3c9f1ed8167874c8c4\",0]",
+          "input_kind": "async_question_reply",
+          "recorded_at_utc": "2026-10-25T09:14:45Z",
+          "reviewer": "session_user",
+          "scope": "new overall acceptability judgment only; no fabrication/used label inferred",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "review_summary": {
+        "kind": "summary_of_explicit_user_judgments",
+        "source_support": "原文明示",
+        "source_reason": "原文明确说明只接受当日纸质通行票或电子二维码，工作证不能替代入场凭证。",
+        "rewrite_acceptance": "接受",
+        "rewrite_reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+        "overall_acceptability": "可接受",
+        "overall_reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+        "completed_at_utc": "2026-10-25T09:14:45Z",
+        "question_ids": [
+          "J10-01",
+          "J10-02",
+          "J10-03"
+        ],
+        "original_score_writeback": false,
+        "new_fabrication_or_used_labels_inferred": false,
+        "checker_updated": false
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "CR01",
+      "anchor": "J05",
+      "role": "positive_anchor",
+      "reason": "完整保留两种舱门状态、按键和启动结果",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR02",
+      "anchor": "J05",
+      "role": "positive_renaming",
+      "reason": "更换字面设备与结果，完整条件映射不变",
+      "answer": "闸门已经锁紧时，按下操作键会启动灌溉；未锁紧时，操作键不能启动灌溉。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在闸门已经锁紧时，按下操作键才会启动灌溉。闸门未锁紧时，操作键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR03",
+      "anchor": "J05",
+      "role": "negative_missing_condition",
+      "reason": "把必要条件省略成按键必然启动",
+      "answer": "只要按下启动键，就会开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR04",
+      "anchor": "J05",
+      "role": "negative_reversed_states",
+      "reason": "交换锁紧与未锁紧的结果",
+      "answer": "舱门未锁紧时，按下启动键会开启试验；已经锁紧时，启动键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR05",
+      "anchor": "J05",
+      "role": "negative_key",
+      "reason": "按键对象改变",
+      "answer": "舱门已经锁紧时，按下复位键会开启试验；未锁紧时，复位键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR06",
+      "anchor": "J05",
+      "role": "negative_effect",
+      "reason": "启动结果改变",
+      "answer": "舱门已经锁紧时，按下启动键会开启排风；未锁紧时，启动键不能开启排风。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR07",
+      "anchor": "J05",
+      "role": "unresolved_partial_answer",
+      "reason": "只给正状态，完整双状态正例契约无法核定",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR08",
+      "anchor": "J05",
+      "role": "negative_extra_condition",
+      "reason": "来源还有温度条件，不能裁切",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。还必须通过温度检查。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR09",
+      "anchor": "J05",
+      "role": "negative_retracted",
+      "reason": "来源撤回规则，不能继续用旧因果",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。复核撤回上述规则。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR10",
+      "anchor": "J05",
+      "role": "unresolved_multiple_subjects",
+      "reason": "另一扇门也被加入，主体与负状态不再唯一",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在设备门和舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR11",
+      "anchor": "J05",
+      "role": "negative_added_guarantee",
+      "reason": "原规则不能支持额外绝对安全保证",
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR12",
+      "anchor": "J05",
+      "role": "nonasserted_question",
+      "reason": "疑问语气不作为新肯定规则",
+      "answer": "能否舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NOT_CHECKED",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR13",
+      "anchor": "J07",
+      "role": "positive_anchor",
+      "reason": "只讨论本片画面限制与允许替换",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR14",
+      "anchor": "J07",
+      "role": "positive_other_allowed_member",
+      "reason": "替换方案取同一允许列表的另一明确成员",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用缆车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR15",
+      "anchor": "J07",
+      "role": "positive_enumeration_order",
+      "reason": "交换来源允许枚举顺序不改变集合",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现缆车和手推车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR16",
+      "anchor": "J07",
+      "role": "negative_forbidden_is_allowed",
+      "reason": "允许成员不能写成不符合要求",
+      "answer": "骑手推车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR17",
+      "anchor": "J07",
+      "role": "negative_replacement",
+      "reason": "替换方案仍是非允许成员",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用摩托车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR18",
+      "anchor": "J07",
+      "role": "negative_nonexclusive_list",
+      "reason": "常见列表不能用作排他允许列表",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片常见交通画面包括手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR19",
+      "anchor": "J07",
+      "role": "negative_world_scope",
+      "reason": "本片画面限制不能改成城市不存在",
+      "answer": "陶穹城不存在摩托车。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR20",
+      "anchor": "J07",
+      "role": "negative_exception",
+      "reason": "来源明示紧急例外不能忽略",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。紧急情况下也可出现摩托车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR21",
+      "anchor": "J07",
+      "role": "unresolved_subtype",
+      "reason": "电动手推车不与已确认字面交通词自动互斥",
+      "answer": "骑电动手推车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR22",
+      "anchor": "J07",
+      "role": "negative_action_scope",
+      "reason": "原送货动作不能无说明替换成载客",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车载客。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR23",
+      "anchor": "J07",
+      "role": "negative_quoted_rule",
+      "reason": "规则只是未经核实引述",
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "有人称：“本片所有交通画面只允许出现手推车和缆车。”尚未核实。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR24",
+      "anchor": "J07",
+      "role": "unresolved_reordered_paraphrase",
+      "reason": "未覆盖的倒装语序保留复核，不按词袋放行",
+      "answer": "可以改为用手推车送货，骑摩托车送货的镜头不符合本片交通画面要求。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR25",
+      "anchor": "J10",
+      "role": "positive_anchor",
+      "reason": "完整保留当日限定、两个凭证与不可替代",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR26",
+      "anchor": "J10",
+      "role": "positive_enumeration_order",
+      "reason": "或连接的两个相同凭证交换顺序",
+      "answer": "可以用电子二维码或当日纸质通行票入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR27",
+      "anchor": "J10",
+      "role": "positive_literal_renaming",
+      "reason": "改用另一组明示凭证，所有限定和排除对应",
+      "answer": "可以用本场纸质票或动态二维码入场，校友证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受本场纸质票或动态二维码。校友证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "TEXT_EVIDENCE_FOUND",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR28",
+      "anchor": "J10",
+      "role": "negative_date_qualifier",
+      "reason": "省略当日限定",
+      "answer": "可以用纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR29",
+      "anchor": "J10",
+      "role": "negative_extra_credential",
+      "reason": "凭空增加可用凭证",
+      "answer": "可以用当日纸质通行票或电子二维码或工作证入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR30",
+      "anchor": "J10",
+      "role": "negative_reversed_substitution",
+      "reason": "把不能替代改成可以替代",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证可以替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR31",
+      "anchor": "J10",
+      "role": "negative_nonexclusive_list",
+      "reason": "常见凭证清单不是只接受规则",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证常见的包括当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR32",
+      "anchor": "J10",
+      "role": "negative_exception",
+      "reason": "补充工作证例外使原不可替代结论不再完整",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。受邀维修员的工作证可以单独入场。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR33",
+      "anchor": "J10",
+      "role": "negative_wrong_exclusion",
+      "reason": "错误对应被排除的凭证",
+      "answer": "可以用当日纸质通行票或电子二维码入场，当日纸质通行票不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR34",
+      "anchor": "J10",
+      "role": "negative_ambiguous_version",
+      "reason": "同一引用出现两个版本",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        },
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "conflicting-version",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR35",
+      "anchor": "J10",
+      "role": "negative_source_polarity",
+      "reason": "来源明确可以替代，不能说不能",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证可以替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    },
+    {
+      "case_id": "CR36",
+      "anchor": "J10",
+      "role": "negative_added_guarantee",
+      "reason": "允许入场不保证绝不会受伤",
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_status": "NEED_REVIEW",
+      "whole_answer_status": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "origin": "new_engineering_variant_not_human_judgment",
+      "material_origin": "current_assistant_authored_or_saved_anchor"
+    }
+  ],
+  "independent_holdout": false,
+  "new_human_judgments": 0,
+  "baseline_file": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-policy-status-v11-20261026/replay-run-02-final.json",
+  "baseline_sha256": "2e272dd404b1ad963f84f4930da903b28b58bc46a0ac11b8638313df86104433",
+  "review_file": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-new-synthetic-review-20261025/新增人工复核记录.json",
+  "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b"
+}

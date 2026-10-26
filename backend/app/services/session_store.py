@@ -12,10 +12,10 @@ from app.services import db
 
 _COLS = ["session_id", "orchestration_mode", "agent_runs", "owner_id", "idea", "project_type", "style", "episodes", "video_ratio", "resolution", "expand_idea",
          "video_generation_mode", "status", "current_stage", "stages_completed", "artifacts", "error",
-         "created_at", "updated_at", "stale_stages", "artifact_versions", "selected_versions", "execution_inputs", "knowledge_library_ids", "model_selection"]
+         "created_at", "updated_at", "stale_stages", "artifact_versions", "selected_versions", "execution_inputs", "content_reviews", "creation_checks", "knowledge_library_ids", "model_selection"]
 
 _JSON_DEFAULTS = {"agent_runs": {}, "stages_completed": [], "artifacts": {}, "stale_stages": [],
-                  "artifact_versions": {}, "selected_versions": {}, "execution_inputs": [], "knowledge_library_ids": [], "model_selection": {}}
+                  "artifact_versions": {}, "selected_versions": {}, "execution_inputs": [], "content_reviews": [], "creation_checks": [], "knowledge_library_ids": [], "model_selection": {}}
 
 
 def _to_row(meta: SessionMeta) -> dict:

@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Edge TTS 网络配音客户端；沿用现有服务，不增加付费模型调用。"""
+"""默认本机合成测试音轨；真实 Edge TTS 仅在显式 live 分支懒加载。"""
 from __future__ import annotations
 
 import asyncio
 import logging
 from pathlib import Path
 
-import edge_tts
-
+from app.core import config, offline
 from app.core.errors import AppError
 
 logger = logging.getLogger(__name__)
@@ -40,7 +39,11 @@ class TTSClient:
         selected_voice = voice or self.voice
         if voice is not None and selected_voice not in {item["voice"] for item in SUPPORTED_VOICES}:
             raise AppError("TTS_VOICE_INVALID", "请选择本期支持的角色声线", 422)
+        if config.settings.mode_mock:
+            return await asyncio.to_thread(offline.mock_audio, text, out_path)
         try:
+            # The network-capable SDK is not imported or initialized in mock.
+            import edge_tts
             communicate = edge_tts.Communicate(text, selected_voice, rate=self.rate)
             out_path.parent.mkdir(parents=True, exist_ok=True)
             await asyncio.wait_for(communicate.save(str(out_path)), timeout=90)
@@ -50,4 +53,4 @@ class TTSClient:
             raise
         except Exception:  # 不把服务端错误/请求全文回显给用户。
             out_path.unlink(missing_ok=True)
-            raise AppError("TTS_FAILED", "配音服务暂不可用或请求超时，请稍后重试", 502) from None
+            raise AppError("TTS_FAILED", "配音服务暂不可用或请求超时，已停止自动重试；请检查任务记录", 502) from None

@@ -16,6 +16,7 @@ import tempfile
 from pathlib import Path
 
 from app.core.errors import AppError
+from app.core.offline import safe_media_command, safe_media_environment
 from app.services import d7_post
 
 MAX_LINE_S = 4.8
@@ -109,8 +110,8 @@ def build_ass(lines: list[dict], bounds: list[tuple[float, float]], width: int =
 
 
 def audio_duration(path: Path) -> float:
-    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
-                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True).stdout.decode().strip()
+    out = subprocess.run(safe_media_command(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)]),
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, env=safe_media_environment()).stdout.decode().strip()
     return float(out or 0)
 
 
@@ -148,9 +149,9 @@ def mix_filter(starts: list[float], durations: list[float], total: float) -> str
 
 
 def _run(cmd: list[str], label: str) -> None:
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.run(safe_media_command(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=safe_media_environment())
     if proc.returncode != 0:
-        raise AppError("FFMPEG_FAILED", f"{label}失败：{proc.stderr.decode('utf-8', 'ignore')[-400:]}", 422)
+        raise AppError("FFMPEG_FAILED", f"{label}失败，请检查本地输入媒体", 422)
 
 
 def mix_audio(clips: list[Path], starts: list[float], total: float, out_wav: Path) -> Path:

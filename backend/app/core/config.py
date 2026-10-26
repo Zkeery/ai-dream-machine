@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""配置加载：只从项目根目录 .env 读取，密钥不进代码。"""
+"""配置默认使用服务器环境变量；离线模式不读取 .env 或保存凭证。"""
 from __future__ import annotations
 
 import os
@@ -21,8 +21,15 @@ VIDEO_DIR = RESULT_DIR / "video"
 SCRIPT_DIR = RESULT_DIR / "script"
 UPLOAD_DIR = RESULT_DIR / "uploads"
 
-# 只在 .env 存在时加载（测试环境无 .env 也不报错）
-load_dotenv(PROJECT_ROOT / ".env")
+# Mock is the safe default. Enabling real providers requires an explicit
+# server environment setting; offline tests never read project credentials.
+MODE_MOCK = os.getenv("MODE_MOCK", "1").lower() not in {"0", "false", "off"}
+DISABLE_OUTBOUND_NETWORK = os.getenv("DISABLE_OUTBOUND_NETWORK", "1").lower() not in {"0", "false", "off"}
+if not MODE_MOCK and os.getenv("SKIP_PROJECT_ENV", "1") != "1":
+    load_dotenv(PROJECT_ROOT / ".env")
+if MODE_MOCK or DISABLE_OUTBOUND_NETWORK:
+    from app.core.offline import install_network_guard
+    install_network_guard()
 
 
 def _load_cost_rates() -> str:
@@ -44,7 +51,9 @@ class Settings:
     """
 
     # AIHubMix 网关 Key（兼容旧变量名）
-    aihubmix_api_key: str = os.getenv("AIHUBMIX_API_KEY", "") or os.getenv("DASHSCOPE_API_KEY", "")
+    mode_mock: bool = MODE_MOCK
+    disable_outbound_network: bool = DISABLE_OUTBOUND_NETWORK
+    aihubmix_api_key: str = "" if MODE_MOCK else (os.getenv("AIHUBMIX_API_KEY", "") or os.getenv("DASHSCOPE_API_KEY", ""))
 
     # 网关地址
     aihubmix_base: str = os.getenv("AIHUBMIX_BASE", "https://aihubmix.com")

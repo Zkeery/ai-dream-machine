@@ -1,0 +1,782 @@
+{
+  "schema": "policy-status-engineering-controls-v11",
+  "date": "2026-10-26",
+  "origin": "engineering examples grounded in existing structured v4 policy evidence; not new human labels or independent holdout",
+  "baseline_path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-batch-reference-calibration-v10-20261026/result-run-01-final.json",
+  "baseline_sha256": "4a1cd3f0dd7ec934167826492359237eec9ba725a52fb0b733aa2cfd0f7856d3",
+  "cases": [
+    {
+      "case_id": "PS01",
+      "role": "positive_anchor",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "LOCAL_POLICY_REASON_EVIDENCE_FOUND",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "保存H06原回答的拒答理由，已有人工资料使用是/编造否仅作只读背景；两项局部来源证据不是整条通过。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS02",
+      "role": "positive_variant",
+      "answer": "无法描写该场景，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "LOCAL_POLICY_REASON_EVIDENCE_FOUND",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "不含因为连接词的相同明确拒答理由，保留局部范围。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS03",
+      "role": "positive_variant",
+      "answer": "无法描写该场景，因为根据资料，暮潮夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "暮潮夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "LOCAL_POLICY_REASON_EVIDENCE_FOUND",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "实体改名一致时仅展示相同有限句式证据，不按H06样本ID判断。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS04",
+      "role": "positive_variant",
+      "answer": "无法写该广告语，因为青禾杯是玻璃杯。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "document_id": "status-control",
+          "version_id": "v1",
+          "version_number": 1,
+          "text": "青禾杯是玻璃杯。"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "LOCAL_POLICY_REASON_EVIDENCE_FOUND",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "完整分类事实作为广告拒答理由；不推断医疗保证。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS05",
+      "role": "negative_no_citation",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "未引用来源不能展示为已绑定局部依据。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS06",
+      "role": "negative_unknown_citation",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "UNKNOWN"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "未知引用继续复核。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS07",
+      "role": "negative_changed_subject",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有旅客必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "改变人员范围后不能借用原居民规则。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS08",
+      "role": "mixed_unfounded_guarantee",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "句号后的无依据保证优先复核，前句局部证据仍单独表达。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS09",
+      "role": "mixed_unpunctuated_guarantee",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛而且我保证绝对不会受伤。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "PARTIAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "无标点并列保证不能被拒答理由吞掉。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS10",
+      "role": "neutral_bare_refusal",
+      "answer": "无法描写该场景。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NOT_CHECKED",
+      "expected_primary_status": "NOT_CHECKED",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "只有拒答行为，不存在可标为已支持的理由原子。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS11",
+      "role": "neutral_meta_explanation",
+      "answer": "无法确定，因为未提供相关资料。",
+      "sources": [],
+      "citations": [],
+      "expected_policy_status": "NOT_CHECKED",
+      "expected_primary_status": "NOT_CHECKED",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "资料不足的解释不是世界事实证据，也不是整条通过。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS12",
+      "role": "neutral_ordinary_fact",
+      "answer": "阿澄应该找老舟。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "document_id": "status-control",
+          "version_id": "v1",
+          "version_number": 1,
+          "text": "阿澄遇到机械义肢故障会找老舟。"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_policy_status": "NOT_CHECKED",
+      "expected_primary_status": "NOT_CHECKED",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "普通事实仍在现有关系检查范围外，不新增通用事实判定。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS13",
+      "role": "negative_missing_version",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "现有原子匹配不能替代明确版本绑定。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS14",
+      "role": "negative_boolean_version",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": true,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": true,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "布尔值不能冒充整数版本号。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS15",
+      "role": "negative_ambiguous_version",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        },
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "conflicting-v2",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "同引用出现多个版本不能选择其中一个展示已绑定。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS16",
+      "role": "negative_unverified_report",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "有人称：“红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。”尚未核实。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "有人称：“镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。”尚未核实。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "未经核实的引述不能提升成已核实的规则理由。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS17",
+      "role": "negative_retracted_source",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。复核撤回上述规则。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。复核撤回上述规则。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "保留来源撤回限制，不裁切后展示支持。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS18",
+      "role": "negative_local_unknown_fact",
+      "answer": "无法写该广告语，因为青禾杯采用黄金。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "document_id": "status-control",
+          "version_id": "v1",
+          "version_number": 1,
+          "text": "青禾杯采用耐热玻璃。"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_policy_status": "NEED_REVIEW",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "未提供材质不能标为局部支持。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS19",
+      "role": "negative_h05_protection",
+      "answer": "关好窗帘以防海面光影让人迷失方向。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NOT_CHECKED",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "没有拒答理由帧，H05防护因果风险保持。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS20",
+      "role": "mixed_unchecked_tail",
+      "answer": "无法描写该场景，因为根据资料，红月夜所有居民必须留在室内，禁止在街上自由闲逛。这个地方有十座隐形塔。",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "LOCAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "LOCAL_POLICY_REASON_EVIDENCE_FOUND",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "前句局部证据不能让未检查的后句事实获得整条通过。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS21",
+      "role": "negative_policy_scope",
+      "answer": "无法写该广告语，因为青禾杯是玻璃杯，所有玻璃杯都不会破碎。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "document_id": "status-control",
+          "version_id": "v1",
+          "version_number": 1,
+          "text": "青禾杯是玻璃杯。"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "expected_policy_status": "PARTIAL_TEXT_EVIDENCE_FOUND",
+      "expected_primary_status": "NEED_REVIEW",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "前一事实有据不等于后一全称保证有据。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    },
+    {
+      "case_id": "PS22",
+      "role": "neutral_empty_answer",
+      "answer": "",
+      "sources": [
+        {
+          "citation_id": "K1",
+          "title": "镜海小镇固定约束",
+          "fixture_document": "constraint:world",
+          "version_number": 1,
+          "document_id": "35888ba419f64173b3c14bbfc4faf90b",
+          "version_id": "e8195d1640fc40ea9d85d1bac0040b11",
+          "chunk_id": "constraint:e8195d1640fc40ea9d85d1bac0040b11",
+          "is_constraint": true,
+          "text": "红月夜所有居民必须留在室内，禁止安排角色在街上自由闲逛。"
+        },
+        {
+          "citation_id": "K2",
+          "title": "镜海红月规则",
+          "fixture_document": "redmoon",
+          "version_number": 1,
+          "document_id": "4a149f05a3d14670807a2a73083c76c0",
+          "version_id": "ff95a1384be544739bc6508eafa577de",
+          "chunk_id": "38c7882b616e4adab49bd1ff21916f33",
+          "is_constraint": false,
+          "text": "镜海镇的红月每四十天出现一次。红月升起后，海面会投出让人迷失方向的光影，所以所有居民都留在室内。镇长只通过屋内广播提醒人们关好窗帘。"
+        }
+      ],
+      "citations": [
+        "K1",
+        "K2"
+      ],
+      "expected_policy_status": "NOT_CHECKED",
+      "expected_primary_status": "NOT_CHECKED",
+      "whole_answer_expected": "NOT_ASSESSED",
+      "whole_answer_passed": null,
+      "reason": "空回答不能获得局部或整体通过。",
+      "origin": "assistant_authored_engineering_control_not_new_human_judgment"
+    }
+  ]
+}

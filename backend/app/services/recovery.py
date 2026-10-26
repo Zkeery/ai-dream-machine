@@ -9,6 +9,7 @@ from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.core.errors import AppError
+from app.core import config
 from app.services import db, execution_store, model_catalog, provider_jobs
 
 
@@ -18,6 +19,7 @@ class ResumeRequest(BaseModel):
 
 
 def _ensure(conn):
+    conn.execute("CREATE TABLE IF NOT EXISTS execution_mock_markers (execution_id TEXT PRIMARY KEY)")
     conn.execute("""CREATE TABLE IF NOT EXISTS execution_recovery_inputs (
         execution_id TEXT PRIMARY KEY, input_hash TEXT NOT NULL,
         snapshot TEXT NOT NULL, created_at REAL NOT NULL)""")
@@ -151,6 +153,8 @@ def capture(execution_id: str, value: dict):
         _ensure(conn)
         conn.execute("INSERT OR IGNORE INTO execution_recovery_inputs VALUES(?,?,?,?)",
                      (execution_id, execution_store.fingerprint(value), json.dumps(value, ensure_ascii=False), time.time()))
+        if config.settings.mode_mock and config.settings.disable_outbound_network:
+            conn.execute("INSERT OR IGNORE INTO execution_mock_markers VALUES(?)", (execution_id,))
 
 
 def copy_snapshot(source_execution_id: str, target_execution_id: str):
@@ -215,6 +219,14 @@ def _verify_agent_checkpoint(meta, execution_id: str):
 
 
 def _control_resume_allowed(meta, execution_id: str) -> bool:
+    # Mock providers have no paid provider-job row. Only executions explicitly
+    # captured under the network guard can use this path; never a real/legacy job.
+    if config.settings.mode_mock and config.settings.disable_outbound_network:
+        with db.connect() as conn:
+            _ensure(conn)
+            root = _root_execution(conn, execution_id)
+            if conn.execute("SELECT 1 FROM execution_mock_markers WHERE execution_id=?", (root,)).fetchone():
+                return True
     run = _verify_agent_checkpoint(meta, execution_id)
     if not run:
         return False
@@ -238,7 +250,7 @@ def status(meta, entity_type: str) -> dict:
         return {"execution_id": None, "source_execution_id": None, "jobs": [], "can_resume": False,
                 "requires_reconciliation": False, "reason": "尚无需要恢复的生成任务", "reason_code": None}
     result = provider_jobs.public_status(latest["execution_id"], meta.owner_id)
-    result.update(reason=None, reason_code=None)
+    result.update(reason=None, reason_code=None, mock=config.settings.mode_mock)
     if entity_type == "session" and latest["status"] in {"failed", "interrupted"}:
         try:
             _verify_agent_checkpoint(meta, latest["execution_id"])

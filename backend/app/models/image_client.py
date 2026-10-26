@@ -12,6 +12,7 @@ import httpx
 
 from app.core import config
 from app.core.errors import AppError
+from app.core import offline
 from app.services import provider_jobs
 
 logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class ImageClient:
         self.api_key = config.settings.aihubmix_api_key
         self.base = config.settings.aihubmix_base
         self.timeout = config.settings.image_timeout
-        self.max_retries = config.settings.max_retries
+        self.max_retries = 0
 
     def _headers(self) -> dict:
         return {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
@@ -105,7 +106,8 @@ class ImageClient:
     def _save_result(self, job: provider_jobs.Job, url: str, out_path: Path) -> Path:
         from app.services import cost_control
         provider_jobs.ready(job, url)
-        cost_control.settle(job.id, status="completed")
+        settlement = cost_control.settle(job.id, status="completed", actual_units={"images": 1})
+        cost_control.require_confirmed_settlement(settlement)
         try:
             result = self._download(url, out_path)
         except AppError as error:
@@ -130,6 +132,8 @@ class ImageClient:
 
     def text_to_image(self, prompt: str, out_path: Path, model: str | None = None, *, size: str = "1280x720") -> Path:
         """文生图：返回本地图片路径。"""
+        if config.settings.mode_mock:
+            return offline.mock_image(out_path, size)
         from app.services.agent_runtime import with_brief
         prompt = with_brief(prompt)
         if not self.api_key:
@@ -181,6 +185,10 @@ class ImageClient:
         paths = image_path if isinstance(image_path, list) else [image_path]
         if not 1 <= len(paths) <= 3:
             raise AppError("IMAGE_REFERENCE_LIMIT", "每个分镜最多引用 3 张角色/场景图，请调整分镜引用", 400)
+        if config.settings.mode_mock:
+            if any(not Path(path).is_file() for path in paths):
+                raise AppError("IMAGE_NOT_FOUND", "参考图不存在", 400)
+            return offline.mock_image(out_path, size)
         if not self.api_key:
             raise AppError("MISSING_API_KEY", "未配置 AIHUBMIX_API_KEY", 503)
         images = []

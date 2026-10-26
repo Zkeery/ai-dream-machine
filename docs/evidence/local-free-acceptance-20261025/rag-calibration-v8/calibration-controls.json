@@ -1,0 +1,1544 @@
+{
+  "schema": "rag-calibration-controls-v8",
+  "artifact_version": "v8-calibration-controls-v1",
+  "created_local_date": "2026-10-25",
+  "status": "PREPARED_NOT_EXECUTED",
+  "purpose": "Bound synthetic calibration controls with explicit human judgments and a separate limited engineering contract.",
+  "frozen_inputs": {
+    "samples": {
+      "path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-new-synthetic-review-20261025/samples.json",
+      "sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+      "schema": "rag-new-synthetic-material-v1",
+      "round_id": "rag-new-synthetic-review-20261025-r2",
+      "version": "r2-material-v1"
+    },
+    "human_review": {
+      "path": "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-new-synthetic-review-20261025/新增人工复核记录.json",
+      "sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+      "schema": "rag-new-synthetic-human-review-v1",
+      "round_id": "rag-new-synthetic-review-20261025-r2",
+      "status": "completed"
+    }
+  },
+  "material_origin": {
+    "kind": "new_hand_authored_synthetic_material",
+    "author": "current_assistant",
+    "not_real_model_outputs": true,
+    "not_independent_human_authorship": true,
+    "not_blinded_holdout": true,
+    "independence_claim": "New text pairs outside the old 52 and prior control materials; no independent-generalization claim",
+    "no_prior_checker_execution": true,
+    "no_expected_labels_in_material": true
+  },
+  "judgment_policy": {
+    "kind": "copy_of_explicit_session_user_judgments",
+    "three_fields": [
+      "source_support",
+      "rewrite_acceptance",
+      "overall_acceptability"
+    ],
+    "no_new_fabrication_or_used_labels": true,
+    "original_human_scores_unchanged": true,
+    "h05_unchanged": true,
+    "human_judgments_are_not_checker_inputs": true,
+    "calibration_role_is_not_machine_truth": true,
+    "j12_first_two_judgments_apply_to_activity_range_clause_only": true
+  },
+  "machine_contract": {
+    "kind": "engineering_contract_not_new_human_judgment",
+    "expected_need_review_case_ids": [
+      "J01",
+      "J02",
+      "J03",
+      "J04",
+      "J06",
+      "J08",
+      "J09",
+      "J11",
+      "J12"
+    ],
+    "expected_not_checked_case_ids": [
+      "J05",
+      "J07",
+      "J10"
+    ],
+    "v8_new_conservative_hint_case_ids": [
+      "J08",
+      "J09",
+      "J11"
+    ],
+    "v8_new_hint_scope": [
+      "depiction_restriction_to_world_absence",
+      "restricted_population_to_everyone_despite_explicit_exception",
+      "illustrative_materials_to_exclusive_allowed_list"
+    ],
+    "other_cases_do_not_gain_semantic_acceptance": true,
+    "no_generic_causal_transitivity_or_full_source_scope_parser_added": true,
+    "not_checked_means_qualified": false,
+    "need_review_means_fabricated": false,
+    "case_ids_and_engineering_expectations_are_not_runtime_checker_inputs": true
+  },
+  "counts": {
+    "controls": 12,
+    "explicit_human_judgments": 36,
+    "human_acceptable_positive_controls": 5,
+    "human_needs_revision_negative_controls": 7,
+    "engineering_need_review_expectations": 9,
+    "engineering_not_checked_expectations": 3,
+    "v8_new_conservative_hint_targets": 3
+  },
+  "execution_boundary": {
+    "checker_executed_to_create_this_file": false,
+    "tests_executed_to_create_this_file": false,
+    "replay_executed_to_create_this_file": false,
+    "new_model_calls_to_create_this_file": 0,
+    "added_model_cost_cny": 0,
+    "mode": "Mock"
+  },
+  "limitations": [
+    "The source-answer pairs were authored by the current assistant and judged by the session user; they were not independently authored by a human.",
+    "These calibration controls are not a blinded holdout or independent generalization evidence.",
+    "The 12 synthetic controls remain separate from the frozen 52 historical answers and original human scores.",
+    "No generalization rate, model pass rate, fabrication rate or production acceptance may be inferred from this control table.",
+    "A human-acceptable calibration role is not a machine truth label; NEED_REVIEW is not a fabrication verdict and NOT_CHECKED is not acceptance.",
+    "Quoted evidence_reason text is copied from explicit original judgment reasons; engineering expectations are separately identified.",
+    "J12 source support and rewrite acceptance apply only to the activity-range clause; its complete answer was separately judged needs revision."
+  ],
+  "cases": [
+    {
+      "case_id": "J01",
+      "group": "因果改写",
+      "query": "这次林栅温室的排风机为什么启动？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "林栅温室运行记录",
+          "document_id": "synthetic-r2-j01",
+          "version_id": "synthetic-r2-v1-j01",
+          "version_number": 1,
+          "text": "因为棚内温度连续五分钟高于32℃，排风机启动。温度降到28℃时，排风机停止。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "棚内温度连续五分钟高于32℃，因此排风机启动。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "2ce4e127cd9aa10f22fea14203a97789c02c5ee80a28013db379b91b941fb8d0",
+        "query_sha256": "8d0eb1f6bec02c6ac605b51e7e5157b0d530f2791c949c996c3bae329819450c",
+        "answer_sha256": "dca66b3b627cc9c5822aae0fe719271e1adee8d0d2995f09d0e427c6032dcbb2",
+        "sources_sha256": "ea982535a83c897cf4debea80ff951b4e89aee1e115a412420fd39ad0994932c",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J01-01",
+          "J01-02",
+          "J01-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-01:1",
+          "question_id": "J01-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文用“因为”明确说明了温度连续五分钟高于32℃与排风机启动的因果关系。",
+          "scope": "new source support judgment only; rewrite and overall judgments remain unanswered",
+          "recorded_at_utc": "2026-10-25T07:20:07Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_e79fc3921bf04c128a4f041fbe28cf1e\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-02:1",
+          "question_id": "J01-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "用“因此”表达温度连续五分钟高于32℃与排风机启动的因果关系基本符合原文。",
+          "scope": "new rewrite acceptance judgment only; overall and other labels remain unanswered",
+          "recorded_at_utc": "2026-10-25T07:24:38Z",
+          "reviewer": "session_user",
+          "input_kind": "direct_user_message",
+          "user_question_item_id": null,
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-03:1",
+          "question_id": "J01-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答准确说明了启动原因，保留了温度和持续时间，省略停止条件不影响本题主要含义。",
+          "scope": "new overall acceptability judgment for this synthetic pair only; no other labels or rule changes inferred",
+          "recorded_at_utc": "2026-10-25T07:25:51Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_aa9f8712355a4360b479cb94ec426c46\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_acceptable_positive",
+        "label_zh": "人工可接受正例",
+        "basis_question_id": "J01-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J01-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J01-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-01:1",
+          "quote": "原文用“因为”明确说明了温度连续五分钟高于32℃与排风机启动的因果关系。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J01-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-02:1",
+          "quote": "用“因此”表达温度连续五分钟高于32℃与排风机启动的因果关系基本符合原文。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J01-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J01-03:1",
+          "quote": "回答准确说明了启动原因，保留了温度和持续时间，省略停止条件不影响本题主要含义。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "defer_full_source_scope_parsing",
+        "reason": "本轮未实现含启动与停止两句来源的完整范围解析，保留NEED_REVIEW；人工可接受不转换成机器支持。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J02",
+      "group": "因果改写",
+      "query": "绒石排练厅的舞台顶灯为什么熄灭？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "绒石排练厅值班记录",
+          "document_id": "synthetic-r2-j02",
+          "version_id": "synthetic-r2-v1-j02",
+          "version_number": 1,
+          "text": "19点整，提示铃响起，舞台顶灯也在这一时刻熄灭。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "提示铃响起导致舞台顶灯熄灭。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "52e5e2accd502576f0a99ecb1ff4e66f564af9a369f56404ac69a302cc0ae1a8",
+        "query_sha256": "dbc79535fc8ebe6e937ad14efa2e823f0ef9013ffb588b0fa00b2847109dd936",
+        "answer_sha256": "191aa2e0ac17d079da574a8c99213a3325e3a87c38db63ae31ddd23db93edf73",
+        "sources_sha256": "f36419ed30d967523cab31796766bc08a9394fa82d04073516915ffbda5d6a11",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J02-01",
+          "J02-02",
+          "J02-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-01:1",
+          "question_id": "J02-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只说明提示铃响起和顶灯熄灭发生在同一时刻，没有说明铃声导致灯灭。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T07:30:14Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_cd76ca4db1c24682be19d6314cc4ffc9\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-02:1",
+          "question_id": "J02-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文只说明两个事件同时发生，不能改写为铃声导致灯灭。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T07:32:00Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_4a54bf6140bf4fe38ac70645cc17d505\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-03:1",
+          "question_id": "J02-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把同时发生的两个事件写成了因果关系，原文没有支持铃声导致灯灭。",
+          "scope": "new overall acceptability judgment for this synthetic pair only; no extra labels or rule changes inferred",
+          "recorded_at_utc": "2026-10-25T07:33:35Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_6d5d1ec7957f4c44b6e821ca74be6ff8\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J02-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J02-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J02-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-01:1",
+          "quote": "原文只说明提示铃响起和顶灯熄灭发生在同一时刻，没有说明铃声导致灯灭。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J02-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-02:1",
+          "quote": "原文只说明两个事件同时发生，不能改写为铃声导致灯灭。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J02-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J02-03:1",
+          "quote": "回答把同时发生的两个事件写成了因果关系，原文没有支持铃声导致灯灭。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "preserve_or_trigger_review",
+        "reason": "同时发生被写为因果；工程契约要求保留或触发NEED_REVIEW，不自动判为编造。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J03",
+      "group": "因果改写",
+      "query": "苔页档案馆的管道为什么漏水？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "苔页档案馆维护记录",
+          "document_id": "synthetic-r2-j03",
+          "version_id": "synthetic-r2-v1-j03",
+          "version_number": 1,
+          "text": "管道漏水使二楼地面积水，积水导致阅览区暂停开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "阅览区暂停开放导致管道漏水。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "f36a78be0fc4329fa48baa9c42e3e859651c188ea843486c8516003734a769be",
+        "query_sha256": "7fd7eb026e48951cc45377567a3960df96dd1f8cb47c51c96d22000f654f307f",
+        "answer_sha256": "0b43c6d79ee64380a54edc0c044aa753bcfe5cf8c107dd64131d17013d7b2be2",
+        "sources_sha256": "e031b3d63fe1b4c37f3a852ad9d2e57bc281d162217d3bcb847e6e646bf1f76c",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J03-01",
+          "J03-02",
+          "J03-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-01:1",
+          "question_id": "J03-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文说明管道漏水使地面积水，积水导致阅览区暂停开放，回答颠倒了因果方向。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T07:35:41Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_6dd88e2522ac4400944e32ef5ac983c7\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-02:1",
+          "question_id": "J03-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文是管道漏水导致积水、积水导致暂停开放，不能改写为暂停开放导致管道漏水。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T07:36:53Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_6b53088f480a4fdf88f44cc610fd9c5f\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-03:1",
+          "question_id": "J03-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答颠倒了因果方向，原文没有支持暂停开放导致管道漏水。",
+          "scope": "new overall acceptability judgment for this synthetic pair only; no extra labels or rule changes inferred",
+          "recorded_at_utc": "2026-10-25T07:38:30Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_335cabc26229470b9eeabfa1c15e8bca\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J03-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J03-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J03-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-01:1",
+          "quote": "原文说明管道漏水使地面积水，积水导致阅览区暂停开放，回答颠倒了因果方向。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J03-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-02:1",
+          "quote": "原文是管道漏水导致积水、积水导致暂停开放，不能改写为暂停开放导致管道漏水。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J03-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J03-03:1",
+          "quote": "回答颠倒了因果方向，原文没有支持暂停开放导致管道漏水。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "preserve_or_trigger_review",
+        "reason": "回答颠倒来源因果方向；工程契约要求保留或触发NEED_REVIEW。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J04",
+      "group": "因果改写",
+      "query": "霜湾闸站淤泥堆积对抽水泵有什么影响？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "霜湾闸站维护记录",
+          "document_id": "synthetic-r2-j04",
+          "version_id": "synthetic-r2-v1-j04",
+          "version_number": 1,
+          "text": "淤泥堆积堵住进水口。进水口堵塞使抽水泵暂停运行。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "淤泥堆积导致抽水泵暂停运行。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "6ff8c17e30b740ed51431d11938f3466a86dc25354b424796a313da8634111d6",
+        "query_sha256": "fd8b8833f345da69a24c411e452dd04eadebe24002208224b03aa95c392c8b81",
+        "answer_sha256": "a73805c6b99d060c18a8a3de84f461e7200a17c1f4290f2562886b1c20719d23",
+        "sources_sha256": "f1630f8f7e3763b7a8bd8d9436324ce129f41fd101e2db8d0d3557b0e41ea176",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J04-01",
+          "J04-02",
+          "J04-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-01:1",
+          "question_id": "J04-01",
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonably_inferred",
+          "reason": "原文明确给出了“淤泥堆积→进水口堵塞→抽水泵暂停运行”的因果链。",
+          "scope": "new source support judgment only; no rewrite, overall or generic transitive causal rule inferred",
+          "recorded_at_utc": "2026-10-25T07:39:56Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_23ed28fb9d9a49b28d7c415373317076\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-02:1",
+          "question_id": "J04-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "原文给出了完整因果链，把两步关系概括为“淤泥堆积导致抽水泵暂停运行”基本符合本题。",
+          "scope": "new rewrite acceptance judgment in this question only; no overall or generic transitive causal rule inferred",
+          "recorded_at_utc": "2026-10-25T07:41:15Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_e92cf75a254a45138e444aecc4190c13\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-03:1",
+          "question_id": "J04-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答概括了原文完整因果链，省略“进水口堵塞”这一中间环节不影响本题主要含义。",
+          "scope": "new overall acceptability judgment in this question only; no extra labels or generic transitive causal rule inferred",
+          "recorded_at_utc": "2026-10-25T07:43:21Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_9a50d0ac56b84ee0911d74bed6d6af18\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {
+        "scope": "this complete causal chain and original question only; no generic transitive rule inferred"
+      },
+      "calibration_role": {
+        "kind": "human_acceptable_positive",
+        "label_zh": "人工可接受正例",
+        "basis_question_id": "J04-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J04-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J04-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-01:1",
+          "quote": "原文明确给出了“淤泥堆积→进水口堵塞→抽水泵暂停运行”的因果链。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J04-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-02:1",
+          "quote": "原文给出了完整因果链，把两步关系概括为“淤泥堆积导致抽水泵暂停运行”基本符合本题。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J04-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J04-03:1",
+          "quote": "回答概括了原文完整因果链，省略“进水口堵塞”这一中间环节不影响本题主要含义。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "preserve_or_trigger_review",
+        "reason": "人工接受本题完整因果链的概括；v8不实现通用因果传递，仍保留NEED_REVIEW。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J05",
+      "group": "因果改写",
+      "query": "枝灯实验舱怎样通过启动键开启试验？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "2c1d67e7d260cd8cab122d13d95851da5d5cda3a0998f9ff63f68fd312650123",
+        "query_sha256": "61f6cd9a3652173946cab380f17349c8dbbdbdec535fbbf730cc489a89793103",
+        "answer_sha256": "8669eea70355950c783fe24d98cdbcdac131276738e6ef0b3ac4ae6dcfe39d6d",
+        "sources_sha256": "e320fa7837d3a6c3636fe932e4e08d556a0bf6a5e976682d6933014ba0be5380",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J05-01",
+          "J05-02",
+          "J05-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-01:1",
+          "question_id": "J05-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文明确说明舱门锁紧时按启动键开启试验，未锁紧时启动键无效。",
+          "scope": "new source support judgment only; no rewrite, overall or generic conditional rule inferred",
+          "recorded_at_utc": "2026-10-25T08:03:27Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_11f175cf48b443ce9169ef8a27f5440b\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-02:1",
+          "question_id": "J05-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+          "scope": "new rewrite acceptance judgment in this question only; no overall or generic conditional rule inferred",
+          "recorded_at_utc": "2026-10-25T08:05:10Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_fd04a8d58b21443484e5ce30f49cde0b\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-03:1",
+          "question_id": "J05-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。",
+          "scope": "new overall acceptability judgment in this question only; no extra labels or generic conditional rule inferred",
+          "recorded_at_utc": "2026-10-25T08:10:01Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_b7695aa4465d44848b3397b5c5d9ddac\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_acceptable_positive",
+        "label_zh": "人工可接受正例",
+        "basis_question_id": "J05-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J05-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J05-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-01:1",
+          "quote": "原文明确说明舱门锁紧时按启动键开启试验，未锁紧时启动键无效。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J05-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-02:1",
+          "quote": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J05-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J05-03:1",
+          "quote": "回答保留了舱门锁紧和未锁紧两种情况下启动键的作用，基本符合原文。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NOT_CHECKED",
+        "v8_action": "preserve_not_checked",
+        "reason": "无对应旧风险词，本轮保持NOT_CHECKED；该状态不表示机器已核实或合格。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J06",
+      "group": "因果改写",
+      "query": "按下复位键就能重启灰檐冷库的压缩机吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "灰檐冷库操作说明",
+          "document_id": "synthetic-r2-j06",
+          "version_id": "synthetic-r2-v1-j06",
+          "version_number": 1,
+          "text": "只有在备用电源已经接通时，按下复位键才会重启压缩机。备用电源未接通时，复位键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "只要按下复位键，压缩机就会重启。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "a501fd98a2c4bd9a720461e1d75cd9b62790bab0592f7b4854a8afd7f97648bd",
+        "query_sha256": "47d16f420c22ec26055d2532abb5f31c1b7b3a86fb33cbc479830b6a2e8e6faa",
+        "answer_sha256": "7005397c93af78a4a70b3612f8f50dbb2734d64d767bf7716bd6dbf5b8bda062",
+        "sources_sha256": "2bed7af76f10c9960b15b1d733b2830523714225de8193ba230c6dac5bc68856",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J06-01",
+          "J06-02",
+          "J06-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-01:1",
+          "question_id": "J06-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "回答省略了备用电源已经接通这一必要条件，原文不支持只要按下复位键就能重启。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:11:55Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_463e5fa859704c9b9f3cf21e74b58a6b\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-02:1",
+          "question_id": "J06-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "回答省略了备用电源已经接通这一必要条件，不能改写为只要按下复位键就会重启。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:18:06Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_4b9e2e527d2441479814b06bd64d077f\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-03:1",
+          "question_id": "J06-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答省略了备用电源已经接通这一必要条件，原文不支持只要按下复位键就能重启。",
+          "scope": "new overall acceptability judgment for this synthetic pair only; no extra labels or rule changes inferred",
+          "recorded_at_utc": "2026-10-25T08:20:33Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_5c4193e438584cdfa598ea27151d50e9\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J06-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J06-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J06-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-01:1",
+          "quote": "回答省略了备用电源已经接通这一必要条件，原文不支持只要按下复位键就能重启。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J06-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-02:1",
+          "quote": "回答省略了备用电源已经接通这一必要条件，不能改写为只要按下复位键就会重启。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J06-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J06-03:1",
+          "quote": "回答省略了备用电源已经接通这一必要条件，原文不支持只要按下复位键就能重启。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "preserve_or_trigger_review",
+        "reason": "回答省略备用电源已接通这一条件；工程契约要求保留或触发NEED_REVIEW。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J07",
+      "group": "规则范围",
+      "query": "给陶穹影棚的这部短片写一段骑摩托车送货的交通镜头。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "bd64b888da01a550c0e59e548d44c500ce9d03dfbfa566551f95f69e9986b865",
+        "query_sha256": "b2dac50c408d2feecee4516f55dd38b8fe6286dc67baec09245b218f351fbabb",
+        "answer_sha256": "832da52f665b1fb1644ceeb04995214b5371ad866f4d07c17e70fabefee1efa7",
+        "sources_sha256": "eea39a6aa770e04c0a2561e2ffbecf9f395740d863ea9fdbbf0d432355e42f35",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J07-01",
+          "J07-02",
+          "J07-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-01:1",
+          "question_id": "J07-01",
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonably_inferred",
+          "reason": "原文规定本片交通画面只允许出现手推车和缆车，摩托车不在允许范围内。",
+          "scope": "new source support judgment for this film's depiction restriction only; no rewrite, overall or world-existence rule inferred",
+          "recorded_at_utc": "2026-10-25T08:24:14Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_f58c3609e98a462e80ede7a56f93c1d2\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-02:1",
+          "question_id": "J07-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+          "scope": "new rewrite and creative-handling acceptance within this film only; no overall or world-existence rule inferred",
+          "recorded_at_utc": "2026-10-25T08:30:21Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_59daa21c32344dc0854bdc22afed73d0\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-03:1",
+          "question_id": "J07-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。",
+          "scope": "new overall acceptability judgment for this film's creative request only; no extra labels or world-existence rule inferred",
+          "recorded_at_utc": "2026-10-25T08:32:10Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_a75d47c653e44b8dabbbe49122b0bbbc\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {
+        "scope": "this film's depiction restriction and original creative request only; no world-existence rule inferred"
+      },
+      "calibration_role": {
+        "kind": "human_acceptable_positive",
+        "label_zh": "人工可接受正例",
+        "basis_question_id": "J07-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J07-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J07-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-01:1",
+          "quote": "原文规定本片交通画面只允许出现手推车和缆车，摩托车不在允许范围内。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J07-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-02:1",
+          "quote": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J07-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J07-03:1",
+          "quote": "回答遵守了本片交通画面的限制，并提出用手推车送货的替代方案，基本符合原文。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NOT_CHECKED",
+        "v8_action": "preserve_not_checked",
+        "reason": "无对应旧风险词，本轮保持NOT_CHECKED；不把本片画面限制推成世界不存在。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J08",
+      "group": "规则范围",
+      "query": "白汀城的世界设定中存在无人机吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "白汀城短片画面要求",
+          "document_id": "synthetic-r2-j08",
+          "version_id": "synthetic-r2-v1-j08",
+          "version_number": 1,
+          "text": "本片不允许出现无人机画面。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "白汀城不存在无人机。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "bdca6275b038112046bcaa977e05b223621366c79efa70ca44e3bad2edc3ada8",
+        "query_sha256": "73ec60cedd7a2a40104f811449baa682d27bf15b5560dc1259bd6787713d1ed4",
+        "answer_sha256": "e140158e03de201ffd7442651a94573ed7897aad322f94324e8ae70bd9064bac",
+        "sources_sha256": "862252ddba6d696e793d7754e3cffd0d0c85213d0de8ec5a6196b9b7cff8c814",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J08-01",
+          "J08-02",
+          "J08-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-01:1",
+          "question_id": "J08-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只规定本片不允许出现无人机画面，不能推断白汀城的世界设定中不存在无人机。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:45:34Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_8a502f6d7deb4027a6ca0686382e7c9e\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-02:1",
+          "question_id": "J08-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文只限制本片不出现无人机画面，不能改写为白汀城不存在无人机。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:49:09Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_fe0de6986d8b4118bad46ea0bec332a8\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-03:1",
+          "question_id": "J08-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把本片画面限制扩大成了城市世界设定，原文没有支持白汀城不存在无人机。",
+          "scope": "new overall acceptability judgment only; no fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:50:16Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_44b1adbe9c1e4183b5cfaaf937e8bc52\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J08-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J08-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J08-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-01:1",
+          "quote": "原文只规定本片不允许出现无人机画面，不能推断白汀城的世界设定中不存在无人机。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J08-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-02:1",
+          "quote": "原文只限制本片不出现无人机画面，不能改写为白汀城不存在无人机。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J08-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J08-03:1",
+          "quote": "回答把本片画面限制扩大成了城市世界设定，原文没有支持白汀城不存在无人机。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "add_conservative_scope_hint",
+        "reason": "v8仅新增保守范围提示：回答将本片画面禁令扩大为城市世界不存在；不作语义接受。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J09",
+      "group": "规则范围",
+      "query": "周三上午，所有人都不能进入木羽巡检区的东廊吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "木羽巡检区开放规则",
+          "document_id": "synthetic-r2-j09",
+          "version_id": "synthetic-r2-v1-j09",
+          "version_number": 1,
+          "text": "周三上午，东廊不向普通访客开放；持当日巡检证的维修人员可以进入。其他时段按正常预约规则开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "周三上午，任何人都不能进入东廊。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "01afd8f633bc59ad9e69b13c3acdf963660f09592ea50a89140741aa900dc76d",
+        "query_sha256": "8d5086cd79d5fab06996c685d74b36a440a8bb9d95b52a6e828d96965abb8ce1",
+        "answer_sha256": "2e4579b31c7ebfc4f3d5659a60c73aac51feee6af1b2c7e356590dc44fccb830",
+        "sources_sha256": "c47b44a0a7b37c40ce17b9d72751bdcfe99350c5c902c7afa166771c1a52c826",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J09-01",
+          "J09-02",
+          "J09-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-01:1",
+          "question_id": "J09-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只规定周三上午东廊不向普通访客开放，持当日巡检证的维修人员可以进入，不能概括为任何人都不能进入。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:52:19Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_db7682252cf041cc8795931a594885a4\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-02:1",
+          "question_id": "J09-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文只规定周三上午东廊不向普通访客开放，持当日巡检证的维修人员可以进入，不能概括为任何人都不能进入。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:54:23Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_442e79a468f84de2a0104447546352bd\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-03:1",
+          "question_id": "J09-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答忽略了持当日巡检证的维修人员可以进入这一例外，把普通访客的限制扩大成了所有人。",
+          "scope": "new overall acceptability judgment only; no fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:55:19Z",
+          "reviewer": "session_user",
+          "input_kind": "direct_user_message",
+          "user_question_item_id": null,
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J09-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J09-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J09-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-01:1",
+          "quote": "原文只规定周三上午东廊不向普通访客开放，持当日巡检证的维修人员可以进入，不能概括为任何人都不能进入。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J09-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-02:1",
+          "quote": "原文只规定周三上午东廊不向普通访客开放，持当日巡检证的维修人员可以进入，不能概括为任何人都不能进入。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J09-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J09-03:1",
+          "quote": "回答忽略了持当日巡检证的维修人员可以进入这一例外，把普通访客的限制扩大成了所有人。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "add_conservative_scope_hint",
+        "reason": "v8仅新增保守范围提示：回答将普通访客限制扩大为任何人，并丢失明确允许的例外。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J10",
+      "group": "规则范围",
+      "query": "进入星棱分拣站可以使用什么凭证，工作证可以吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "8ed079e5f4cbd5468be4acc85fb8d452f248ff3a6355b264589171266dcda1df",
+        "query_sha256": "7d3a34bd56c683b2cdc315e3d4522232e3e504a4fd6f000f045d7cddcf2d263f",
+        "answer_sha256": "466d8b98c3ac49a0919fdc2f2792d50edbc3c09ada58e25562e9ba54f5f7e980",
+        "sources_sha256": "1d719ff054aebc9f6990d37b994c9577c00d5f0e16410ff4a1f6db4b71669931",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J10-01",
+          "J10-02",
+          "J10-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-01:1",
+          "question_id": "J10-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文明确说明只接受当日纸质通行票或电子二维码，工作证不能替代入场凭证。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T08:59:22Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_04fcd020d23145eebe2e9bdc661a968a\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-02:1",
+          "question_id": "J10-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:04:01Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_ef9f1dd75b7244a28d276370209a0648\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-03:1",
+          "question_id": "J10-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。",
+          "scope": "new overall acceptability judgment only; no fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:14:45Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_258586f6f1754f3c9f1ed8167874c8c4\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_acceptable_positive",
+        "label_zh": "人工可接受正例",
+        "basis_question_id": "J10-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J10-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J10-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-01:1",
+          "quote": "原文明确说明只接受当日纸质通行票或电子二维码，工作证不能替代入场凭证。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J10-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-02:1",
+          "quote": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J10-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J10-03:1",
+          "quote": "回答保留了当日纸质通行票和电子二维码两种入场凭证，以及工作证不能替代的限制，基本符合原文。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NOT_CHECKED",
+        "v8_action": "preserve_not_checked",
+        "reason": "无对应旧风险词，本轮保持NOT_CHECKED；该状态不表示机器已核实凭证含义或合格。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J11",
+      "group": "规则范围",
+      "query": "麦环手作坊允许使用哪些制作材料？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "麦环手作坊材料介绍",
+          "document_id": "synthetic-r2-j11",
+          "version_id": "synthetic-r2-v1-j11",
+          "version_number": 1,
+          "text": "常见制作材料包括竹片、棉线和陶珠。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "麦环手作坊只允许使用竹片、棉线或陶珠。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "a8ebf62e8e1f2d54e64e005cea0d2c15f080b47c21773ca9d6c97e2f2ccf470a",
+        "query_sha256": "c277c497dc99d2761bd81e5100dacff229b31c3468d24800ba17fbfd3836c6bc",
+        "answer_sha256": "fce15c697e2705051ad8296279d76c64cbffbe887e6f6e3229766e971a550e72",
+        "sources_sha256": "9d1cde2bccecab84d810967760de9f08c9f45e965bc7952889568ffb45dfa8f8",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J11-01",
+          "J11-02",
+          "J11-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-01:1",
+          "question_id": "J11-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只说常见制作材料包括竹片、棉线和陶珠，没有规定只允许使用这三种材料。",
+          "scope": "new source support judgment only; no rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:16:09Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_79495bf784c84c94892ce8023569efa8\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-02:1",
+          "question_id": "J11-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文只说常见制作材料包括竹片、棉线和陶珠，没有规定只允许使用这三种材料。",
+          "scope": "new rewrite acceptance judgment only; no overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:18:36Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_f62bd33f141b417386f8e5108fac8ff8\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-03:1",
+          "question_id": "J11-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把“常见制作材料包括”扩大成了“只允许使用”，原文没有规定只能使用这三种材料。",
+          "scope": "new overall acceptability judgment only; no fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:20:39Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_c250b8aed73e4d2db7d0c25027250275\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {},
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J11-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J11-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J11-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-01:1",
+          "quote": "原文只说常见制作材料包括竹片、棉线和陶珠，没有规定只允许使用这三种材料。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J11-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-02:1",
+          "quote": "原文只说常见制作材料包括竹片、棉线和陶珠，没有规定只允许使用这三种材料。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J11-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J11-03:1",
+          "quote": "回答把“常见制作材料包括”扩大成了“只允许使用”，原文没有规定只能使用这三种材料。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "add_conservative_scope_hint",
+        "reason": "v8仅新增保守范围提示：回答将常见材料包括扩大为只允许使用的封闭清单。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    },
+    {
+      "case_id": "J12",
+      "group": "规则范围",
+      "query": "访客在蓝榫观测屋可以去哪里活动，是否能确定不会受伤？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "蓝榫观测屋访客规则",
+          "document_id": "synthetic-r2-j12",
+          "version_id": "synthetic-r2-v1-j12",
+          "version_number": 1,
+          "text": "访客活动范围仅限展示区，设备间不对访客开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "访客只能在展示区活动，不能进入设备间；待在展示区就绝对不会受伤。",
+      "citations": [
+        "S1"
+      ],
+      "material_binding": {
+        "case_material_sha256": "c32dceeed6745dea44e950680e2765ea5c67b65f6398534aa76692a9c66c78cf",
+        "query_sha256": "fd1215eb6af48f6e5a2e0ffa9b2728dcdaab8e46b95f5d3cbef9069f2abf7a9d",
+        "answer_sha256": "830fe7c437e27d1ed5a99551398b78bf2dd9637f2ad12097d19540834837f6fe",
+        "sources_sha256": "0a84b539fb87f67d9e0108ebbf1bf6a3f1f8871cc43ce133b3f316d3536edb5a",
+        "citations_sha256": "a3df5fc1e07de263b32d7cb37a655cd8ca687520e4ae1590644e58c2350e4ac0"
+      },
+      "human_review_binding": {
+        "round_id": "rag-new-synthetic-review-20261025-r2",
+        "review_sha256": "1858adb8134fd59d396d2a18e0c885aad0f5f0e0457a5a4f8d5a45ff618b2d8b",
+        "samples_sha256": "45b223663be4962e55e2512e74603a7aa4fd4f4c442b41cb6941444118e37736",
+        "question_ids": [
+          "J12-01",
+          "J12-02",
+          "J12-03"
+        ]
+      },
+      "human_judgments": [
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-01:1",
+          "question_id": "J12-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文明确规定访客活动范围仅限展示区，设备间不对访客开放。",
+          "scope": "source support for the activity-range clause only; no injury-claim support, rewrite, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:22:07Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_94c4664f8e98478ea2aeebb24d048570\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-02:1",
+          "question_id": "J12-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "回答前半句保留了访客只能在展示区活动、不能进入设备间的限制，基本符合原文。",
+          "scope": "rewrite acceptance for the activity-range clause only; no injury-claim acceptance, overall or fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:23:20Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_ded629cde8894894b1fd0fb37f02b199\",0]",
+          "supersedes_judgment_id": null
+        },
+        {
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-03:1",
+          "question_id": "J12-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答前半句的活动范围符合原文，但“待在展示区就绝对不会受伤”没有原文依据。",
+          "scope": "explicit overall acceptability of both clauses; no fabrication/used label inferred",
+          "recorded_at_utc": "2026-10-25T09:27:44Z",
+          "reviewer": "session_user",
+          "input_kind": "async_question_reply",
+          "user_question_item_id": "[\"request_user_input_async\",\"call_7e7012e8eecb4e978f08c9105f5c6bb5\",0]",
+          "supersedes_judgment_id": null
+        }
+      ],
+      "human_scope_limits": {
+        "source_support_scope": "activity-range clause only",
+        "rewrite_acceptance_scope": "activity-range clause only"
+      },
+      "calibration_role": {
+        "kind": "human_needs_revision_negative",
+        "label_zh": "人工需修改反例",
+        "basis_question_id": "J12-03",
+        "basis_judgment_id": "rag-new-synthetic-review-20261025-r2:J12-03:1",
+        "machine_truth": false,
+        "scope": "this frozen material and its original question only"
+      },
+      "evidence_reason": [
+        {
+          "field": "source_support",
+          "question_id": "J12-01",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-01:1",
+          "quote": "原文明确规定访客活动范围仅限展示区，设备间不对访客开放。"
+        },
+        {
+          "field": "rewrite_acceptance",
+          "question_id": "J12-02",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-02:1",
+          "quote": "回答前半句保留了访客只能在展示区活动、不能进入设备间的限制，基本符合原文。"
+        },
+        {
+          "field": "overall_acceptability",
+          "question_id": "J12-03",
+          "judgment_id": "rag-new-synthetic-review-20261025-r2:J12-03:1",
+          "quote": "回答前半句的活动范围符合原文，但“待在展示区就绝对不会受伤”没有原文依据。"
+        }
+      ],
+      "machine_expectation": {
+        "kind": "engineering_contract_not_new_human_judgment",
+        "status": "NEED_REVIEW",
+        "v8_action": "preserve_or_trigger_review",
+        "reason": "前两项人工判断仅限活动范围；整条回答含绝对不会受伤的保证，保留或触发NEED_REVIEW。",
+        "semantic_acceptance": false,
+        "is_observed_execution_result": false,
+        "not_checked_means_qualified": false
+      }
+    }
+  ]
+}

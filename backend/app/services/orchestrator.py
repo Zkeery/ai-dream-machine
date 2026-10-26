@@ -35,7 +35,7 @@ from app.schemas.session import (
     VideoArtifact,
     VideoSegment,
 )
-from app.services import prompts, session_store, execution_store, model_catalog, provider_jobs
+from app.services import prompts, session_store, execution_store, model_catalog, provider_jobs, review_store
 from app.services.content_review import ContentReviewer
 from app.services.ffmpeg_util import concat_videos, extract_first_frame
 
@@ -80,12 +80,52 @@ class Orchestrator:
         self.tts = tts or TTSClient()
         self.reviewer = reviewer or ContentReviewer()
 
-    async def _check_content(self, path: str) -> None:
-        """内容安全结果侧审查；命中红线则抛可读错误。"""
-        if not self.reviewer.enabled:
+    async def _check_content(
+        self, path: str, *, expected_person_count: int | None = None,
+        meta: SessionMeta | None = None, item_id: str | None = None,
+    ) -> None:
+        """Persist ordinary and strict observations; only the ordinary route pauses."""
+        if expected_person_count is None and not self.reviewer.enabled:
             return
-        result = await asyncio.to_thread(self.reviewer.review_image, path)
-        if not result["safe"]:
+        async def invoke(**kwargs):
+            token = review_store.bind_item(item_id)
+            try:
+                return await asyncio.to_thread(self.reviewer.review_image, path, **kwargs)
+            finally:
+                review_store.reset_item(token)
+        if expected_person_count is not None:
+            result = await invoke(expected_person_count=expected_person_count)
+            if meta is not None:
+                record = next((entry for entry in reversed(meta.execution_inputs)
+                               if entry.get("stage") == meta.current_stage and entry.get("status") == "running"), None)
+                evidence = {"path": path, "item_id": item_id, "stage": meta.current_stage,
+                            "execution_id": record.get("execution_id") if record else None,
+                            "reviewed_at": time.time(), "result": deepcopy(result)}
+                # Failed execution records are rolled back; this audit log must survive.
+                meta.content_reviews.append(evidence)
+                if record is not None:
+                    record.setdefault("content_reviews", []).append(deepcopy(evidence))
+                session_store.touch(meta)
+            if result.get("review_valid") is not True or result.get("accepted") is not True:
+                raise AppError("CONTENT_REVIEW_FAILED", f"图片结构审查拦截：{result.get('reason', '审查未得出确定结论')}", 400)
+            return
+        result = await invoke()
+        if meta is not None and not result.get("review_reused"):
+            record = next((entry for entry in reversed(meta.execution_inputs)
+                           if entry.get("stage") == meta.current_stage and entry.get("status") == "running"), None)
+            evidence = {"path": path, "item_id": item_id, "stage": meta.current_stage,
+                        "execution_id": execution_store.current_execution_id(),
+                        "reviewed_at": time.time(), "result": deepcopy(result)}
+            meta.content_reviews.append(evidence)
+            if record is not None:
+                record.setdefault("content_reviews", []).append(deepcopy(evidence))
+            session_store.touch(meta)
+        if result.get("route") == "manual":
+            if not result.get("review_id"):
+                raise AppError("CONTENT_REVIEW_FAILED", "审查缺少可追溯的执行记录，请核对后继续", 409)
+            reason = result.get("reason") or review_store.MANUAL_REASON
+            raise review_store.ReviewRequired(result["review_id"], reason)
+        if result.get("route") not in (None, "accepted") or (not result.get("manual_accepted") and result.get("safe") is not True):
             raise AppError("CONTENT_REVIEW_FAILED", f"内容安全拦截：{result['reason']}", 400)
 
     # ---------- 会话生命周期 ----------
@@ -96,7 +136,9 @@ class Orchestrator:
         selection = model_catalog.validate_selection(req.model_selection, project_type=req.project_type)
         if library_ids:
             validate_libraries(owner_id, library_ids)
-        session_id = str(int(time.time() * 1000))
+        # Millisecond timestamps can collide across simultaneous invite users.
+        import uuid
+        session_id = uuid.uuid4().hex
         meta = SessionMeta(
             session_id=session_id,
             orchestration_mode=req.orchestration_mode,
@@ -306,6 +348,7 @@ class Orchestrator:
 
     def _referenced_media_paths(self, meta: SessionMeta) -> set[str]:
         paths = provider_jobs.retained_local_paths(meta.owner_id, "session", meta.session_id)
+        paths |= review_store.retained_paths(meta.session_id, meta.owner_id)
         for stage, artifact in (meta.artifacts or {}).items():
             paths |= self._paths_in_artifact(stage, artifact)
         for stage, versions in (meta.artifact_versions or {}).items():
@@ -680,18 +723,28 @@ class Orchestrator:
                                          reference_count=len(set(p for p in paths if p)))
         inputs = self._input_versions(meta, stage)
         usage = model_catalog.stage_usage(meta, stage)
-        record = {"execution_id": uuid4().hex, "stage": stage, "started_at": time.time(), "model_usage": usage,
-                  "parent_execution_id": self._parent_execution_id(),
-                  "input_versions": inputs, "input_artifact_version": meta.selected_versions.get(stage),
-                  "input_artifact": deepcopy(meta.artifacts.get(stage)),
-                  "input_stale_stages": list(meta.stale_stages),
-                  "input_stages_completed": list(meta.stages_completed),
-                  "generation_request": request, "status": "running"}
-        meta.execution_inputs.append(record)
-        if meta.artifacts.get(stage):
-            self._invalidate_downstream(meta, stage)
-            if stage not in meta.stale_stages:
-                meta.stale_stages.append(stage)
+        parent = self._parent_execution_id()
+        review_resume = meta.status == "awaiting_review" and review_store.resume_approved(parent)
+        if review_resume:
+            record = next((entry for entry in reversed(meta.execution_inputs)
+                           if entry.get("stage") == stage and entry.get("parent_execution_id") == parent
+                           and entry.get("status") == "awaiting_review"), None)
+            if record is None or record.get("generation_request") != request:
+                raise AppError("REVIEW_INPUT_CHANGED", "原暂停执行记录或输入已变化，不能继续", 409)
+            record.update(status="running", resumed_at=time.time())
+        else:
+            record = {"execution_id": uuid4().hex, "stage": stage, "started_at": time.time(), "model_usage": usage,
+                      "parent_execution_id": parent,
+                      "input_versions": inputs, "input_artifact_version": meta.selected_versions.get(stage),
+                      "input_artifact": deepcopy(meta.artifacts.get(stage)),
+                      "input_stale_stages": list(meta.stale_stages),
+                      "input_stages_completed": list(meta.stages_completed),
+                      "generation_request": request, "status": "running"}
+            meta.execution_inputs.append(record)
+            if meta.artifacts.get(stage):
+                self._invalidate_downstream(meta, stage)
+                if stage not in meta.stale_stages:
+                    meta.stale_stages.append(stage)
 
         meta.current_stage = stage
         meta.status = "running"
@@ -706,6 +759,14 @@ class Orchestrator:
             self._abandon_failed_execution(meta, stage, record)
             meta.status = "failed"
             meta.error = "阶段执行已中断，请重试"
+            session_store.touch(meta)
+            raise
+        except review_store.ReviewRequired:
+            # A deliberate review pause keeps generated files, provider cache,
+            # the original input snapshot and the full task reservation.
+            record.update(status="awaiting_review", paused_at=time.time())
+            meta.status = "awaiting_review"
+            meta.error = None
             session_store.touch(meta)
             raise
         except AppError as e:
@@ -730,6 +791,8 @@ class Orchestrator:
             if stage in meta.stale_stages:
                 meta.stale_stages.remove(stage)
         output_version = self._record_version(meta, stage, "generated", inputs)
+        from app.services.creation_checks import record_check
+        record_check(meta, stage)
         self._attach_item_lineage(meta, stage)
         self._refresh_downstream_media(meta, stage)
         # 完整成功后：失败/中断留下的非版本记录与未引用文件一并删掉。
@@ -841,12 +904,26 @@ class Orchestrator:
                 template = prompts.CHARACTER_PROMPT if collection == "characters" else prompts.SETTING_PROMPT
                 prompt = override or template.format(name=item.get("name", ""), description=description, style=meta.style)
                 if not override and collection == "characters":
-                    prompt = prompts.compose_sheet_prompt(prompt, kind="character")
+                    if meta.project_type == "comic":
+                        prompt = (
+                            f"角色名：{item.get('name', '')}；固定外貌与服装：{description}；风格：{meta.style}。"
+                            "画面中恰好1名角色，单人、单一视角，全身正面，头脚完整入画，纯色背景。"
+                            "仅有一个完整人物主体，双手及四肢自然连接，主体清楚对焦。"
+                            "保留上述角色描述中的全部关键颜色，服装和道具无标志、无文字、无标牌。"
+                            "不要设定图、多视图或三视图排版，不要头像特写、悬浮头像、人物或肢体拼贴。"
+                            "负面提示词：multiple views, character sheet, turnaround, inset portrait, "
+                            "extra person, floating head, detached limbs, collage, logo, text。"
+                        )
+                    else:
+                        prompt = prompts.compose_sheet_prompt(prompt, kind="character")
                 kind = "character" if collection == "characters" else "setting"
                 out = image_dir / f"{kind}_{i}_{uuid4().hex}.png"
                 await asyncio.to_thread(self.image.text_to_image, prompt, out, size=self._image_size(meta),
                                         model=model_catalog.resolve(meta.model_selection, ["image"])["image"])
-                await self._check_content(str(out))
+                if meta.project_type == "comic" and collection == "characters":
+                    await self._check_content(str(out), expected_person_count=1, meta=meta, item_id=item_id)
+                else:
+                    await self._check_content(str(out), meta=meta, item_id=item_id)
                 result[collection][item_id] = CharacterDesignItem(
                     id=item_id, name=item.get("name", ""), description=description, selected=str(out),
                     model_usage=model_catalog.stage_usage(meta, "character_design"),
@@ -919,7 +996,7 @@ class Orchestrator:
             else:
                 await asyncio.to_thread(self.image.text_to_image, prompt, out, size=self._image_size(meta),
                                         model=model_catalog.resolve(meta.model_selection, ["image"])["image"])
-            await self._check_content(str(out))
+            await self._check_content(str(out), meta=meta, item_id=shot_id)
             refs[shot_id] = {"shot_id": shot_id, "path": str(out), "selected": str(out),
                          "model_usage": model_catalog.stage_usage(meta, "reference_generation"),
                          "versions": list(dict.fromkeys([*old.get("versions", []), *([old["path"]] if old.get("path") else []), str(out)])),
@@ -985,7 +1062,7 @@ class Orchestrator:
             if self.reviewer.enabled:
                 frame = video_dir / f"seg_{i}_{uuid4().hex}_frame.jpg"
                 await extract_first_frame(out, frame)
-                await self._check_content(str(frame))
+                await self._check_content(str(frame), meta=meta, item_id=shot_id)
             source_paths = list(dict.fromkeys([ref_path, *inputs, *([tail] if tail else [])]))
             segments[shot_id] = VideoSegment(segment_id=old.get("segment_id") or f"seg_{i}", shot_id=shot_id, path=str(out), selected=str(out),
                                          model_usage=model_catalog.stage_usage(meta, "video_generation"),
@@ -1155,6 +1232,8 @@ class Orchestrator:
             self._write_text_artifact(artifact_subdir(meta.session_id, "script"),
                                       "script" if stage == "script_generation" else "storyboard",
                                       json.dumps(existing, ensure_ascii=False, indent=2))
+        from app.services.creation_checks import record_check
+        record_check(meta, stage)
         session_store.touch(meta)
         await progress(stage, "已选历史版本；上游已变化，请重新生成" if stale_selection else "修改已保存" if operation == "save" else "版本已选择", 100)
         return meta

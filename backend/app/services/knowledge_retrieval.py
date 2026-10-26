@@ -35,6 +35,38 @@ COLLECTION = "creative_knowledge_bge_zh_v1"
 VECTOR_SIZE = 512
 SCORE_THRESHOLD = 0.48
 MAX_CONTEXT_CHARS = 12000
+# Generic lexical aliases, independent of corpus names, evaluation questions and answers.
+_QUERY_ALIAS_GROUPS = (
+    (re.compile(r"炸雷|霹雳|雷鸣"), "雷声 轰鸣"),
+    (re.compile(r"躲开|避开|回避"), "躲避 远离"),
+    (re.compile(r"照相馆(?:主人|老板|经营者)|照相师"), "摄影师"),
+    (re.compile(r"吵|争执|口角"), "争吵 冲突"),
+)
+_KINSHIP_GROUPS = (
+    ("母亲", r"母亲|妈妈|母亲大人"), ("父亲", r"父亲|爸爸|父亲大人"),
+    ("姐姐", r"姐姐|姊姊"), ("妹妹", r"妹妹"),
+    ("哥哥", r"哥哥|兄长"), ("弟弟", r"弟弟"),
+    ("祖母", r"(?<!外)祖母|奶奶"), ("祖父", r"(?<!外)祖父|爷爷"),
+    ("外祖母", r"外祖母|外婆|姥姥"), ("外祖父", r"外祖父|外公|姥爷"),
+)
+_PRICE_QUESTION_RE = re.compile(r"售价|价格|销售价|单价|定价|标价|多少钱|几元|多少元|价钱")
+_PRICE_EVIDENCE_RE = re.compile(r"售价|价格|销售价|单价|定价|标价|价钱|人民币|[¥￥$]\s*\d|(?:\d|[零一二三四五六七八九十百千]+)\s*(?:元|块钱)")
+_MODEL_QUESTION_RE = re.compile(r"型号|机型|产品编号|model\s*(?:number|no\.?|编号)", re.I)
+_MODEL_VALUE_RE = re.compile(
+    r"(?:型号|机型|产品编号)\s*(?:是|为|[:：])?\s*"
+    r"(?!(?:未知|不详|未|没有|暂无|待|不提供|不公开))"
+    r"(?:[A-Za-z][A-Za-z0-9 ._/-]*\d[A-Za-z0-9 ._/-]*|"
+    r"[\u4e00-\u9fff]{1,8}\s*\d[A-Za-z0-9 ._/-]*|\d[A-Za-z0-9._/-]*)"
+)
+_TEMPERATURE_LIMIT_QUESTION_RE = re.compile(
+    r"(?:最高|最大|上限|极限|承受|耐受).{0,20}(?:温度|水温|摄氏|℃|°C)|"
+    r"(?:温度|水温|耐热|耐温).{0,20}(?:最高|最大|上限|极限|多少|几度)", re.I
+)
+_TEMPERATURE_LIMIT_VALUE_RE = re.compile(
+    r"(?:耐热(?:温度)?(?:上限|极限)?|耐温(?:上限)?|最高(?:使用)?(?:温度|水温)?|温度上限|水温上限|承受(?:温度|水温)?)"
+    r"\s*(?:为|是|达|可达|达到|[:：]|不超过|≤)?\s*"
+    r"-?\d+(?:\.\d+)?\s*(?:℃|°\s*C|摄氏度)", re.I
+)
 _lock = threading.RLock()
 _model = None
 _client = None
@@ -63,12 +95,16 @@ class AdequacyJudgment(BaseModel):
 
 def _embedding_model():
     global _model
+    if config.settings.mode_mock:
+        from app.core.offline import MockEmbedding
+        return MockEmbedding()
     if _model is None:
         try:
             from fastembed import TextEmbedding
             cache = Path(os.getenv("KNOWLEDGE_MODEL_CACHE", str(config.DATA_DIR / "knowledge" / "models")))
             cache.mkdir(parents=True, exist_ok=True)
-            _model = TextEmbedding(model_name=EMBEDDING_MODEL, cache_dir=str(cache), threads=2)
+            _model = TextEmbedding(model_name=EMBEDDING_MODEL, cache_dir=str(cache), threads=2,
+                                   local_files_only=config.settings.disable_outbound_network)
         except Exception:
             raise AppError("KNOWLEDGE_MODEL_UNAVAILABLE", "本地语义模型暂不可用；请检查模型下载与后端日志后重试", 503) from None
     return _model
@@ -121,6 +157,12 @@ def index_version(owner_id: str, library_id: str, document_id: str, version_id: 
             raise AppError("KNOWLEDGE_INDEX_FAILED", "资料未完成语义索引，请重试；原版本保持可用", 503) from None
 
 
+def query_variants(query: str) -> list[str]:
+    """Retain the literal query and add only a generic lexical expansion."""
+    additions = [aliases for pattern, aliases in _QUERY_ALIAS_GROUPS if pattern.search(query)]
+    return [query, query + "\n同义表达：" + "；".join(additions)] if additions else [query]
+
+
 def _query_vectors(owner_id: str, library_ids: list[str], version_ids: list[str], query: str, limit: int,
                    expected_chunks: int, *, score_threshold: float | None = None) -> list[dict]:
     if not version_ids:
@@ -129,7 +171,7 @@ def _query_vectors(owner_id: str, library_ids: list[str], version_ids: list[str]
     with _lock:
         try:
             from qdrant_client import models
-            vector = list(_embedding_model().query_embed(query))[0]
+            vectors = [list(_embedding_model().query_embed(variant))[0] for variant in query_variants(query)]
             client = _vector_client()
             scope = models.Filter(must=[
                 models.FieldCondition(key="owner_id", match=models.MatchValue(value=owner_id)),
@@ -138,16 +180,23 @@ def _query_vectors(owner_id: str, library_ids: list[str], version_ids: list[str]
             ])
             if client.count(COLLECTION, count_filter=scope, exact=True).count != expected_chunks:
                 raise AppError("KNOWLEDGE_INDEX_INCONSISTENT", "知识索引缺失或不完整，请重新上传对应资料", 503)
-            kwargs = {
-                "collection_name": COLLECTION, "query": vector.tolist(), "limit": limit,
-                "query_filter": scope, "with_payload": True,
-            }
-            # qdrant-client query_points uses score_threshold; omit when negative to keep low-score candidates for hybrid.
-            if threshold >= 0:
-                kwargs["score_threshold"] = threshold
-            result = client.query_points(**kwargs)
-            return [{"chunk_id": point.payload["chunk_id"], "version_id": point.payload["version_id"],
-                     "score": float(point.score)} for point in result.points]
+            matches = {}
+            for vector in vectors:
+                kwargs = {
+                    "collection_name": COLLECTION, "query": vector.tolist(), "limit": limit,
+                    "query_filter": scope, "with_payload": True,
+                }
+                # Preserve the frozen cosine threshold on each literal/expanded query.
+                if threshold >= 0:
+                    kwargs["score_threshold"] = threshold
+                result = client.query_points(**kwargs)
+                for point in result.points:
+                    item = {"chunk_id": point.payload["chunk_id"], "version_id": point.payload["version_id"],
+                            "score": float(point.score)}
+                    previous = matches.get(item["chunk_id"])
+                    if previous is None or item["score"] > previous["score"]:
+                        matches[item["chunk_id"]] = item
+            return sorted(matches.values(), key=lambda item: item["score"], reverse=True)[:limit]
         except AppError:
             raise
         except Exception:
@@ -257,7 +306,8 @@ _CREATIVE_GROUNDING_RE = re.compile(
 def classify_knowledge_query(query: str) -> str:
     """fact: concrete fact coverage; creative: retrieved settings are grounding material."""
     value = (query or "").strip()
-    if _FACT_SEEKING_RE.search(value):
+    if (_FACT_SEEKING_RE.search(value) or _MODEL_QUESTION_RE.search(value)
+            or _TEMPERATURE_LIMIT_QUESTION_RE.search(value)):
         return "fact"
     if _CREATIVE_GROUNDING_RE.search(value):
         return "creative"
@@ -326,13 +376,60 @@ def _judge_adequacy(query: str, ordinary_sources: list[dict], *, owner_id: str) 
             client.max_retries = previous_retries
 
 
+def local_fact_coverage(query: str, ordinary_sources: list[dict]) -> dict | None:
+    """Reject missing queried factual attributes without a remote judge.
+
+    Presence is a necessary condition only; it does not assert full semantic
+    sufficiency. Constraints are excluded by the caller and cannot fill a fact.
+    """
+    if classify_knowledge_query(query) != "fact":
+        return None
+    body = "\n".join(str(source.get("text") or "") for source in ordinary_sources)
+    requested = []
+    missing = []
+    for label, pattern in _KINSHIP_GROUPS:
+        if re.search(pattern, query):
+            requested.append(label)
+            if not re.search(pattern, body):
+                missing.append(label)
+    if _PRICE_QUESTION_RE.search(query):
+        requested.append("销售价格")
+        if not _PRICE_EVIDENCE_RE.search(body):
+            missing.append("销售价格")
+    for label, requested_pattern, value_pattern in (
+        ("具体型号", _MODEL_QUESTION_RE, _MODEL_VALUE_RE),
+        ("耐热温度上限", _TEMPERATURE_LIMIT_QUESTION_RE, _TEMPERATURE_LIMIT_VALUE_RE),
+    ):
+        if requested_pattern.search(query):
+            requested.append(label)
+            # An explicit "unknown/not promised" sentence or a prohibited claim
+            # is not positive evidence even when it includes an example number.
+            declared = any(value_pattern.search(clause) and not re.search(
+                r"未知|不详|未提供|未公开|未公布|暂无|没有|不承诺|不确定|待确认|待定|不得|不能|禁止|不可宣称",
+                clause) for clause in re.split(r"[，,。；;\n]", body))
+            if not declared:
+                missing.append(label)
+    if not missing:
+        return None
+    return {"sufficient": False, "reason": "所问关键属性未出现在命中的普通资料：" + "、".join(missing),
+            "unsupported_facts": missing, "required_attributes": requested,
+            "degraded": False, "skipped_llm": True, "question_kind": "fact",
+            "method": "local_attribute_coverage", "latency_ms": 0.0, "model": None}
+
+
 def _apply_adequacy(query: str, sources: list[dict], warnings: list[str], *, owner_id: str) -> tuple[list[dict], list[dict], dict | None, str]:
     """Split ordinary sources when insufficient. Returns sources, rejected, adequacy, status."""
     constraints = [source for source in sources if source.get("is_constraint")]
     ordinary = [source for source in sources if not source.get("is_constraint")]
-    if not ordinary or not config.settings.knowledge_adequacy_enabled:
+    local_judgment = local_fact_coverage(query, ordinary)
+    if local_judgment is not None:
+        warnings.append("资料未覆盖：" + "、".join(local_judgment["unsupported_facts"]) + "。已阻止未证实事实注入生成。")
+        return constraints, ordinary, local_judgment, "insufficient"
+    if not ordinary:
         status = "matched" if sources else "no_match"
         return sources, [], None, status
+    if not config.settings.knowledge_adequacy_enabled:
+        return sources, [], None, "matched"
     kind = classify_knowledge_query(query)
     if kind == "creative":
         # Creative expansion/planning: hits are grounding material, not a fill-in-the-blank key.
@@ -421,6 +518,7 @@ def build_context(owner_id: str, library_ids: list[str], query: str, limit: int 
         "library_ids": library_ids,
         "library_versions": {row["library_id"]: row["revision"] for row in snapshot_libraries},
         "query": query,
+        "query_expansion": {"method": "generic_lexical_aliases_max_cosine", "variants": query_variants(query_text)},
         "sources": sources,
         "rejected_sources": rejected_sources,
         "status": status,

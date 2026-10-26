@@ -1,0 +1,345 @@
+{
+  "schema": "rag-new-synthetic-material-v1",
+  "round_id": "rag-new-synthetic-review-20261025-r2",
+  "created_at_utc": "2026-10-25T07:13:51Z",
+  "created_local_date": "2026-10-25",
+  "version": "r2-material-v1",
+  "status": "frozen_for_first_human_review",
+  "origin": {
+    "kind": "new_hand_authored_synthetic_material",
+    "author": "current_assistant",
+    "not_real_model_outputs": true,
+    "not_independent_human_authorship": true,
+    "not_blinded_holdout": true,
+    "independence_claim": "New text pairs outside the old 52 and prior control materials; no independent-generalization claim",
+    "no_prior_checker_execution": true,
+    "no_expected_labels_in_material": true
+  },
+  "sample_count": 12,
+  "groups": {
+    "因果改写": 6,
+    "规则范围": 6
+  },
+  "operating_boundary": {
+    "mode": "Mock",
+    "project_real_model_calls": 0,
+    "added_model_cost_cny": 0,
+    "checker_executed_this_round": false,
+    "original_human_scores_changed": false,
+    "h05_checker_changed": false
+  },
+  "cases": [
+    {
+      "case_id": "J01",
+      "group": "因果改写",
+      "query": "这次林栅温室的排风机为什么启动？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "林栅温室运行记录",
+          "document_id": "synthetic-r2-j01",
+          "version_id": "synthetic-r2-v1-j01",
+          "version_number": 1,
+          "text": "因为棚内温度连续五分钟高于32℃，排风机启动。温度降到28℃时，排风机停止。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "棚内温度连续五分钟高于32℃，因此排风机启动。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文用“因为”描述启动条件与原因，回答改用“因此”；需要确认两处关系及时间、温度范围是否对应。",
+      "support_focus": "“棚内温度连续五分钟高于32℃，因此排风机启动”这层因果",
+      "rewrite_focus": "用“因此”表达原文中的温度与启动关系",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J02",
+      "group": "因果改写",
+      "query": "绒石排练厅的舞台顶灯为什么熄灭？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "绒石排练厅值班记录",
+          "document_id": "synthetic-r2-j02",
+          "version_id": "synthetic-r2-v1-j02",
+          "version_number": 1,
+          "text": "19点整，提示铃响起，舞台顶灯也在这一时刻熄灭。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "提示铃响起导致舞台顶灯熄灭。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文描述两个事件发生的时间，回答使用“导致”；需要确认原文对两者关系的支持程度。",
+      "support_focus": "“提示铃响起导致舞台顶灯熄灭”这层因果",
+      "rewrite_focus": "把两个事件的同一时刻描述改写为“导致”",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J03",
+      "group": "因果改写",
+      "query": "苔页档案馆的管道为什么漏水？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "苔页档案馆维护记录",
+          "document_id": "synthetic-r2-j03",
+          "version_id": "synthetic-r2-v1-j03",
+          "version_number": 1,
+          "text": "管道漏水使二楼地面积水，积水导致阅览区暂停开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "阅览区暂停开放导致管道漏水。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文和回答都包含漏水、积水或暂停开放，需要核对原因与结果的方向，以及回答是否对应问题。",
+      "support_focus": "“阅览区暂停开放导致管道漏水”这层因果",
+      "rewrite_focus": "回答中原因与结果的连接方式",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J04",
+      "group": "因果改写",
+      "query": "霜湾闸站淤泥堆积对抽水泵有什么影响？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "霜湾闸站维护记录",
+          "document_id": "synthetic-r2-j04",
+          "version_id": "synthetic-r2-v1-j04",
+          "version_number": 1,
+          "text": "淤泥堆积堵住进水口。进水口堵塞使抽水泵暂停运行。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "淤泥堆积导致抽水泵暂停运行。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文分两步描述关系，回答合并为一步；需要确认这种关系概括的依据与接受范围。",
+      "support_focus": "“淤泥堆积导致抽水泵暂停运行”这层关系",
+      "rewrite_focus": "把原文两步关系概括成回答的一步关系",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J05",
+      "group": "因果改写",
+      "query": "枝灯实验舱怎样通过启动键开启试验？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "枝灯实验舱操作规程",
+          "document_id": "synthetic-r2-j05",
+          "version_id": "synthetic-r2-v1-j05",
+          "version_number": 1,
+          "text": "只有在舱门已经锁紧时，按下启动键才会开启试验。舱门未锁紧时，启动键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "舱门已经锁紧时，按下启动键会开启试验；未锁紧时，启动键不能开启试验。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文与回答均涉及舱门状态和启动键，需要确认条件、动作与结果的范围是否保持一致。",
+      "support_focus": "“舱门锁紧时按启动键开启试验，未锁紧时启动键无效”这项条件关系",
+      "rewrite_focus": "回答对两种舱门状态及启动结果的表述",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J06",
+      "group": "因果改写",
+      "query": "按下复位键就能重启灰檐冷库的压缩机吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "灰檐冷库操作说明",
+          "document_id": "synthetic-r2-j06",
+          "version_id": "synthetic-r2-v1-j06",
+          "version_number": 1,
+          "text": "只有在备用电源已经接通时，按下复位键才会重启压缩机。备用电源未接通时，复位键无效。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "只要按下复位键，压缩机就会重启。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文与回答都谈复位键和重启，需要核对备用电源条件在回答中的处理。",
+      "support_focus": "“只要按下复位键，压缩机就会重启”这项条件关系",
+      "rewrite_focus": "用“只要按下复位键就会重启”概括原操作说明",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J07",
+      "group": "规则范围",
+      "query": "给陶穹影棚的这部短片写一段骑摩托车送货的交通镜头。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "陶穹影棚当前短片要求",
+          "document_id": "synthetic-r2-j07",
+          "version_id": "synthetic-r2-v1-j07",
+          "version_number": 1,
+          "text": "本片所有交通画面只允许出现手推车和缆车。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "骑摩托车送货的镜头不符合本片交通画面要求，可以改为用手推车送货。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文限定本片交通画面，回答对本次创作请求作处理并给出替换方式，需要分别核对规则与处理范围。",
+      "support_focus": "“本次骑摩托车送货的镜头不符合本片要求”这项判断",
+      "rewrite_focus": "用“不符合本片要求，并改为手推车”回应本次创作请求",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J08",
+      "group": "规则范围",
+      "query": "白汀城的世界设定中存在无人机吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "白汀城短片画面要求",
+          "document_id": "synthetic-r2-j08",
+          "version_id": "synthetic-r2-v1-j08",
+          "version_number": 1,
+          "text": "本片不允许出现无人机画面。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "白汀城不存在无人机。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文的对象是短片画面，问题和回答的对象是城市世界设定；需要确认二者范围关系。",
+      "support_focus": "“白汀城不存在无人机”这项断言",
+      "rewrite_focus": "把本片“不允许出现无人机画面”表述为城市“不存在无人机”",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J09",
+      "group": "规则范围",
+      "query": "周三上午，所有人都不能进入木羽巡检区的东廊吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "木羽巡检区开放规则",
+          "document_id": "synthetic-r2-j09",
+          "version_id": "synthetic-r2-v1-j09",
+          "version_number": 1,
+          "text": "周三上午，东廊不向普通访客开放；持当日巡检证的维修人员可以进入。其他时段按正常预约规则开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "周三上午，任何人都不能进入东廊。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文涉及时间、地点和不同身份，回答使用“任何人”；需要核对适用对象及例外范围。",
+      "support_focus": "“周三上午任何人都不能进入东廊”这项断言",
+      "rewrite_focus": "用“任何人都不能进入”概括原开放规则",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J10",
+      "group": "规则范围",
+      "query": "进入星棱分拣站可以使用什么凭证，工作证可以吗？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "星棱分拣站入场规则",
+          "document_id": "synthetic-r2-j10",
+          "version_id": "synthetic-r2-v1-j10",
+          "version_number": 1,
+          "text": "入场凭证只接受当日纸质通行票或电子二维码。工作证不能替代入场凭证。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "可以用当日纸质通行票或电子二维码入场，工作证不能替代这两种凭证。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文使用“只接受”列出凭证，回答重述选项与工作证限制，需要确认枚举和替代关系的范围。",
+      "support_focus": "“两种列出的凭证可用，工作证不能替代”这项规则",
+      "rewrite_focus": "回答对允许凭证及工作证限制的重述",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J11",
+      "group": "规则范围",
+      "query": "麦环手作坊允许使用哪些制作材料？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "麦环手作坊材料介绍",
+          "document_id": "synthetic-r2-j11",
+          "version_id": "synthetic-r2-v1-j11",
+          "version_number": 1,
+          "text": "常见制作材料包括竹片、棉线和陶珠。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "麦环手作坊只允许使用竹片、棉线或陶珠。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "原文使用“常见……包括”，回答使用“只允许”；需要确认材料介绍与允许范围的关系。",
+      "support_focus": "“只允许使用竹片、棉线或陶珠”这项规则",
+      "rewrite_focus": "把“常见材料包括”改写为“只允许使用”",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    },
+    {
+      "case_id": "J12",
+      "group": "规则范围",
+      "query": "访客在蓝榫观测屋可以去哪里活动，是否能确定不会受伤？",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "蓝榫观测屋访客规则",
+          "document_id": "synthetic-r2-j12",
+          "version_id": "synthetic-r2-v1-j12",
+          "version_number": 1,
+          "text": "访客活动范围仅限展示区，设备间不对访客开放。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "answer": "访客只能在展示区活动，不能进入设备间；待在展示区就绝对不会受伤。",
+      "citations": [
+        "S1"
+      ],
+      "dispute": "回答包含活动范围及受伤风险两个部分，需要先判断活动范围改写，再单独考虑整条回答的其他表述。",
+      "support_focus": "“访客只能在展示区活动，不能进入设备间”这项活动范围规则",
+      "rewrite_focus": "回答中对活动范围及设备间限制的改写",
+      "material_origin": "current_assistant_authored_synthetic_pair",
+      "real_model_response": false,
+      "prior_checker_execution": false
+    }
+  ]
+}

@@ -5,7 +5,17 @@ import type { KnowledgeContext } from "./knowledge";
 import type { ProjectType } from "../workflow";
 import type { ModelSelection, ModelUsage } from "./models";
 
+export type PendingReview = {
+  review_id: string;
+  execution_id: string;
+  stage: string;
+  reason: string | null;
+  image_url: string;
+  status: string;
+};
+
 export type SessionMeta = {
+  creation_checks?: CreationCheck[];
   session_id: string;
   orchestration_mode?: "workflow" | "multi_agent";
   agent_runs?: Record<string, AgentRun[]>;
@@ -20,6 +30,7 @@ export type SessionMeta = {
   expand_idea: boolean;
   video_generation_mode: string;
   status: string;
+  pending_review?: PendingReview | null;
   current_stage: string | null;
   stages_completed: string[];
   artifacts: Record<string, unknown>;
@@ -36,6 +47,15 @@ export type SessionMeta = {
 };
 
 export type ScriptCharacter = { name: string; character_id: string; description: string; role: string };
+export type CreationCheck = {
+  report_id: string; stage: string; version_id: string | null; created_at: number;
+  status: "limited" | "evidence" | "review" | "unavailable"; matches_current: boolean;
+  findings: { location: string; excerpt: string; problem: string; suggestion: string }[];
+};
+
+export function recheckContent(sessionId: string, stage: string): Promise<SessionMeta> {
+  return api<SessionMeta>(`/api/sessions/${sessionId}/checks/${stage}`, { method: "POST" });
+}
 export type ScriptSetting = { name: string; setting_id: string; description: string };
 export type ScriptEpisode = { episode_number: number; act_title: string; content: string };
 export type ScriptArtifact = {
@@ -50,6 +70,9 @@ export type ScriptArtifact = {
 };
 
 export type CreateSessionInput = {
+  resolution?: string;
+  video_generation_mode?: "first_frame" | "start_end" | "reference";
+  expand_idea?: boolean;
   orchestration_mode?: "workflow" | "multi_agent";
   project_type?: ProjectType;
   model_selection?: ModelSelection;
@@ -81,6 +104,27 @@ export function createSession(input: CreateSessionInput): Promise<SessionMeta> {
 
 export function getSession(sessionId: string): Promise<SessionMeta> {
   return api<SessionMeta>(`/api/sessions/${sessionId}`);
+}
+
+/** Owner-only review history; raw audit fields are not rendered in the creation UI. */
+export type SessionReviewHistory = { session_id: string; reviews: Record<string, unknown>[] };
+export function getSessionReviews(sessionId: string): Promise<SessionReviewHistory> {
+  return api<SessionReviewHistory>(`/api/sessions/${encodeURIComponent(sessionId)}/reviews`);
+}
+
+export function confirmSessionReview(
+  sessionId: string,
+  reviewId: string,
+  accepted: boolean,
+  onEvent: (ev: SSEEvent) => void,
+  signal?: AbortSignal,
+): Promise<SessionMeta | void> {
+  if (!sessionId.trim() || !reviewId.trim()) {
+    return Promise.reject(new ApiError("REVIEW_ID_REQUIRED", "待确认图片记录不完整，请重新加载作品。", 400));
+  }
+  const path = `/api/sessions/${encodeURIComponent(sessionId)}/reviews/${encodeURIComponent(reviewId)}/confirm`;
+  const options = { method: "POST", body: JSON.stringify({ accepted }), signal };
+  return accepted ? streamSSE(path, options, onEvent) : api<SessionMeta>(path, options);
 }
 
 /** DELETE returns no body on 204; keep the shared JSON client unchanged. */

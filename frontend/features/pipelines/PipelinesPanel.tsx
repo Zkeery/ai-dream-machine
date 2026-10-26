@@ -9,6 +9,7 @@ import { modelSelectionError, resolvedModelSelection, STATUS_LABELS, TASK_TO_TOO
 import { AssetPicker } from "./AssetPicker";
 import { useModelCatalog } from "@/lib/useModelCatalog";
 import { ModelSelector } from "@/features/creation/ModelSelector";
+import { ContentBoundary } from "@/features/creation/ContentBoundary";
 import { RecoveryNotice } from "@/features/creation/RecoveryNotice";
 import { resumeTask } from "@/lib/api/recovery";
 export type { PipelineTab } from "@/lib/workflow";
@@ -45,6 +46,7 @@ export function PipelinesPanel({ tab, taskId, userId, draft, onDraftChange, onTa
   const resultError = task ? taskResultError(task) : "";
   const scriptLength = talkingScriptLength(draft.text);
   const scriptTooLong = tab === "talking" && talkingMode === "lip_sync" && scriptLength > 40;
+  const trialCreationDisabled = true;
 
   const reloadTasks = useCallback(async () => {
     try { setTasks(await listTasks()); } catch (e) { setMsg(e instanceof Error ? e.message : "任务加载失败"); }
@@ -81,6 +83,7 @@ export function PipelinesPanel({ tab, taskId, userId, draft, onDraftChange, onTa
   }
 
   async function submit() {
+    if (trialCreationDisabled) return setMsg("本轮内测仅开放漫剧或 3 镜短视频，请返回创作台；快捷工具可查看已有样片。");
     if (busy || activeTask) return;
     if (!modelsReady) return setMsg(models.error || modelError || "模型目录加载中，请稍候。");
     if (!draft.text.trim()) return setMsg("请填写文案或动作描述");
@@ -117,6 +120,7 @@ export function PipelinesPanel({ tab, taskId, userId, draft, onDraftChange, onTa
   }
 
   async function resume(executionId: string): Promise<void> {
+    if (trialCreationDisabled) { setMsg("本轮内测快捷工具仅供查看已有样片，不开放新的生成请求。"); return; }
     if (!task || busy || activeTask || resumeInFlight.current) return;
     resumeInFlight.current = true;
     setSubmitting(true); setMsg("正在继续原来的生成任务…");
@@ -143,6 +147,7 @@ export function PipelinesPanel({ tab, taskId, userId, draft, onDraftChange, onTa
   }
 
   return <div className="space-y-6 max-w-3xl">
+    <p className="text-sm text-muted" role="note">本轮内测仅开放创作台的漫剧或 3 镜短视频。快捷工具可查看已有样片，暂不开放新生成。</p>
     <div><h2 className="text-base font-semibold text-foreground mb-3">快捷短片 · 一次性出片</h2><div className="flex gap-2 flex-wrap">{(Object.keys(TOOL_LABELS) as PipelineTab[]).map(tool => <Button key={tool} variant={tab === tool ? "primary" : "secondary"} onClick={() => onTabChange(tool)}>{TOOL_LABELS[tool]}</Button>)}</div></div>
     {loadError && <p className="text-sm text-danger" role="alert">{loadError}</p>}
     {taskId && !task && !loadError && <p className="text-sm text-muted">正在恢复作品与生成状态…</p>}
@@ -153,20 +158,26 @@ export function PipelinesPanel({ tab, taskId, userId, draft, onDraftChange, onTa
       {taskIsActive(task.status) && <p className="text-sm text-muted" role="status">{task.execution?.last_event?.message || "后台正在生成，页面会自动更新进度。"}{typeof task.execution?.last_event?.percent === "number" ? `（${task.execution.last_event.percent}%）` : ""}</p>}
       {task.error && <p className="text-sm text-danger" role="alert">{task.error}</p>}
       {resultError && <p className="text-sm text-danger" role="alert">{resultError}</p>}
-      <RecoveryNotice key={`${task.execution?.execution_id ?? task.updated_at}:${task.status}`} kind="task" entityId={task.task_id} status={task.status} revision={task.updated_at} busy={busy || activeTask} onResume={resume} />
+      {!trialCreationDisabled && <RecoveryNotice key={`${task.execution?.execution_id ?? task.updated_at}:${task.status}`} kind="task" entityId={task.task_id} status={task.status} revision={task.updated_at} busy={busy || activeTask} onResume={resume} />}
       {taskCanPreview(task) && <><TaskVideo key={task.task_id} taskId={task.task_id} /><Button variant="secondary" onClick={() => void downloadTask(task.task_id).catch(e => setMsg(e instanceof Error ? e.message : "下载失败"))}>下载成片</Button></>}
-      {!taskIsActive(task.status) && <Button variant="secondary" onClick={useTaskInput}>用这份输入继续创作</Button>}
+      {!trialCreationDisabled && !taskIsActive(task.status) && <Button variant="secondary" onClick={useTaskInput}>用这份输入继续创作</Button>}
     </section>}
-    {editing && <div className="space-y-4">
+    {editing && !trialCreationDisabled && <div className="space-y-4">
       <p className="text-xs text-muted">草稿自动保存在当前浏览器，按账号隔离。故事的剧集数与比例不适用于当前快捷工具，成片使用工具默认规格。</p>
       {tab === "talking" && <>
         <fieldset disabled={busy || activeTask} className="space-y-2"><legend className="text-sm text-foreground mb-2">成片模式</legend><div className="flex gap-4 flex-wrap">{(Object.keys(TALKING_MODE_LABELS) as TalkingMode[]).map(mode => <label key={mode} className="flex items-center gap-2 text-sm"><input type="radio" name="talking-mode" value={mode} checked={talkingMode === mode} onChange={() => patch({ talkingMode: mode })} />{TALKING_MODE_LABELS[mode]}</label>)}</div></fieldset>
+        <div className="text-xs text-muted space-y-1" role="note">
+          <p>仅支持单人口播，请选择嘴部清楚的正面或半身单人物图；不支持多人轮流讲话。</p>
+          {talkingMode === "lip_sync" ? <p>人物嘴型同步：音色由所选模型生成，暂不支持指定声线、上传配音或声音克隆。台词完整性与精细音画同步需在生成后听审。</p> : <p>静态图片配音：图片保持静止，没有嘴型同步；音色来自 Edge TTS 默认声线。模型费用估算 ¥0，Edge TTS 配音未计入模型费用账本。</p>}
+        </div>
       </>}
+      {tab === "motion" && <p className="text-xs text-muted" role="note">用人物图和动作描述生成角色动作短片；当前不支持按动作视频逐帧或像素级迁移。</p>}
       {tab !== "literary" && <div><label htmlFor={tab === "motion" ? "motion-char" : "talking-person"} className="block text-sm text-muted mb-1">人物图</label><input id={tab === "motion" ? "motion-char" : "talking-person"} type="file" accept="image/*" disabled={busy} onChange={e => void upload(e.target.files?.[0])} />{draft.image && <p className="text-xs text-muted mt-1">已保存：{draft.imageName || draft.image}<button className="text-link ml-3" onClick={() => patch({ image: "", imageName: "", assetSource: "" })}>移除</button></p>}<AssetPicker disabled={busy} onSelected={(image, imageName, assetSource) => patch({ image, imageName, assetSource })} /></div>}
       <div><label htmlFor={tab === "literary" ? "lit-text" : tab === "motion" ? "motion-prompt" : "talking-script"} className="block text-sm text-muted mb-1">{tab === "literary" ? "文案 / 灵感" : tab === "motion" ? "动作描述" : "口播文案"}</label><textarea id={tab === "literary" ? "lit-text" : tab === "motion" ? "motion-prompt" : "talking-script"} value={draft.text} onChange={e => patch({ text: e.target.value })} rows={4} className={`${inputCls} resize-y`} /></div>
       {tab === "talking" && talkingMode === "lip_sync" && <p className={`text-xs ${scriptTooLong ? "text-danger" : "text-muted"}`} role={scriptTooLong ? "alert" : undefined}>{scriptLength}/40 个非空白字符{scriptTooLong ? "，请缩短文案后生成。" : " · 10 秒素材，自动裁去静音尾段"}</p>}
       {tab === "literary" && <div><label htmlFor="lit-style" className="block text-sm text-muted mb-1">风格</label><Input id="lit-style" value={draft.style} onChange={e => patch({ style: e.target.value })} /></div>}
       <ModelSelector {...models} keys={modelKeys} selected={selection} disabled={busy || activeTask} onChange={modelSelection => patch({ modelSelection: { ...draft.modelSelection, ...modelSelection } })} onRetry={models.retry} />
+      <ContentBoundary />
       <Button disabled={busy || activeTask || !modelsReady || scriptTooLong} onClick={() => void submit()}>{uploading ? "上传中…" : submitting ? "提交中…" : "生成快捷短片"}</Button>
     </div>}
     {msg && <p className="text-sm text-muted" role="status">{msg}</p>}

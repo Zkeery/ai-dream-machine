@@ -20,6 +20,9 @@ from app.services import cost_control as costs, db, execution_store as execution
 @pytest.fixture(autouse=True)
 def configured_budget(data_dirs, monkeypatch, isolated_client_budget):
     # These synthetic rates exist only in this isolated fixture, not production.
+    # Client-specific tests replace HTTP with local responses; the process-level
+    # offline guard still blocks every real transport when MODE_MOCK=1.
+    monkeypatch.setattr(config.settings, "mode_mock", False)
     rates = {
         "text": {"kind": "text", "input_per_million_cny": 10, "output_per_million_cny": 20, "source": "test://rates"},
         "image": {"kind": "image", "image_cny": 30, "source": "test://rates"},
@@ -27,6 +30,8 @@ def configured_budget(data_dirs, monkeypatch, isolated_client_budget):
     }
     rates["qwen3.5-plus"] = rates["text"]
     rates["qwen3-vl-flash"] = rates["text"]
+    for rate in rates.values():
+        rate["settlement_basis"] = "verified_flat_unit_price"
     monkeypatch.setattr(config.settings, "model_cost_rates_json", json.dumps(rates))
     monkeypatch.setattr(config.settings, "monthly_budget_cny", "500")
     monkeypatch.setattr(config.settings, "monthly_user_budget_cny", "100")
@@ -93,7 +98,7 @@ def test_rejection_releases_but_completion_is_not_provider_payment():
     costs.reserve("reject", "image", "image", {"images": 1}, owner_id="alice")
     costs.settle("reject", "rejected")
     costs.reserve("done", "image", "image", {"images": 1}, owner_id="alice")
-    costs.settle("done", "completed")
+    costs.settle("done", "completed", actual_units={"images": 1})
     summary = costs.usage("alice")
     assert summary["reserved_cny"] == 0
     assert summary["calculated_cny"] == 30
@@ -121,7 +126,7 @@ def test_explicit_provider_charge_is_separate():
 
 def test_later_provider_invoice_can_reconcile_estimate_once():
     costs.reserve("one", "image", "image", {"images": 1}, owner_id="alice")
-    costs.settle("one", "completed")
+    costs.settle("one", "completed", actual_units={"images": 1})
     costs.settle("one", provider_charge_cny="12.34")
     assert costs.usage("alice")["calculated_cny"] == 12.34
     assert costs.usage("alice")["provider_reported_cny"] == 12.34
@@ -139,7 +144,7 @@ def test_month_boundary_keeps_old_unknown_in_original_month(monkeypatch):
     costs.reserve("new", "image", "image", {"images": 3}, owner_id="alice")
     assert costs.usage("alice", "2026-09")["reserved_cny"] == 90
     assert costs.usage("alice", "2026-10")["reserved_cny"] == 90
-    costs.settle("old", "completed")
+    costs.settle("old", "completed", actual_units={"images": 3})
     assert costs.usage("alice", "2026-10")["reserved_cny"] == 90
 
 
@@ -220,16 +225,14 @@ def test_stage_confirmation_works_when_generation_quota_is_full(orch):
 async def test_cancelled_worker_thread_cannot_retry_paid_llm(monkeypatch):
     _session("cancelled", "alice")
     eid, _ = _claim("cancelled")
-    at_retry, release, finished = threading.Event(), threading.Event(), threading.Event()
+    at_request, release, finished = threading.Event(), threading.Event(), threading.Event()
     calls, errors = [], []
 
     def post(*args, **kwargs):
         calls.append(kwargs)
-        return httpx.Response(503, json={"error": "temporary"})
-
-    def pause_retry(*args):
-        at_retry.set()
+        at_request.set()
         release.wait(5)
+        return httpx.Response(503, json={"error": "temporary"})
 
     def invoke():
         try:
@@ -240,11 +243,10 @@ async def test_cancelled_worker_thread_cannot_retry_paid_llm(monkeypatch):
             finished.set()
 
     monkeypatch.setattr(httpx, "post", post)
-    monkeypatch.setattr("app.models.llm_client.time.sleep", pause_retry)
     token = executions._current_execution.set(eid)
     try:
         thread_task = asyncio.create_task(asyncio.to_thread(invoke))
-        assert await asyncio.to_thread(at_retry.wait, 2)
+        assert await asyncio.to_thread(at_request.wait, 2)
         executions.fail(eid, "INTERRUPTED", "cancelled", interrupted=True)
         thread_task.cancel()
         with pytest.raises(asyncio.CancelledError):
@@ -255,7 +257,7 @@ async def test_cancelled_worker_thread_cannot_retry_paid_llm(monkeypatch):
         release.set()
         executions._current_execution.reset(token)
     assert len(calls) == 1
-    assert errors == ["BUDGET_EXECUTION_INACTIVE"]
+    assert errors == ["MODEL_RETRY_EXHAUSTED"]
     assert costs.usage("alice")["uncertain_calls"] == 1
 
 

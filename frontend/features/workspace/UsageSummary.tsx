@@ -22,5 +22,6 @@ export function UsageSummary() {
   return <aside className="usage-strip" aria-label="本月生成额度">
     {!usage ? <span className="usage-note">{error || "正在读取本月生成额度…"}</span> : <><span className="usage-title">{usage.month} · 本月生成额度</span><dl><div><dt>按表估算</dt><dd>{cnyLabel(usage.calculated_cny)}</dd></div><div><dt>已预留</dt><dd>{cnyLabel(usage.reserved_cny)}</dd></div><div><dt>可用额度</dt><dd>{cnyLabel(usage.remaining_cny)}</dd></div></dl><span className="usage-concurrency">运行中 {usage.concurrency.active} / {usage.concurrency.account_limit}</span></>}
     {error && <span className="usage-error" role="status">{usage ? `额度暂未更新：${error}` : ""}<button className="text-link" onClick={() => setRetry(value => value + 1)}>重试</button></span>}
+    {usage && <details><summary>估算与实付说明</summary><div className="usage-details"><p>按表估算按配置单价和用量计算；已预留为运行中或结果待核对的额度，不是已付金额。</p><p>实付以平台账单实扣为准。实际用量、重试或价格变化可能造成差异；失败或超时不代表未扣费。</p></div></details>}
   </aside>;
 }

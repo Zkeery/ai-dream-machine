@@ -30,6 +30,8 @@ function view(file, name, props, { states = [], modules = {}, modelState = { cat
     react: { useState: initial => { const index = stateIndex++; if (!(index in states)) states[index] = typeof initial === "function" ? initial() : initial; return [states[index], value => { states[index] = typeof value === "function" ? value(states[index]) : value; }]; }, useRef: initial => refs[refIndex++] ?? (refs[refIndex - 1] = { current: initial }), useCallback: fn => fn, useEffect: () => {} },
     "react/jsx-runtime": require("react/jsx-runtime"), "lucide-react": { ArrowUpRight: Empty, SlidersHorizontal: Empty, ChevronDown: Empty, Cpu: Empty },
     "@/components/ui/Button": { Button }, "@/components/ui/Input": { Input: Empty }, "@/lib/workflow": workflow,
+    "@/features/trial/TrialProvider": { useTrial: () => ({ status: { mode: "mock", generation_enabled: true, quota_remaining: 1 }, generationCompleted: () => {}, refresh: async () => {}, openSurvey: () => {} }) },
+    "@/lib/api/trial": { recordTrialEvent: async () => {}, TRIAL_BLOCK_MESSAGE: "本次额度已用完" },
     "@/lib/useModelCatalog": { useModelCatalog: () => modelState }, "@/features/cinema/SessionLibrary": { STAGE_CN: { script_generation: "剧本", character_design: "角色", video_generation: "视频" }, TaskVideo: Empty },
     "./ModelSelector": { ModelSelector: Selector, ModelUsageNote: Usage }, "@/features/creation/ModelSelector": { ModelSelector: Selector, ModelUsageNote: Usage }, ...modules,
     "./media": { MediaImage },
@@ -168,17 +170,18 @@ test("model preferences migrate without replacing legacy stories and remain isol
   assert.deepEqual(restored.tools.motion.modelSelection, { video_reference: "wan2.7-r2v" }); assert.deepEqual(workflow.readDraft(store, "b"), workflow.emptyDraft());
 });
 
-test("an explicit four-episode selection in the form survives legacy draft migration", () => {
-  let changed;
-  const draft = { idea: "故事", style: "realistic", episodes: 1, ratio: "16:9", knowledgeLibraryIds: [] };
+test("the trial form fixes one episode while preserving a legacy four-episode draft", async () => {
+  const changed = [], submissions = [];
+  const draft = { idea: "故事", style: "realistic", episodes: 4, ratio: "16:9", knowledgeLibraryIds: [] };
   const harness = view("features/creation/CreationForm.tsx", "CreationForm", {
-    draft, onDraftChange: value => { changed = value; }, onCreated: () => {}, projectType: "story",
-  });
+    draft, onDraftChange: value => { changed.push(value); }, onCreated: () => {}, projectType: "story",
+  }, { modules: { "@/lib/api/sessions": { createSession: async input => { submissions.push(input); return fixture(); } } } });
   const input = nodes(harness.render(), node => node.props?.id === "episodes")[0];
+  assert.equal(input.props.disabled, true); assert.equal(input.props.value, 1);
   input.props.onChange({ target: { value: "4" } });
-  const restored = workflow.readDraft({ getItem: () => JSON.stringify({ ...workflow.emptyDraft(), story: changed }) }, "a");
-  assert.equal(restored.story.episodes, 4);
-  assert.equal(workflow.creationInput(restored.story, "story").episodes, 4);
+  assert.equal(changed.length, 0); assert.equal(draft.episodes, 4);
+  nodes(harness.render(), node => node.type === "form")[0].props.onSubmit({ preventDefault() {} }); await settle();
+  assert.equal(submissions[0].episodes, 1); assert.equal(draft.episodes, 4);
 });
 
 test("model scopes match real text, image and video calls, including voice and composition stages with no generated video", () => {
@@ -202,56 +205,85 @@ test("older model catalogs keep existing tools available while speech stays clos
   assert.equal(workflow.modelSelectionError({ text: "qwen3.5-plus" }, loaded, ["text"]), "");
 });
 
-test("speaking form sends speech video models only in lip sync mode and mode changes create a new retry key", async () => {
+test("talking parameters preserve model scopes while the trial UI blocks both new audio modes", async () => {
   const attempts = [], props = { tab: "talking", userId: "a", draft: { ...workflow.emptyDraft().tools.talking, text: "你好", image: "person.png" }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} };
   props.onDraftChange = next => { props.draft = next; };
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", props, { modules: { "@/lib/api/tasks": { createTask: async (type, input, key) => { attempts.push({ type, input, key }); throw new Error("提交中断，输入已保留"); } } } });
-  const submit = () => nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片")[0].props.onClick();
-  assert.deepEqual(nodes(screen.render(), n => n.type === Selector)[0].props.keys, ["video_speech"]);
-  submit(); await settle();
-  assert.equal(attempts[0].input.talking_mode, "lip_sync"); assert.deepEqual(clone(attempts[0].input.model_selection), { video_speech: "speech-model" });
+  props.draft = { ...props.draft, talkingMode: "lip_sync", modelSelection: { video_speech: "speech-model" } };
+  const lips = workflow.toolTaskInput("talking", props.draft);
+  assert.equal(lips.talking_mode, "lip_sync"); assert.deepEqual(lips.model_selection, { video_speech: "speech-model" });
+  assert.match(text(screen.render()), /暂不开放新生成/);
+  assert.equal(nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片").length, 0);
   assert.equal(props.draft.text, "你好"); assert.equal(props.draft.image, "person.png");
-  nodes(screen.render(), n => n.type === "input" && n.props.value === "static")[0].props.onChange();
-  assert.deepEqual(nodes(screen.render(), n => n.type === Selector)[0].props.keys, []);
-  submit(); await settle(); assert.equal(attempts[1].input.talking_mode, "static"); assert.equal(attempts[1].input.model_selection, undefined); assert.notEqual(attempts[0].key, attempts[1].key);
+  props.draft = { ...props.draft, talkingMode: "static" };
+  const still = workflow.toolTaskInput("talking", props.draft);
+  assert.equal(still.talking_mode, "static"); assert.equal(still.model_selection, undefined);
+  assert.equal(nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片").length, 0);
+  await settle(); assert.equal(attempts.length, 0);
 });
 
-test("speech mode validates non-whitespace character limits without truncating the saved script or static mode", async () => {
+test("speech estimate follows the selected catalog option without starting generation", () => {
+  const value = clone(catalog), changes = [];
+  value.groups.video_speech.options = [
+    { id: "speech-model", label: "声画模型 A", description: "模型生成音色，按表约 ¥7.23/次（非实付账单）" },
+    { id: "speech-alternative", label: "声画模型 B", description: "模型生成音色，按表约 ¥8.50/次（非实付账单）" },
+  ];
+  const props = { catalog: value, loading: false, error: "", keys: ["video_speech"], selected: { video_speech: "speech-model" }, onChange: next => { changes.push(next); props.selected = next; }, onRetry: () => {} };
+  const screen = view("features/creation/ModelSelector.tsx", "ModelSelector", props);
+  assert.match(text(screen.render()), /¥7\.23/);
+  assert.match(text(screen.render()), /实付以平台账单实扣为准/);
+  nodes(screen.render(), n => n.type === "select")[0].props.onChange({ target: { value: "speech-alternative" } });
+  assert.equal(changes.length, 1);
+  assert.match(text(screen.render()), /¥8\.50/);
+  assert.doesNotMatch(text(screen.render()), /¥7\.23/);
+  value.groups.video_speech.options[1].description = "";
+  assert.match(text(screen.render()), /音色与费用估算暂未提供/);
+  assert.doesNotMatch(text(screen.render()), /¥8\.50|¥0/);
+});
+
+test("speech length remains a pure calculation and trial UI neither truncates nor submits long drafts", async () => {
   let requests = 0;
   const props = { tab: "talking", userId: "a", draft: { ...workflow.emptyDraft().tools.talking, text: `${"你".repeat(39)} \n 😀`, image: "person.png" }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} };
   props.onDraftChange = next => { props.draft = next; };
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", props, { modules: { "@/lib/api/tasks": { createTask: async () => { requests++; throw new Error("测试到达提交"); } } } });
-  const button = () => nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片")[0];
-  assert.equal(button().props.disabled, false); assert.match(text(screen.render()), /40\/40/);
-  props.draft.text += "好"; assert.equal(button().props.disabled, true);
-  button().props.onClick(); await settle(); assert.equal(requests, 0); assert.match(text(screen.render()), /最多 40 个非空白字符/);
+  assert.equal(workflow.talkingScriptLength(props.draft.text), 40);
+  props.draft.text += "好"; assert.equal(workflow.talkingScriptLength(props.draft.text), 41);
   assert.equal(props.draft.text.endsWith("😀好"), true);
-  nodes(screen.render(), n => n.type === "input" && n.props.value === "static")[0].props.onChange();
-  assert.equal(button().props.disabled, false); button().props.onClick(); await settle(); assert.equal(requests, 1);
+  for (const talkingMode of ["lip_sync", "static"]) {
+    props.draft = { ...props.draft, talkingMode };
+    assert.equal(nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片").length, 0);
+    assert.match(text(screen.render()), /暂不开放新生成/);
+  }
+  await settle(); assert.equal(requests, 0);
 });
 
-test("motion creation submits image and action description without letting a stale hidden video reference block generation", async () => {
+test("motion input omits stale video references and its trial UI never posts a new generation", async () => {
   const attempts = [], props = { tab: "motion", userId: "a", draft: { ...workflow.emptyDraft().tools.motion, text: "人物微笑挥手", image: "person.png", motion: "deleted-reference.mp4", motionName: "历史动作.mp4" }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} };
   props.onDraftChange = next => { props.draft = next; };
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", props, { modules: { "@/lib/api/tasks": { createTask: async (type, input) => { if ("motion_video" in input) throw new Error("旧视频不存在"); attempts.push({ type, input }); return { task_id: "new-motion" }; }, listTasks: async () => [] } } });
   const tree = screen.render(); assert.equal(nodes(tree, n => n.type === "input" && n.props.accept === "video/*").length, 0);
-  nodes(tree, n => n.type === Button && text(n) === "生成快捷短片")[0].props.onClick(); await settle();
-  assert.equal(attempts.length, 1); assert.equal(attempts[0].input.character_image, "person.png"); assert.equal(attempts[0].input.prompt, "人物微笑挥手"); assert.equal("motion_video" in attempts[0].input, false);
+  const input = workflow.toolTaskInput("motion", props.draft);
+  assert.equal(input.character_image, "person.png"); assert.equal(input.prompt, "人物微笑挥手"); assert.equal("motion_video" in input, false);
+  assert.equal(nodes(tree, n => n.type === Button && text(n) === "生成快捷短片").length, 0);
+  await settle(); assert.equal(attempts.length, 0);
   assert.equal("motion_video" in workflow.toolTaskInput("motion", { ...props.draft, motion: "" }), false);
   assert.equal(props.draft.motion, "deleted-reference.mp4"); assert.equal(props.draft.motionName, "历史动作.mp4");
-  assert.match(text(screen.render()), /已提交/);
+  assert.match(text(screen.render()), /暂不开放新生成/);
 });
 
-test("unavailable speech model blocks lip sync generation but leaves explicit static mode usable", async () => {
+test("a closed speech catalog and static mode both leave trial quick generation disabled", async () => {
   let requests = 0;
   const closed = clone(catalog); closed.groups.video_speech = { label: "嘴型同步视频", default: null, options: [] };
   const props = { tab: "talking", userId: "a", draft: { ...workflow.emptyDraft().tools.talking, text: "你好", image: "person.png" }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} };
   props.onDraftChange = next => { props.draft = next; };
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", props, { modelState: { catalog: closed, loading: false, error: "", retry: () => {} }, modules: { "@/lib/api/tasks": { createTask: async () => { requests++; throw new Error("测试到达提交"); } } } });
-  const button = () => nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片")[0];
-  assert.equal(button().props.disabled, true); button().props.onClick(); await settle(); assert.equal(requests, 0); assert.match(text(screen.render()), /嘴型同步视频模型暂未开放/);
-  nodes(screen.render(), n => n.type === "input" && n.props.value === "static")[0].props.onChange();
-  assert.equal(button().props.disabled, false); button().props.onClick(); await settle(); assert.equal(requests, 1);
+  assert.match(workflow.modelSelectionError({}, closed, ["video_speech"]), /嘴型同步视频模型暂未开放/);
+  for (const talkingMode of ["lip_sync", "static"]) {
+    props.draft = { ...props.draft, talkingMode };
+    assert.equal(nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片").length, 0);
+    assert.match(text(screen.render()), /暂不开放新生成/);
+  }
+  await settle(); assert.equal(requests, 0);
 });
 
 test("speaking detail never previews or offers download for mismatched completed output", () => {
@@ -345,18 +377,18 @@ test("server-running and pending stages disable model changes even when a saved 
   }
 });
 
-test("actual quick-tool submission includes chosen models in stable retries and restores historical choices", async () => {
+test("literary draft parameters and historical choices survive while trial quick submission stays closed", async () => {
   const attempts = [], props = { tab: "literary", userId: "a", draft: { ...workflow.emptyDraft().tools.literary, text: "月光落在车站", modelSelection: { text: "qwen3.5-plus", image: "qwen-image-2.0" } }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} };
   props.onDraftChange = next => { props.draft = next; };
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", props, { modules: { "@/lib/api/tasks": { createTask: async (type, input, key) => { attempts.push({ type, input, key }); throw new Error("网络中断，请重试"); } } } });
-  const submit = () => nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片")[0].props.onClick();
-  submit(); await settle(); submit(); await settle(); assert.equal(attempts[0].key, attempts[1].key);
-  assert.deepEqual(clone(attempts[0].input.model_selection), clone(props.draft.modelSelection));
-  nodes(screen.render(), n => n.type === Selector)[0].props.onChange({ text: "qwen3.5-flash", image: "qwen-image-2.0" });
-  submit(); await settle(); assert.notEqual(attempts[2].key, attempts[1].key); assert.equal(attempts[2].input.model_selection.text, "qwen3.5-flash");
+  assert.deepEqual(workflow.toolTaskInput("literary", props.draft).model_selection, props.draft.modelSelection);
+  assert.equal(nodes(screen.render(), n => n.type === Button && text(n) === "生成快捷短片").length, 0);
+  assert.equal(nodes(screen.render(), n => n.type === Selector).length, 0);
+  await settle(); assert.equal(attempts.length, 0);
   const restored = workflow.toolDraftFromTask({ type: "motion_transfer", input: { character_image: "/uploads/person.png", motion_video: "/uploads/action.mp4", prompt: "动作", model_selection: { video_reference: "wan2.7-r2v" } } });
   assert.equal(restored.image, "person.png"); assert.deepEqual(restored.modelSelection, { video_reference: "wan2.7-r2v" });
   assert.equal(workflow.toolTaskInput("talking", { ...restored, text: "口播" }).model_selection, undefined);
+  assert.equal(props.draft.text, "月光落在车站");
 });
 
 test("actual model widget exposes only server candidates and keeps invalid preferences visible until explicit correction", () => {

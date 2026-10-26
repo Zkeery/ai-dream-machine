@@ -16,6 +16,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from app.core.errors import AppError
+from app.core.offline import safe_media_command, safe_media_environment
 
 MOTIONS = ("static", "push_in", "pan_left", "pan_right")
 FPS = 24
@@ -30,7 +31,8 @@ CLOSING_PUNCTUATION = frozenset("，。！？：；、）》】”’〉〕」�
 
 async def _run(command: list[str], label: str, timeout: float = 180) -> bytes:
     try:
-        process = await asyncio.create_subprocess_exec(*command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        process = await asyncio.create_subprocess_exec(*safe_media_command(command), stdout=asyncio.subprocess.PIPE,
+                                                       stderr=asyncio.subprocess.PIPE, env=safe_media_environment())
     except FileNotFoundError:
         raise AppError("COMIC_RENDERER_UNAVAILABLE", "本地漫剧渲染需要安装 FFmpeg 和 ffprobe", 503) from None
     try:

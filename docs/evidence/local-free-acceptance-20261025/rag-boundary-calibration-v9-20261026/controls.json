@@ -1,0 +1,549 @@
+{
+  "schema": "rag-boundary-engineering-calibration-v9",
+  "version": "v9-boundary-20261026",
+  "frozen_before_execution": true,
+  "origin": "assistant-authored synthetic materials, explicitly reviewed by session user; not blind holdout",
+  "source_bindings": {
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-multisentence-chain-review-20261025/samples.json": "a60fece709ed5f46fe49d658a3f87f3b535d9a1a876e3d46e130b25114b899ad",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-multisentence-chain-review-20261025/新增人工复核记录.json": "04e42456fcd59a2b4e2a2de1b3af0d4b368e511076af52015b63dfe9161b185f",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-multisentence-chain-review-20261025/分歧澄清记录-20261026.json": "8ae2bebf8b50700617c39acfbd77521d7945ae5f357b56ef3c120838872bc43c",
+    "/Users/zoe/Documents/happy/项目开发必备文档/projects/AI造梦机/docs/evidence/local-free-acceptance-20261025/rag-multisentence-chain-review-20261025/分歧澄清保全-20261026.json": "bae77f5f667f9fa8d72bd7c960fbd6ed9c723c8c9dcad5c34e033b01fc565d36"
+  },
+  "review_round": "rag-boundary-clarification-20261026-r4",
+  "original_scores_writeback": false,
+  "human_labels_input_to_checker": false,
+  "inferred_fabrication_or_used": false,
+  "formal_dual_review_completed_by_this_artifact": false,
+  "cases": [
+    {
+      "case_id": "BND01",
+      "group": "多句来源",
+      "query": "这次岚圃育苗室的循环风扇为什么启动？",
+      "answer": "育苗室湿度连续三分钟高于80%，因此循环风扇启动。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "岚圃育苗室运行记录",
+          "document_id": "synthetic-r3-bnd01",
+          "version_id": "synthetic-r3-v1-bnd01",
+          "version_number": 1,
+          "text": "因为育苗室湿度连续三分钟高于80%，循环风扇启动。值班员在十点记录了苗盘数量。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND01-01:1",
+          "question_id": "BND01-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": "原文用“因为”明确说明了湿度连续三分钟高于80%与循环风扇启动的因果关系。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND01-02:1",
+          "question_id": "BND01-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": "用“因此”表达湿度与循环风扇启动的因果关系基本符合原文，省略第二句值班记录不影响本题主要含义。"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND01-03:1",
+          "question_id": "BND01-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": "回答准确说明了循环风扇的启动原因，保留了湿度和持续时间，省略第二句值班记录不影响本题主要含义。"
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "rationale": "完整因果句及独立数量记录的有限句式；原因、持续时间和结果逐字绑定。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND02",
+      "group": "多句来源",
+      "query": "雾岬实验台温度高于60℃时，冷却泵在所有模式下都会自动启动吗？",
+      "answer": "矿样温度高于60℃，冷却泵就会在所有模式下自动启动。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "雾岬实验台操作记录",
+          "document_id": "synthetic-r3-bnd02",
+          "version_id": "synthetic-r3-v1-bnd02",
+          "version_number": 1,
+          "text": "因为矿样温度高于60℃，雾岬实验台的冷却泵启动。这条自动启动规则只在检修模式下生效；正常生产模式下，温度超过60℃也不会使冷却泵自动启动。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND02-01:1",
+          "question_id": "BND02-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只规定检修模式下自动启动，正常生产模式下不会自动启动，不能概括为所有模式下都会自动启动。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND02-02:1",
+          "question_id": "BND02-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文只规定检修模式下自动启动，正常生产模式下不会自动启动，不能概括为所有模式下都会自动启动。"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND02-03:1",
+          "question_id": "BND02-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把仅在检修模式下生效的自动启动规则扩大成了所有模式，忽略了正常生产模式下不会自动启动的限制。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "所有模式扩大仅检修模式的范围；新增有限提示，不作编造判断。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND03",
+      "group": "多句来源",
+      "query": "这次栎湾工坊的涂层干燥机为什么停机？",
+      "answer": "进风口被遮挡，因此涂层干燥机停止运行。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "栎湾工坊停机复核记录",
+          "document_id": "synthetic-r3-bnd03",
+          "version_id": "synthetic-r3-v1-bnd03",
+          "version_number": 1,
+          "text": "初步记录写道：“因为进风口被遮挡，涂层干燥机停止运行。”复核记录撤回了这项原因判断，确认本次停机由供电模块断电引起，进风口没有被遮挡。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND03-01:1",
+          "question_id": "BND03-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "初步记录中的原因已被复核撤回，原文确认停机由供电模块断电引起，进风口没有被遮挡。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND03-02:1",
+          "question_id": "BND03-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "初步记录中的原因已被复核撤回，不能继续用进风口被遮挡来解释本次停机。"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND03-03:1",
+          "question_id": "BND03-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答采用了已被复核撤回的原因，原文确认本次停机由供电模块断电引起，进风口没有被遮挡。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "初步原因已被复核撤回，不从引述中截取支持。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND04",
+      "group": "多句来源",
+      "query": "青页展厅的温度为什么下降？",
+      "answer": "天窗被打开，所以展厅温度下降。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "青页展厅温度记录",
+          "document_id": "synthetic-r3-bnd04",
+          "version_id": "synthetic-r3-v1-bnd04",
+          "version_number": 1,
+          "text": "访客留言称：“因为天窗被打开，展厅温度下降。”馆方记录说明，尚未核实天窗是否打开，也没有确认展厅降温的原因。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND04-01:1",
+          "question_id": "BND04-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文中的因果只是访客留言，馆方尚未核实天窗是否打开，也没有确认降温原因。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND04-02:1",
+          "question_id": "BND04-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": null
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-boundary-clarification-20261026-r4:CL-BND04-01:1",
+          "question_id": "CL-BND04-01",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "原文中的因果只是未经核实的访客留言，不能直接断言天窗打开导致降温。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "未经核实的留言不能变成确定因果；采用新整体澄清，旧接受保留。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND05",
+      "group": "多句来源",
+      "query": "这次绛石试制室的称量仪为什么停止计量？",
+      "answer": "称台受到持续振动，因此称量仪停止计量。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "绛石试制室称量记录",
+          "document_id": "synthetic-r3-bnd05",
+          "version_id": "synthetic-r3-v1-bnd05",
+          "version_number": 1,
+          "text": "这次绛石试制室的称量仪停止计量。停止计量的原因是称台受到持续振动。维修员随后检查了称台支脚。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND05-01:1",
+          "question_id": "BND05-01",
+          "field": "source_support",
+          "answer": "可合理推断",
+          "normalized_value": "reasonably_inferred",
+          "reason": null
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND05-02:1",
+          "question_id": "BND05-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": null
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND05-03:1",
+          "question_id": "BND05-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": null
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "TEXT_EVIDENCE_FOUND",
+        "rationale": "相邻句明确写出原因，设备与停止状态逐字绑定，维修记录保留。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND06",
+      "group": "因果链",
+      "query": "云岑书店的晨光批新书为什么延后一天上架？",
+      "answer": "封箱纸板受潮导致晨光批新书延后一天上架。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "云岑书店晨光批上架记录",
+          "document_id": "synthetic-r3-bnd06",
+          "version_id": "synthetic-r3-v1-bnd06",
+          "version_number": 1,
+          "text": "晨光批新书的封箱纸板受潮，使这批新书需要重新包装。重新包装使晨光批新书的上架时间延后一天。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND06-01:1",
+          "question_id": "BND06-01",
+          "field": "source_support",
+          "answer": "原文明示",
+          "normalized_value": "explicit",
+          "reason": null
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND06-02:1",
+          "question_id": "BND06-02",
+          "field": "rewrite_acceptance",
+          "answer": "接受",
+          "normalized_value": "accepted",
+          "reason": null
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND06-03:1",
+          "question_id": "BND06-03",
+          "field": "overall_acceptability",
+          "answer": "可接受",
+          "normalized_value": "acceptable",
+          "reason": null
+        }
+      },
+      "calibration_role": "positive",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "人评可接受；机器暂不解析“这批新书”和批次指代，继续复核。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND07",
+      "group": "因果链",
+      "query": "上午9时，青砾游园为什么暂停售票？",
+      "answer": "大风导致青砾游园暂停售票。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "青砾游园上午值班记录",
+          "document_id": "synthetic-r3-bnd07",
+          "version_id": "synthetic-r3-v1-bnd07",
+          "version_number": 1,
+          "text": "大风使青砾游园入口处落满树枝。工作人员在上午9时开始清理落枝，售票处也在上午9时暂停售票。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-boundary-clarification-20261026-r4:CL-BND07-02:1",
+          "question_id": "CL-BND07-02",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文只明确大风导致落枝，清理落枝与暂停售票同时发生，没有说明大风导致停售。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND07-02:1",
+          "question_id": "BND07-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": null
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-boundary-clarification-20261026-r4:CL-BND07-01:1",
+          "question_id": "CL-BND07-01",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "原文只明确大风导致落枝，清理落枝与暂停售票同时发生，但没有说明大风导致停售。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "同一时刻发生不建立大风到停售的因果；采用两个单独澄清。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND08",
+      "group": "因果链",
+      "query": "周一北侧柜台纸箱占用通道，对该柜台的取货等待时间有什么影响？",
+      "answer": "周一北侧柜台的纸箱占用通道，导致该柜台的取货平均等待时间增加十分钟。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "晨岭面包铺柜台记录",
+          "document_id": "synthetic-r3-bnd08",
+          "version_id": "synthetic-r3-v1-bnd08",
+          "version_number": 1,
+          "text": "晨岭面包铺周一的记录显示，北侧柜台的一批空纸箱占用通道，导致北侧柜台出现排队。周二的记录显示，南侧柜台出现排队，使南侧柜台的取货平均等待时间增加十分钟。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-boundary-clarification-20261026-r4:CL-BND08-01:1",
+          "question_id": "CL-BND08-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文中等待时间增加十分钟对应周二南侧柜台，不能套到周一北侧柜台。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND08-02:1",
+          "question_id": "BND08-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "没有按实际依据来"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND08-03:1",
+          "question_id": "BND08-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答把周二南侧柜台等待时间增加十分钟的情况套到了周一北侧柜台。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "周二南侧的数据不能套到周一北侧；采用支持程度澄清。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND09",
+      "group": "因果链",
+      "query": "大量客人到店是否会让栖露餐舍暂停午餐供应？",
+      "answer": "大量客人到店会导致栖露餐舍暂停午餐供应。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "栖露餐舍午餐供应记录",
+          "document_id": "synthetic-r3-bnd09",
+          "version_id": "synthetic-r3-v1-bnd09",
+          "version_number": 1,
+          "text": "大量客人到店使栖露餐舍的待洗餐盘增加。只有备用餐盘也已用尽时，待洗餐盘增加才会导致午餐暂停供应。当天记录没有注明备用餐盘是否已经用尽。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND09-01:1",
+          "question_id": "BND09-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文要求备用餐盘也已用尽，但当天没有确认这一条件，不能直接断言大量客人到店会导致停供。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND09-02:1",
+          "question_id": "BND09-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "回答省略了备用餐盘也已用尽这一必要条件，不能直接概括为大量客人到店会导致停供。"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND09-03:1",
+          "question_id": "BND09-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "回答省略了备用餐盘也已用尽这一必要条件，且当天没有确认该条件，不能直接断言大量客人到店会导致停供。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "备用餐盘已用尽这一必要条件未确认，不能无条件断言。",
+        "is_human_label": false
+      }
+    },
+    {
+      "case_id": "BND10",
+      "group": "因果链",
+      "query": "早晨的扎带断裂，对雁汀编织集市编号17作品开市时的销售资格有什么影响？",
+      "answer": "扎带断裂导致编号17作品未能列入开市时的销售清单。",
+      "sources": [
+        {
+          "citation_id": "S1",
+          "title": "雁汀编织集市开市记录",
+          "document_id": "synthetic-r3-bnd10",
+          "version_id": "synthetic-r3-v1-bnd10",
+          "version_number": 1,
+          "text": "编号17作品的扎带在早晨断裂，使吊牌脱落。吊牌脱落的作品不能列入当日销售清单。开市前，工作人员为该作品更换扎带并补齐吊牌；该作品随后列入当日销售清单。",
+          "origin": "new_hand_authored_synthetic_material"
+        }
+      ],
+      "citations": [
+        "S1"
+      ],
+      "real_model_response": false,
+      "human_fields": {
+        "source_support": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND10-01:1",
+          "question_id": "BND10-01",
+          "field": "source_support",
+          "answer": "依据不足",
+          "normalized_value": "insufficient",
+          "reason": "原文说明开市前已更换扎带并补齐吊牌，作品随后列入当日销售清单，不能断言开市时未能列入。"
+        },
+        "rewrite_acceptance": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND10-02:1",
+          "question_id": "BND10-02",
+          "field": "rewrite_acceptance",
+          "answer": "不接受",
+          "normalized_value": "rejected",
+          "reason": "原文说明开市前已更换扎带并补齐吊牌，作品随后列入当日销售清单，不能用早晨扎带断裂概括为开市时未列入。"
+        },
+        "overall_acceptability": {
+          "judgment_id": "rag-multisentence-chain-review-20261025-r3:BND10-03:1",
+          "question_id": "BND10-03",
+          "field": "overall_acceptability",
+          "answer": "需修改",
+          "normalized_value": "needs_revision",
+          "reason": "原文说明开市前已更换扎带并补齐吊牌，作品随后列入当日销售清单，回答却说开市时未能列入。"
+        }
+      },
+      "calibration_role": "negative",
+      "machine_expectation": {
+        "status": "NEED_REVIEW",
+        "rationale": "开市前修复改变最终状态，不能延用早晨吊牌脱落的结果。",
+        "is_human_label": false
+      }
+    }
+  ]
+}

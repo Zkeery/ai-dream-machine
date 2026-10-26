@@ -67,6 +67,8 @@ def request_payload(execution_id: str) -> dict:
 def claim_resume(source_execution_id: str, owner_id: str,
                  request_key: str | None = None) -> tuple[str, bool]:
     """Atomically resume a failed execution under original input, ownership and quotas."""
+    from app.services import trial_controls
+    trial_controls.require_no_retry(source_execution_id)
     from app.services.cost_control import check_execution_limits
     with db.connect() as conn:
         conn.execute("BEGIN IMMEDIATE")
@@ -158,6 +160,29 @@ def _insert(conn, entity_type: str, entity_id: str, owner_id: str | None,
 
 def claim_session(session_id: str, stage: str, operation: str, payload: dict,
                   request_key: str | None = None) -> tuple[str, bool]:
+    """Trial consent and telemetry surround the atomic execution/generation claim."""
+    from app.services import trial_controls, trial_events
+    trial_generation = trial_controls.enabled() and operation not in ("save", "select")
+    owner_id = None
+    if trial_generation:
+        with db.connect() as conn:
+            session = conn.execute("SELECT owner_id FROM sessions WHERE session_id=?", (session_id,)).fetchone()
+        if session is None:
+            raise AppError("SESSION_NOT_FOUND", "会话不存在", 404)
+        owner_id = session["owner_id"]
+        trial_controls.require_consent(owner_id)
+    try:
+        execution_id, created, first_trial = _claim_session(session_id, stage, operation, payload, request_key)
+    except AppError as error:
+        if trial_generation and error.code.startswith("TRIAL_"):
+            trial_events.record_event(owner_id, "quota_block", {"reason": error.code})
+        raise
+    # Separate transactions: never write events while holding the claim's lock.
+    return execution_id, created
+
+
+def _claim_session(session_id: str, stage: str, operation: str, payload: dict,
+                   request_key: str | None = None) -> tuple[str, bool, bool]:
     """Claim and set running in one transaction, before any model coroutine starts."""
     with db.connect() as conn:
         conn.execute("BEGIN IMMEDIATE")
@@ -182,26 +207,55 @@ def claim_session(session_id: str, stage: str, operation: str, payload: dict,
             if request:
                 if request["input_hash"] != input_hash:
                     raise AppError("IDEMPOTENCY_CONFLICT", "重复提交标识对应的输入不同，请重新提交", 409)
-                return request["execution_id"], False
+                return request["execution_id"], False, False
             old = conn.execute("SELECT * FROM executions WHERE entity_type='session' AND entity_id=? "
                                "AND request_key=?", (session_id, request_key)).fetchone()
             if old:
                 if old["input_hash"] != input_hash:
                     raise AppError("IDEMPOTENCY_CONFLICT", "重复提交标识对应的输入不同，请重新提交", 409)
-                return old["execution_id"], False
+                return old["execution_id"], False, False
         active = conn.execute("SELECT * FROM executions WHERE entity_type='session' AND entity_id=? "
-                              "AND status IN ('pending','running')", (session_id,)).fetchone()
+                              "AND status IN ('pending','running','awaiting_review')", (session_id,)).fetchone()
         if active:
             if active["input_hash"] == input_hash:
                 if request_key:
                     conn.execute("INSERT INTO session_requests VALUES(?,?,?,?,?)",
                                  (session_id, request_key, input_hash, active["execution_id"], time.time()))
-                return active["execution_id"], False
+                return active["execution_id"], False, False
             raise AppError("SESSION_RUNNING", "当前项目正在执行，请等待结束后再操作", 409)
-        if meta["status"] == "running":
+        if meta["status"] in {"running", "awaiting_review"}:
             raise AppError("SESSION_RUNNING", "当前项目仍在生成，请先查询任务状态", 409)
-        if operation == "generate" and meta["status"] == "session_completed":
+        from app.services import trial_controls
+        if operation == "generate" and meta["status"] == "session_completed" and not trial_controls.enabled():
             raise AppError("SESSION_DONE", "会话已完成", 409)
+        first_trial = False
+        if trial_controls.enabled() and operation not in ("save", "select"):
+            if operation != "generate":
+                raise AppError("TRIAL_RETRY_DISABLED", trial_controls.PENDING_MESSAGE, 409)
+            if model_meta.episodes != 1:
+                raise AppError("TRIAL_SCOPE_DISABLED", "本轮内测只支持单集漫剧或 3 镜短视频", 403)
+            # The execution history is the immutable protection; save/select may
+            # legitimately invalidate current artifact completion flags.
+            prior = conn.execute("SELECT 1 FROM executions WHERE entity_type='session' AND entity_id=? "
+                                 "AND stage=? AND operation IN ('generate','regenerate') AND status='completed'",
+                                 (session_id, stage)).fetchone()
+            if prior or stage in model_meta.stages_completed:
+                raise AppError("TRIAL_STAGE_ALREADY_GENERATED", "该阶段已经生成，本轮内测不重复生成", 409)
+            trial_controls._ensure(conn)
+            reservation = conn.execute("SELECT status FROM trial_generations WHERE task_id=?", (session_id,)).fetchone()
+            if reservation and reservation["status"] != "reserved":
+                message = trial_controls.PENDING_MESSAGE if reservation["status"] == "pending_reconciliation" else trial_controls.FULL_MESSAGE
+                raise AppError("TRIAL_GENERATION_CLOSED", message, 409)
+            if model_meta.project_type == "story" and stage == "video_generation":
+                shots = (model_meta.artifacts.get("storyboard") or {}).get("shots")
+                if not isinstance(shots, list) or len(shots) != 3:
+                    raise AppError("TRIAL_SHOT_COUNT_INVALID", "本轮内测只生成 3 镜短视频，请先确认分镜恰好为 3 镜", 422)
+            kind = "comic" if model_meta.project_type == "comic" else "three_shot"
+            claimed = trial_controls.reserve_generation(
+                model_meta.owner_id, session_id, kind, trial_controls.estimate_for(kind, model_meta.owner_id),
+                request_key="session:" + session_id, input_payload={"session_id": session_id},
+                _conn=conn, _consent_checked=True)
+            first_trial = claimed["created"]
         from app.services.cost_control import check_execution_limits
         if operation not in ("save", "select"):
             check_execution_limits(conn, meta["owner_id"])
@@ -214,7 +268,7 @@ def claim_session(session_id: str, stage: str, operation: str, payload: dict,
         if operation not in ("save", "select"):
             conn.execute("UPDATE sessions SET status='running',error=NULL,updated_at=? WHERE session_id=?",
                          (time.time(), session_id))
-        return execution_id, True
+        return execution_id, True, first_trial
 
 
 def create_task(meta, request_key: str | None = None) -> tuple[str, str, bool]:
@@ -263,7 +317,7 @@ def create_task(meta, request_key: str | None = None) -> tuple[str, str, bool]:
 def active(entity_type: str, entity_id: str) -> bool:
     with db.connect() as conn:
         return conn.execute("SELECT 1 FROM executions WHERE entity_type=? AND entity_id=? "
-                            "AND status IN ('pending','running')", (entity_type, entity_id)).fetchone() is not None
+                            "AND status IN ('pending','running','awaiting_review')", (entity_type, entity_id)).fetchone() is not None
 
 
 def snapshot(entity_type: str, entity_id: str) -> dict | None:
@@ -306,17 +360,32 @@ def finish(execution_id: str, event: dict, status: str, error: str | None = None
 
 def fail(execution_id: str, code: str, message: str, interrupted: bool = False) -> None:
     """Store a readable failure while preserving inputs, successful artifacts and history."""
+    trial_failure = None
     with db.connect() as conn:
         conn.execute("BEGIN IMMEDIATE")
         row = conn.execute("SELECT * FROM executions WHERE execution_id=?", (execution_id,)).fetchone()
-        if not row or row["status"] not in ACTIVE:
+        manual_rejection = code == "REVIEW_REJECTED"
+        if not row or (row["status"] not in ACTIVE and not (manual_rejection and row["status"] == "awaiting_review")):
             return
+        from app.services import trial_controls
+        if trial_controls.enabled() and row["operation"] not in ("save", "select"):
+            trial_controls._ensure(conn)
+            reserved = conn.execute("SELECT status FROM trial_generations WHERE task_id=?", (row["entity_id"],)).fetchone()
+            if reserved and reserved["status"] != "completed":
+                conn.execute("UPDATE trial_generations SET status='pending_reconciliation',updated_at=? WHERE task_id=?", (time.time(), row["entity_id"]))
+                trial_failure = (row["owner_id"], row["entity_id"], code)
+                if not manual_rejection:
+                    code, message = "TRIAL_PENDING_RECONCILIATION", trial_controls.PENDING_MESSAGE
         table, id_column = ("sessions", "session_id") if row["entity_type"] == "session" else ("tasks", "task_id")
-        conn.execute(f"UPDATE {table} SET status='failed',error=?,updated_at=? WHERE {id_column}=?",
-                     (message, time.time(), row["entity_id"]))
+        conn.execute(f"UPDATE {table} SET status=?,error=?,updated_at=? WHERE {id_column}=?",
+                     ("pending_reconciliation" if trial_failure and not manual_rejection else "failed", message, time.time(), row["entity_id"]))
         conn.execute("UPDATE executions SET status=?,error=?,updated_at=? WHERE execution_id=?",
                      ("interrupted" if interrupted else "failed", message, time.time(), execution_id))
         _event(conn, execution_id, {"type": "error", "error": {"code": code, "message": message}})
+    if trial_failure:
+        from app.services.trial_events import record_event
+        record_event(trial_failure[0], "gen_fail", {"task_id": trial_failure[1],
+            "error_type": trial_failure[2], "pending_reconciliation": True})
 
 
 def launch(execution_id: str, operation: Callable[[], Awaitable[dict]]) -> None:
@@ -324,20 +393,46 @@ def launch(execution_id: str, operation: Callable[[], Awaitable[dict]]) -> None:
     async def worker() -> None:
         token = _current_execution.set(execution_id)
         try:
+            with db.connect() as conn:
+                conn.execute("UPDATE executions SET status='running',worker_pid=?,updated_at=? WHERE execution_id=? AND status='pending'",
+                             (os.getpid(), time.time(), execution_id))
             event = await operation()
-            finish(execution_id, event, "completed")
+            finish(execution_id, event, "awaiting_review" if event.get("type") == "review_required" else "completed")
         except asyncio.CancelledError:
             fail(execution_id, "EXECUTION_INTERRUPTED", INTERRUPTED_MESSAGE, interrupted=True)
             raise
         except AppError as exc:
+            from app.services import review_store, session_store
+            if isinstance(exc, review_store.ReviewRequired):
+                with db.connect() as conn:
+                    row = conn.execute("SELECT entity_id FROM executions WHERE execution_id=?", (execution_id,)).fetchone()
+                from app.api.sessions import _session_json
+                meta = session_store.load_session(row["entity_id"])
+                public = _session_json(meta)
+                if public.get("execution"):
+                    public["execution"]["status"] = "awaiting_review"
+                finish(execution_id, {"type": "review_required", "session": public,
+                                      "pending_review": public["pending_review"]}, "awaiting_review")
+                return
             fail(execution_id, exc.code, exc.message)
+        except TimeoutError:
+            fail(execution_id, "EXECUTION_TIMEOUT", "生成超时，请保留任务号等待核对")
         except Exception:
             fail(execution_id, "INTERNAL_ERROR", "服务内部错误，请保留输入后重试")
         finally:
             _current_execution.reset(token)
             _workers.pop(execution_id, None)
 
+    existing = _workers.get(execution_id)
+    if existing is not None and not existing.done():
+        return
     _workers[execution_id] = asyncio.create_task(worker())
+
+
+async def wait_paused_worker(execution_id: str) -> None:
+    previous = _workers.get(execution_id)
+    if previous is not None and not previous.done():
+        await asyncio.shield(previous)
 
 
 async def stream(execution_id: str, after_event_id: int = 0) -> AsyncIterator[str]:
@@ -351,7 +446,7 @@ async def stream(execution_id: str, after_event_id: int = 0) -> AsyncIterator[st
         for ev in events:
             cursor = ev["event_id"]
             yield f"id: {cursor}\ndata: {ev['payload']}\n\n"
-            if json.loads(ev["payload"]).get("type") in ("done", "error"):
+            if json.loads(ev["payload"]).get("type") in ("done", "error", "review_required"):
                 return
         if state is None:
             raise AppError("EXECUTION_NOT_FOUND", "执行记录不存在", 404)
@@ -414,6 +509,21 @@ def recover_unfinished() -> dict[str, int]:
                 continue
             table, id_column = ("sessions", "session_id") if row["entity_type"] == "session" else ("tasks", "task_id")
             meta = conn.execute(f"SELECT * FROM {table} WHERE {id_column}=?", (row["entity_id"],)).fetchone()
+            if meta and row["entity_type"] == "session" and meta["status"] == "awaiting_review":
+                trace_table = conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='content_review_traces'").fetchone()
+                review = conn.execute("SELECT * FROM content_review_traces WHERE execution_id=? AND route='manual' AND status IN ('pending','approved') ORDER BY created_at DESC LIMIT 1",
+                                      (row["execution_id"],)).fetchone() if trace_table else None
+                # started/pending after a saved approval never submitted work;
+                # an awaiting_review checkpoint never represents a failed call.
+                if review:
+                    from app.services import review_store, session_store
+                    pending = review_store.pending_from_row(review)
+                    public = session_store._from_row(meta).model_dump()
+                    public["pending_review"] = pending
+                    conn.execute("UPDATE executions SET status='awaiting_review',error=NULL,updated_at=? WHERE execution_id=?",
+                                 (time.time(), row["execution_id"]))
+                    _event(conn, row["execution_id"], {"type": "review_required", "session": public, "pending_review": pending})
+                    continue
             # A crash after saving the result but before the terminal event is
             # recoverable without calling a provider again.
             completed = meta and ((row["entity_type"] == "task" and meta["status"] == "completed" and meta["result"])

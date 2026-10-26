@@ -24,10 +24,16 @@ import httpx
 
 from app.core import config
 from app.core.errors import AppError
+from app.core import offline
 from app.services import provider_jobs
 from app.models.video_contracts import VIDEO_MODE_MODELS, SEEDANCE, VEO, KLING, validate as validate_video
 
 logger = logging.getLogger(__name__)
+
+# Exact USD adapters: the backup's unique paid probe and later F1 requests were
+# reconciled to AIHubMix native USD receipts (F1-diagnosis-20261012). No wildcard
+# inferera domain is trusted, and task/model/status checks remain mandatory.
+_AIHUBMIX_USD_ADAPTER_HOSTS = frozenset({"aihubmix.com", "api.inferera.com"})
 
 def _image_to_data_uri(path: str) -> str:
     p = Path(path)
@@ -77,7 +83,7 @@ class VideoClient:
         self.api_key = config.settings.aihubmix_api_key
         self.base = config.settings.aihubmix_base
         self.timeout = config.settings.video_timeout  # 整体截止（秒）
-        self.max_retries = config.settings.max_retries
+        self.max_retries = 0
         self.poll_interval = 15.0
         self.req_timeout = 60.0  # 单次 HTTP 请求超时
 
@@ -93,8 +99,9 @@ class VideoClient:
 
     def _request_with_retry(self, method: str, url: str, **kwargs) -> httpx.Response:
         """查询可有限重试；付费创建结果未知时不自动重提。"""
+        from app.services import f1_controls
         read_only = method.upper() == "GET"
-        attempts = self.max_retries + 1 if read_only else 1
+        attempts = self.max_retries + 1 if read_only and not f1_controls.enabled() else 1
         failure_kind = "unknown"
         for attempt in range(attempts):
             try:
@@ -129,7 +136,7 @@ class VideoClient:
         """图生视频：image_path 为本地图片路径，转 base64 后作为参考图。"""
         # The caller supplies one approved storyboard shot. A stage-wide Agent
         # brief can contain all shots and must never be appended to every clip.
-        if not self.api_key:
+        if not self.api_key and not config.settings.mode_mock:
             raise AppError("MISSING_API_KEY", "未配置 AIHUBMIX_API_KEY", 503)
         if mode not in VIDEO_MODE_MODELS:
             raise AppError("VIDEO_MODE_UNSUPPORTED", "不支持的视频生成模式", 400)
@@ -138,6 +145,10 @@ class VideoClient:
         selected_model = model or self._model_for(mode)
         if selected_model not in VIDEO_MODE_MODELS[mode]:
             raise AppError("VIDEO_MODEL_UNSUPPORTED", "所选视频模型不支持当前生成模式，请重新选择", 400)
+        if config.settings.mode_mock:
+            if not Path(image_path).is_file():
+                raise AppError("IMAGE_NOT_FOUND", "参考图不存在", 400)
+            return offline.mock_video(out_path, video_ratio=video_ratio or "16:9")
         if selected_model in {SEEDANCE, VEO, KLING}:
             return self._native_story_video(image_path, prompt, out_path, mode, reference_paths or [],
                                             end_image_path, video_ratio or "16:9", resolution, model=selected_model)
@@ -156,12 +167,53 @@ class VideoClient:
         }
         return self._create_or_resume("/v1/videos", payload, out_path, native=False)
 
-    def _save_result(self, job: provider_jobs.Job, url: str, out_path: Path) -> Path:
+    def _save_result(self, job: provider_jobs.Job, url: str, out_path: Path, *, units: dict | None = None,
+                     provider_result: dict | None = None, provider_source: str | None = None) -> Path:
         from app.services import cost_control
         provider_jobs.ready(job, url)
-        cost_control.settle(job.id, status="completed")
+        usage = (provider_result or {}).get("usage")
+        if isinstance(usage, dict) and usage.get("cost") is not None:
+            returned_id = provider_result.get("id")
+            returned_model = provider_result.get("model")
+            currency = usage.get("currency")
+            host = urlparse(self.base).hostname or ""
+            # AIHubMix usage.cost is USD, cross-checked with native task/CSV
+            # receipts. Another adapter must explicitly state its currency.
+            usd_currency = (str(currency).upper() == "USD" if currency is not None
+                            else host in _AIHUBMIX_USD_ADAPTER_HOSTS)
+            raw_cost = usage["cost"]
+            observed = {"usage_basis": "provider_reported_charge_usd", "provider_task_id": returned_id,
+                        "expected_provider_task_id": job.row.get("vendor_job_id"),
+                        "provider_status": provider_result.get("status"),
+                        "provider_duration_raw": repr(provider_result.get("duration", provider_result.get("seconds"))),
+                        "provider_model": returned_model, "provider_usage_cost_raw": repr(raw_cost),
+                        "provider_currency": "USD" if usd_currency else currency,
+                        "provider_request_fingerprint": job.row.get("request_hash", job.row.get("input_hash")),
+                        "requested_spec": (units or {}).get("requested_spec", units)}
+            if (returned_id != job.row.get("vendor_job_id") or not returned_id
+                or returned_model != job.row.get("model") or provider_result.get("status") != "completed"
+                or not usd_currency or not provider_source):
+                observed["usage_basis"] = "provider_reported_charge_unconfirmed"
+                settlement = cost_control.settle(job.id, status="uncertain", actual_units=observed)
+            else:
+                settlement = cost_control.settle(job.id, status="completed", actual_units=observed,
+                    provider_charge_usd=raw_cost, provider_charge_source=provider_source)
+        else:
+            settlement = cost_control.settle(job.id, status="completed", actual_units=units)
+        cost_control.require_confirmed_settlement(settlement)
+        download_url = url
+        vendor_id = job.row.get("vendor_job_id")
+        protected_path = f"/ai/v1/videos/{vendor_id}/content"
+        # The approved backup may return the canonical protected asset URL.
+        # Select its equivalent route before the first GET, only for this exact
+        # validated task. Never forward a key to another host or task URL.
+        if (self.base.rstrip("/") == "https://api.inferera.com" and isinstance(provider_result, dict)
+            and provider_result.get("status") == "completed" and vendor_id
+            and provider_result.get("id") == vendor_id and provider_result.get("model") == job.row.get("model")
+            and url == f"https://aihubmix.com{protected_path}" and urlparse(url).path == protected_path):
+            download_url = f"https://api.inferera.com{protected_path}"
         try:
-            result = self._download(url, out_path)
+            result = self._download(download_url, out_path)
         except AppError as error:
             provider_jobs.failed(job, error.code, uncertain=True)
             raise
@@ -177,7 +229,7 @@ class VideoClient:
         audio by default; `audio` is a flash-only switch. shot_type requires
         prompt_extend=True. No external audio URL or fixed TTS voice is claimed.
         """
-        if not self.api_key:
+        if not self.api_key and not config.settings.mode_mock:
             raise AppError("MISSING_API_KEY", "未配置 AIHUBMIX_API_KEY", 503)
         if model != "wan2.6-i2v":
             raise AppError("VIDEO_MODEL_UNSUPPORTED", "所选模型不支持当前人物嘴型口播", 422)
@@ -187,6 +239,10 @@ class VideoClient:
             raise AppError("TALKING_SCRIPT_TOO_LONG", "人物嘴型口播目前为10秒，请将文案缩短到40个非空白字符以内", 422)
         if type(duration) is not int or duration != 10:
             raise AppError("TALKING_DURATION_UNSUPPORTED", "人物嘴型口播目前固定为10秒", 422)
+        if config.settings.mode_mock:
+            if not Path(image_path).is_file():
+                raise AppError("IMAGE_NOT_FOUND", "参考图不存在", 400)
+            return offline.mock_video(out_path, duration=duration)
         prompt = (
             "固定机位，单一连续镜头，参考图中的同一个人物面向镜头，以自然清晰的普通话说话。"
             f"人物完整、逐字说出以下台词：\u201c{script.strip()}\u201d。"
@@ -202,19 +258,26 @@ class VideoClient:
         return self._create_or_resume("/ai/v1/videos", payload, out_path, native=True)
 
     def _create_or_resume(self, endpoint: str, payload: dict, out_path: Path, *, native: bool) -> Path:
-        from app.services import cost_control
+        from app.services import cost_control, f1_controls
+        strict_once = f1_controls.enabled()
         url = f"{self.base}{endpoint}"
+        units = {"seconds": float(payload.get("duration", payload.get("seconds", 5))),
+                 "resolution": str(payload.get("resolution", "720P")).upper(),
+                 "usage_basis": "provider_completed_requested_spec",
+                 "mode": (payload.get("extra") or {}).get("mode"),
+                 "generate_audio": payload.get("generate_audio"),
+                 "input_reference_types": [ref.get("type") for ref in (payload.get("input_references") or payload.get("input_reference") or [])
+                                           if isinstance(ref, dict)]}
         job = provider_jobs.begin("video", url, payload)
         if provider_jobs.reuse_local(job, out_path):
             return out_path
         if job.row.get("result_url"):
-            return self._save_result(job, job.row["result_url"], out_path)
+            return self._save_result(job, job.row["result_url"], out_path, units=units)
         deadline = time.time() + self.timeout
         if job.new:
             try:
                 cost_control.reserve(job.id, payload["model"], "video", {
-                    "seconds": float(payload.get("duration", payload.get("seconds", 5))),
-                    "resolution": str(payload.get("resolution", "720P")).upper(),
+                    "seconds": units["seconds"], "resolution": units["resolution"],
                 })
             except AppError as error:
                 provider_jobs.not_submitted(job, error.code)
@@ -228,6 +291,7 @@ class VideoClient:
             try:
                 response = self._request_with_retry("POST", url, json=payload)
                 data = response.json()
+                provider_source = url
                 video_id = data.get("id") if isinstance(data, dict) else None
                 if not isinstance(video_id, str) or not video_id:
                     raise ValueError
@@ -248,6 +312,7 @@ class VideoClient:
         else:
             video_id = job.row["vendor_job_id"]
             data = {"status": "pending"}
+            provider_source = f"{url}/{video_id}"
         query_failures = 0
         while True:
             try:
@@ -258,7 +323,12 @@ class VideoClient:
                         result_url = output[0].get("content_url") if output else None
                     else:
                         result_url = data.get("url")
-                    return self._save_result(job, result_url or f"{url}/{video_id}/content", out_path)
+                    reported = data.get("duration", data.get("seconds"))
+                    if type(reported) in (int, float) and reported > 0:
+                        units = {**units, "seconds": reported, "usage_basis": "provider_reported_duration",
+                                 "requested_spec": units}
+                    return self._save_result(job, result_url or f"{url}/{video_id}/content", out_path, units=units,
+                                             provider_result=data, provider_source=provider_source)
                 if status in {"failed", "cancelled"}:
                     provider_jobs.failed(job, "VIDEO_TASK_FAILED")
                     cost_control.settle(job.id, status="uncertain")
@@ -269,11 +339,12 @@ class VideoClient:
                 time.sleep(min(self.poll_interval, max(0, deadline - time.time())))
                 provider_jobs.check_active(job)
                 data = self._request_with_retry("GET", f"{url}/{video_id}").json()
+                provider_source = f"{url}/{video_id}"
                 query_failures = 0
                 if not isinstance(data, dict):
                     raise ValueError
             except AppError as error:
-                if error.code == "VIDEO_QUERY_FAILED" and query_failures < 2 and time.time() < deadline:
+                if error.code == "VIDEO_QUERY_FAILED" and not strict_once and query_failures < 2 and time.time() < deadline:
                     query_failures += 1
                     logger.warning("视频任务查询暂时中断，保留原任务继续查询：job=%s recovery=%s", job.id, query_failures)
                     continue
@@ -352,9 +423,11 @@ class VideoClient:
         return self._create_or_resume("/ai/v1/videos", payload, out_path, native=True)
 
     def _download(self, url: str, out_path: Path) -> Path:
+        from app.services import f1_controls
         url = urljoin(f"{self.base}/", url)
         headers = self._headers() if urlparse(url).netloc == urlparse(self.base).netloc else {}
-        for attempt in range(self.max_retries + 1):
+        attempts = 1 if f1_controls.enabled() else self.max_retries + 1
+        for attempt in range(attempts):
             try:
                 resp = httpx.get(url, headers=headers, timeout=self.timeout, follow_redirects=True)
                 if resp.status_code < 400:
@@ -365,6 +438,6 @@ class VideoClient:
                     break
             except httpx.HTTPError:
                 pass
-            if attempt < self.max_retries:
+            if attempt < attempts - 1:
                 time.sleep(min(2**attempt, 4))
         raise AppError("VIDEO_DOWNLOAD_FAILED", "视频已生成，但下载失败；未重新提交生成，请检查任务记录", 502)

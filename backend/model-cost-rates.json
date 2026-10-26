@@ -29,6 +29,18 @@
     "kind": "text",
     "input_per_million_cny": 4.384,
     "output_per_million_cny": 26.304,
+    "settlement": {
+      "currency": "USD",
+      "source": "https://aihubmix.com/model/qwen3.5-plus ; https://aihubmix.com/call/mdl_info",
+      "as_of": "2026-10-12T07:31:56Z",
+      "budget_conversion_cny_per_usd": 8,
+      "rounding": "USD six decimal places, half up; then fixed CNY budget conversion",
+      "tiers": [
+        {"min_input_tokens": 0, "max_input_tokens": 128000, "input_per_million_usd": 0.1096, "output_per_million_usd": 0.6576, "cached_input_per_million_usd": 0.01096, "cache_write_input_per_million_usd": 0.137},
+        {"min_input_tokens": 128001, "max_input_tokens": 256000, "input_per_million_usd": 0.274, "output_per_million_usd": 1.644, "cached_input_per_million_usd": 0.0274, "cache_write_input_per_million_usd": 0.3425},
+        {"min_input_tokens": 256001, "max_input_tokens": 1000000, "input_per_million_usd": 0.548, "output_per_million_usd": 3.288, "cached_input_per_million_usd": 0.0548, "cache_write_input_per_million_usd": 0.685}
+      ]
+    },
     "currency": "CNY",
     "source": "https://aihubmix.com/model/qwen3.5-plus",
     "as_of": "2026-10-04",
@@ -61,6 +73,15 @@
   "qwen-image-2.0": {
     "kind": "image",
     "image_cny": 0.2256,
+    "settlement": {
+      "currency": "USD",
+      "source": "https://aihubmix.com/model/qwen-image-2.0 ; https://aihubmix.com/call/mdl_info",
+      "as_of": "2026-10-12T07:31:56Z",
+      "image_usd": 0.0282,
+      "specification": "img_price_config.generate.standard.standard; one returned generated image",
+      "budget_conversion_cny_per_usd": 8,
+      "rounding": "USD six decimal places, half up; then fixed CNY budget conversion"
+    },
     "currency": "CNY",
     "source": "https://aihubmix.com/model/qwen-image-2.0",
     "as_of": "2026-10-04",
@@ -121,6 +142,18 @@
     "kind": "text",
     "input_per_million_cny": 1.6432,
     "output_per_million_cny": 16.432,
+    "settlement": {
+      "currency": "USD",
+      "source": "https://aihubmix.com/model/qwen3-vl-plus ; https://aihubmix.com/call/mdl_info",
+      "as_of": "2026-10-12T07:31:56Z",
+      "budget_conversion_cny_per_usd": 8,
+      "rounding": "USD six decimal places, half up; then fixed CNY budget conversion",
+      "tiers": [
+        {"min_input_tokens": 0, "max_input_tokens": 32000, "input_per_million_usd": 0.137, "output_per_million_usd": 1.37, "cached_input_per_million_usd": 0.0274},
+        {"min_input_tokens": 32001, "max_input_tokens": 128000, "input_per_million_usd": 0.2054, "output_per_million_usd": 2.054, "cached_input_per_million_usd": 0.04108},
+        {"min_input_tokens": 128001, "max_input_tokens": 2520000, "input_per_million_usd": 0.411, "output_per_million_usd": 4.11, "cached_input_per_million_usd": 0.0822}
+      ]
+    },
     "currency": "CNY",
     "source": "https://aihubmix.com/model/qwen3-vl-plus",
     "as_of": "2026-10-10",
@@ -138,6 +171,15 @@
     "source": "https://aihubmix.com/call/mdl_info (img_price_config generate std/pro) ; https://docs.aihubmix.com/cn/api/Video-Gen",
     "as_of": "2026-10-10",
     "budget_conversion_cny_per_usd": 8,
+    "settlement_policy": {
+      "basis": "provider_reported_usage.cost_USD",
+      "source": "docs/evidence/第二批收尾-20261011/B3/s1-task.json ; docs/evidence/第二批收尾-20261011/B3/platform-detail.csv ; docs/evidence/第二批收尾-20261011/cost-reconciliation.json",
+      "as_of": "2026-10-12",
+      "required_metadata": ["matching provider task id", "matching model", "completed status", "nonnegative finite usage.cost", "USD currency or known AIHubMix adapter"],
+      "missing_charge": "retain uncertain and reservation; no request-spec or unverified price fallback",
+      "unit_price_verified": false,
+      "notice": "The reported USD charge can settle budget independently of unit pricing. Current nominal 720P std price is 0.0845, but per-second versus generic per-generation source conflict remains; do not extrapolate historical pro charges to current std/pro prices."
+    },
     "basis": "按平台实际扣费校准：2026-10-10 平台任务记录显示 1080P(pro) 每 5 秒 $0.4225，即 $0.0845/秒，与 720P 相同；参考视频(ref)档未用",
     "notice": "本地未提交改动，不是供应商实付。"
   },

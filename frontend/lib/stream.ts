@@ -1,9 +1,11 @@
 import { ApiError, authHeaders } from "./api/client";
 import { API_BASE } from "./config";
+import type { PendingReview } from "./api/sessions";
 
 export type SSEEvent =
   | { type: "progress"; stage: string; message: string; percent: number }
   | { type: "done"; session: Record<string, unknown> }
+  | { type: "review_required"; session: Record<string, unknown>; pending_review: PendingReview }
   | { type: "error"; error: { code: string; message: string } };
 
 /** 用 Fetch Streaming 消费后端 SSE（支持 Bearer 头）。 */
@@ -49,10 +51,17 @@ export async function streamSSE(
       buf = buf.slice(idx + 2);
       const line = chunk.split("\n").find((l) => l.startsWith("data: "));
       if (!line) continue;
+      let event: SSEEvent;
       try {
-        onEvent(JSON.parse(line.slice(6)) as SSEEvent);
+        event = JSON.parse(line.slice(6)) as SSEEvent;
       } catch {
         // 忽略无法解析的分片
+        continue;
+      }
+      onEvent(event);
+      if (event.type === "review_required") {
+        await reader.cancel();
+        return;
       }
     }
   }

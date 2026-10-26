@@ -16,6 +16,7 @@ from pydantic import BaseModel, ValidationError
 
 from app.core import config
 from app.core.errors import AppError
+from app.core import offline
 from app.services import cost_control
 
 logger = logging.getLogger(__name__)
@@ -45,13 +46,19 @@ class LLMClient:
         self.base = config.settings.aihubmix_base
         self.model = config.settings.llm_model
         self.timeout = config.settings.llm_timeout
-        self.max_retries = config.settings.max_retries
+        # A failed/unknown paid attempt must never trigger another submission.
+        self.max_retries = 0
 
     def _headers(self) -> dict:
         return {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
 
     def generate(self, system: str, user: str, *, model: str | None = None, owner_id: str | None = None) -> str:
-        """返回文本；仅对明确的 5xx 响应重试，不重提结果未知的请求。"""
+        """返回文本；失败或未知结果不自动重提。"""
+        if config.settings.mode_mock:
+            offline.mock_invocation("text")
+            if '"safe"' in system or "safe" in system and "JSON" in system:
+                return json.dumps({"safe": True, "reason": "MOCK 占位内容，真实安全性未验证"}, ensure_ascii=False)
+            return "MOCK 离线测试：创意扩写占位文本，不代表真实模型结果。"
         from app.services.agent_runtime import CONTROL_DECISION, with_brief
         user = with_brief(user)
         if not self.api_key:
@@ -99,10 +106,9 @@ class LLMClient:
                     raise AppError("MODEL_ERROR", f"模型接口返回 {resp.status_code}", 502)
                 data = resp.json()
                 usage = data.get("usage") or {}
-                actual_units = None
-                if isinstance(usage.get("prompt_tokens"), int) and isinstance(usage.get("completion_tokens"), int):
-                    actual_units = {"input_tokens": usage["prompt_tokens"], "output_tokens": usage["completion_tokens"]}
-                cost_control.settle(call_id, "completed", actual_units=actual_units)
+                actual_units = cost_control.actual_text_units(usage)
+                settlement = cost_control.settle(call_id, "completed", actual_units=actual_units)
+                cost_control.require_confirmed_settlement(settlement)
                 content = data["choices"][0]["message"]["content"]
                 if isinstance(content, list):  # 部分视觉返回结构
                     content = "".join(
@@ -124,7 +130,10 @@ class LLMClient:
 
     def generate_json(self, system: str, user: str, model_cls: type[BaseModel], *,
                       model: str | None = None, owner_id: str | None = None) -> BaseModel:
-        """生成并强校验结构化输出；解析失败重试，仍失败统一报错。"""
+        """生成并强校验结构化输出；失败不自动再次调用。"""
+        if config.settings.mode_mock:
+            offline.mock_invocation("text")
+            return model_cls.model_validate(offline.mock_structured(model_cls, user))
         last_err: Exception | None = None
         issues: list[dict] = []
         retry_system = system

@@ -29,7 +29,7 @@ function view(file, name, props, { states = [], modules = {}, runEffects = true 
       if (!previous || dependencies.some((value, i) => value !== previous.dependencies[i])) { previous?.cleanup?.(); effects[index] = { callback, dependencies }; }
     },
   };
-  const exports = compile(file, { react, "react/jsx-runtime": require("react/jsx-runtime"), "@/components/ui/Button": { Button }, "@/components/ui/Input": { Input: Empty }, "@/lib/workflow": workflow, "@/features/cinema/SessionLibrary": { STAGE_CN: {}, TaskVideo: Empty }, "./ModelSelector": { ModelSelector: Empty, ModelUsageNote: Empty }, "@/features/creation/ModelSelector": { ModelSelector: Empty, ModelUsageNote: Empty }, "./RecoveryNotice": { RecoveryNotice: Recovery }, "@/features/creation/RecoveryNotice": { RecoveryNotice: Recovery }, "@/lib/useModelCatalog": { useModelCatalog: () => ({ catalog: null, loading: false, error: "模型目录离线", retry: () => {} }) }, ...modules }, { setTimeout: () => 1, clearTimeout: () => {}, localStorage: { getItem: () => null } });
+  const exports = compile(file, { react, "react/jsx-runtime": require("react/jsx-runtime"), "@/components/ui/Button": { Button }, "@/components/ui/Input": { Input: Empty }, "@/lib/workflow": workflow, "@/features/cinema/SessionLibrary": { STAGE_CN: {}, TaskVideo: Empty }, "./ModelSelector": { ModelSelector: Empty, ModelUsageNote: Empty }, "@/features/creation/ModelSelector": { ModelSelector: Empty, ModelUsageNote: Empty }, "./RecoveryNotice": { RecoveryNotice: Recovery }, "@/features/creation/RecoveryNotice": { RecoveryNotice: Recovery }, "@/features/trial/TrialProvider": { useTrial: () => ({ status: { mode: "mock", generation_enabled: true, quota_remaining: 1 }, generationCompleted: () => {}, refresh: async () => {}, openSurvey: () => {} }) }, "@/lib/useModelCatalog": { useModelCatalog: () => ({ catalog: null, loading: false, error: "模型目录离线", retry: () => {} }) }, ...modules }, { setTimeout: () => 1, clearTimeout: () => {}, localStorage: { getItem: () => null } });
   return { states, render: () => { stateIndex = refIndex = effectIndex = 0; const tree = exports[name](props); for (const effect of effects) { if (effect.callback) { effect.cleanup = effect.callback(); delete effect.callback; } } return tree; }, unmount: () => effects.forEach(effect => effect.cleanup?.()) };
 }
 const recoverable = { execution_id: "latest-execution", source_execution_id: "original-execution", can_resume: true, requires_reconciliation: false, jobs: [{ kind: "video", model: "wan2.7-i2v", status: "submitted", resumable: true }] };
@@ -104,14 +104,17 @@ test("the real stage continuation does not change chosen models or call ordinary
   assert.equal(screen.states[0].model_selection.image, "new-preference");
 });
 
-test("quick-task continuation resumes the same task, then subscribes to its stream without creating another task", async () => {
+test("interrupted quick tasks remain read-only during the trial and expose no paid continuation", async () => {
   const task = { task_id: "task", type: "literary_video", status: "interrupted", input: { text: "原输入" }, result: null, updated_at: 1, execution: { status: "interrupted", execution_id: "latest" } }, calls = [];
   const screen = view("features/pipelines/PipelinesPanel.tsx", "PipelinesPanel", { tab: "literary", taskId: "task", userId: "user", draft: workflow.emptyDraft().tools.literary, onDraftChange: () => { calls.push("draft"); }, onTabChange: () => {}, onOpenTask: () => {}, onCreated: () => {} }, { states: [[], task], runEffects: false, modules: {
     "@/lib/api/recovery": { resumeTask: async (id, executionId) => { calls.push(["resume", id, executionId]); return { task_id: id }; } },
     "@/lib/api/tasks": { getTask: async () => task, listTasks: async () => [task], streamTask: async id => { calls.push(["stream", id]); }, createTask: async () => { calls.push("create"); } },
   } });
-  await nodes(screen.render(), node => node.type === Recovery)[0].props.onResume("original");
-  assert.deepEqual(calls, [["resume", "task", "original"], ["stream", "task"]]);
+  const tree = screen.render();
+  assert.equal(nodes(tree, node => node.type === Recovery).length, 0);
+  assert.match(text(tree), /暂不开放新生成/);
+  assert.equal(nodes(tree, node => node.type === Button && text(node) === "生成快捷短片").length, 0);
+  await settle(); assert.deepEqual(calls, []);
 });
 
 test("usage shows account balances without exposing provider accounting details", async () => {

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { publicPath } from "@/lib/config";
 import { useEffect, useRef, useSyncExternalStore, type RefObject } from "react";
 import { createCinemaScene, type CinemaBackground, type CinemaSceneController, type SceneMode } from "./cinema-scene";
 
@@ -37,7 +38,7 @@ export function CinemaScene({ host, background, paused, mode, onMode }: {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([loadImage("/cinema/portal.png"), loadImage("/cinema/world.png")]).then(([portal, world]) => {
+    Promise.all([loadImage(publicPath("/cinema/portal.png")), loadImage(publicPath("/cinema/world.png"))]).then(([portal, world]) => {
       if (cancelled || !canvas.current || !host.current) return;
       try {
         controller.current = createCinemaScene({ canvas: canvas.current, host: host.current, images: { portal, world }, onMode });
@@ -49,7 +50,7 @@ export function CinemaScene({ host, background, paused, mode, onMode }: {
 
   return <>
     <div className="hero-image">
-      <Image src={"/cinema/" + background + ".png"} fill sizes="100vw" unoptimized priority style={{ objectFit: "cover", objectPosition: "inherit" }} alt={background === "portal" ? "夜海上的光之门通向明亮的山谷" : "漂浮在云海中的未来城市"} />
+      <Image src={publicPath("/cinema/" + background + ".png")} fill sizes="100vw" unoptimized priority style={{ objectFit: "cover", objectPosition: "inherit" }} alt={background === "portal" ? "夜海上的光之门通向明亮的山谷" : "漂浮在云海中的未来城市"} />
     </div>
     <canvas ref={canvas} className="cinema-canvas" role="img" aria-label="光之门三维场景" data-mode={mode} />
   </>;

@@ -21,6 +21,7 @@ import tempfile
 from pathlib import Path
 
 from app.core.errors import AppError
+from app.core.offline import safe_media_command, safe_media_environment
 
 FPS = 24
 MASTER_CRF = 16
@@ -42,18 +43,18 @@ def _ffmpeg() -> str:
 
 
 def _run(cmd: list[str], label: str, timeout: float = 1800) -> None:
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+    proc = subprocess.run(safe_media_command(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                          timeout=timeout, env=safe_media_environment())
     if proc.returncode != 0:
-        tail = proc.stderr.decode("utf-8", "ignore")[-400:]
-        raise AppError("FFMPEG_FAILED", f"{label}失败：{tail}", 422)
+        raise AppError("FFMPEG_FAILED", f"{label}失败，请检查本地输入媒体", 422)
 
 
 def probe(path: Path) -> dict:
     out = subprocess.run(
-        ["ffprobe", "-v", "error", "-show_entries",
+        safe_media_command(["ffprobe", "-v", "error", "-show_entries",
          "stream=codec_type,codec_name,width,height,r_frame_rate,nb_frames,bit_rate,pix_fmt",
-         "-show_entries", "format=duration,bit_rate,size", "-of", "json", str(path)],
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True,
+         "-show_entries", "format=duration,bit_rate,size", "-of", "json", str(path)]),
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, env=safe_media_environment(),
     ).stdout
     data = json.loads(out)
     video = next((s for s in data.get("streams", []) if s.get("codec_type") == "video"), {})
@@ -73,9 +74,9 @@ def first_frame_is_sheet(clip: Path) -> dict:
     """判断第 0 帧是不是定妆图（与后续帧突变）。只读本地文件。"""
     w, h, n = 160, 90, 5
     raw = subprocess.run(
-        [_ffmpeg(), "-v", "error", "-i", str(clip), "-frames:v", str(n),
-         "-vf", f"scale={w}:{h},format=gray", "-f", "rawvideo", "-"],
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True,
+        safe_media_command([_ffmpeg(), "-v", "error", "-i", str(clip), "-frames:v", str(n),
+         "-vf", f"scale={w}:{h},format=gray", "-f", "rawvideo", "-"]),
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, env=safe_media_environment(),
     ).stdout
     size = w * h
     frames = [raw[i * size:(i + 1) * size] for i in range(len(raw) // size)]

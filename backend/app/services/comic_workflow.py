@@ -287,7 +287,10 @@ class ComicWorkflow:
             else:
                 await asyncio.to_thread(self.host.image.text_to_image, prompt, output, size=self.host._image_size(meta),
                                         model=model_catalog.resolve(meta.model_selection, ["image"])["image"])
-            await self.host._check_content(str(output))
+            await self.host._check_content(
+                str(output), expected_person_count=len(set(shot.get("character_ids", []))),
+                meta=meta, item_id=shot["shot_id"],
+            )
             old = existing.get(shot["shot_id"], {})
             existing[shot["shot_id"]] = {"shot_id": shot["shot_id"], "path": str(output), "selected": str(output),
                                          "model_usage": model_catalog.stage_usage(meta, "comic_panels"),

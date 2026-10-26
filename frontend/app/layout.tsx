@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AuthProvider } from "@/features/auth/AuthProvider";
+import { TrialProvider } from "@/features/trial/TrialProvider";
 import "./globals.css";
 import "./cinema.css";
 
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider><TrialProvider>{children}</TrialProvider></AuthProvider>
       </body>
     </html>
   );

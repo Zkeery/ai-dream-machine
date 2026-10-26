@@ -26,6 +26,7 @@ function harness(session, response = { ...session, status: "session_completed" }
     "react/jsx-runtime": require("react/jsx-runtime"),
     "@/lib/workflow": workflow,
     "@/lib/useModelCatalog": { useModelCatalog: () => ({ catalog: null, loading: false, error: "", retry: () => {} }) },
+    "@/features/trial/TrialProvider": { useTrial: () => ({ status: { mode: "mock", generation_enabled: true, quota_remaining: 1 }, generationCompleted: () => {}, refresh: async () => {}, openSurvey: () => {} }) },
     "./ModelSelector": { ModelSelector: Empty, ModelUsageNote: Empty },
     "@/components/ui/Button": { Button },
     "@/features/cinema/SessionLibrary": { STAGE_CN: {} },

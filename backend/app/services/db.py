@@ -146,7 +146,7 @@ def init_db() -> None:
         if "project_type" not in columns:
             conn.execute("ALTER TABLE sessions ADD COLUMN project_type TEXT NOT NULL DEFAULT 'story'")
         for name, default in (("stale_stages", "[]"), ("artifact_versions", "{}"),
-                              ("selected_versions", "{}"), ("execution_inputs", "[]"),
+                              ("selected_versions", "{}"), ("execution_inputs", "[]"), ("content_reviews", "[]"), ("creation_checks", "[]"),
                               ("knowledge_library_ids", "[]"), ("model_selection", "{}"),
                               ("orchestration_mode", "workflow"), ("agent_runs", "{}")):
             if name not in columns:

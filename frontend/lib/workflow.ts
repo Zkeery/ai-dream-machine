@@ -89,7 +89,7 @@ export const TALKING_MODE_LABELS: Record<TalkingMode, string> = { lip_sync: "人
 export function talkingModeOf(value: unknown): TalkingMode { return value === "lip_sync" ? "lip_sync" : "static"; }
 export function talkingScriptLength(text: string): number { return Array.from(text.replace(/\s/gu, "")).length; }
 export const TASK_TO_TOOL: Record<string, PipelineTab> = { literary_video: "literary", motion_transfer: "motion", talking_head: "talking" };
-export const STATUS_LABELS: Record<string, string> = { idle: "待生成", pending: "排队中", running: "生成中", stage_completed: "等待确认", session_completed: "已完成", completed: "已完成", failed: "生成失败", interrupted: "已中断" };
+export const STATUS_LABELS: Record<string, string> = { idle: "待生成", pending: "排队中", running: "生成中", awaiting_review: "等待图片确认", stage_completed: "等待确认", session_completed: "已完成", completed: "已完成", failed: "生成失败", interrupted: "已中断" };
 
 export function emptyDraft(): WorkspaceDraft {
   const tool = (): ToolDraft => ({ text: "", style: "realistic", image: "", imageName: "", motion: "", motionName: "", assetSource: "" });

@@ -63,6 +63,8 @@ class SessionMeta(BaseModel):
     artifact_versions: dict[str, list[dict[str, Any]]] = Field(default_factory=dict)
     selected_versions: dict[str, str] = Field(default_factory=dict)
     execution_inputs: list[dict[str, Any]] = Field(default_factory=list)
+    content_reviews: list[dict[str, Any]] = Field(default_factory=list)
+    creation_checks: list[dict[str, Any]] = Field(default_factory=list)
     knowledge_library_ids: list[str] = Field(default_factory=list)
     error: Optional[str] = None
     created_at: float = 0.0

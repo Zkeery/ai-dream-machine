@@ -2,6 +2,7 @@ import { api } from "./client";
 import { streamSSE, type SSEEvent } from "../stream";
 
 export type RecoveryStatus = {
+  mock?: boolean;
   execution_id: string | null;
   source_execution_id: string | null;
   can_resume: boolean;

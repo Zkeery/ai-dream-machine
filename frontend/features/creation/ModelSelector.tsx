@@ -26,8 +26,10 @@ export function ModelSelector({ catalog, loading, error, keys, selected, disable
           {group.options.map(item => <option key={item.id} value={item.id}>{item.label}{item.id === group.default ? " · 推荐" : ""}</option>)}
         </select>
         {option?.video && <small>{option.video.duration_seconds}秒/片段 · {Object.entries(option.video.estimated_clip_cny).map(([resolution, cost]) => `${resolution}约¥${cost.toFixed(2)}/片段`).join("；") || "暂无费用估算"}</small>}
+        {key === "video_speech" && option && <small>{option.description || "音色与费用估算暂未提供，请核对后再生成。"}</small>}
       </label>;
     })}
+    <p className="model-picker-hint">按表估算仅供预算参考，实付以平台账单实扣为准。实际用量、重试或价格变化可能造成差异；失败或超时不代表未扣费。</p>
   </div>;
   return <section className={`model-picker${compact ? " model-picker-compact" : ""}`} aria-label="生成模型设置">
     {compact ? <details onToggle={event => {

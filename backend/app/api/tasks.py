@@ -13,7 +13,7 @@ from app.core import config
 from app.core.errors import AppError
 from app.core.path_security import ensure_inside
 from app.schemas.task import TaskCreate, TaskMeta, talking_input
-from app.services import auth, execution_store, task_store, model_catalog, recovery, provider_jobs
+from app.services import auth, execution_store, task_store, model_catalog, recovery, provider_jobs, trial_controls
 from app.services.short_pipelines import ShortPipelines
 
 router = APIRouter()
@@ -55,7 +55,13 @@ def _resolve_inputs(user_id: str, ptype: str, inputs: dict) -> dict:
 
 
 def _task_json(meta: TaskMeta) -> dict:
-    return {**meta.model_dump(), "execution": execution_store.snapshot("task", meta.task_id)}
+    reservation = trial_controls.generation(meta.task_id, meta.owner_id) if trial_controls.enabled() else None
+    value = {**meta.model_dump(), "execution": execution_store.snapshot("task", meta.task_id)}
+    if reservation:
+        value["trial"] = reservation
+        if reservation["status"] == "pending_reconciliation":
+            value.update(status="pending_reconciliation", error=trial_controls.PENDING_MESSAGE)
+    return value
 
 
 def _own_task(task_id: str, user_id: str) -> TaskMeta:
@@ -70,6 +76,8 @@ async def create_task(req: TaskCreate, user_id: str = Depends(get_current_user),
                       idempotency_key: str | None = Header(None)) -> dict:
     if idempotency_key is not None and (not idempotency_key.strip() or len(idempotency_key) > 128):
         raise AppError("VALIDATION_ERROR", "Idempotency-Key 需为 1 到 128 个字符")
+    if trial_controls.enabled():
+        raise AppError("TRIAL_KIND_DISABLED", "本轮内测请使用漫剧或 3 镜短视频创作入口", 403)
     inputs = _resolve_inputs(user_id, req.type, req.input)
     meta = TaskMeta(task_id=uuid.uuid4().hex, type=req.type, owner_id=user_id, input=inputs)
     task_id, execution_id, created = execution_store.create_task(meta, idempotency_key)
@@ -125,6 +133,7 @@ async def resume_task(task_id: str, body: recovery.ResumeRequest,
                       user_id: str = Depends(get_current_user),
                       idempotency_key: str | None = Header(None)):
     meta = _own_task(task_id, user_id)
+    trial_controls.require_no_retry(task_id)
     if idempotency_key is not None and (not idempotency_key.strip() or len(idempotency_key) > 128):
         raise AppError("VALIDATION_ERROR", "Idempotency-Key 需为 1 到 128 个字符")
     _, request = recovery.prepare(meta, "task", body.execution_id)
