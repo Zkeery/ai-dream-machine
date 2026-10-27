@@ -55,7 +55,20 @@ test("public video streams from its same-origin URL without waiting for an authe
   const video = view.render("/media/video/example/final film.mp4", "example");
   assert.equal(video.type, "video");
   assert.equal(video.props.src, "/dream/api/sessions/example/media/video/final%20film.mp4");
+  assert.equal(video.props.poster, undefined);
   assert.equal(view.requests.length, 0);
+});
+
+test("the rain-night public videos use their allowlisted poster without affecting private media", async () => {
+  const session = "0f2d3dc23e9c49298d38d185d9848ee0";
+  const path = `/media/video/${session}/final.mp4`;
+  const demo = harness("MediaVideo", true).render(path, session);
+  assert.equal(demo.props.poster, `/dream/api/sessions/${session}/media/image/dream-poster.jpg`);
+  const privateView = harness("MediaVideo");
+  privateView.render(path, session);
+  privateView.requests[0].resolve("blob:private"); await settle();
+  assert.equal(privateView.render(path, session).props.poster, undefined);
+  privateView.unmount();
 });
 
 for (const [component, tag, errorText] of variants) {

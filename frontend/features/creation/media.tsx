@@ -65,7 +65,10 @@ export function MediaVideo({ sessionId, path }: { sessionId: string; path: strin
   const { src, error } = useMediaSrc(sessionId, path);
   if (error) return <div className="text-xs text-muted py-3">视频加载失败</div>;
   if (!src) return <div className="text-xs text-muted py-3">加载中…</div>;
-  return <video src={src} controls className="rounded-lg max-w-full aspect-video bg-black" />;
+  const poster = READ_ONLY_DEMO && sessionId === "0f2d3dc23e9c49298d38d185d9848ee0"
+    ? `${API_BASE}/api/sessions/${encodeURIComponent(sessionId)}/media/image/dream-poster.jpg`
+    : undefined;
+  return <video src={src} poster={poster} controls className="rounded-lg max-w-full aspect-video bg-black" />;
 }
 
 export function MediaAudio({ sessionId, path, label }: { sessionId: string; path: string; label: string }) {
